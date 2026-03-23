@@ -1,5 +1,5 @@
 {
-  "bankroll": 950.0,
+  "bankroll": 814.51,
   "trades": [
     {
       "id": "T1774261969",
@@ -17,10 +17,61 @@
       "status": "open",
       "placed_at": "2026-03-23T10:32:49.848502",
       "paper": true
+    },
+    {
+      "id": "T1774276722",
+      "market_id": "1649128",
+      "market": "Will the highest temperature in Miami be between 76-77\u00b0F on March 23?",
+      "position": "YES",
+      "entry_price": 1,
+      "stake": 47.5,
+      "potential_return": 4750.0,
+      "potential_profit": 4702.5,
+      "confidence": 85,
+      "true_prob": 15,
+      "market_prob": 1,
+      "reason": "Miami's typical March high is 78-82\u00b0F, but daily variation and weather patterns make a 76-77\u00b0F high reasonably possible. Market severely underpricing at 1\u00a2.",
+      "status": "open",
+      "placed_at": "2026-03-23T14:38:42.666394",
+      "paper": true
+    },
+    {
+      "id": "T1774276722",
+      "market_id": "675595",
+      "market": "Will Waymo launch in New York City by June 30 2026?",
+      "position": "YES",
+      "entry_price": 8,
+      "stake": 45.12,
+      "potential_return": 564.0,
+      "potential_profit": 518.88,
+      "confidence": 78,
+      "true_prob": 25,
+      "market_prob": 8,
+      "reason": "Waymo has been expanding aggressively and NYC represents a massive market opportunity. 3+ months is reasonable timeframe given their current trajectory.",
+      "status": "open",
+      "placed_at": "2026-03-23T14:38:42.666441",
+      "paper": true
+    },
+    {
+      "id": "T1774276722",
+      "market_id": "1370731",
+      "market": "Will Woody Allen be confirmed to have visited Epstein's island?",
+      "position": "YES",
+      "entry_price": 10,
+      "stake": 42.87,
+      "potential_return": 428.7,
+      "potential_profit": 385.83,
+      "confidence": 70,
+      "true_prob": 22,
+      "market_prob": 10,
+      "reason": "Given ongoing document releases and investigations, plus Allen's previous associations, the probability of confirmation seems higher than 10\u00a2 pricing suggests.",
+      "status": "open",
+      "placed_at": "2026-03-23T14:38:42.666481",
+      "paper": true
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-23",
-  "scan_count": 4,
+  "scan_count": 5,
   "started": "2026-03-23T09:17:53.961678"
 }
