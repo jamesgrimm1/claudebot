@@ -259,16 +259,15 @@ If genuinely no edge exists anywhere, return an empty array: []"""
 # ─────────────────────────────────────────────────────
 
 def kelly_size(true_prob_pct, market_prob_pct, bankroll):
-    """
-    Half-Kelly bet sizing.
-    Edge = true_prob - market_prob
-    Odds = (1 - market_prob) / market_prob  (decimal odds minus 1)
-    Kelly % = Edge / Odds
-    Half-Kelly = Kelly % / 2
-    """
+    # Guard against edge cases
+    if not market_prob_pct or market_prob_pct <= 0 or market_prob_pct >= 100:
+        return 0
+    if not true_prob_pct or true_prob_pct <= 0:
+        return 0
+
     p = true_prob_pct / 100
     q = 1 - p
-    b = (1 - market_prob_pct / 100) / (market_prob_pct / 100)  # net odds
+    b = (1 - market_prob_pct / 100) / (market_prob_pct / 100)
 
     if b <= 0:
         return 0
@@ -276,7 +275,6 @@ def kelly_size(true_prob_pct, market_prob_pct, bankroll):
     full_kelly = (b * p - q) / b
     half_kelly = full_kelly / 2
 
-    # Cap at MAX_BET_PCT
     capped = min(max(half_kelly, 0), MAX_BET_PCT / 100)
     return round(capped * bankroll, 2)
 
