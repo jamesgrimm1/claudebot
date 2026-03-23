@@ -1,0 +1,38 @@
+name: ClaudeBot Paper Trader
+
+on:
+  schedule:
+    - cron: '0,30 * * * *'  # runs every 30 minutes
+  workflow_dispatch:          # lets you trigger it manually too
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic requests
+
+      - name: Download latest log
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: claudebot-log
+
+      - name: Run bot (single scan)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python claudebot.py --single-scan
+
+      - name: Save log
+        uses: actions/upload-artifact@v4
+        with:
+          name: claudebot-log
+          path: claudebot_log.json
+          retention-days: 90
