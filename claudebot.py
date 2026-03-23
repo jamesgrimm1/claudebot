@@ -529,4 +529,16 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    import sys
+    if "--single-scan" in sys.argv:
+        # Run one scan and exit (for GitHub Actions)
+        state = load_state()
+        state = reset_daily_loss_if_needed(state)
+        markets = fetch_markets()
+        recs = analyze_markets(markets, state)
+        for rec in recs:
+            state = place_paper_trade(rec, markets, state)
+        save_state(state)
+        print_portfolio(state)
+    else:
+        run()
