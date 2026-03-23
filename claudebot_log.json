@@ -1,5 +1,5 @@
 {
-  "bankroll": 773.78,
+  "bankroll": 735.09,
   "trades": [
     {
       "id": "T1774261969",
@@ -31,9 +31,12 @@
       "true_prob": 15,
       "market_prob": 1,
       "reason": "Miami's typical March high is 78-82\u00b0F, but daily variation and weather patterns make a 76-77\u00b0F high reasonably possible. Market severely underpricing at 1\u00a2.",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-23T14:38:42.666394",
-      "paper": true
+      "paper": true,
+      "won": false,
+      "resolved_at": "2026-03-23T21:03:59.883402",
+      "realized_pnl": -47.5
     },
     {
       "id": "T1774276722",
@@ -85,10 +88,27 @@
       "status": "open",
       "placed_at": "2026-03-23T16:02:55.655092",
       "paper": true
+    },
+    {
+      "id": "T1774299844",
+      "market_id": "1680988",
+      "market": "Will the highest temperature in Denver be 90\u00b0F or higher on March 26?",
+      "position": "NO",
+      "entry_price": 99,
+      "stake": 38.69,
+      "potential_return": 39.08,
+      "potential_profit": 0.39,
+      "confidence": 85,
+      "true_prob": 15,
+      "market_prob": 1,
+      "reason": "90\u00b0F in Denver in late March is extremely rare - historical data shows this has never occurred in March, making 1\u00a2 for NO significantly underpriced.",
+      "status": "open",
+      "placed_at": "2026-03-23T21:04:04.149914",
+      "paper": true
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 47.5,
   "daily_reset": "2026-03-23",
-  "scan_count": 10,
+  "scan_count": 11,
   "started": "2026-03-23T09:17:53.961678"
 }
