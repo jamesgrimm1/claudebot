@@ -1,5 +1,5 @@
 {
-  "bankroll": 970.0,
+  "bankroll": 950.6,
   "trades": [
     {
       "id": "T1774412231",
@@ -26,10 +26,36 @@
       "placed_at": "2026-03-25T04:17:11.880497+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774428434",
+      "market_id": "1680904",
+      "market": "Will the highest temperature in Taipei be 27\u00b0C or higher on March 26?",
+      "position": "YES",
+      "entry_price": 7,
+      "stake": 19.4,
+      "potential_return": 277.14,
+      "potential_profit": 257.74,
+      "confidence": 62,
+      "true_prob": 22,
+      "market_prob": 7,
+      "closes_in_days": 1.13,
+      "closes": "2026-03-26T12:00:00+00:00",
+      "research_summary": "Multiple forecast sources show conflicting signals for March 26 Taipei high. Weather25 shows 28\u00b0C high, Meteored shows 79\u00b0F (26.1\u00b0C), and meteodays shows 75\u00b0F (24\u00b0C). However, recent actual observations this week show Taipei reaching 80-82\u00b0F (27-28\u00b0C) on multiple days. AccuWeather recorded 82\u00b0F on March 18, 81\u00b0F on March 16, and 80\u00b0F on March 23. With continued warm conditions and some forecasts showing 28\u00b0C, 7% seems underpriced.",
+      "key_factors": [
+        "Weather25 forecasts 28\u00b0C high for March 26, above the 27\u00b0C threshold",
+        "Recent actual observations show Taipei hitting 80-82\u00b0F (27-28\u00b0C) multiple days this week",
+        "Evening rain expected on March 26 could suppress afternoon peak but not eliminate chance of 27\u00b0C earlier"
+      ],
+      "bear_case": "Majority of forecast models (Meteored 79\u00b0F, Meteodays 75\u00b0F) show highs below 27\u00b0C. Polymarket traders pricing today's Taipei high at only 24\u00b0C at the airport suggests consistently cooler readings. Rain arriving could keep temperatures suppressed.",
+      "status": "open",
+      "placed_at": "2026-03-25T08:47:14.700307+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-25",
-  "scan_count": 38,
+  "scan_count": 39,
   "started": "2026-03-23T09:17:53.961678"
 }
