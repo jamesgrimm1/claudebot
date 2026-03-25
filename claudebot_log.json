@@ -1,8 +1,35 @@
 {
-  "bankroll": 1000.00,
-  "trades": [],
+  "bankroll": 970.0,
+  "trades": [
+    {
+      "id": "T1774412231",
+      "market_id": "1705260",
+      "market": "Will Claude by Anthropic be #2 Free App in the US Apple App Store on March 27?",
+      "position": "YES",
+      "entry_price": 49,
+      "stake": 30.0,
+      "potential_return": 61.22,
+      "potential_profit": 31.22,
+      "confidence": 72,
+      "true_prob": 63,
+      "market_prob": 49,
+      "closes_in_days": 1.82,
+      "closes": "2026-03-27T00:00:00+00:00",
+      "research_summary": "Apple App Store charts as of today show Claude is currently the #2 free app in the US (behind ChatGPT at #1, ahead of Gemini at #4). Claude has maintained this top-2 position for several weeks since its surge to #1 in late Feb/early March following the Pentagon standoff. With stable positioning and no disruptive catalysts expected, the status quo gives a ~63% base rate that it remains #2 on March 27, well above the 49% market price.",
+      "key_factors": [
+        "Claude is currently #2 on US App Store free chart right now",
+        "Has maintained top-2 position for 3+ weeks since Pentagon controversy surge",
+        "No major competing app launch or news event likely to displace it in 2 days"
+      ],
+      "bear_case": "App Store rankings are inherently volatile; a viral app launch, ChatGPT feature update, or Perplexity/Gemini surge could push Claude to #3+ within 48 hours",
+      "status": "open",
+      "placed_at": "2026-03-25T04:17:11.880497+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
+    }
+  ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-25",
-  "scan_count": 36,
+  "scan_count": 37,
   "started": "2026-03-23T09:17:53.961678"
 }
