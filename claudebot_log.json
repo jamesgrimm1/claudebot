@@ -1,5 +1,5 @@
 {
-  "bankroll": 1227.74,
+  "bankroll": 1108.73,
   "trades": [
     {
       "id": "T1774412231",
@@ -55,10 +55,88 @@
       "won": true,
       "resolved_at": "2026-03-26T13:09:17.280340+00:00",
       "realized_pnl": 257.74
+    },
+    {
+      "id": "T1774557426",
+      "market_id": "1692479",
+      "market": "Will Aaron Rai finish in the Top 5 at the 2026 Texas Children's Houston Open?",
+      "position": "NO",
+      "entry_price": 51,
+      "stake": 36.83,
+      "potential_return": 72.22,
+      "potential_profit": 35.39,
+      "confidence": 99,
+      "true_prob": 99,
+      "market_prob": 49,
+      "closes_in_days": 2.14,
+      "closes": "2026-03-29T00:00:00+00:00",
+      "research_summary": "Aaron Rai withdrew from the Houston Open with a neck injury before his first-round tee time, confirmed by PGA Tour Communications. Taylor Moore replaced him. A withdrawn player cannot finish Top 5, yet the market still prices YES at 49\u00a2.",
+      "key_factors": [
+        "Rai officially withdrew before Round 1 with neck injury",
+        "PGA Tour Communications confirmed, Taylor Moore replaced him",
+        "Market has not adjusted to this news at all"
+      ],
+      "bear_case": "Market could potentially void/refund rather than resolve NO if platform has special WD rules",
+      "status": "open",
+      "placed_at": "2026-03-26T20:37:06.013831+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774557426",
+      "market_id": "1662529",
+      "market": "Will Hezbollah conduct military action against Israel on March 27, 2026?",
+      "position": "YES",
+      "entry_price": 87,
+      "stake": 59.55,
+      "potential_return": 68.45,
+      "potential_profit": 8.9,
+      "confidence": 98,
+      "true_prob": 99,
+      "market_prob": 87,
+      "closes_in_days": 4.14,
+      "closes": "2026-03-31T00:00:00+00:00",
+      "research_summary": "There is an active full-scale war since March 2. Hezbollah fired 600+ times at Israel in 24 hours on March 26 (a record), averaging 150 rockets/day. Hezbollah's chief vowed to fight 'without limits' on March 25. Zero ceasefire prospects exist.",
+      "key_factors": [
+        "Active war with daily Hezbollah rocket/drone attacks since March 2",
+        "Record 600+ attacks in 24 hours on March 26",
+        "Hezbollah chief explicitly vowed continued escalation"
+      ],
+      "bear_case": "Surprise ceasefire before March 27, though absolutely no signals of this",
+      "status": "open",
+      "placed_at": "2026-03-26T20:37:06.013884+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774557426",
+      "market_id": "1722787",
+      "market": "Coby White: Points O/U 14.5",
+      "position": "YES",
+      "entry_price": 48,
+      "stake": 22.63,
+      "potential_return": 47.15,
+      "potential_profit": 24.52,
+      "confidence": 68,
+      "true_prob": 67,
+      "market_prob": 48,
+      "closes_in_days": 0.1,
+      "closes": "2026-03-26T23:00:00+00:00",
+      "research_summary": "White's last 4 games: 27, 27, 24, 18 pts \u2014 all over 14.5. He averages 15.9 PPG across 12 Hornets games and 21.6 over his last 5. He's active tonight vs NYK with no injury designation. Charlotte's offense is red-hot, averaging 131 PPG at home over their last 4.",
+      "key_factors": [
+        "Last 5 games average 21.6 PPG, all clearing 14.5",
+        "Fully healthy, active tonight in high-scoring Charlotte offense",
+        "Shooting 45.9% FG and 40.3% from 3PT since joining Hornets"
+      ],
+      "bear_case": "Bench role means variable minutes; tough Knicks defense; blowout in either direction could limit run",
+      "status": "open",
+      "placed_at": "2026-03-26T20:37:06.013922+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-26",
-  "scan_count": 46,
+  "scan_count": 47,
   "started": "2026-03-23T09:17:53.961678"
 }
