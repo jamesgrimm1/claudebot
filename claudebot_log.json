@@ -1,5 +1,5 @@
 {
-  "bankroll": 1053.29,
+  "bankroll": 1100.44,
   "trades": [
     {
       "id": "T1774412231",
@@ -129,10 +129,13 @@
         "Shooting 45.9% FG and 40.3% from 3PT since joining Hornets"
       ],
       "bear_case": "Bench role means variable minutes; tough Knicks defense; blowout in either direction could limit run",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-26T20:37:06.013922+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-03-27T05:14:45.662972+00:00",
+      "realized_pnl": 24.52
     },
     {
       "id": "T1774582536",
@@ -164,6 +167,6 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-27",
-  "scan_count": 49,
+  "scan_count": 50,
   "started": "2026-03-23T09:17:53.961678"
 }
