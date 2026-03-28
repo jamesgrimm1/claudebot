@@ -1,5 +1,5 @@
 {
-  "bankroll": 1144.24,
+  "bankroll": 1282.46,
   "trades": [
     {
       "id": "T1774412231",
@@ -80,10 +80,13 @@
         "Market has not adjusted to this news at all"
       ],
       "bear_case": "Market could potentially void/refund rather than resolve NO if platform has special WD rules",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-26T20:37:06.013831+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-03-28T20:26:05.428976+00:00",
+      "realized_pnl": 35.39
     },
     {
       "id": "T1774557426",
@@ -162,10 +165,13 @@
         "April 3 deadline gives 7 extra days buffer beyond scheduled date"
       ],
       "bear_case": "Kanye has delayed 7+ times already and Billboard notes he 'stopped short of confirming' the March 27 date; he could theoretically pull the Spotify listing at the last minute",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-27T03:35:36.156812+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-03-28T20:26:05.576986+00:00",
+      "realized_pnl": 10.56
     },
     {
       "id": "T1774643892",
@@ -199,6 +205,6 @@
   ],
   "daily_loss": 17.42,
   "daily_reset": "2026-03-28",
-  "scan_count": 56,
+  "scan_count": 57,
   "started": "2026-03-23T09:17:53.961678"
 }
