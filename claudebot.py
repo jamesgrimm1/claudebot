@@ -101,7 +101,14 @@ def telegram_new_trade(trade, state):
     won_ct     = sum(1 for t in closed_t if t.get("won"))
     lost_ct    = len(closed_t) - won_ct
 
-    # ── PUBLIC — clean signal, no financials ──────────────
+    # Build Polymarket link if slug available
+    slug      = trade.get("market_slug", "")
+    link_line = (
+        f"\n\n🔗 <a href=\"https://polymarket.com/event/{slug}\">Trade on Polymarket</a>"
+        if slug else ""
+    )
+
+    # ── PUBLIC — clean signal with link, no financials ────
     public_msg = (
         f"🤖 <b>CLAUDEBOT SIGNAL</b>\n"
         f"{'─' * 30}\n"
@@ -117,6 +124,7 @@ def telegram_new_trade(trade, state):
         f"<i>{trade.get('research_summary', '')}</i>\n\n"
         f"⚠️ <b>Bear case</b>\n"
         f"<i>{trade.get('bear_case', '')}</i>"
+        f"{link_line}"
     )
     send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
 
@@ -141,6 +149,7 @@ def telegram_new_trade(trade, state):
             f"{'─' * 30}\n"
             f"🏦 Bankroll: <b>${state['bankroll']:.2f}</b> ({roi:+.1f}% ROI)\n"
             f"📊 Record: <b>{won_ct}W / {lost_ct}L</b>"
+            f"{link_line}"
         )
         send_telegram(private_msg, TELEGRAM_PERSONAL_ID)
 
@@ -155,20 +164,20 @@ def telegram_trade_resolved(trade, state):
     closed  = [t for t in state["trades"] if t["status"] == "closed"]
     won_ct  = sum(1 for t in closed if t.get("won"))
     lost_ct = len(closed) - won_ct
-    wr      = (won_ct / len(closed) * 100) if closed else 0
 
+    # Public — no win rate, no bankroll
     public_msg = (
         f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
         f"{'─' * 30}\n"
         f"<b>{trade['market']}</b>\n"
         f"Position: <b>{trade['position']} @ {trade['entry_price']}¢</b>\n\n"
-        f"💰 P&L: <b>{pnl_str}</b>\n"
-        f"{'─' * 30}\n"
-        f"📊 Record: <b>{won_ct}W / {lost_ct}L — {wr:.0f}% win rate</b>"
+        f"💰 P&L: <b>{pnl_str}</b>"
     )
     send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
 
+    # Private — full details
     if TELEGRAM_PERSONAL_ID:
+        wr = (won_ct / len(closed) * 100) if closed else 0
         private_msg = (
             f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
             f"{'─' * 30}\n"
@@ -360,12 +369,12 @@ def resolve_open_trades(state):
 def get_demo_markets():
     now = datetime.now(timezone.utc)
     return [
-        {"id": "d001", "question": "Will Bitcoin close above $85,000 today?",               "yes": 52, "volume": 1200000, "closes_in_days": 0.5,  "closes": (now + timedelta(hours=12)).isoformat()},
-        {"id": "d002", "question": "Will the S&P 500 close up on Friday?",                  "yes": 48, "volume":  890000, "closes_in_days": 2.0,  "closes": (now + timedelta(days=2)).isoformat()},
-        {"id": "d003", "question": "Will Ethereum be above $2,000 by end of week?",         "yes": 61, "volume":  740000, "closes_in_days": 4.0,  "closes": (now + timedelta(days=4)).isoformat()},
-        {"id": "d004", "question": "Will the Fed make any emergency statement this week?",   "yes":  8, "volume":  430000, "closes_in_days": 5.0,  "closes": (now + timedelta(days=5)).isoformat()},
-        {"id": "d005", "question": "Will BTC dominance exceed 55% by end of week?",         "yes": 44, "volume":  320000, "closes_in_days": 6.0,  "closes": (now + timedelta(days=6)).isoformat()},
-        {"id": "d006", "question": "Will there be a major crypto exchange hack this week?",  "yes":  6, "volume":  210000, "closes_in_days": 7.0,  "closes": (now + timedelta(days=7)).isoformat()},
+        {"id": "d001", "slug": "", "question": "Will Bitcoin close above $85,000 today?",               "yes": 52, "volume": 1200000, "closes_in_days": 0.5,  "closes": (now + timedelta(hours=12)).isoformat()},
+        {"id": "d002", "slug": "", "question": "Will the S&P 500 close up on Friday?",                  "yes": 48, "volume":  890000, "closes_in_days": 2.0,  "closes": (now + timedelta(days=2)).isoformat()},
+        {"id": "d003", "slug": "", "question": "Will Ethereum be above $2,000 by end of week?",         "yes": 61, "volume":  740000, "closes_in_days": 4.0,  "closes": (now + timedelta(days=4)).isoformat()},
+        {"id": "d004", "slug": "", "question": "Will the Fed make any emergency statement this week?",   "yes":  8, "volume":  430000, "closes_in_days": 5.0,  "closes": (now + timedelta(days=5)).isoformat()},
+        {"id": "d005", "slug": "", "question": "Will BTC dominance exceed 55% by end of week?",         "yes": 44, "volume":  320000, "closes_in_days": 6.0,  "closes": (now + timedelta(days=6)).isoformat()},
+        {"id": "d006", "slug": "", "question": "Will there be a major crypto exchange hack this week?",  "yes":  6, "volume":  210000, "closes_in_days": 7.0,  "closes": (now + timedelta(days=7)).isoformat()},
     ]
 
 
@@ -406,6 +415,7 @@ def fetch_markets():
             continue
         markets.append({
             "id":             str(m.get("id", "")),
+            "slug":           m.get("slug", ""),
             "question":       m["question"],
             "yes":            yes,
             "volume":         float(m.get("volume", 0)),
@@ -442,7 +452,8 @@ def get_category(question):
                               "ahl:", "lol:", "fluxo", "leviatan", "honduras", "wd fc",
                               "xspark", "xcrew", "prodigy", "rune eaters", "atputies",
                               "sinners", "jijiehao", "monchengladbach", "almeria",
-                              "real sociedad", "spain", "georgia", "lithuania"]):
+                              "real sociedad", "spain", "georgia", "lithuania",
+                              "kalieva", "urhobo"]):
         return "sports"
     if any(k in q for k in ["president", "election", "senate", "congress", "vote",
                               "government", "minister", "party", "trump", "biden",
@@ -543,46 +554,38 @@ def haiku_screen(markets, state):
 # ─────────────────────────────────────────────────────────
 
 def build_search_query(market):
-    """
-    Builds a smart, targeted search query from a market question.
-    Different categories need different query strategies to find results.
-    """
-    q   = market["question"]
-    cat = get_category(q)
-    now = datetime.now(timezone.utc)
+    q          = market["question"]
+    cat        = get_category(q)
+    now        = datetime.now(timezone.utc)
     month_year = now.strftime("%B %Y")
     date_full  = now.strftime("%B %d %Y")
 
-    # Strip prediction market boilerplate
     q_clean = re.sub(r'^Will\s+', '', q, flags=re.IGNORECASE)
     q_clean = re.sub(r'\?$', '', q_clean).strip()
 
     if cat == "weather":
-        # Extract city name — usually first proper noun or city mentioned
-        # Search for the actual forecast, not the prediction market
         city_match = re.search(r'in ([A-Z][a-zA-Z\s]+?)(?:\s+be|\s+have|\s+reach|\s+exceed)', q)
         city = city_match.group(1).strip() if city_match else q_clean
         return f"{city} weather forecast high temperature {date_full}"
 
     elif cat == "sports":
-        # Strip market-specific syntax for cleaner results
         q_clean = re.sub(r':\s*O/U\s*[\d.]+', '', q_clean)
         q_clean = re.sub(r'Spread:\s*', '', q_clean)
         q_clean = re.sub(r'\(BO[123]\).*', '', q_clean)
-        q_clean = re.sub(r'\s*[-–]\s*\w[\w\s]+(?:Championship|League|Series|Cup|Season).*', '', q_clean)
+        q_clean = re.sub(r'\s*[-–]\s*\w[\w\s]+(?:Championship|League|Series|Cup|Season|Play-In).*', '', q_clean)
         q_clean = re.sub(r'AHL:\s*|LoL:\s*|Dota 2:\s*|Valorant:\s*|Counter-Strike:\s*', '', q_clean)
+        q_clean = re.sub(r'Exact Score:\s*', '', q_clean)
         q_clean = q_clean.strip()
         return f"{q_clean} match result odds {month_year}"
 
     elif cat == "economics":
-        # Remove narrow range brackets for broader search
         q_clean = re.sub(r'between \$[\d,]+ and \$[\d,]+', '', q_clean)
         q_clean = re.sub(r'at \$[\d,]+[-–]\$[\d,]+', '', q_clean)
+        q_clean = re.sub(r'between \d+k and \d+k', '', q_clean)
         q_clean = q_clean.strip()
         return f"{q_clean} {month_year} forecast"
 
     elif cat == "crypto":
-        # Extract coin and get current price
         coin = "bitcoin"
         for c in ["ethereum", "eth", "solana", "bnb", "xrp"]:
             if c in q.lower():
@@ -607,7 +610,6 @@ def build_search_query(market):
 # ─────────────────────────────────────────────────────────
 
 def ddg_search(query, max_results=5):
-    """Search DuckDuckGo and return raw results. Returns empty list on failure."""
     if not DDG_AVAILABLE:
         return []
     try:
@@ -620,15 +622,10 @@ def ddg_search(query, max_results=5):
 
 
 def search_market(market):
-    """
-    Search DuckDuckGo for a market using a smart query.
-    Falls back to a simpler query if first attempt returns nothing.
-    Returns (query_used, results_list).
-    """
     query   = build_search_query(market)
     results = ddg_search(query)
 
-    # If no results, try a simpler fallback query
+    # Fallback to simpler query if no results
     if not results:
         fallback = f"{market['question'][:80]} {datetime.now(timezone.utc).strftime('%B %Y')}"
         results  = ddg_search(fallback, max_results=3)
@@ -641,19 +638,14 @@ def search_market(market):
 
 # ─────────────────────────────────────────────────────────
 #  STAGE 2c — HAIKU INTERPRETER
-#  Reads raw DDG results and writes a clean research brief
 # ─────────────────────────────────────────────────────────
 
 def haiku_interpret(client, market, query, raw_results):
-    """
-    Haiku reads raw search results and distills them into a
-    concise, factual research brief for Opus to use.
-    """
     if not raw_results:
         return (
             f"No search results found for this market. "
             f"Market: {market['question']} | Odds: YES={market['yes']}¢ NO={100-market['yes']}¢. "
-            f"Unable to find current data — proceed with caution."
+            f"Unable to find current data — insufficient information to recommend a trade."
         )
 
     results_txt = "\n\n".join(
@@ -670,7 +662,7 @@ def haiku_interpret(client, market, query, raw_results):
         f"CLOSES IN: {market['closes_in_days']:.1f} days ({market['closes'][:10]})\n"
         f"TODAY: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n\n"
         f"SEARCH RESULTS:\n{results_txt}\n\n"
-        f"Write a 3-5 sentence brief that covers:\n"
+        f"Write a 3-5 sentence brief covering:\n"
         f"1. The most relevant current facts from the results\n"
         f"2. What the data implies about whether YES or NO is likely\n"
         f"3. Any specific numbers, prices, forecasts or dates from the results\n\n"
@@ -690,7 +682,7 @@ def haiku_interpret(client, market, query, raw_results):
         return resp.content[0].text.strip()
     except Exception as e:
         log(f"     ⚠️  Haiku interpret error: {e}")
-        return f"Research interpretation failed. Raw data: {results_txt[:200]}"
+        return f"Research interpretation failed. Raw snippets: {results_txt[:200]}"
 
 
 # ─────────────────────────────────────────────────────────
@@ -698,12 +690,6 @@ def haiku_interpret(client, market, query, raw_results):
 # ─────────────────────────────────────────────────────────
 
 def research_all_markets(markets):
-    """
-    For each market:
-    1. Python searches DuckDuckGo with a smart query (guaranteed)
-    2. Haiku interprets the raw results into a clean brief
-    Returns dict of market_id -> research brief string
-    """
     client   = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     research = {}
 
@@ -711,32 +697,19 @@ def research_all_markets(markets):
 
     for i, market in enumerate(markets):
         log(f"  [{i+1}/{len(markets)}] {market['question'][:65]}")
-
-        # Step 1: Python searches DDG
         query, raw_results = search_market(market)
-
-        # Step 2: Haiku interprets results
         brief = haiku_interpret(client, market, query, raw_results)
         log(f"     📋 {brief[:110]}...")
-
         research[market["id"]] = brief
 
     return research
 
 
 # ─────────────────────────────────────────────────────────
-#  KELLY SIZING  ·  confidence-tiered
-#  Always called with the probability of winning the bet.
-#  Caller inverts for NO bets before calling.
+#  KELLY SIZING
 # ─────────────────────────────────────────────────────────
 
 def kelly_size(win_prob, market_win_prob, bankroll, closes_in_days=7.0, confidence=70):
-    """
-    win_prob:        your estimated probability of winning this bet (0-100)
-    market_win_prob: the market's implied probability of winning (0-100)
-    For YES bets: pass true_prob and market_prob directly
-    For NO bets:  pass (100-true_prob) and (100-market_prob)
-    """
     if not (0 < market_win_prob < 100) or not (0 < win_prob < 100):
         return 0.0
 
@@ -751,7 +724,6 @@ def kelly_size(win_prob, market_win_prob, bankroll, closes_in_days=7.0, confiden
     if full_kelly <= 0:
         return 0.0
 
-    # Pick fraction and cap based on confidence tier
     fraction = 0.25
     cap_pct  = 3.0
     for tier in KELLY_TIERS:
@@ -762,7 +734,6 @@ def kelly_size(win_prob, market_win_prob, bankroll, closes_in_days=7.0, confiden
 
     sized = full_kelly * fraction
 
-    # Short-term discount — higher variance near expiry
     if closes_in_days <= 1.0:
         sized *= 0.65
     elif closes_in_days <= 2.0:
@@ -782,7 +753,6 @@ def get_tier_name(confidence):
 
 # ─────────────────────────────────────────────────────────
 #  STAGE 3 — OPUS 4.6 ANALYST
-#  Receives pre-researched briefs and makes trading decisions
 # ─────────────────────────────────────────────────────────
 
 def opus_analyze(markets, research, state):
@@ -836,7 +806,6 @@ def opus_analyze(markets, research, state):
             cat_counts[cat] = cat_counts.get(cat, 0) + 1
         open_ctx += f"\n\nCATEGORY COUNTS: {cat_counts} | MAX PER CATEGORY: {MAX_PER_CATEGORY}"
 
-    # Build market list with embedded research briefs
     mkt_sections = []
     for m in markets:
         brief = research.get(m["id"], "No research available.")
@@ -861,16 +830,16 @@ def opus_analyze(markets, research, state):
         f"MARKETS WITH LIVE RESEARCH (all close within {MAX_HOLD_DAYS} days):\n"
         f"{mkt_list}\n\n"
         f"The 'Live Research' above was gathered from real web searches seconds ago.\n"
-        f"Base your probability estimates on this research. If research is unavailable\n"
-        f"or irrelevant for a market, do NOT recommend it — insufficient data.\n\n"
+        f"Base your probability estimates on this research.\n"
+        f"If research is unavailable or irrelevant for a market, do NOT recommend it.\n\n"
         f"CRITICAL — HOW TO REPORT PROBABILITIES:\n"
         f"Always report true_prob and market_prob as the probability of YES (0-100).\n"
         f"Do NOT adjust these for the position direction — always report the YES probability.\n"
         f"Examples:\n"
         f"  Market says YES=27¢, you think YES has 10% true chance → true_prob=10, market_prob=27, position=NO\n"
         f"  Market says YES=45¢, you think YES has 65% true chance → true_prob=65, market_prob=45, position=YES\n"
-        f"The system automatically inverts probabilities for NO bets in Kelly sizing.\n\n"
-        f"CONFIDENCE GUIDE — be rigorous:\n"
+        f"The system automatically handles Kelly inversion for NO bets.\n\n"
+        f"CONFIDENCE GUIDE:\n"
         f"  90-99%: Near-certain. Research shows overwhelming evidence.\n"
         f"  75-89%: High confidence. Strong evidence pointing clearly one way.\n"
         f"  60-74%: Moderate confidence. Edge exists but meaningful uncertainty.\n\n"
@@ -989,21 +958,19 @@ def place_paper_trade(rec, markets, state):
 
     mkt = next((m for m in markets if m["id"] == rec["market_id"]), None)
     if not mkt:
-        log(f"  ⏭  Market {rec['market_id']} not found in fetched list")
+        log(f"  ⏭  Market {rec['market_id']} not found")
         return state
 
     end_dt = parse_utc(mkt["closes"])
     if not end_dt:
-        log(f"  ⏭  Cannot parse close date for market {rec['market_id']}")
+        log(f"  ⏭  Cannot parse close date")
         return state
 
     cid = (end_dt - datetime.now(timezone.utc)).total_seconds() / 86400
     if cid < (MIN_HOLD_HOURS / 24) or cid > MAX_HOLD_DAYS:
-        log(f"  ⏭  Closes in {cid:.1f}d — outside [{MIN_HOLD_HOURS}h, {MAX_HOLD_DAYS}d] window")
+        log(f"  ⏭  Closes in {cid:.1f}d — outside window")
         return state
 
-    # Opus always reports YES probabilities.
-    # For NO bets: invert so Kelly sees the probability of winning.
     yes_true   = rec["true_prob"]
     yes_market = rec["market_prob"]
 
@@ -1025,11 +992,10 @@ def place_paper_trade(rec, markets, state):
     )
 
     if stake < 1.00:
-        log(f"  ⏭  Stake ${stake:.2f} too small — insufficient edge for Kelly to size")
+        log(f"  ⏭  Stake ${stake:.2f} too small")
         return state
 
     tier   = get_tier_name(conf)
-    # Entry price = cost per share of the position we're taking
     entry  = yes_market if rec["position"] == "YES" else (100 - yes_market)
     payout = round(stake * 100 / entry, 2)
     profit = round(payout - stake, 2)
@@ -1037,6 +1003,7 @@ def place_paper_trade(rec, markets, state):
     trade = {
         "id":               f"T{int(time.time())}",
         "market_id":        mkt["id"],
+        "market_slug":      mkt.get("slug", ""),
         "market":           rec["market"],
         "position":         rec["position"],
         "entry_price":      entry,
