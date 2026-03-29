@@ -1,5 +1,5 @@
 {
-  "bankroll": 1180.12,
+  "bankroll": 1121.11,
   "trades": [
     {
       "id": "T1774412231",
@@ -318,11 +318,39 @@
       "placed_at": "2026-03-29T08:41:40.553733+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774779993",
+      "market_id": "1397301",
+      "market": "Will Russia capture Kostyantynivka by April 30?",
+      "position": "NO",
+      "entry_price": 74,
+      "stake": 59.01,
+      "potential_return": 79.74,
+      "potential_profit": 20.73,
+      "confidence": 78,
+      "true_prob": 10,
+      "market_prob": 26,
+      "category": "geopolitics",
+      "closes_in_days": 2.06,
+      "closes": "2026-03-31T12:00:00+00:00",
+      "research_summary": "ISW assessed March 21 that Russian forces are unlikely to seize the Fortress Belt in 2026. As of March 26, RFERL reports heavy fighting ongoing but Ukraine still holds the city with its last evacuation route to Kramatorsk still functioning. Russia controlled only ~5% of the city as of December per ISW, and the resolution requires capturing the central railroad station \u2014 deep in Ukrainian-held territory.",
+      "key_factors": [
+        "ISW March 21: 'Russian forces are unlikely to seize the Fortress Belt in 2026' \u2014 railroad station is deep in city center",
+        "Russia controls outskirts only; Ukraine actively counterattacking in southeastern Kostyantynivka as of March 5 ISW report",
+        "March 26 RFERL reports city still contested with evacuation routes functioning \u2014 full capture in 31 days implausible at current pace"
+      ],
+      "bear_case": "Russia is intensifying spring offensive preparations with doubled artillery, moving armored vehicles forward, and deploying elite assault brigades \u2014 a sudden breakthrough or Ukrainian withdrawal could accelerate timeline",
+      "kelly_tier": "half-Kelly (5.0%)",
+      "status": "open",
+      "placed_at": "2026-03-29T10:26:33.899910+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-29",
-  "scan_count": 65,
+  "scan_count": 66,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-29"
 }
