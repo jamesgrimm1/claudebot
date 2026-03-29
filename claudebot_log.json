@@ -1,5 +1,5 @@
 {
-  "bankroll": 1254.25,
+  "bankroll": 1180.12,
   "trades": [
     {
       "id": "T1774412231",
@@ -260,10 +260,68 @@
       "placed_at": "2026-03-29T06:06:12.475333+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774773700",
+      "market_id": "1768496",
+      "market": "Brandon Ingram: Rebounds O/U 4.5",
+      "position": "YES",
+      "entry_price": 20,
+      "stake": 37.63,
+      "potential_return": 188.15,
+      "potential_profit": 150.52,
+      "confidence": 63,
+      "true_prob": 36,
+      "market_prob": 20,
+      "category": "sports",
+      "closes_in_days": 0.55,
+      "closes": "2026-03-29T22:00:00+00:00",
+      "research_summary": "Ingram is questionable (heel) but played through this same injury Wednesday (6 reb/36 min) and Friday (6 reb/31 min). Coach called it 'not serious.' Season avg 5.6 RPG with ~70% hit rate on over 4.5 in recent games. Market at 20% implies only ~31% play probability, but his pattern of playing through this injury suggests ~55-60%.",
+      "key_factors": [
+        "Played through heel injury last 2 games with 6 rebounds each",
+        "Season average 5.6 RPG - well above 4.5 threshold",
+        "Coach downplayed injury severity after Monday scratch",
+        "Toronto (41-32) in meaningful game vs Orlando (39-34)"
+      ],
+      "bear_case": "Could be a late scratch again like Monday - the heel inflammation is recurring and Raptors may choose to rest him with 9 games left",
+      "kelly_tier": "quarter-Kelly (3.0%)",
+      "status": "open",
+      "placed_at": "2026-03-29T08:41:40.553678+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774773700",
+      "market_id": "1717515",
+      "market": "Counter-Strike: BIG vs OG (BO1) - Roman Imperium Cup Group C",
+      "position": "YES",
+      "entry_price": 62,
+      "stake": 36.5,
+      "potential_return": 58.87,
+      "potential_profit": 22.37,
+      "confidence": 62,
+      "true_prob": 70,
+      "market_prob": 62,
+      "category": "sports",
+      "closes_in_days": 0.37,
+      "closes": "2026-03-29T17:30:00+00:00",
+      "research_summary": "HLTV community vote heavily favors BIG at 82.4% vs OG 17.6%. BIG has significantly stronger map win rates across most maps (78% Dust2, 100% Inferno, 73% Ancient vs OG's 33% Dust2, 50% Ancient). Despite OG's higher world ranking (#42 vs #62), this C-tier LAN rewards current map form over accumulated ranking points.",
+      "key_factors": [
+        "HLTV community vote 82.4% for BIG - large gap vs 62% market",
+        "BIG dominant on most maps in recent 3-month window",
+        "BO1 LAN format at C-tier event where tier-2 specialists thrive",
+        "OG player quality criticized by analysts in recent events"
+      ],
+      "bear_case": "OG's higher world ranking (#42 vs #62) reflects genuine strength; BO1 format has high variance; HLTV votes can be unreliable/biased",
+      "kelly_tier": "quarter-Kelly (3.0%)",
+      "status": "open",
+      "placed_at": "2026-03-29T08:41:40.553733+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-29",
-  "scan_count": 59,
+  "scan_count": 60,
   "started": "2026-03-23T09:17:53.961678"
 }
