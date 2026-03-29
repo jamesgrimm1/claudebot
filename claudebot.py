@@ -8,7 +8,7 @@
 ║  2. Haiku reads raw results → writes clean research brief ║
 ║  3. Opus reads briefs → makes trading decisions          ║
 ║                                                          ║
-║  SETUP:  pip install anthropic requests duckduckgo-search ║
+║  SETUP:  pip install anthropic requests ddgs             ║
 ║  RUN:    python claudebot.py --single-scan               ║
 ╚══════════════════════════════════════════════════════════╝
 """
@@ -23,7 +23,7 @@ from datetime import datetime, timezone, timedelta
 import anthropic
 
 try:
-    from duckduckgo_search import DDGS
+    from ddgs import DDGS
     DDG_AVAILABLE = True
 except ImportError:
     DDG_AVAILABLE = False
@@ -157,7 +157,6 @@ def telegram_trade_resolved(trade, state):
     lost_ct = len(closed) - won_ct
     wr      = (won_ct / len(closed) * 100) if closed else 0
 
-    # Public — no bankroll
     public_msg = (
         f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
         f"{'─' * 30}\n"
@@ -169,7 +168,6 @@ def telegram_trade_resolved(trade, state):
     )
     send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
 
-    # Private — with bankroll
     if TELEGRAM_PERSONAL_ID:
         private_msg = (
             f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
@@ -194,7 +192,7 @@ def telegram_daily_summary(state):
     win_rate = (len(won_t) / len(closed_t) * 100) if closed_t else 0
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
-    pos_public = ""
+    pos_public  = ""
     pos_private = ""
     for t in open_t:
         close_dt   = parse_utc(t.get("closes", ""))
@@ -423,6 +421,56 @@ def fetch_markets():
 
 
 # ─────────────────────────────────────────────────────────
+#  DIVERSIFICATION
+# ─────────────────────────────────────────────────────────
+
+def get_category(question):
+    q = question.lower()
+    if any(k in q for k in ["temperature", "weather", "rain", "snow", "°c", "°f",
+                              "celsius", "fahrenheit", "precipitation", "humid"]):
+        return "weather"
+    if any(k in q for k in ["bitcoin", "btc", "ethereum", "eth", "crypto",
+                              "solana", "bnb", "xrp", "defi", "sol"]):
+        return "crypto"
+    if any(k in q for k in ["nba", "nfl", "mlb", "nhl", "soccer", "football",
+                              "tennis", "golf", "points", "goals", "score", "match",
+                              "game", "fc ", " united", "spread", "o/u", "rebounds",
+                              "assists", "esport", "valorant", "counter-strike", "dota",
+                              "leverkusen", "barcelona", "atletico", "flyers", "capitals",
+                              "lakers", "celtics", "west brom", "wrexham", "jokic",
+                              "harris", "molcan", "kills", "bestia", "iceho", "rockets",
+                              "ahl:", "lol:", "fluxo", "leviatan", "honduras", "wd fc",
+                              "xspark", "xcrew", "prodigy", "rune eaters", "atputies",
+                              "sinners", "jijiehao", "monchengladbach", "almeria",
+                              "real sociedad", "spain", "georgia", "lithuania"]):
+        return "sports"
+    if any(k in q for k in ["president", "election", "senate", "congress", "vote",
+                              "government", "minister", "party", "trump", "biden",
+                              "democrat", "republican", "musk", "tweets", "elon",
+                              "policy", "tariff", "doge"]):
+        return "politics"
+    if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession",
+                              "unemployment", "economy", "s&p", "nasdaq", "dow",
+                              "jobs", "robinhood", "hood", "amazon", "amzn",
+                              "stock", "market cap", "earnings"]):
+        return "economics"
+    if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah",
+                              "ukraine", "russia", "israel", "hamas", "conflict",
+                              "kyiv", "kostyantynivka", "borova", "troops", "nato"]):
+        return "geopolitics"
+    return "other"
+
+
+def category_slots_available(category, state):
+    open_trades = [t for t in state["trades"] if t["status"] == "open"]
+    cat_count   = sum(
+        1 for t in open_trades
+        if (t.get("category") or get_category(t.get("market", ""))) == category
+    )
+    return (MAX_PER_CATEGORY - cat_count) > 0
+
+
+# ─────────────────────────────────────────────────────────
 #  STAGE 1 — HAIKU SCREENER
 # ─────────────────────────────────────────────────────────
 
@@ -442,20 +490,21 @@ def haiku_screen(markets, state):
         for m in candidates
     )
 
-    prompt = f"""You are a fast prediction market screener. Today is {datetime.now(timezone.utc).strftime("%Y-%m-%d")}.
-
-Score each market from 1-10 for MISPRICING POTENTIAL.
-High score = odds likely wrong, real edge exists.
-Low score = efficient market, skip it.
-
-Factors: low volume (<$500k), near 50/50 odds, time-sensitive events,
-crowd bias likely, breaking news not yet priced in, stats vs market mismatch.
-
-Markets:
-{mkt_list}
-
-Return ONLY a JSON array, no other text:
-[{{"id":"market_id","score":7}}, ...]"""
+    prompt = (
+        f"You are a fast prediction market screener. Today is {datetime.now(timezone.utc).strftime('%Y-%m-%d')}.\n\n"
+        f"Score each market from 1-10 for MISPRICING POTENTIAL.\n"
+        f"High score = odds likely wrong, real edge exists.\n"
+        f"Low score = efficient market, skip it.\n\n"
+        f"Scoring factors:\n"
+        f"- Low volume (<$500k) = less efficient = higher score\n"
+        f"- Near 50/50 odds on genuinely uncertain events = potential edge\n"
+        f"- Time-sensitive events where news could shift things\n"
+        f"- Markets where crowd bias (fear/greed) is likely\n"
+        f"- Exact score / narrow range markets = harder to price = more edge\n\n"
+        f"Markets:\n{mkt_list}\n\n"
+        f"Return ONLY a JSON array, no other text:\n"
+        f'[{{"id":"market_id","score":7}}, ...]'
+    )
 
     log(f"⚡ Haiku screening {len(candidates)} markets...")
 
@@ -490,25 +539,75 @@ Return ONLY a JSON array, no other text:
 
 
 # ─────────────────────────────────────────────────────────
-#  STAGE 2a — PYTHON DDG SEARCH (guaranteed real data)
+#  STAGE 2a — SMART SEARCH QUERY BUILDER
 # ─────────────────────────────────────────────────────────
 
 def build_search_query(market):
-    """Build a smart search query from the market question."""
+    """
+    Builds a smart, targeted search query from a market question.
+    Different categories need different query strategies to find results.
+    """
     q   = market["question"]
+    cat = get_category(q)
     now = datetime.now(timezone.utc)
+    month_year = now.strftime("%B %Y")
+    date_full  = now.strftime("%B %d %Y")
 
-    # Strip common prediction market prefixes
-    q = re.sub(r'^Will\s+', '', q, flags=re.IGNORECASE)
-    q = re.sub(r'\?$', '', q).strip()
+    # Strip prediction market boilerplate
+    q_clean = re.sub(r'^Will\s+', '', q, flags=re.IGNORECASE)
+    q_clean = re.sub(r'\?$', '', q_clean).strip()
 
-    # Add date context for time-sensitive markets
-    date_str = now.strftime("%B %d %Y")
-    return f"{q} {date_str}"
+    if cat == "weather":
+        # Extract city name — usually first proper noun or city mentioned
+        # Search for the actual forecast, not the prediction market
+        city_match = re.search(r'in ([A-Z][a-zA-Z\s]+?)(?:\s+be|\s+have|\s+reach|\s+exceed)', q)
+        city = city_match.group(1).strip() if city_match else q_clean
+        return f"{city} weather forecast high temperature {date_full}"
+
+    elif cat == "sports":
+        # Strip market-specific syntax for cleaner results
+        q_clean = re.sub(r':\s*O/U\s*[\d.]+', '', q_clean)
+        q_clean = re.sub(r'Spread:\s*', '', q_clean)
+        q_clean = re.sub(r'\(BO[123]\).*', '', q_clean)
+        q_clean = re.sub(r'\s*[-–]\s*\w[\w\s]+(?:Championship|League|Series|Cup|Season).*', '', q_clean)
+        q_clean = re.sub(r'AHL:\s*|LoL:\s*|Dota 2:\s*|Valorant:\s*|Counter-Strike:\s*', '', q_clean)
+        q_clean = q_clean.strip()
+        return f"{q_clean} match result odds {month_year}"
+
+    elif cat == "economics":
+        # Remove narrow range brackets for broader search
+        q_clean = re.sub(r'between \$[\d,]+ and \$[\d,]+', '', q_clean)
+        q_clean = re.sub(r'at \$[\d,]+[-–]\$[\d,]+', '', q_clean)
+        q_clean = q_clean.strip()
+        return f"{q_clean} {month_year} forecast"
+
+    elif cat == "crypto":
+        # Extract coin and get current price
+        coin = "bitcoin"
+        for c in ["ethereum", "eth", "solana", "bnb", "xrp"]:
+            if c in q.lower():
+                coin = c
+                break
+        if "btc" in q.lower():
+            coin = "bitcoin"
+        return f"{coin} price {date_full} USD"
+
+    elif cat == "geopolitics":
+        return f"{q_clean} latest news {month_year}"
+
+    elif cat == "politics":
+        return f"{q_clean} {month_year}"
+
+    else:
+        return f"{q_clean} {month_year}"
 
 
-def ddg_search(query, max_results=4):
-    """Search DuckDuckGo and return raw results."""
+# ─────────────────────────────────────────────────────────
+#  STAGE 2b — PYTHON DDG SEARCH
+# ─────────────────────────────────────────────────────────
+
+def ddg_search(query, max_results=5):
+    """Search DuckDuckGo and return raw results. Returns empty list on failure."""
     if not DDG_AVAILABLE:
         return []
     try:
@@ -516,86 +615,99 @@ def ddg_search(query, max_results=4):
             results = list(ddgs.text(query, max_results=max_results))
         return results
     except Exception as e:
-        log(f"     ⚠️  DDG search failed: {e}")
+        log(f"     ⚠️  DDG error: {e}")
         return []
 
 
 def search_market(market):
     """
-    Search DuckDuckGo for a market and return raw search data.
-    Returns list of {title, body, href} dicts.
+    Search DuckDuckGo for a market using a smart query.
+    Falls back to a simpler query if first attempt returns nothing.
+    Returns (query_used, results_list).
     """
     query   = build_search_query(market)
     results = ddg_search(query)
-    log(f"     🔍 Searched: \"{query}\" → {len(results)} results")
+
+    # If no results, try a simpler fallback query
+    if not results:
+        fallback = f"{market['question'][:80]} {datetime.now(timezone.utc).strftime('%B %Y')}"
+        results  = ddg_search(fallback, max_results=3)
+        if results:
+            query = fallback
+
+    log(f"     🔍 \"{query}\" → {len(results)} results")
     return query, results
 
 
 # ─────────────────────────────────────────────────────────
-#  STAGE 2b — HAIKU INTERPRETER
+#  STAGE 2c — HAIKU INTERPRETER
 #  Reads raw DDG results and writes a clean research brief
 # ─────────────────────────────────────────────────────────
 
 def haiku_interpret(client, market, query, raw_results):
     """
-    Haiku reads the raw search results and distills them into
-    a clean, factual research brief for Opus to use.
+    Haiku reads raw search results and distills them into a
+    concise, factual research brief for Opus to use.
     """
     if not raw_results:
-        return f"No search results found for: {query}"
+        return (
+            f"No search results found for this market. "
+            f"Market: {market['question']} | Odds: YES={market['yes']}¢ NO={100-market['yes']}¢. "
+            f"Unable to find current data — proceed with caution."
+        )
 
     results_txt = "\n\n".join(
-        f"Source: {r.get('href', '')}\nTitle: {r.get('title', '')}\nSnippet: {r.get('body', '')}"
-        for r in raw_results[:4]
+        f"[{i+1}] Title: {r.get('title', 'N/A')}\n"
+        f"    URL: {r.get('href', 'N/A')}\n"
+        f"    Snippet: {r.get('body', 'N/A')}"
+        for i, r in enumerate(raw_results[:5])
     )
 
     prompt = (
-        f"You are a research analyst. Read these search results and write a concise factual brief.\n\n"
-        f"Market question: \"{market['question']}\"\n"
-        f"Current market odds: YES={market['yes']}¢ NO={100-market['yes']}¢\n"
-        f"Closes in: {market['closes_in_days']:.1f} days\n"
-        f"Today: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n\n"
+        f"You are a research analyst. Read these web search results and write a concise factual brief.\n\n"
+        f"MARKET: \"{market['question']}\"\n"
+        f"CURRENT ODDS: YES={market['yes']}¢ | NO={100-market['yes']}¢\n"
+        f"CLOSES IN: {market['closes_in_days']:.1f} days ({market['closes'][:10]})\n"
+        f"TODAY: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n\n"
         f"SEARCH RESULTS:\n{results_txt}\n\n"
-        f"Write a 3-5 sentence factual brief covering:\n"
-        f"- Key current facts relevant to this market\n"
-        f"- What the data implies for YES vs NO\n"
-        f"- Any specific numbers, dates, or quotes from the results\n\n"
-        f"Be concise and factual. Only include information from the search results above."
+        f"Write a 3-5 sentence brief that covers:\n"
+        f"1. The most relevant current facts from the results\n"
+        f"2. What the data implies about whether YES or NO is likely\n"
+        f"3. Any specific numbers, prices, forecasts or dates from the results\n\n"
+        f"Rules:\n"
+        f"- Only use information from the search results — do not add outside knowledge\n"
+        f"- Be specific and factual, not vague\n"
+        f"- If results are irrelevant or unhelpful, say so clearly\n"
+        f"- Keep it under 5 sentences"
     )
 
     try:
         resp = client.messages.create(
             model=SCREENER_MODEL,
-            max_tokens=500,
+            max_tokens=400,
             messages=[{"role": "user", "content": prompt}]
         )
         return resp.content[0].text.strip()
     except Exception as e:
-        return f"Interpretation failed: {e}. Raw data: {results_txt[:300]}"
+        log(f"     ⚠️  Haiku interpret error: {e}")
+        return f"Research interpretation failed. Raw data: {results_txt[:200]}"
 
 
 # ─────────────────────────────────────────────────────────
 #  STAGE 2 — FULL RESEARCH PIPELINE
-#  Python searches → Haiku interprets → research briefs
 # ─────────────────────────────────────────────────────────
 
 def research_all_markets(markets):
     """
     For each market:
-    1. Python searches DuckDuckGo (guaranteed, no AI involved)
-    2. Haiku reads results and writes a clean brief
-    Returns dict of market_id -> research brief
+    1. Python searches DuckDuckGo with a smart query (guaranteed)
+    2. Haiku interprets the raw results into a clean brief
+    Returns dict of market_id -> research brief string
     """
     client   = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     research = {}
 
-    if not DDG_AVAILABLE:
-        log("⚠️  duckduckgo-search not installed — skipping research")
-        for m in markets:
-            research[m["id"]] = "No research available (duckduckgo-search not installed)."
-        return research
-
-    log(f"🔬 Researching {len(markets)} markets (Python DDG + Haiku interpret)...")
+    log(f"🔬 Researching {len(markets)} markets...")
 
     for i, market in enumerate(markets):
         log(f"  [{i+1}/{len(markets)}] {market['question'][:65]}")
@@ -604,12 +716,8 @@ def research_all_markets(markets):
         query, raw_results = search_market(market)
 
         # Step 2: Haiku interprets results
-        if raw_results:
-            brief = haiku_interpret(client, market, query, raw_results)
-            log(f"     📋 {brief[:100]}...")
-        else:
-            brief = f"No search results found. Market: {market['question']}"
-            log(f"     ⚠️  No results — proceeding without research data")
+        brief = haiku_interpret(client, market, query, raw_results)
+        log(f"     📋 {brief[:110]}...")
 
         research[market["id"]] = brief
 
@@ -617,16 +725,24 @@ def research_all_markets(markets):
 
 
 # ─────────────────────────────────────────────────────────
-#  KELLY SIZING
+#  KELLY SIZING  ·  confidence-tiered
+#  Always called with the probability of winning the bet.
+#  Caller inverts for NO bets before calling.
 # ─────────────────────────────────────────────────────────
 
-def kelly_size(yes_true_prob, yes_market_prob, bankroll, closes_in_days=7.0, confidence=70):
-    if not (0 < yes_market_prob < 100) or not (0 < yes_true_prob < 100):
+def kelly_size(win_prob, market_win_prob, bankroll, closes_in_days=7.0, confidence=70):
+    """
+    win_prob:        your estimated probability of winning this bet (0-100)
+    market_win_prob: the market's implied probability of winning (0-100)
+    For YES bets: pass true_prob and market_prob directly
+    For NO bets:  pass (100-true_prob) and (100-market_prob)
+    """
+    if not (0 < market_win_prob < 100) or not (0 < win_prob < 100):
         return 0.0
 
-    p = yes_true_prob / 100
+    p = win_prob / 100
     q = 1 - p
-    b = (1 - yes_market_prob / 100) / (yes_market_prob / 100)
+    b = (1 - market_win_prob / 100) / (market_win_prob / 100)
 
     if b <= 0:
         return 0.0
@@ -635,6 +751,7 @@ def kelly_size(yes_true_prob, yes_market_prob, bankroll, closes_in_days=7.0, con
     if full_kelly <= 0:
         return 0.0
 
+    # Pick fraction and cap based on confidence tier
     fraction = 0.25
     cap_pct  = 3.0
     for tier in KELLY_TIERS:
@@ -645,6 +762,7 @@ def kelly_size(yes_true_prob, yes_market_prob, bankroll, closes_in_days=7.0, con
 
     sized = full_kelly * fraction
 
+    # Short-term discount — higher variance near expiry
     if closes_in_days <= 1.0:
         sized *= 0.65
     elif closes_in_days <= 2.0:
@@ -663,46 +781,8 @@ def get_tier_name(confidence):
 
 
 # ─────────────────────────────────────────────────────────
-#  DIVERSIFICATION
-# ─────────────────────────────────────────────────────────
-
-def get_category(question):
-    q = question.lower()
-    if any(k in q for k in ["temperature", "weather", "rain", "snow", "°c", "°f", "celsius", "fahrenheit", "precipitation"]):
-        return "weather"
-    if any(k in q for k in ["bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "bnb", "xrp", "defi"]):
-        return "crypto"
-    if any(k in q for k in ["nba", "nfl", "mlb", "nhl", "soccer", "football", "tennis", "golf",
-                              "points", "goals", "score", "match", "game", "fc ", " united",
-                              "spread", "o/u", "rebounds", "assists", "esport", "valorant",
-                              "counter-strike", "leverkusen", "barcelona", "atletico", "flyers",
-                              "capitals", "lakers", "celtics", "west brom", "wrexham", "dota",
-                              "honduras", "jokic", "harris", "molcan", "kills", "bestia"]):
-        return "sports"
-    if any(k in q for k in ["president", "election", "senate", "congress", "vote", "government",
-                              "minister", "party", "trump", "biden", "democrat", "republican",
-                              "musk", "tweets", "elon"]):
-        return "politics"
-    if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession", "unemployment",
-                              "economy", "s&p", "nasdaq", "dow", "jobs", "robinhood", "hood",
-                              "amazon", "amzn"]):
-        return "economics"
-    if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah", "ukraine",
-                              "russia", "israel", "hamas", "conflict", "kyiv", "kostyantynivka",
-                              "borova"]):
-        return "geopolitics"
-    return "other"
-
-
-def category_slots_available(category, state):
-    open_trades = [t for t in state["trades"] if t["status"] == "open"]
-    cat_count   = sum(1 for t in open_trades if (t.get("category") or get_category(t.get("market", ""))) == category)
-    return (MAX_PER_CATEGORY - cat_count) > 0
-
-
-# ─────────────────────────────────────────────────────────
 #  STAGE 3 — OPUS 4.6 ANALYST
-#  Receives pre-researched briefs and makes decisions
+#  Receives pre-researched briefs and makes trading decisions
 # ─────────────────────────────────────────────────────────
 
 def opus_analyze(markets, research, state):
@@ -723,22 +803,31 @@ def opus_analyze(markets, research, state):
     history_ctx = ""
     if closed:
         win_rate    = len(won) / len(closed) * 100
-        history_ctx = f"\nYOUR TRACK RECORD: {win_rate:.0f}% win rate ({len(won)}W / {len(lost)}L from {len(closed)} trades)\n\nRecent trades:\n"
+        history_ctx = (
+            f"\nYOUR TRACK RECORD: {win_rate:.0f}% win rate "
+            f"({len(won)}W / {len(lost)}L from {len(closed)} trades)\n\n"
+            f"Recent closed trades:\n"
+        )
         for t in closed[-10:]:
             result       = "WON" if t.get("won") else "LOST"
             edge         = abs(t.get("true_prob", 0) - t.get("market_prob", 0))
-            history_ctx += f"  {result} | {t['position']} @ {t['entry_price']}¢ | edge {edge}% | conf {t.get('confidence', 0)}% | {t['market'][:60]}\n"
+            history_ctx += (
+                f"  {result} | {t['position']} @ {t['entry_price']}¢ | "
+                f"edge {edge}% | conf {t.get('confidence', 0)}% | {t['market'][:60]}\n"
+            )
         if lost:
             history_ctx += "\nPatterns in losses — avoid repeating:\n"
             for t in lost[-5:]:
-                history_ctx += f"  LOST {t['position']} — bear case: {t.get('bear_case', 'unknown')[:80]}\n"
+                history_ctx += f"  LOST {t['position']} — bear: {t.get('bear_case', 'unknown')[:80]}\n"
 
     open_trades = [t for t in state["trades"] if t["status"] == "open"]
     open_ctx    = ""
     if open_trades:
-        open_ctx = "\nCURRENT OPEN POSITIONS (do NOT re-recommend):\n"
+        open_ctx = "\nCURRENT OPEN POSITIONS (do NOT re-recommend any of these):\n"
         open_ctx += "\n".join(
-            f"  {t['position']} @ {t['entry_price']}¢ | cat:{t.get('category', get_category(t.get('market', '')))} | {t['market'][:70]}"
+            f"  {t['position']} @ {t['entry_price']}¢ | "
+            f"cat:{t.get('category', get_category(t.get('market', '')))} | "
+            f"{t['market'][:70]}"
             for t in open_trades
         )
         cat_counts = {}
@@ -747,15 +836,16 @@ def opus_analyze(markets, research, state):
             cat_counts[cat] = cat_counts.get(cat, 0) + 1
         open_ctx += f"\n\nCATEGORY COUNTS: {cat_counts} | MAX PER CATEGORY: {MAX_PER_CATEGORY}"
 
-    # Markets with embedded research briefs
+    # Build market list with embedded research briefs
     mkt_sections = []
     for m in markets:
         brief = research.get(m["id"], "No research available.")
         section = (
             f"─── MARKET ID:{m['id']} ───\n"
             f"Question: \"{m['question']}\"\n"
-            f"Odds: YES={m['yes']}¢ NO={100-m['yes']}¢ | Vol=${m['volume']:,.0f} | Closes {m['closes'][:10]} ({m['closes_in_days']:.1f}d)\n"
-            f"Research (from live web search): {brief}\n"
+            f"Odds: YES={m['yes']}¢ | NO={100-m['yes']}¢ | "
+            f"Vol=${m['volume']:,.0f} | Closes {m['closes'][:10]} ({m['closes_in_days']:.1f}d)\n"
+            f"Live Research: {brief}\n"
         )
         mkt_sections.append(section)
 
@@ -770,34 +860,39 @@ def opus_analyze(markets, research, state):
         f"{open_ctx}\n\n"
         f"MARKETS WITH LIVE RESEARCH (all close within {MAX_HOLD_DAYS} days):\n"
         f"{mkt_list}\n\n"
-        f"The research above was gathered from live web searches seconds ago.\n"
-        f"Use it to estimate true probabilities and identify mispricings.\n\n"
-        f"PROBABILITY RULES — CRITICAL:\n"
-        f"Always report true_prob and market_prob as the YES probability.\n"
-        f"Example: market says YES=27¢, you think YES has 10% true chance:\n"
-        f"  market_prob=27, true_prob=10, position=NO\n"
-        f"The system handles Kelly inversion automatically.\n\n"
-        f"CONFIDENCE GUIDE:\n"
-        f"  90-99%: Near-certain, strong research evidence\n"
-        f"  75-89%: High confidence, clear evidence\n"
-        f"  60-74%: Moderate confidence, real edge exists\n\n"
-        f"DIVERSIFICATION: Max {MAX_PER_CATEGORY} per category. No 3rd in any full category.\n\n"
-        f"Return ONLY a valid JSON array, no other text:\n"
+        f"The 'Live Research' above was gathered from real web searches seconds ago.\n"
+        f"Base your probability estimates on this research. If research is unavailable\n"
+        f"or irrelevant for a market, do NOT recommend it — insufficient data.\n\n"
+        f"CRITICAL — HOW TO REPORT PROBABILITIES:\n"
+        f"Always report true_prob and market_prob as the probability of YES (0-100).\n"
+        f"Do NOT adjust these for the position direction — always report the YES probability.\n"
+        f"Examples:\n"
+        f"  Market says YES=27¢, you think YES has 10% true chance → true_prob=10, market_prob=27, position=NO\n"
+        f"  Market says YES=45¢, you think YES has 65% true chance → true_prob=65, market_prob=45, position=YES\n"
+        f"The system automatically inverts probabilities for NO bets in Kelly sizing.\n\n"
+        f"CONFIDENCE GUIDE — be rigorous:\n"
+        f"  90-99%: Near-certain. Research shows overwhelming evidence.\n"
+        f"  75-89%: High confidence. Strong evidence pointing clearly one way.\n"
+        f"  60-74%: Moderate confidence. Edge exists but meaningful uncertainty.\n\n"
+        f"DIVERSIFICATION RULE:\n"
+        f"  Max {MAX_PER_CATEGORY} open positions per category at any time.\n"
+        f"  Do NOT recommend a 3rd position in a category already at {MAX_PER_CATEGORY}.\n\n"
+        f"Return ONLY a valid JSON array, no preamble, no explanation:\n"
         f"[\n"
         f"  {{\n"
-        f'    "market_id": "exact ID",\n'
-        f'    "market": "exact question",\n'
+        f'    "market_id": "exact ID from list above",\n'
+        f'    "market": "exact question text",\n'
         f'    "position": "YES or NO",\n'
         f'    "market_prob": 27,\n'
         f'    "true_prob": 10,\n'
         f'    "confidence": 88,\n'
         f'    "category": "geopolitics",\n'
-        f'    "research_summary": "2-3 sentences from the research",\n'
-        f'    "key_factors": ["factor 1", "factor 2", "factor 3"],\n'
-        f'    "bear_case": "main reason you could be wrong"\n'
+        f'    "research_summary": "2-3 sentences citing specific facts from the live research",\n'
+        f'    "key_factors": ["specific factor 1", "specific factor 2", "specific factor 3"],\n'
+        f'    "bear_case": "the main reason this trade could go wrong"\n'
         f"  }}\n"
         f"]\n\n"
-        f"If no genuine edge found, return: []"
+        f"If no market has genuine edge >= {MIN_EDGE_PCT}% after reviewing the research, return: []"
     )
 
     log(f"🧠 Opus 4.6 analyzing {len(markets)} researched markets...")
@@ -894,45 +989,47 @@ def place_paper_trade(rec, markets, state):
 
     mkt = next((m for m in markets if m["id"] == rec["market_id"]), None)
     if not mkt:
-        log(f"  ⏭  Market {rec['market_id']} not found")
+        log(f"  ⏭  Market {rec['market_id']} not found in fetched list")
         return state
 
     end_dt = parse_utc(mkt["closes"])
     if not end_dt:
-        log(f"  ⏭  Can't parse close date")
+        log(f"  ⏭  Cannot parse close date for market {rec['market_id']}")
         return state
 
     cid = (end_dt - datetime.now(timezone.utc)).total_seconds() / 86400
     if cid < (MIN_HOLD_HOURS / 24) or cid > MAX_HOLD_DAYS:
-        log(f"  ⏭  Closes in {cid:.1f}d — outside window")
+        log(f"  ⏭  Closes in {cid:.1f}d — outside [{MIN_HOLD_HOURS}h, {MAX_HOLD_DAYS}d] window")
         return state
 
-    # Opus reports YES probabilities. Invert for NO bets.
+    # Opus always reports YES probabilities.
+    # For NO bets: invert so Kelly sees the probability of winning.
     yes_true   = rec["true_prob"]
     yes_market = rec["market_prob"]
 
     if rec["position"] == "NO":
-        kelly_true   = 100 - yes_true
-        kelly_market = 100 - yes_market
+        kelly_win_prob    = 100 - yes_true
+        kelly_market_prob = 100 - yes_market
     else:
-        kelly_true   = yes_true
-        kelly_market = yes_market
+        kelly_win_prob    = yes_true
+        kelly_market_prob = yes_market
 
-    log(f"  📐 Kelly: {rec['position']} | kelly_true={kelly_true}% | kelly_market={kelly_market}%")
+    log(f"  📐 Kelly: position={rec['position']} | win_prob={kelly_win_prob}% | market_win_prob={kelly_market_prob}%")
 
     stake = kelly_size(
-        yes_true_prob   = kelly_true,
-        yes_market_prob = kelly_market,
+        win_prob        = kelly_win_prob,
+        market_win_prob = kelly_market_prob,
         bankroll        = state["bankroll"],
         closes_in_days  = cid,
         confidence      = conf
     )
 
     if stake < 1.00:
-        log(f"  ⏭  Stake ${stake:.2f} too small")
+        log(f"  ⏭  Stake ${stake:.2f} too small — insufficient edge for Kelly to size")
         return state
 
     tier   = get_tier_name(conf)
+    # Entry price = cost per share of the position we're taking
     entry  = yes_market if rec["position"] == "YES" else (100 - yes_market)
     payout = round(stake * 100 / entry, 2)
     profit = round(payout - stake, 2)
@@ -990,14 +1087,14 @@ def print_portfolio(state):
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
     print("\n" + "═" * 65)
-    print("  CLAUDEBOT v10  ·  DDG Search · Haiku · Opus 4.6")
+    print("  CLAUDEBOT v10  ·  DDG + Haiku + Opus 4.6 · Telegram")
     print("═" * 65)
     print(f"  Bankroll       ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
     print(f"  Realized P&L   ${realized:+.2f}")
     print(f"  Open           {len(open_t)} / {MAX_OPEN_POSITIONS}")
     print(f"  Closed         {len(closed_t)}  ({len(won_t)}W / {len(lost_t)}L  —  {win_rate:.0f}% win rate)")
     print(f"  Total Scans    {state.get('scan_count', 0)}")
-    print(f"  DDG Search     {'✅ available' if DDG_AVAILABLE else '❌ not installed'}")
+    print(f"  DDG Search     {'✅ available' if DDG_AVAILABLE else '❌ not installed (pip install ddgs)'}")
     print(f"  Telegram       {'✅ configured' if TELEGRAM_BOT_TOKEN else '❌ not configured'}")
     print("═" * 65)
 
@@ -1030,7 +1127,7 @@ def single_scan():
         sys.exit(1)
 
     if not DDG_AVAILABLE:
-        print("❌  duckduckgo-search not installed. Run: pip install duckduckgo-search")
+        print("❌  ddgs not installed. Run: pip install ddgs")
         sys.exit(1)
 
     state = load_state()
@@ -1061,7 +1158,7 @@ def single_scan():
         print_portfolio(state)
         return
 
-    log("── Step 4: Python DDG search + Haiku interpret ──────────")
+    log("── Step 4: DDG search + Haiku interpret (per market) ────")
     research = research_all_markets(top_markets)
 
     log("── Step 5: Opus 4.6 analysis ────────────────────────────")
@@ -1082,7 +1179,7 @@ def single_scan():
 def run_loop():
     print("\n╔══════════════════════════════════════════════════════════╗")
     print("║  CLAUDEBOT v10  ·  Continuous Mode                       ║")
-    print(f"║  Interval: {SCAN_INTERVAL_MINS}min (3h)  |  10 slots  |  Telegram     ║")
+    print(f"║  Interval: {SCAN_INTERVAL_MINS}min (3h) | 10 slots | DDG+Haiku+Opus  ║")
     print("╚══════════════════════════════════════════════════════════╝\n")
 
     if not ANTHROPIC_API_KEY:
