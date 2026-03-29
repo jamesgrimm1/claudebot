@@ -1,5 +1,5 @@
 {
-  "bankroll": 1121.11,
+  "bankroll": 1065.05,
   "trades": [
     {
       "id": "T1774412231",
@@ -346,11 +346,39 @@
       "placed_at": "2026-03-29T10:26:33.899910+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774796015",
+      "market_id": "1773999",
+      "market": "Will the highest temperature in Los Angeles be between 64-65\u00b0F on April 2?",
+      "position": "NO",
+      "entry_price": 88,
+      "stake": 56.06,
+      "potential_return": 63.7,
+      "potential_profit": 7.64,
+      "confidence": 88,
+      "true_prob": 3,
+      "market_prob": 12,
+      "category": "weather",
+      "closes_in_days": 3.88,
+      "closes": "2026-04-02T12:00:00+00:00",
+      "research_summary": "AccuWeather forecasts a high of 75\u00b0F for LA on April 2, a full 10\u00b0F above the narrow 64-65\u00b0F target range. LA average highs in early April are ~72\u00b0F. With 4-day forecast error SD of ~3-4\u00b0F, the probability of a 10+ degree miss into a 2-degree window is negligible.",
+      "key_factors": [
+        "Forecast high of 75\u00b0F is 10 degrees above target range",
+        "Narrow 2-degree window drastically limits probability",
+        "LA early April climatology averages ~72\u00b0F with moderate variance"
+      ],
+      "bear_case": "An unexpected cold front or marine layer intrusion could suppress temperatures more than forecast models currently predict",
+      "kelly_tier": "half-Kelly (5.0%)",
+      "status": "open",
+      "placed_at": "2026-03-29T14:53:35.949545+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-29",
-  "scan_count": 67,
+  "scan_count": 68,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-29"
 }
