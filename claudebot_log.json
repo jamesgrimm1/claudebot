@@ -1,5 +1,5 @@
 {
-  "bankroll": 1065.05,
+  "bankroll": 1036.11,
   "trades": [
     {
       "id": "T1774412231",
@@ -374,11 +374,39 @@
       "placed_at": "2026-03-29T14:53:35.949545+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774798447",
+      "market_id": "1517749",
+      "market": "Will the US lose between 50k and 100k jobs in March?",
+      "position": "YES",
+      "entry_price": 8,
+      "stake": 28.94,
+      "potential_return": 361.75,
+      "potential_profit": 332.81,
+      "confidence": 62,
+      "true_prob": 18,
+      "market_prob": 8,
+      "category": "economics",
+      "closes_in_days": 4.35,
+      "closes": "2026-04-03T00:00:00+00:00",
+      "research_summary": "February 2026 saw -92,000 nonfarm payroll losses (within the 50k-100k range) with unemployment rising to 4.4%. Employment volatility has doubled, with 6-month trailing SD reaching 102,000. Structural factors including DOGE government layoffs and tariff uncertainty persist into March.",
+      "key_factors": [
+        "February's -92k loss fell directly in this range, suggesting similar March outcome is plausible",
+        "Ongoing DOGE layoffs and tariff effects create continued downward pressure on employment",
+        "High volatility (SD 102k) means wide distribution but the 50k window centered near recent values captures meaningful probability mass"
+      ],
+      "bear_case": "March could see a significant bounce back toward positive job growth, or losses could accelerate well beyond 100k if tariff retaliation escalates, causing the outcome to miss this specific range on either side",
+      "kelly_tier": "quarter-Kelly (3.0%)",
+      "status": "open",
+      "placed_at": "2026-03-29T15:34:07.699424+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-03-29",
-  "scan_count": 69,
+  "scan_count": 70,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-29"
 }
