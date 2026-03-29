@@ -1,14 +1,14 @@
 """
 ╔══════════════════════════════════════════════════════════╗
-║         CLAUDEBOT v7 — Polymarket Paper Trader           ║
+║         CLAUDEBOT v8 — Polymarket Paper Trader           ║
 ║                                                          ║
-║  Fixes in this version:                                  ║
-║  • NO bet Kelly sizing fixed (probabilities inverted)    ║
-║  • Web search now mandatory for weather + sports         ║
-║  • Telegram signal channel integration                   ║
-║  • Confidence-tiered Kelly sizing                        ║
-║  • 10 positions, max 2 per category                      ║
-║  • Runs every 3 hours via GitHub Actions                 ║
+║  Fixes in v8:                                            ║
+║  • NO bet Kelly fixed — Opus always reports YES prob,    ║
+║    code inverts once and only once for NO positions      ║
+║  • Forced two-phase research: dedicated search step      ║
+║    before analysis so Opus always uses real data         ║
+║  • Telegram signals on new trades + resolutions          ║
+║  • Confidence-tiered Kelly, 10 slots, 2 per category     ║
 ║                                                          ║
 ║  SETUP:  pip install anthropic requests                  ║
 ║  RUN:    python claudebot.py --single-scan               ║
@@ -74,7 +74,7 @@ def send_telegram(msg):
     try:
         url  = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
         data = {"chat_id": TELEGRAM_CHANNEL_ID, "text": msg, "parse_mode": "HTML"}
-        r = requests.post(url, json=data, timeout=10)
+        r    = requests.post(url, json=data, timeout=10)
         if r.status_code == 200:
             log("📨 Telegram sent")
         else:
@@ -87,11 +87,11 @@ def telegram_new_trade(trade, state):
     tier_emoji = {"full": "🔥", "half": "💪", "quarter": "📊"}.get(
         trade.get("kelly_tier", "").split("-")[0], "📊"
     )
-    edge = abs(trade.get("true_prob", 0) - trade.get("market_prob", 0))
-    roi  = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
-    won_ct  = sum(1 for t in state["trades"] if t.get("won"))
-    closed_ct = sum(1 for t in state["trades"] if t["status"] == "closed")
-    lost_ct = closed_ct - won_ct
+    edge     = abs(trade.get("true_prob", 0) - trade.get("market_prob", 0))
+    roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
+    won_ct   = sum(1 for t in state["trades"] if t.get("won"))
+    closed_t = [t for t in state["trades"] if t["status"] == "closed"]
+    lost_ct  = len(closed_t) - won_ct
 
     msg = (
         f"🤖 <b>CLAUDEBOT SIGNAL</b>\n"
@@ -428,27 +428,18 @@ Return ONLY a JSON array, no other text:
 
 
 # ─────────────────────────────────────────────────────────
-#  KELLY SIZING  ·  confidence-tiered
-#  FIX: probabilities are always from the perspective of
-#  the position being taken (YES or NO), not always YES
+#  KELLY SIZING
+#  Always called with YES-perspective probabilities.
+#  Caller inverts for NO bets before calling this.
 # ─────────────────────────────────────────────────────────
 
-def kelly_size(true_prob_pct, market_prob_pct, bankroll, closes_in_days=7.0, confidence=70):
-    """
-    true_prob_pct and market_prob_pct must both be expressed from
-    the perspective of the position being taken.
-
-    For YES bets: pass true_prob and market_prob directly.
-    For NO bets: pass (100 - true_prob) and (100 - market_prob).
-
-    This is handled in place_paper_trade before calling this function.
-    """
-    if not (0 < market_prob_pct < 100) or not (0 < true_prob_pct < 100):
+def kelly_size(yes_true_prob, yes_market_prob, bankroll, closes_in_days=7.0, confidence=70):
+    if not (0 < yes_market_prob < 100) or not (0 < yes_true_prob < 100):
         return 0.0
 
-    p = true_prob_pct / 100
+    p = yes_true_prob / 100
     q = 1 - p
-    b = (1 - market_prob_pct / 100) / (market_prob_pct / 100)
+    b = (1 - yes_market_prob / 100) / (yes_market_prob / 100)
 
     if b <= 0:
         return 0.0
@@ -492,15 +483,24 @@ def get_category(question):
     q = question.lower()
     if any(k in q for k in ["temperature", "weather", "rain", "snow", "°c", "°f", "celsius", "fahrenheit"]):
         return "weather"
-    if any(k in q for k in ["bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "defi", "bnb", "xrp"]):
+    if any(k in q for k in ["bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "bnb", "xrp", "defi"]):
         return "crypto"
-    if any(k in q for k in ["nba", "nfl", "mlb", "nhl", "soccer", "football", "tennis", "golf", "points", "goals", "score", "match", "game", "fc ", " united", "spread", "o/u", "rebounds", "assists", "flyers", "lakers", "celtics", "esport", "valorant", "counter-strike", "leverkusen", "barcelona", "atletico"]):
+    if any(k in q for k in ["nba", "nfl", "mlb", "nhl", "soccer", "football", "tennis", "golf",
+                              "points", "goals", "score", "match", "game", "fc ", " united",
+                              "spread", "o/u", "rebounds", "assists", "esport", "valorant",
+                              "counter-strike", "leverkusen", "barcelona", "atletico", "flyers",
+                              "capitals", "lakers", "celtics", "lithuania", "almeria"]):
         return "sports"
-    if any(k in q for k in ["president", "election", "senate", "congress", "vote", "government", "minister", "party", "trump", "biden", "democrat", "republican", "musk", "tweets"]):
+    if any(k in q for k in ["president", "election", "senate", "congress", "vote", "government",
+                              "minister", "party", "trump", "biden", "democrat", "republican",
+                              "musk", "tweets", "elon"]):
         return "politics"
-    if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession", "unemployment", "economy", "s&p", "nasdaq", "dow", "jobs", "robinhood", "hood", "amazon", "amzn"]):
+    if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession", "unemployment",
+                              "economy", "s&p", "nasdaq", "dow", "jobs", "robinhood", "hood",
+                              "amazon", "amzn"]):
         return "economics"
-    if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah", "ukraine", "russia", "israel", "hamas", "conflict", "kyiv", "kostyantynivka"]):
+    if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah", "ukraine",
+                              "russia", "israel", "hamas", "conflict", "kyiv", "kostyantynivka"]):
         return "geopolitics"
     return "other"
 
@@ -513,7 +513,9 @@ def category_slots_available(category, state):
 
 # ─────────────────────────────────────────────────────────
 #  STAGE 2 — OPUS 4.6 DEEP ANALYST
-#  FIX: web_search is now mandatory for weather + sports
+#  Two-phase approach: forced research then analysis.
+#  Opus ALWAYS reports true_prob as YES probability.
+#  Kelly inversion for NO bets happens in place_paper_trade.
 # ─────────────────────────────────────────────────────────
 
 def opus_analyze(markets, state):
@@ -564,73 +566,101 @@ def opus_analyze(markets, state):
         for m in markets
     )
 
-    prompt = f"""You are an expert algorithmic prediction market trader.
+    # ── PHASE 1: Forced web research ─────────────────────
+    research_prompt = (
+        f"Today is {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}.\n\n"
+        f"You are researching prediction markets before making trading decisions.\n"
+        f"Use web_search to find the most current data for each of these markets.\n\n"
+        f"Markets to research:\n{mkt_list}\n\n"
+        f"Search for: current scores, live weather forecasts, latest news, real-time prices, "
+        f"player stats, injury reports — whatever is most relevant to each market.\n"
+        f"Run at least one search per promising market. Be thorough."
+    )
 
-TODAY: {datetime.now(timezone.utc).strftime("%A %B %d %Y %H:%M UTC")}
-BANKROLL: ${state['bankroll']:.2f} | AVAILABLE SLOTS: {available} | MAX BET: {MAX_BET_PCT}%
-MIN EDGE: {MIN_EDGE_PCT}% | MIN CONFIDENCE: {MIN_CONFIDENCE}%
-{history_ctx}
-{open_ctx}
+    log(f"🔬 Phase 1: Forcing web research on {len(markets)} markets...")
 
-CANDIDATE MARKETS (all close within {MAX_HOLD_DAYS} days):
-{mkt_list}
-
-MANDATORY RESEARCH RULES — you MUST use web_search before deciding on any market:
-  • Weather markets: search the EXACT city + date forecast right now (e.g. "Denver weather March 29 2026 high temperature forecast"). Do NOT guess from training data — forecasts change hourly.
-  • Sports markets: search current scores, player stats, injury reports, recent form.
-  • Crypto price markets: search current price and 24h trend.
-  • All others: search for the most recent relevant news or data.
-
-You MUST run at least one web_search per promising market before recommending it.
-If you cannot find current data to support a recommendation, do NOT recommend that market.
-
-CONFIDENCE GUIDE — be honest and calibrated:
-  90-99%: Near-certain. Verified specific real-time evidence.
-  75-89%: High confidence. Strong current evidence pointing clearly one way.
-  60-74%: Moderate confidence. Edge exists but meaningful uncertainty remains.
-
-KELLY SIZING NOTE — NO BETS:
-  When recommending BUY NO, your true_prob and market_prob should reflect the
-  probability of NO happening (i.e. true_prob = 100 - your YES estimate).
-  Example: if you think YES has 12% true probability and market says 32%,
-  then for a NO bet: true_prob=88, market_prob=68.
-
-DIVERSIFICATION RULE — STRICT:
-  Max {MAX_PER_CATEGORY} open positions per category.
-  Do NOT recommend a 3rd in any category already at {MAX_PER_CATEGORY}.
-
-Return ONLY a valid JSON array, no other text:
-[
-  {{
-    "market_id": "exact ID from list",
-    "market": "exact question text",
-    "position": "YES or NO",
-    "market_prob": 32,
-    "true_prob": 88,
-    "confidence": 88,
-    "category": "weather",
-    "research_summary": "2-3 sentences: specific current data found and why it gives edge",
-    "key_factors": ["specific factor 1", "specific factor 2", "specific factor 3"],
-    "bear_case": "main reason you could be wrong"
-  }}
-]
-
-If no genuine edge found after research, return: []"""
-
-    log(f"🧠 Opus 4.6 analyzing {len(markets)} markets with adaptive thinking + web search...")
+    total_searches = 0
+    research_content = []
 
     try:
-        response = client.messages.create(
+        research_resp = client.messages.create(
             model=ANALYST_MODEL,
-            max_tokens=16000,
-            thinking={"type": "adaptive"},
+            max_tokens=8000,
             tools=[{"type": "web_search_20250305", "name": "web_search"}],
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": research_prompt}]
         )
 
-        searches     = 0
-        thinking_txt = ""
-        full_text    = ""
+        for block in research_resp.content:
+            if hasattr(block, "type"):
+                if block.type == "tool_use" and block.name == "web_search":
+                    total_searches += 1
+                    log(f"  🔍 Searched: \"{block.input.get('query', '')}\"")
+
+        research_content = research_resp.content
+        log(f"  📊 Phase 1 complete: {total_searches} search(es)")
+
+    except Exception as e:
+        log(f"  ⚠️  Research phase error ({e}) — proceeding without pre-research")
+        research_content = []
+
+    # ── PHASE 2: Analysis using research results ──────────
+    analysis_prompt = (
+        f"You are an expert algorithmic prediction market trader.\n\n"
+        f"TODAY: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n"
+        f"BANKROLL: ${state['bankroll']:.2f} | AVAILABLE SLOTS: {available} | MAX BET: {MAX_BET_PCT}%\n"
+        f"MIN EDGE: {MIN_EDGE_PCT}% | MIN CONFIDENCE: {MIN_CONFIDENCE}%\n"
+        f"{history_ctx}\n"
+        f"{open_ctx}\n\n"
+        f"CANDIDATE MARKETS (all close within {MAX_HOLD_DAYS} days):\n"
+        f"{mkt_list}\n\n"
+        f"Using the research you just conducted above, identify the best trading opportunities.\n\n"
+        f"IMPORTANT — PROBABILITY REPORTING:\n"
+        f"Always report true_prob and market_prob as the YES probability (0-100).\n"
+        f"Example: if you think YES has 8% true chance and market says 27%,\n"
+        f"report true_prob=8, market_prob=27, position=NO.\n"
+        f"The system handles Kelly sizing automatically based on the position.\n\n"
+        f"CONFIDENCE GUIDE:\n"
+        f"  90-99%: Near-certain. Verified real-time evidence.\n"
+        f"  75-89%: High confidence. Strong current evidence.\n"
+        f"  60-74%: Moderate confidence. Edge exists, some uncertainty.\n\n"
+        f"DIVERSIFICATION: Max {MAX_PER_CATEGORY} per category. Do not recommend a 3rd in any full category.\n\n"
+        f"Return ONLY a valid JSON array, no other text:\n"
+        f"[\n"
+        f"  {{\n"
+        f'    "market_id": "exact ID from list",\n'
+        f'    "market": "exact question text",\n'
+        f'    "position": "YES or NO",\n'
+        f'    "market_prob": 27,\n'
+        f'    "true_prob": 8,\n'
+        f'    "confidence": 90,\n'
+        f'    "category": "geopolitics",\n'
+        f'    "research_summary": "2-3 sentences of specific current data found",\n'
+        f'    "key_factors": ["factor 1", "factor 2", "factor 3"],\n'
+        f'    "bear_case": "main reason you could be wrong"\n'
+        f"  }}\n"
+        f"]\n\n"
+        f"If no genuine edge found, return: []"
+    )
+
+    log(f"🧠 Phase 2: Opus 4.6 analyzing with adaptive thinking...")
+
+    try:
+        messages = [{"role": "user", "content": research_prompt}]
+        if research_content:
+            messages.append({"role": "assistant", "content": research_content})
+        messages.append({"role": "user", "content": analysis_prompt})
+
+        response = client.messages.create(
+            model=ANALYST_MODEL,
+            max_tokens=8000,
+            thinking={"type": "adaptive"},
+            tools=[{"type": "web_search_20250305", "name": "web_search"}],
+            messages=messages
+        )
+
+        thinking_txt  = ""
+        full_text     = ""
+        extra_searches = 0
 
         for block in response.content:
             if hasattr(block, "type"):
@@ -638,12 +668,12 @@ If no genuine edge found after research, return: []"""
                     thinking_txt = block.thinking
                     log(f"  💭 Opus thought for {len(thinking_txt)} chars")
                 elif block.type == "tool_use" and block.name == "web_search":
-                    searches += 1
-                    log(f"  🔍 Searched: \"{block.input.get('query', '')}\"")
+                    extra_searches += 1
+                    log(f"  🔍 Extra search: \"{block.input.get('query', '')}\"")
                 elif block.type == "text":
                     full_text += block.text
 
-        log(f"  📊 {searches} search(es) | thinking: {'yes' if thinking_txt else 'no'}")
+        log(f"  📊 {total_searches + extra_searches} total searches | thinking: {'yes' if thinking_txt else 'no'}")
 
         raw = full_text.strip().replace("```json", "").replace("```", "").strip()
         if not raw.startswith("["):
@@ -674,8 +704,7 @@ If no genuine edge found after research, return: []"""
         for r in valid:
             edge = abs(r.get("true_prob", 0) - r.get("market_prob", 0))
             cat  = r.get("category") or get_category(r.get("market", ""))
-            tier = get_tier_name(r.get("confidence", 0))
-            log(f"  📋 BUY {r['position']} | {cat} | {tier} | market={r['market_prob']}% → true={r['true_prob']}% (+{edge}%) | conf {r['confidence']}%")
+            log(f"  📋 BUY {r['position']} | {cat} | market_prob(YES)={r['market_prob']}% | true_prob(YES)={r['true_prob']}% | edge {edge}% | conf {r['confidence']}%")
             log(f"     {r['market'][:70]}")
             log(f"     {r.get('research_summary', '')[:120]}")
             log(f"     Bear: {r.get('bear_case', '')[:80]}")
@@ -689,7 +718,8 @@ If no genuine edge found after research, return: []"""
 
 # ─────────────────────────────────────────────────────────
 #  TRADE EXECUTION
-#  FIX: Kelly probabilities flipped correctly for NO bets
+#  true_prob and market_prob are always YES probabilities.
+#  For NO bets we invert both before passing to kelly_size.
 # ─────────────────────────────────────────────────────────
 
 def place_paper_trade(rec, markets, state):
@@ -730,30 +760,35 @@ def place_paper_trade(rec, markets, state):
         log(f"  ⏭  Closes in {cid:.1f}d — outside window")
         return state
 
-    # ── Kelly fix: use position-adjusted probabilities ──────
-    # For YES: bet wins if YES happens → use true_prob and market_prob directly
-    # For NO:  bet wins if NO happens  → invert both probabilities
-    if rec["position"] == "YES":
-        kelly_true   = rec["true_prob"]
-        kelly_market = rec["market_prob"]
+    # true_prob and market_prob are always YES probabilities from Opus.
+    # For NO bets, invert both so Kelly sees the probability of winning.
+    yes_true   = rec["true_prob"]
+    yes_market = rec["market_prob"]
+
+    if rec["position"] == "NO":
+        kelly_true   = 100 - yes_true
+        kelly_market = 100 - yes_market
     else:
-        kelly_true   = 100 - rec["true_prob"]
-        kelly_market = 100 - rec["market_prob"]
+        kelly_true   = yes_true
+        kelly_market = yes_market
+
+    log(f"  📐 Kelly inputs: position={rec['position']} | kelly_true={kelly_true}% | kelly_market={kelly_market}%")
 
     stake = kelly_size(
-        true_prob_pct   = kelly_true,
-        market_prob_pct = kelly_market,
+        yes_true_prob   = kelly_true,
+        yes_market_prob = kelly_market,
         bankroll        = state["bankroll"],
         closes_in_days  = cid,
         confidence      = conf
     )
 
     if stake < 1.00:
-        log(f"  ⏭  Stake ${stake:.2f} too small (kelly_true={kelly_true}% kelly_market={kelly_market}%)")
+        log(f"  ⏭  Stake ${stake:.2f} too small")
         return state
 
     tier   = get_tier_name(conf)
-    entry  = rec["market_prob"] if rec["position"] == "YES" else (100 - rec["market_prob"])
+    # entry price is the cost per share of the position we're taking
+    entry  = yes_market if rec["position"] == "YES" else (100 - yes_market)
     payout = round(stake * 100 / entry, 2)
     profit = round(payout - stake, 2)
 
@@ -767,8 +802,8 @@ def place_paper_trade(rec, markets, state):
         "potential_return": payout,
         "potential_profit": profit,
         "confidence":       conf,
-        "true_prob":        rec["true_prob"],
-        "market_prob":      rec["market_prob"],
+        "true_prob":        yes_true,
+        "market_prob":      yes_market,
         "category":         cat,
         "closes_in_days":   round(cid, 2),
         "closes":           end_dt.isoformat(),
@@ -810,7 +845,7 @@ def print_portfolio(state):
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
     print("\n" + "═" * 65)
-    print("  CLAUDEBOT v7  ·  Opus 4.6 · Tiered Kelly · Telegram")
+    print("  CLAUDEBOT v8  ·  Opus 4.6 · Tiered Kelly · Telegram")
     print("═" * 65)
     print(f"  Bankroll       ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
     print(f"  Realized P&L   ${realized:+.2f}")
@@ -840,8 +875,8 @@ def print_portfolio(state):
 
 def single_scan():
     print("\n╔══════════════════════════════════════════════════════════╗")
-    print("║  CLAUDEBOT v7  ·  Tiered Kelly · Telegram · 3h interval  ║")
-    print(f"║  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}  |  Haiku screen → Opus deep dive   ║")
+    print("║  CLAUDEBOT v8  ·  Tiered Kelly · Telegram · 3h interval  ║")
+    print(f"║  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}  |  Haiku → research → Opus analyse  ║")
     print("╚══════════════════════════════════════════════════════════╝\n")
 
     if not ANTHROPIC_API_KEY:
@@ -876,7 +911,7 @@ def single_scan():
         print_portfolio(state)
         return
 
-    log("── Step 4: Opus 4.6 deep research + analysis ────────────")
+    log("── Step 4: Opus 4.6 research + analysis ─────────────────")
     recs = opus_analyze(top_markets, state)
 
     log("── Step 5: Place trades ──────────────────────────────────")
@@ -893,7 +928,7 @@ def single_scan():
 
 def run_loop():
     print("\n╔══════════════════════════════════════════════════════════╗")
-    print("║  CLAUDEBOT v7  ·  Continuous Mode                        ║")
+    print("║  CLAUDEBOT v8  ·  Continuous Mode                        ║")
     print(f"║  Interval: {SCAN_INTERVAL_MINS}min (3h)  |  10 slots  |  Telegram     ║")
     print("╚══════════════════════════════════════════════════════════╝\n")
 
