@@ -1,14 +1,13 @@
 """
 ╔══════════════════════════════════════════════════════════╗
-║         CLAUDEBOT v8 — Polymarket Paper Trader           ║
+║         CLAUDEBOT v9 — Polymarket Paper Trader           ║
 ║                                                          ║
-║  Fixes in v8:                                            ║
-║  • NO bet Kelly fixed — Opus always reports YES prob,    ║
-║    code inverts once and only once for NO positions      ║
-║  • Forced two-phase research: dedicated search step      ║
-║    before analysis so Opus always uses real data         ║
-║  • Telegram signals on new trades + resolutions          ║
-║  • Confidence-tiered Kelly, 10 slots, 2 per category     ║
+║  New in v9:                                              ║
+║  • Guaranteed web research — Haiku searches each market  ║
+║    individually before Opus sees any of them             ║
+║  • Each market gets its own dedicated search call        ║
+║  • Research results injected into Opus prompt as facts   ║
+║  • Opus makes decisions based on real current data       ║
 ║                                                          ║
 ║  SETUP:  pip install anthropic requests                  ║
 ║  RUN:    python claudebot.py --single-scan               ║
@@ -89,8 +88,8 @@ def telegram_new_trade(trade, state):
     )
     edge     = abs(trade.get("true_prob", 0) - trade.get("market_prob", 0))
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
-    won_ct   = sum(1 for t in state["trades"] if t.get("won"))
     closed_t = [t for t in state["trades"] if t["status"] == "closed"]
+    won_ct   = sum(1 for t in closed_t if t.get("won"))
     lost_ct  = len(closed_t) - won_ct
 
     msg = (
@@ -428,9 +427,84 @@ Return ONLY a JSON array, no other text:
 
 
 # ─────────────────────────────────────────────────────────
+#  STAGE 2 — HAIKU RESEARCHER
+#  Each market gets its own dedicated search call.
+#  Haiku searches, extracts facts, returns a research brief.
+# ─────────────────────────────────────────────────────────
+
+def research_market(client, market):
+    """
+    Uses Haiku with web_search to research a single market.
+    Returns a string of research findings.
+    """
+    q   = market["question"]
+    yes = market["yes"]
+    cid = market["closes_in_days"]
+
+    prompt = (
+        f"Research this prediction market for a trader: \"{q}\"\n\n"
+        f"Current market odds: YES={yes}¢ NO={100-yes}¢ | Closes in {cid:.1f} days\n"
+        f"Today: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n\n"
+        f"Search for the most current relevant data:\n"
+        f"- For weather: search exact city + date forecast right now\n"
+        f"- For sports: search current scores, stats, injury reports\n"
+        f"- For crypto: search current price and recent movement\n"
+        f"- For geopolitics/news: search latest developments\n"
+        f"- For economic data: search latest figures and forecasts\n\n"
+        f"Return a concise factual brief (3-5 sentences) of what you found "
+        f"and what it implies for the YES/NO outcome. Be specific with numbers and dates."
+    )
+
+    try:
+        resp = client.messages.create(
+            model=SCREENER_MODEL,
+            max_tokens=1000,
+            tools=[{"type": "web_search_20250305", "name": "web_search"}],
+            messages=[{"role": "user", "content": prompt}]
+        )
+
+        searches = 0
+        brief    = ""
+
+        for block in resp.content:
+            if hasattr(block, "type"):
+                if block.type == "tool_use" and block.name == "web_search":
+                    searches += 1
+                    log(f"     🔍 [{market['id']}] Searched: \"{block.input.get('query', '')}\"")
+                elif block.type == "text":
+                    brief += block.text
+
+        if searches == 0:
+            log(f"     ⚠️  [{market['id']}] No searches — using training data")
+
+        return brief.strip() if brief.strip() else "No research data available."
+
+    except Exception as e:
+        log(f"     ⚠️  Research error for {market['id']}: {e}")
+        return "Research failed — no data available."
+
+
+def research_all_markets(markets):
+    """
+    Researches each market individually using Haiku + web search.
+    Returns a dict of market_id -> research brief.
+    """
+    client   = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    research = {}
+
+    log(f"🔬 Researching {len(markets)} markets individually...")
+
+    for i, market in enumerate(markets):
+        log(f"  [{i+1}/{len(markets)}] Researching: {market['question'][:60]}")
+        brief = research_market(client, market)
+        research[market["id"]] = brief
+        log(f"     📋 Brief: {brief[:100]}...")
+
+    return research
+
+
+# ─────────────────────────────────────────────────────────
 #  KELLY SIZING
-#  Always called with YES-perspective probabilities.
-#  Caller inverts for NO bets before calling this.
 # ─────────────────────────────────────────────────────────
 
 def kelly_size(yes_true_prob, yes_market_prob, bankroll, closes_in_days=7.0, confidence=70):
@@ -481,7 +555,7 @@ def get_tier_name(confidence):
 
 def get_category(question):
     q = question.lower()
-    if any(k in q for k in ["temperature", "weather", "rain", "snow", "°c", "°f", "celsius", "fahrenheit"]):
+    if any(k in q for k in ["temperature", "weather", "rain", "snow", "°c", "°f", "celsius", "fahrenheit", "precipitation"]):
         return "weather"
     if any(k in q for k in ["bitcoin", "btc", "ethereum", "eth", "crypto", "solana", "bnb", "xrp", "defi"]):
         return "crypto"
@@ -489,7 +563,8 @@ def get_category(question):
                               "points", "goals", "score", "match", "game", "fc ", " united",
                               "spread", "o/u", "rebounds", "assists", "esport", "valorant",
                               "counter-strike", "leverkusen", "barcelona", "atletico", "flyers",
-                              "capitals", "lakers", "celtics", "lithuania", "almeria"]):
+                              "capitals", "lakers", "celtics", "lithuania", "almeria", "stars",
+                              "west brom", "wrexham", "jokic", "harris", "molcan"]):
         return "sports"
     if any(k in q for k in ["president", "election", "senate", "congress", "vote", "government",
                               "minister", "party", "trump", "biden", "democrat", "republican",
@@ -500,7 +575,8 @@ def get_category(question):
                               "amazon", "amzn"]):
         return "economics"
     if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah", "ukraine",
-                              "russia", "israel", "hamas", "conflict", "kyiv", "kostyantynivka"]):
+                              "russia", "israel", "hamas", "conflict", "kyiv", "kostyantynivka",
+                              "borova"]):
         return "geopolitics"
     return "other"
 
@@ -512,13 +588,11 @@ def category_slots_available(category, state):
 
 
 # ─────────────────────────────────────────────────────────
-#  STAGE 2 — OPUS 4.6 DEEP ANALYST
-#  Two-phase approach: forced research then analysis.
-#  Opus ALWAYS reports true_prob as YES probability.
-#  Kelly inversion for NO bets happens in place_paper_trade.
+#  STAGE 3 — OPUS 4.6 ANALYST
+#  Receives pre-researched data and makes trading decisions
 # ─────────────────────────────────────────────────────────
 
-def opus_analyze(markets, state):
+def opus_analyze(markets, research, state):
     if not markets:
         return []
 
@@ -560,82 +634,52 @@ def opus_analyze(markets, state):
             cat_counts[cat] = cat_counts.get(cat, 0) + 1
         open_ctx += f"\n\nCATEGORY COUNTS: {cat_counts} | MAX PER CATEGORY: {MAX_PER_CATEGORY}"
 
-    mkt_list = "\n".join(
-        f'ID:{m["id"]} | Closes {m["closes"][:10]} ({m["closes_in_days"]:.1f}d) | '
-        f'YES={m["yes"]}¢ NO={100 - m["yes"]}¢ | Vol=${m["volume"]:,.0f} | "{m["question"]}"'
-        for m in markets
-    )
-
-    # ── PHASE 1: Forced web research ─────────────────────
-    research_prompt = (
-        f"Today is {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}.\n\n"
-        f"You are researching prediction markets before making trading decisions.\n"
-        f"Use web_search to find the most current data for each of these markets.\n\n"
-        f"Markets to research:\n{mkt_list}\n\n"
-        f"Search for: current scores, live weather forecasts, latest news, real-time prices, "
-        f"player stats, injury reports — whatever is most relevant to each market.\n"
-        f"Run at least one search per promising market. Be thorough."
-    )
-
-    log(f"🔬 Phase 1: Forcing web research on {len(markets)} markets...")
-
-    total_searches = 0
-    research_content = []
-
-    try:
-        research_resp = client.messages.create(
-            model=ANALYST_MODEL,
-            max_tokens=8000,
-            tools=[{"type": "web_search_20250305", "name": "web_search"}],
-            tool_choice={"type": "tool", "name": "web_search"},
-            messages=[{"role": "user", "content": research_prompt}]
+    # Build market list with embedded research
+    mkt_sections = []
+    for m in markets:
+        brief = research.get(m["id"], "No research available.")
+        section = (
+            f"ID:{m['id']} | Closes {m['closes'][:10]} ({m['closes_in_days']:.1f}d) | "
+            f"YES={m['yes']}¢ NO={100-m['yes']}¢ | Vol=${m['volume']:,.0f}\n"
+            f"Question: \"{m['question']}\"\n"
+            f"Research: {brief}\n"
         )
+        mkt_sections.append(section)
 
-        for block in research_resp.content:
-            if hasattr(block, "type"):
-                if block.type == "tool_use" and block.name == "web_search":
-                    total_searches += 1
-                    log(f"  🔍 Searched: \"{block.input.get('query', '')}\"")
+    mkt_list = "\n".join(mkt_sections)
 
-        research_content = research_resp.content
-        log(f"  📊 Phase 1 complete: {total_searches} search(es)")
-
-    except Exception as e:
-        log(f"  ⚠️  Research phase error ({e}) — proceeding without pre-research")
-        research_content = []
-
-    # ── PHASE 2: Analysis using research results ──────────
-    analysis_prompt = (
+    prompt = (
         f"You are an expert algorithmic prediction market trader.\n\n"
         f"TODAY: {datetime.now(timezone.utc).strftime('%A %B %d %Y %H:%M UTC')}\n"
         f"BANKROLL: ${state['bankroll']:.2f} | AVAILABLE SLOTS: {available} | MAX BET: {MAX_BET_PCT}%\n"
         f"MIN EDGE: {MIN_EDGE_PCT}% | MIN CONFIDENCE: {MIN_CONFIDENCE}%\n"
         f"{history_ctx}\n"
         f"{open_ctx}\n\n"
-        f"CANDIDATE MARKETS (all close within {MAX_HOLD_DAYS} days):\n"
+        f"MARKETS WITH RESEARCH (all close within {MAX_HOLD_DAYS} days):\n"
         f"{mkt_list}\n\n"
-        f"Using the research you just conducted above, identify the best trading opportunities.\n\n"
-        f"IMPORTANT — PROBABILITY REPORTING:\n"
+        f"Each market above includes research data gathered RIGHT NOW from web searches.\n"
+        f"Use this research to estimate true probabilities and find mispricings.\n\n"
+        f"PROBABILITY REPORTING — CRITICAL:\n"
         f"Always report true_prob and market_prob as the YES probability (0-100).\n"
-        f"Example: if you think YES has 8% true chance and market says 27%,\n"
-        f"report true_prob=8, market_prob=27, position=NO.\n"
-        f"The system handles Kelly sizing automatically based on the position.\n\n"
+        f"If you think YES has 10% true chance and market says 27%, report:\n"
+        f"  true_prob=10, market_prob=27, position=NO\n"
+        f"The system automatically handles Kelly sizing from these numbers.\n\n"
         f"CONFIDENCE GUIDE:\n"
-        f"  90-99%: Near-certain. Verified real-time evidence.\n"
-        f"  75-89%: High confidence. Strong current evidence.\n"
-        f"  60-74%: Moderate confidence. Edge exists, some uncertainty.\n\n"
-        f"DIVERSIFICATION: Max {MAX_PER_CATEGORY} per category. Do not recommend a 3rd in any full category.\n\n"
+        f"  90-99%: Near-certain based on research\n"
+        f"  75-89%: High confidence, strong evidence\n"
+        f"  60-74%: Moderate confidence, real edge but uncertainty\n\n"
+        f"DIVERSIFICATION: Max {MAX_PER_CATEGORY} per category. No 3rd in any full category.\n\n"
         f"Return ONLY a valid JSON array, no other text:\n"
         f"[\n"
         f"  {{\n"
-        f'    "market_id": "exact ID from list",\n'
-        f'    "market": "exact question text",\n'
+        f'    "market_id": "exact ID",\n'
+        f'    "market": "exact question",\n'
         f'    "position": "YES or NO",\n'
         f'    "market_prob": 27,\n'
-        f'    "true_prob": 8,\n'
-        f'    "confidence": 90,\n'
+        f'    "true_prob": 10,\n'
+        f'    "confidence": 88,\n'
         f'    "category": "geopolitics",\n'
-        f'    "research_summary": "2-3 sentences of specific current data found",\n'
+        f'    "research_summary": "2-3 sentences from the research above",\n'
         f'    "key_factors": ["factor 1", "factor 2", "factor 3"],\n'
         f'    "bear_case": "main reason you could be wrong"\n'
         f"  }}\n"
@@ -643,38 +687,28 @@ def opus_analyze(markets, state):
         f"If no genuine edge found, return: []"
     )
 
-    log(f"🧠 Phase 2: Opus 4.6 analyzing with adaptive thinking...")
+    log(f"🧠 Opus 4.6 analyzing {len(markets)} researched markets...")
 
     try:
-        messages = [{"role": "user", "content": research_prompt}]
-        if research_content:
-            messages.append({"role": "assistant", "content": research_content})
-        messages.append({"role": "user", "content": analysis_prompt})
-
         response = client.messages.create(
             model=ANALYST_MODEL,
             max_tokens=8000,
             thinking={"type": "adaptive"},
-            tools=[{"type": "web_search_20250305", "name": "web_search"}],
-            messages=messages
+            messages=[{"role": "user", "content": prompt}]
         )
 
-        thinking_txt  = ""
-        full_text     = ""
-        extra_searches = 0
+        thinking_txt = ""
+        full_text    = ""
 
         for block in response.content:
             if hasattr(block, "type"):
                 if block.type == "thinking":
                     thinking_txt = block.thinking
                     log(f"  💭 Opus thought for {len(thinking_txt)} chars")
-                elif block.type == "tool_use" and block.name == "web_search":
-                    extra_searches += 1
-                    log(f"  🔍 Extra search: \"{block.input.get('query', '')}\"")
                 elif block.type == "text":
                     full_text += block.text
 
-        log(f"  📊 {total_searches + extra_searches} total searches | thinking: {'yes' if thinking_txt else 'no'}")
+        log(f"  📊 Thinking: {'yes' if thinking_txt else 'no'}")
 
         raw = full_text.strip().replace("```json", "").replace("```", "").strip()
         if not raw.startswith("["):
@@ -705,7 +739,8 @@ def opus_analyze(markets, state):
         for r in valid:
             edge = abs(r.get("true_prob", 0) - r.get("market_prob", 0))
             cat  = r.get("category") or get_category(r.get("market", ""))
-            log(f"  📋 BUY {r['position']} | {cat} | market_prob(YES)={r['market_prob']}% | true_prob(YES)={r['true_prob']}% | edge {edge}% | conf {r['confidence']}%")
+            tier = get_tier_name(r.get("confidence", 0))
+            log(f"  📋 BUY {r['position']} | {cat} | {tier} | YES_market={r['market_prob']}% | YES_true={r['true_prob']}% | edge {edge}% | conf {r['confidence']}%")
             log(f"     {r['market'][:70]}")
             log(f"     {r.get('research_summary', '')[:120]}")
             log(f"     Bear: {r.get('bear_case', '')[:80]}")
@@ -719,8 +754,6 @@ def opus_analyze(markets, state):
 
 # ─────────────────────────────────────────────────────────
 #  TRADE EXECUTION
-#  true_prob and market_prob are always YES probabilities.
-#  For NO bets we invert both before passing to kelly_size.
 # ─────────────────────────────────────────────────────────
 
 def place_paper_trade(rec, markets, state):
@@ -761,8 +794,7 @@ def place_paper_trade(rec, markets, state):
         log(f"  ⏭  Closes in {cid:.1f}d — outside window")
         return state
 
-    # true_prob and market_prob are always YES probabilities from Opus.
-    # For NO bets, invert both so Kelly sees the probability of winning.
+    # Opus always reports YES probabilities. Invert for NO bets.
     yes_true   = rec["true_prob"]
     yes_market = rec["market_prob"]
 
@@ -773,7 +805,7 @@ def place_paper_trade(rec, markets, state):
         kelly_true   = yes_true
         kelly_market = yes_market
 
-    log(f"  📐 Kelly inputs: position={rec['position']} | kelly_true={kelly_true}% | kelly_market={kelly_market}%")
+    log(f"  📐 Kelly: position={rec['position']} | kelly_true={kelly_true}% | kelly_market={kelly_market}%")
 
     stake = kelly_size(
         yes_true_prob   = kelly_true,
@@ -788,7 +820,6 @@ def place_paper_trade(rec, markets, state):
         return state
 
     tier   = get_tier_name(conf)
-    # entry price is the cost per share of the position we're taking
     entry  = yes_market if rec["position"] == "YES" else (100 - yes_market)
     payout = round(stake * 100 / entry, 2)
     profit = round(payout - stake, 2)
@@ -846,7 +877,7 @@ def print_portfolio(state):
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
     print("\n" + "═" * 65)
-    print("  CLAUDEBOT v8  ·  Opus 4.6 · Tiered Kelly · Telegram")
+    print("  CLAUDEBOT v9  ·  Opus 4.6 · Haiku Research · Telegram")
     print("═" * 65)
     print(f"  Bankroll       ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
     print(f"  Realized P&L   ${realized:+.2f}")
@@ -876,8 +907,8 @@ def print_portfolio(state):
 
 def single_scan():
     print("\n╔══════════════════════════════════════════════════════════╗")
-    print("║  CLAUDEBOT v8  ·  Tiered Kelly · Telegram · 3h interval  ║")
-    print(f"║  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}  |  Haiku → research → Opus analyse  ║")
+    print("║  CLAUDEBOT v9  ·  Haiku Research + Opus Analysis        ║")
+    print(f"║  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}  |  Screen → Research → Analyse   ║")
     print("╚══════════════════════════════════════════════════════════╝\n")
 
     if not ANTHROPIC_API_KEY:
@@ -912,24 +943,27 @@ def single_scan():
         print_portfolio(state)
         return
 
-    log("── Step 4: Opus 4.6 research + analysis ─────────────────")
-    recs = opus_analyze(top_markets, state)
+    log("── Step 4: Haiku web research (per market) ──────────────")
+    research = research_all_markets(top_markets)
 
-    log("── Step 5: Place trades ──────────────────────────────────")
+    log("── Step 5: Opus 4.6 analysis ────────────────────────────")
+    recs = opus_analyze(top_markets, research, state)
+
+    log("── Step 6: Place trades ──────────────────────────────────")
     if not recs:
         log("No trades this scan")
     else:
         for rec in recs:
             state = place_paper_trade(rec, markets, state)
 
-    log("── Step 6: Save ──────────────────────────────────────────")
+    log("── Step 7: Save ──────────────────────────────────────────")
     save_state(state)
     print_portfolio(state)
 
 
 def run_loop():
     print("\n╔══════════════════════════════════════════════════════════╗")
-    print("║  CLAUDEBOT v8  ·  Continuous Mode                        ║")
+    print("║  CLAUDEBOT v9  ·  Continuous Mode                        ║")
     print(f"║  Interval: {SCAN_INTERVAL_MINS}min (3h)  |  10 slots  |  Telegram     ║")
     print("╚══════════════════════════════════════════════════════════╝\n")
 
