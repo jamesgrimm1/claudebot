@@ -1,5 +1,5 @@
 {
-  "bankroll": 926.14,
+  "bankroll": 909.42,
   "trades": [
     {
       "id": "T1774412231",
@@ -499,11 +499,40 @@
       "placed_at": "2026-03-30T02:53:26.907637+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774864804",
+      "market_id": "1786460",
+      "market_slug": "will-solana-dip-to-80-on-march-30",
+      "market": "Will Solana dip to $80 on March 30?",
+      "position": "YES",
+      "entry_price": 10,
+      "stake": 16.72,
+      "potential_return": 167.2,
+      "potential_profit": 150.48,
+      "confidence": 62,
+      "true_prob": 20,
+      "market_prob": 10,
+      "category": "crypto",
+      "closes_in_days": 0.75,
+      "closes": "2026-03-31T04:00:00+00:00",
+      "research_summary": "SOL is trading at $81-82 (Yahoo Finance $81.68, YCharts $81.34, Twelve Data $82.09), only ~1.85% above the $80 target. Crypto assets routinely see 3-4% intraday ranges, making a 2% dip well within normal daily variance with 14+ hours remaining in March 30.",
+      "key_factors": [
+        "SOL only ~$1.50-2.00 above $80 target, within normal daily range",
+        "Crypto daily volatility typically 3-4% for SOL, exceeding required 1.85% move",
+        "Price already at monthly low (down from mid-$80s to low $90s earlier in March), suggesting existing downward drift"
+      ],
+      "bear_case": "$80 is a strong psychological support level with likely concentrated buy orders; recent price stability around $81-82 suggests consolidation rather than continued decline; market participants with real-time orderbook data may see strong support",
+      "kelly_tier": "quarter-Kelly (3.0%)",
+      "status": "open",
+      "placed_at": "2026-03-30T10:00:04.812758+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 68.71,
   "daily_reset": "2026-03-30",
-  "scan_count": 79,
+  "scan_count": 80,
   "started": "2026-03-23T09:17:53.961678",
-  "last_daily_summary": "2026-03-29"
+  "last_daily_summary": "2026-03-30"
 }
