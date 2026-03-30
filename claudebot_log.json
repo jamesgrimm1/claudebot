@@ -1,5 +1,5 @@
 {
-  "bankroll": 830.01,
+  "bankroll": 805.11,
   "trades": [
     {
       "id": "T1774412231",
@@ -582,10 +582,13 @@
       ],
       "bear_case": "If Berrettini is returning from injury and underperforming, or the surface heavily favors serve-dominant play, more games could accumulate; Svrcina could be in better form than expected",
       "kelly_tier": "quarter-Kelly (3.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-30T10:26:50.898242+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-03-30T19:11:11.420582+00:00",
+      "realized_pnl": -26.46
     },
     {
       "id": "T1774887082",
@@ -615,11 +618,40 @@
       "placed_at": "2026-03-30T16:11:22.765757+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774898005",
+      "market_id": "1713153",
+      "market_slug": "lal-mal-rea-2026-04-04-rea",
+      "market": "Will Real Madrid CF win on 2026-04-04?",
+      "position": "YES",
+      "entry_price": 62,
+      "stake": 24.9,
+      "potential_return": 40.16,
+      "potential_profit": 15.26,
+      "confidence": 63,
+      "true_prob": 69,
+      "market_prob": 62,
+      "category": "sports",
+      "closes_in_days": 4.79,
+      "closes": "2026-04-04T14:15:00+00:00",
+      "research_summary": "Real Madrid faces Mallorca away in La Liga on April 4 at Estadi de Son Moix. Madrid is in excellent recent form, highlighted by a dominant 3-0 Champions League win over Manchester City with a Valverde hat-trick. The high-volume market ($99.9K) prices Madrid's win at 62%, which appears slightly below typical implied probabilities for Madrid away at a mid-table La Liga side (~67-70%).",
+      "key_factors": [
+        "Real Madrid's strong recent form including emphatic 3-0 CL win vs Man City",
+        "Historical away win rate vs mid-table La Liga teams typically 65-72%",
+        "High market volume suggests some efficiency but Polymarket crowds may underweight elite team dominance"
+      ],
+      "bear_case": "Champions League quarterfinals likely follow the next week, creating significant rotation risk where Madrid rests key starters. Additionally, we lack injury/suspension details and Mallorca's current home form data.",
+      "kelly_tier": "quarter-Kelly (3.0%)",
+      "status": "open",
+      "placed_at": "2026-03-30T19:13:25.561847+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
-  "daily_loss": 68.71,
+  "daily_loss": 95.17,
   "daily_reset": "2026-03-30",
-  "scan_count": 83,
+  "scan_count": 84,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-30"
 }
