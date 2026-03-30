@@ -1,5 +1,5 @@
 {
-  "bankroll": 974.88,
+  "bankroll": 926.14,
   "trades": [
     {
       "id": "T1774412231",
@@ -288,10 +288,13 @@
       ],
       "bear_case": "Could be a late scratch again like Monday - the heel inflammation is recurring and Raptors may choose to rest him with 9 games left",
       "kelly_tier": "quarter-Kelly (3.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-29T08:41:40.553678+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-03-30T02:50:10.132217+00:00",
+      "realized_pnl": -37.63
     },
     {
       "id": "T1774773700",
@@ -432,10 +435,13 @@
       ],
       "bear_case": "Melser Kindergarten has had a full week to study replays and develop anti-strats specifically targeting ShindeN; grand finals often produce different dynamics than earlier rounds, and VCL minor leagues can be volatile.",
       "kelly_tier": "quarter-Kelly (3.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-29T17:06:05.660351+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-03-30T02:50:11.666506+00:00",
+      "realized_pnl": -31.08
     },
     {
       "id": "T1774810667",
@@ -464,11 +470,40 @@
       "placed_at": "2026-03-29T18:57:47.026080+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1774839206",
+      "market_id": "1779916",
+      "market_slug": "highest-temperature-in-atlanta-on-april-1-2026-84-85f",
+      "market": "Will the highest temperature in Atlanta be between 84-85\u00b0F on April 1?",
+      "position": "NO",
+      "entry_price": 84,
+      "stake": 48.74,
+      "potential_return": 58.02,
+      "potential_profit": 9.28,
+      "confidence": 78,
+      "true_prob": 4,
+      "market_prob": 16,
+      "category": "weather",
+      "closes_in_days": 2.38,
+      "closes": "2026-04-01T12:00:00+00:00",
+      "research_summary": "Research shows the March 30 Atlanta forecast high is approximately 68\u00b0F, with one source suggesting 76\u00b0F or higher. These are 2 days before the target date, and reaching 84-85\u00b0F would require an extreme 16\u00b0F jump well above the April 1 average high of ~68-70\u00b0F.",
+      "key_factors": [
+        "Current forecast shows 68-76\u00b0F for March 30, far below 84-85\u00b0F target",
+        "Atlanta average April 1 high is ~68-70\u00b0F; 84-85\u00b0F is ~15\u00b0F above normal",
+        "Exact 2-degree window further reduces probability even in an unlikely warm scenario"
+      ],
+      "bear_case": "An unexpected strong warm front could push temperatures significantly higher than forecast, though even then hitting the exact 84-85\u00b0F window remains improbable",
+      "kelly_tier": "half-Kelly (5.0%)",
+      "status": "open",
+      "placed_at": "2026-03-30T02:53:26.907637+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
-  "daily_loss": 67.15,
-  "daily_reset": "2026-03-29",
-  "scan_count": 75,
+  "daily_loss": 68.71,
+  "daily_reset": "2026-03-30",
+  "scan_count": 76,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-29"
 }
