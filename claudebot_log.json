@@ -524,10 +524,13 @@
       ],
       "bear_case": "$80 is a strong psychological support level with likely concentrated buy orders; recent price stability around $81-82 suggests consolidation rather than continued decline; market participants with real-time orderbook data may see strong support",
       "kelly_tier": "quarter-Kelly (3.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-03-30T10:00:04.812758+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-03-31T07:39:59.215189+00:00",
+      "realized_pnl": -16.72
     },
     {
       "id": "T1774866409",
@@ -649,9 +652,9 @@
       "model": "claude-opus-4-6"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 16.72,
   "daily_reset": "2026-03-31",
-  "scan_count": 86,
+  "scan_count": 87,
   "started": "2026-03-23T09:17:53.961678",
   "last_daily_summary": "2026-03-30"
 }
