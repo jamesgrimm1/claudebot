@@ -1,9 +1,9 @@
 {
-  "bankroll": 1000.00,
+  "bankroll": 1000.0,
   "trades": [],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-02",
-  "scan_count": 0,
+  "scan_count": 1,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "",
   "last_tier2_scan": "",
