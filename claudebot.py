@@ -71,8 +71,8 @@ TIERS = {
         "max_positions":  6,
         "fixed_pct":      None,   # use Kelly
         "kelly": [
-            {"min_conf": 90, "fraction": 1.0, "max_pct": 12.0},
-            {"min_conf": 75, "fraction": 0.5, "max_pct":  7.0},
+            {"min_conf": 90, "fraction": 1.0, "max_pct": 15.0},
+            {"min_conf": 75, "fraction": 0.5, "max_pct": 10.0},
         ],
         "short_disc_1d":  0.65,
         "short_disc_2d":  0.80,
@@ -90,8 +90,8 @@ TIERS = {
         "max_positions":  3,
         "fixed_pct":      None,   # use Kelly
         "kelly": [
-            {"min_conf": 90, "fraction": 0.5,  "max_pct": 6.0},
-            {"min_conf": 80, "fraction": 0.25, "max_pct": 4.0},
+            {"min_conf": 90, "fraction": 0.5,  "max_pct": 8.0},
+            {"min_conf": 80, "fraction": 0.25, "max_pct": 5.0},
         ],
         "time_discount":  0.75,   # structural uncertainty discount
         "use_ddg":        True,
@@ -106,7 +106,7 @@ TIERS = {
         "min_confidence": 90,
         "min_edge_pct":   25,
         "max_positions":  4,
-        "fixed_pct":      2.0,    # fixed 2% — Kelly is false precision at 6mo
+        "fixed_pct":      3.0,    # fixed 3% — Kelly is false precision at 6mo
         "kelly":          [],
         "use_ddg":        False,  # pure Opus structural reasoning
         "screener_top_n": 8,
@@ -312,27 +312,15 @@ def should_send_daily_summary(state):
 # ─────────────────────────────────────────────────────────
 
 def should_run_tier2(state):
-    """Tier 2 runs once per day at 9am UTC."""
-    now   = datetime.now(timezone.utc)
-    today = now.strftime("%Y-%m-%d")
-    last  = state.get("last_tier2_scan", "")
-    if last == today:
-        return False
-    if now.hour == 9:
-        return True
-    return False
+    """Tier 2 runs once per day — first scan of each UTC day."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return state.get("last_tier2_scan", "") != today
 
 
 def should_run_tier3(state):
-    """Tier 3 runs once per week on Sunday."""
-    now  = datetime.now(timezone.utc)
-    week = now.strftime("%Y-W%W")
-    last = state.get("last_tier3_scan", "")
-    if last == week:
-        return False
-    if now.weekday() == 6:  # Sunday
-        return True
-    return False
+    """Tier 3 runs once per week — first scan of each UTC week."""
+    week = datetime.now(timezone.utc).strftime("%Y-W%W")
+    return state.get("last_tier3_scan", "") != week
 
 
 # ─────────────────────────────────────────────────────────
