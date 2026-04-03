@@ -1,5 +1,5 @@
 {
-  "bankroll": 700.57,
+  "bankroll": 916.79,
   "trades": [
     {
       "id": "T1775098669",
@@ -56,10 +56,13 @@
       ],
       "bear_case": "Unexpected cloud cover, rain, or weather system change could drop temperatures; no specific April 3 forecast was found in research",
       "kelly_tier": "half-Kelly (7.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-02T07:27:21.077271+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-04-03T21:41:45.074409+00:00",
+      "realized_pnl": -65.1
     },
     {
       "id": "T1775142350",
@@ -116,15 +119,18 @@
       ],
       "bear_case": "Crypto volatility is real\u2014SOL briefly touched $79.09 just 5 days ago, and a sudden sell-off or black swan event could push it below $80 before market close",
       "kelly_tier": "half-Kelly (10.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-03T03:18:00.578948+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-03T21:41:47.498205+00:00",
+      "realized_pnl": 138.38
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 65.1,
   "daily_reset": "2026-04-03",
-  "scan_count": 16,
+  "scan_count": 17,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-03",
   "last_tier2_scan": "2026-04-03",
