@@ -167,9 +167,9 @@
   ],
   "daily_loss": 70.0,
   "daily_reset": "2026-04-04",
-  "scan_count": 20,
+  "scan_count": 21,
   "started": "2026-04-02T00:00:00+00:00",
-  "last_daily_summary": "2026-04-03",
+  "last_daily_summary": "2026-04-04",
   "last_tier2_scan": "2026-04-04",
   "last_tier3_scan": "2026-W13"
 }
