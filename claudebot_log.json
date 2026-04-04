@@ -1,5 +1,5 @@
 {
-  "bankroll": 1555.66,
+  "bankroll": 1400.09,
   "trades": [
     {
       "id": "T1775098669",
@@ -163,11 +163,41 @@
       "placed_at": "2026-04-04T02:54:51.276932+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1775308537",
+      "tier": 1,
+      "market_id": "1854598",
+      "market_slug": "highest-temperature-in-lucknow-on-april-8-2026-28corbelow",
+      "market": "Will the highest temperature in Lucknow be 28\u00b0C or below on April 8?",
+      "position": "NO",
+      "entry_price": 58,
+      "stake": 155.57,
+      "potential_return": 268.22,
+      "potential_profit": 112.65,
+      "confidence": 82,
+      "true_prob": 10,
+      "market_prob": 42,
+      "category": "weather",
+      "closes_in_days": 3.9,
+      "closes": "2026-04-08T12:00:00+00:00",
+      "research_summary": "Lucknow recorded 37.07\u00b0C high on April 4. The 28\u00b0C threshold requires a 9\u00b0C drop in daily highs within 4 days during peak April heating season. No weather system or forecast data in research suggests such an extreme cooling event. Lucknow April average highs are 36-39\u00b0C; sub-28\u00b0C highs are historically near-record territory.",
+      "key_factors": [
+        "Current high 37.07\u00b0C is 9\u00b0C above the 28\u00b0C threshold \u2014 extraordinary drop needed",
+        "April is Lucknow's peak pre-monsoon heating season with average highs 36-39\u00b0C",
+        "No forecast evidence of incoming weather system capable of such extreme cooling"
+      ],
+      "bear_case": "Severe Western Disturbance or unprecedented pre-monsoon storm system could suppress temps, and I previously lost a Lucknow weather bet on unexpected weather changes \u2014 but a 9\u00b0C drop in highs far exceeds typical weather-system cooling of 5-7\u00b0C",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "status": "open",
+      "placed_at": "2026-04-04T13:15:37.096109+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 70.0,
   "daily_reset": "2026-04-04",
-  "scan_count": 21,
+  "scan_count": 22,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-04",
   "last_tier2_scan": "2026-04-04",
