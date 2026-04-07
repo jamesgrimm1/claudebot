@@ -1,5 +1,5 @@
 {
-  "bankroll": 1230.07,
+  "bankroll": 1107.06,
   "trades": [
     {
       "id": "T1775098669",
@@ -321,11 +321,43 @@
       "placed_at": "2026-04-07T16:14:55.199482+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1775589461",
+      "tier": 1,
+      "market_id": "1847313",
+      "market_slug": "will-trump-post-bully-of-the-middle-east-on-truth-social-this-week-151",
+      "market": "Will Trump post \"Bully of the Middle East\" on Truth Social this week?",
+      "position": "YES",
+      "entry_price": 22,
+      "stake": 123.01,
+      "potential_return": 559.14,
+      "potential_profit": 436.13,
+      "confidence": 80,
+      "true_prob": 88,
+      "market_prob": 22,
+      "category": "politics",
+      "closes_in_days": 4.2,
+      "closes": "2026-04-12T00:00:00+00:00",
+      "research_summary": "Search result from ~40 minutes ago confirms Trump posted 'Iran is no longer the Bully of the Middle East' on Truth Social very recently (April 6-7). This is within the market's week window (closes April 12). The phrase has already appeared on the platform.",
+      "key_factors": [
+        "Confirmed Truth Social post containing exact phrase 'Bully of the Middle East' from April 6-7",
+        "Trump used phrase repeatedly in recent days including primetime address April 2",
+        "Market at 22\u00a2 has not reflected the already-posted evidence",
+        "4 days remaining provides additional buffer for repeat posts"
+      ],
+      "bear_case": "Resolution criteria might require exact standalone phrasing rather than phrase embedded in longer post, or 'this week' definition might exclude the confirmed post date",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-07T19:17:41.249376+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-07",
-  "scan_count": 45,
+  "scan_count": 46,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-05",
   "last_tier2_scan": "2026-04-07",
