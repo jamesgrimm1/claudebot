@@ -1,5 +1,5 @@
 {
-  "bankroll": 1000.09,
+  "bankroll": 900.08,
   "trades": [
     {
       "id": "T1775098669",
@@ -387,11 +387,42 @@
       "placed_at": "2026-04-08T19:30:19.030089+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1775721131",
+      "tier": 1,
+      "market_id": "1886542",
+      "market_slug": "highest-temperature-in-taipei-on-april-10-2026-31c",
+      "market": "Will the highest temperature in Taipei be 31\u00b0C on April 10?",
+      "position": "NO",
+      "entry_price": 74,
+      "stake": 100.01,
+      "potential_return": 135.15,
+      "potential_profit": 35.14,
+      "confidence": 80,
+      "true_prob": 5,
+      "market_prob": 26,
+      "category": "weather",
+      "closes_in_days": 1.2,
+      "closes": "2026-04-10T12:00:00+00:00",
+      "research_summary": "Taipei early April average high is 25-27\u00b0C. A 31\u00b0C high represents a 4-6\u00b0C anomaly (~2 standard deviations). Current conditions show precipitation and suppressed temperatures (~19\u00b0C), making extreme warmth less likely. Statistical probability of exactly 31\u00b0C is approximately 2.5-5% based on climatological temperature distributions.",
+      "key_factors": [
+        "Taipei early April climatological average high is ~25-27\u00b0C; 31\u00b0C is a rare 2-sigma warm anomaly",
+        "Active precipitation pattern and cool current temps (~19\u00b0C) suppress likelihood of extreme warmth tomorrow",
+        "Even interpreting as \u226531\u00b0C rather than exact, historical probability is only ~3-5%; market at 26% is significantly overpriced"
+      ],
+      "bear_case": "Unexpected warm air mass or rapid clearing could push temperatures above 30\u00b0C; resolution criteria interpretation may differ; April 2026 could have anomalous warming pattern not captured in climatology",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-09T07:52:11.818245+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-09",
-  "scan_count": 56,
+  "scan_count": 57,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-05",
   "last_tier2_scan": "2026-04-09",
