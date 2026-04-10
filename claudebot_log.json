@@ -1,5 +1,5 @@
 {
-  "bankroll": 1311.5,
+  "bankroll": 1446.65,
   "trades": [
     {
       "id": "T1775098669",
@@ -417,15 +417,18 @@
       "bear_case": "Unexpected warm air mass or rapid clearing could push temperatures above 30\u00b0C; resolution criteria interpretation may differ; April 2026 could have anomalous warming pattern not captured in climatology",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-09T07:52:11.818245+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-10T07:53:19.810915+00:00",
+      "realized_pnl": 35.14
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-10",
-  "scan_count": 63,
+  "scan_count": 64,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-05",
   "last_tier2_scan": "2026-04-10",
