@@ -1,5 +1,5 @@
 {
-  "bankroll": 1518.97,
+  "bankroll": 1367.07,
   "trades": [
     {
       "id": "T1775098669",
@@ -494,11 +494,43 @@
       "placed_at": "2026-04-11T19:00:39.400031+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1775943745",
+      "tier": 1,
+      "market_id": "1579022",
+      "market_slug": "will-tisza-win-at-least-120-seats",
+      "market": "Will Tisza win at least 120 seats?",
+      "position": "YES",
+      "entry_price": 56,
+      "stake": 151.9,
+      "potential_return": 271.25,
+      "potential_profit": 119.35,
+      "confidence": 80,
+      "true_prob": 82,
+      "market_prob": 56,
+      "category": "other",
+      "closes_in_days": 0.1,
+      "closes": "2026-04-12T00:00:00+00:00",
+      "research_summary": "Medi\u00e1n poll (Apr 8) projects 138-142 seats for Tisza, providing 18-22 seat buffer above 120 threshold. Reuters reports Tisza on track for two-thirds parliamentary majority (133+ seats). Consistent 8-14% polling lead over Fidesz. Election is today April 12.",
+      "key_factors": [
+        "Latest reputable poll projects 138-142 seats \u2014 well above 120 threshold",
+        "Reuters independently confirms trajectory toward supermajority",
+        "18-22 seat buffer means polls would need to be catastrophically wrong to miss 120",
+        "No contradictory polls found showing Tisza below 120 in recent data"
+      ],
+      "bear_case": "Hungarian polls have historically underestimated Fidesz (2022 precedent); gerrymandered single-member districts could favor Fidesz more than proportional models suggest; rural turnout and media dominance could produce systematic polling error",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-11T21:42:25.215278+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-11",
-  "scan_count": 76,
+  "scan_count": 77,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-11",
   "last_tier2_scan": "2026-04-11",
