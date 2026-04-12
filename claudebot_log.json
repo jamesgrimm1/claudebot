@@ -1,5 +1,5 @@
 {
-  "bankroll": 1367.07,
+  "bankroll": 1230.36,
   "trades": [
     {
       "id": "T1775098669",
@@ -526,11 +526,43 @@
       "placed_at": "2026-04-11T21:42:25.215278+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776020593",
+      "tier": 1,
+      "market_id": "1891971",
+      "market_slug": "bitcoin-above-70k-on-april-13",
+      "market": "Will the price of Bitcoin be above $70,000 on April 13?",
+      "position": "NO",
+      "entry_price": 24,
+      "stake": 136.71,
+      "potential_return": 569.62,
+      "potential_profit": 432.91,
+      "confidence": 83,
+      "true_prob": 25,
+      "market_prob": 76,
+      "category": "crypto",
+      "closes_in_days": 0.9,
+      "closes": "2026-04-13T16:00:00+00:00",
+      "research_summary": "Bitcoin is currently trading $1,200\u2013$3,150 below the $70,000 threshold (range of $66,854\u2013$68,810 as of April 7-12). On April 12, BTC slipped below $71,000 following Trump's announced Strait of Hormuz blockade, generating risk-off sentiment. With less than 24 hours remaining and strong bearish momentum, the 76% YES price appears drastically mispriced relative to the current spot price being well below the threshold.",
+      "key_factors": [
+        "BTC confirmed trading below $70,000 ($66,854\u2013$68,810 range) with negative momentum",
+        "Geopolitical catalyst (Strait of Hormuz blockade announcement) driving risk-off selling",
+        "Only ~24 hours remaining \u2014 needs $1,200\u2013$3,150 recovery against prevailing trend",
+        "Market odds at 76% YES appear stale/mispriced vs current spot data"
+      ],
+      "bear_case": "Crypto markets are 24/7 and highly volatile \u2014 a sudden positive catalyst (e.g., ceasefire, tariff rollback) could trigger a sharp intraday rally above $70K. Research may also lack the most current intraday price if BTC has already begun recovering.",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-12T19:03:13.793026+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-12",
-  "scan_count": 82,
+  "scan_count": 83,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
   "last_tier2_scan": "2026-04-12",
