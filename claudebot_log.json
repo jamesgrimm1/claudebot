@@ -1,5 +1,5 @@
 {
-  "bankroll": 1230.36,
+  "bankroll": 1478.55,
   "trades": [
     {
       "id": "T1775098669",
@@ -490,10 +490,13 @@
       "bear_case": "No day-specific forecast available; if a warm air mass pushes forecast to 25-26\u00b0C, true probability could reach 18-22%, reducing edge below threshold",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-11T19:00:39.400031+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-12T21:43:12.073048+00:00",
+      "realized_pnl": 79.42
     },
     {
       "id": "T1775943745",
@@ -562,7 +565,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-12",
-  "scan_count": 83,
+  "scan_count": 84,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
   "last_tier2_scan": "2026-04-12",
