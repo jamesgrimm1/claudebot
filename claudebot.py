@@ -152,7 +152,9 @@ def get_category(question):
                               "game", "fc ", " united", "spread", "o/u", "rebounds",
                               "assists", "esport", "valorant", "counter-strike", "dota",
                               "leverkusen", "barcelona", "atletico", "flyers", "capitals",
-                              "lakers", "celtics", "west brom", "wrexham", "jokic",
+                              "lakers", "celtics", "bucks", "nets", "knicks", "bulls",
+                              "heat", "hawks", "sixers", "suns", "nuggets", "warriors",
+                              "west brom", "wrexham", "jokic",
                               "iceho", "rockets", "ahl:", "lol:", "fluxo", "leviatan",
                               "xspark", "xcrew", "prodigy", "rune eaters", "atputies",
                               "sinners", "jijiehao", "almeria", "kalieva", "urhobo",
@@ -219,9 +221,10 @@ def telegram_new_trade(trade, state):
     tier_label = TIERS[t_num]["name"]
     news_flag  = "📰 <i>News-triggered</i>\n" if trade.get("news_triggered") else ""
     slug       = trade.get("market_slug", "")
+    market_id  = trade.get("market_id", "")
     link_line  = (
-        f"\n\n🔗 <a href=\"https://polymarket.com/event/{slug}\">Trade on Polymarket</a>"
-        if slug else ""
+        f"\n\n🔗 <a href=\"https://polymarket.com/event/{slug}/{market_id}\">Trade on Polymarket</a>"
+        if slug and market_id else ""
     )
 
     public_msg = (
@@ -997,14 +1000,15 @@ def opus_analyze_short_medium(markets, research, state, tier_num):
 
     history_ctx = ""
     if closed:
-        wr          = len(won) / len(closed) * 100
-        history_ctx = f"\nTRACK RECORD [{tcfg['label']}]: {wr:.0f}% ({len(won)}W/{len(lost)}L)\nRecent:\n"
+        # NOTE: Win rate deliberately excluded — prevents Opus anchoring on
+        # recent success and loosening its edge requirements.
+        history_ctx = f"\nRECENT TRADES [{tcfg['label']}] (evaluate each on its own merits, ignore overall record):\n"
         for t in closed[-8:]:
             result = "WON" if t.get("won") else "LOST"
             edge   = abs(t.get("true_prob", 0) - t.get("market_prob", 0))
             history_ctx += f"  {result} | conf {t.get('confidence',0)}% | edge {edge}% | {t['market'][:55]}\n"
         if lost:
-            history_ctx += "\nLoss patterns:\n"
+            history_ctx += "\nLoss patterns to avoid repeating:\n"
             for t in lost[-4:]:
                 history_ctx += f"  LOST — {t.get('bear_case','?')[:70]}\n"
 
@@ -1043,7 +1047,10 @@ def opus_analyze_short_medium(markets, research, state, tier_num):
         f"  ✅ Confirmed fact not priced in\n"
         f"  ✅ Verifiable situation with strong directional signal\n"
         f"  ✅ Health/economic data with clear trajectory\n"
-        f"  ❌ Vague research, uncertain outcomes, sports\n\n"
+        f"  ❌ Vague research, uncertain outcomes, sports\n"
+        f"  ❌ Central bank/Fed/ECB decisions based only on analyst forecasts\n"
+        f"     or conditional scenarios — these require CONFIRMED data releases\n"
+        f"     or explicit official forward guidance, not 'Bank X thinks Y might happen'\n\n"
         f"0 trades beats a bad trade.\n\n"
         f"PROBABILITIES: report as YES probability (0-100).\n"
         f"CONFIDENCE: ≥{tcfg['min_confidence']}% required.\n"
