@@ -1,5 +1,5 @@
 {
-  "bankroll": 1707.35,
+  "bankroll": 1786.12,
   "trades": [
     {
       "id": "T1775098669",
@@ -632,17 +632,52 @@
       "bear_case": "Weekend tariff escalation announcements targeting China/semiconductors could cause a large Monday gap down; NVIDIA is highly exposed to US-China trade tensions",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-13T00:02:39.024918+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-14T03:29:40.161954+00:00",
+      "realized_pnl": 144.16
+    },
+    {
+      "id": "T1776137447",
+      "tier": 1,
+      "market_id": "1908733",
+      "market_slug": "will-the-price-of-ethereum-be-between-2400-2500-on-april-14",
+      "market": "Will the price of Ethereum be between $2,400 and $2,500 on April 14?",
+      "position": "NO",
+      "entry_price": 74,
+      "stake": 198.46,
+      "potential_return": 268.19,
+      "potential_profit": 69.73,
+      "confidence": 87,
+      "true_prob": 4,
+      "market_prob": 26,
+      "category": "crypto",
+      "closes_in_days": 0.5,
+      "closes": "2026-04-14T16:00:00+00:00",
+      "research_summary": "ETH currently ~$2,060-$2,121, requiring a 15-20% single-day surge to reach $2,400-$2,500. Market closes today. Recent crypto weakness (BTC dropped from >$72K to <$70K between Apr 9-13) makes upside even less likely. No bullish catalysts identified in research. Such magnitude moves in a single day are extremely rare without extraordinary events.",
+      "key_factors": [
+        "ETH needs ~$300-400 gain (15-20%) in less than one day \u2014 historically very rare",
+        "Recent crypto trend is bearish (BTC declined from >$72K to <$70K over Apr 9-13)",
+        "No bullish catalysts identified; price forecasts show only modest trajectory",
+        "26% implied probability massively overprices a single-day 15-20% move"
+      ],
+      "bear_case": "Black swan event (ETF approval, major protocol upgrade, massive short squeeze) could theoretically drive 15%+ single-day move, but no such catalyst is known",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": true,
+      "status": "open",
+      "placed_at": "2026-04-14T03:30:47.722697+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
     }
   ],
-  "daily_loss": 259.72,
-  "daily_reset": "2026-04-13",
-  "scan_count": 92,
+  "daily_loss": 0.0,
+  "daily_reset": "2026-04-14",
+  "scan_count": 93,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
-  "last_tier2_scan": "2026-04-13",
+  "last_tier2_scan": "2026-04-14",
   "last_tier3_scan": "2026-W15"
 }
