@@ -1,5 +1,5 @@
 {
-  "bankroll": 1848.88,
+  "bankroll": 1663.99,
   "trades": [
     {
       "id": "T1775098669",
@@ -706,11 +706,42 @@
       "placed_at": "2026-04-14T22:00:46.692998+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776261496",
+      "tier": 1,
+      "market_id": "1972468",
+      "market_slug": "will-trump-say-christian-during-tpusa-events-on-april-17",
+      "market": "Will Trump say 'Christian' during TPUSA events on April 17?",
+      "position": "YES",
+      "entry_price": 62,
+      "stake": 184.89,
+      "potential_return": 298.21,
+      "potential_profit": 113.32,
+      "confidence": 77,
+      "true_prob": 83,
+      "market_prob": 62,
+      "category": "politics",
+      "closes_in_days": 1.4,
+      "closes": "2026-04-17T00:00:00+00:00",
+      "research_summary": "Trump has been in heavy Christian-messaging mode: Easter 'Christian Liberty' statement (Apr 9), AI Christ-like image controversy (Apr 13), direct Christian media engagement. TPUSA's audience is Christian-conservative aligned, exactly the context where Trump routinely invokes 'Christian' identity.",
+      "key_factors": [
+        "Trump's elevated Christian rhetoric in past week (Easter statement, AI controversy, Christian media)",
+        "TPUSA audience is Christian-conservative \u2014 Trump tailors messaging to audience",
+        "Low bar: single utterance of 'Christian' in any event context suffices"
+      ],
+      "bear_case": "Event cancellation, Trump no-show, or unexpectedly non-religious speech focus; resolution criteria might require exact standalone word rather than variants",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-15T13:58:16.807231+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-15",
-  "scan_count": 102,
+  "scan_count": 103,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
   "last_tier2_scan": "2026-04-15",
