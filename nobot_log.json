@@ -1,9 +1,52 @@
 {
-  "bankroll": 1000.00,
-  "trades": [],
+  "bankroll": 985.06,
+  "trades": [
+    {
+      "id": "NB1776303056",
+      "market_id": "1936870",
+      "market_slug": "mlb-tor-mil-2026-04-16",
+      "market": "Toronto Blue Jays vs. Milwaukee Brewers",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 7.5,
+      "payout_if_wins": 13.89,
+      "profit_if_wins": 6.39,
+      "category": "other",
+      "closes_in_days": 7.67,
+      "closes": "2026-04-23T17:40:00+00:00",
+      "volume": 9688.793955,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-16T01:30:56.393319+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776303056",
+      "market_id": "1554859",
+      "market_slug": "x-money-released-by-april-30-2026",
+      "market": "X Money released by April 30, 2026?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 7.44,
+      "payout_if_wins": 13.29,
+      "profit_if_wins": 5.85,
+      "category": "other",
+      "closes_in_days": 13.94,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 9553.426497000002,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-16T01:30:56.393347+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    }
+  ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-16",
-  "scan_count": 0,
+  "scan_count": 1,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": ""
+  "last_summary_sent": "2026-04-16T01:30:51.759453+00:00"
 }
