@@ -1,5 +1,5 @@
 {
-  "bankroll": 855.53,
+  "bankroll": 864.46,
   "trades": [
     {
       "id": "NB1776304868",
@@ -209,10 +209,13 @@
       "closes": "2026-04-16T12:00:00+00:00",
       "volume": 6602.218747000008,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863529+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-16T13:08:43.989763+00:00",
+      "realized_pnl": 2.97
     },
     {
       "id": "NB1776304868",
@@ -962,10 +965,13 @@
       "closes": "2026-04-16T12:00:00+00:00",
       "volume": 6516.874573,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T08:23:33.453773+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-16T13:08:46.139951+00:00",
+      "realized_pnl": 2.28
     },
     {
       "id": "NB1776327813",
@@ -1134,11 +1140,32 @@
       "placed_at": "2026-04-16T11:53:23.770633+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776344936",
+      "market_id": "1988417",
+      "market_slug": "highest-temperature-in-nyc-on-april-17-2026-77forbelow",
+      "market": "Will the highest temperature in New York City be 77\u00b0F or below on April 17?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.25,
+      "payout_if_wins": 5.8,
+      "profit_if_wins": 2.55,
+      "category": "weather",
+      "closes_in_days": 0.95,
+      "closes": "2026-04-17T12:00:00+00:00",
+      "volume": 5032.749187,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-16T13:08:56.199140+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-16",
-  "scan_count": 6,
+  "scan_count": 7,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-16T02:00:58.513821+00:00"
 }
