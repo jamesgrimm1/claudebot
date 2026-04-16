@@ -221,10 +221,9 @@ def telegram_new_trade(trade, state):
     tier_label = TIERS[t_num]["name"]
     news_flag  = "📰 <i>News-triggered</i>\n" if trade.get("news_triggered") else ""
     slug       = trade.get("market_slug", "")
-    market_id  = trade.get("market_id", "")
     link_line  = (
-        f"\n\n🔗 <a href=\"https://polymarket.com/event/{slug}/{market_id}\">Trade on Polymarket</a>"
-        if slug and market_id else ""
+        f"\n\n🔗 <a href=\"https://polymarket.com/event/{slug}\">Trade on Polymarket</a>"
+        if slug else ""
     )
 
     public_msg = (
