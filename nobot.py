@@ -70,7 +70,7 @@ STAKE_TIERS = [
 MIN_VOLUME = 1000
 
 # Max hold days — close out even if exit not triggered
-MAX_HOLD_DAYS = 30
+MAX_HOLD_DAYS = 7
 
 # Min hold hours — don't buy something closing in under 2 hours
 MIN_HOLD_HOURS = 2
@@ -122,7 +122,13 @@ def get_category(question):
                               "spread", "o/u", "rebounds", "assists", "esport",
                               "valorant", "counter-strike", "dota", "bucks", "nets",
                               "knicks", "bulls", "heat", "hawks", "sixers", "suns",
-                              "nuggets", "warriors", "lakers", "celtics", "rockets"]):
+                              "nuggets", "warriors", "lakers", "celtics", "rockets",
+                              "f1", "formula 1", "grand prix", "podium", "bottas",
+                              "verstappen", "hamilton", "leclerc", "norris",
+                              "pickleball", "ppa", "jansen", "sock", "bjerg",
+                              "ufc", "mma", "boxing", "fight", "knockout",
+                              "pitcher", "batter", "touchdown", "goal scorer",
+                              "win the", "beat the", "defeat"]):
         return "sports"
     if any(k in q for k in ["war", "military", "attack", "strike", "invasion",
                               "ceasefire", "conflict", "troops", "missile",
