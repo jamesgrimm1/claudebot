@@ -127,6 +127,9 @@ def get_category(question):
                               "verstappen", "hamilton", "leclerc", "norris",
                               "pickleball", "ppa", "jansen", "sock", "bjerg",
                               "ufc", "mma", "boxing", "fight", "knockout",
+                              "blue jays", "brewers", "yankees", "red sox", "cubs",
+                              "dodgers", "giants", "braves", "mets", "astros",
+                              "vs.", " vs ", "at the ", "open:", "cup:", "league:",
                               "pitcher", "batter", "touchdown", "goal scorer",
                               "win the", "beat the", "defeat"]):
         return "sports"
@@ -482,7 +485,22 @@ def fetch_markets():
             skipped += 1
             continue
 
-        # Category block
+        # Use Polymarket's own tags to block sports — much more reliable than keywords
+        market_tags = m.get("tags") or []
+        tag_labels  = [t.get("label", "").lower() for t in market_tags if isinstance(t, dict)]
+        tag_slugs   = [t.get("slug", "").lower() for t in market_tags if isinstance(t, dict)]
+        is_sports   = any(
+            "sport" in label or "sport" in slug or
+            label in ["nfl", "nba", "mlb", "nhl", "soccer", "tennis", "golf",
+                      "mma", "ufc", "boxing", "f1", "nascar", "cricket",
+                      "rugby", "pickleball", "esports"]
+            for label, slug in zip(tag_labels, tag_slugs)
+        )
+        if is_sports:
+            skipped += 1
+            continue
+
+        # Also run keyword check as secondary filter
         cat = get_category(m["question"])
         if cat in BLOCKED_CATEGORIES:
             skipped += 1
