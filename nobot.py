@@ -70,7 +70,7 @@ STAKE_TIERS = [
 MIN_VOLUME = 1000
 
 # Max hold days — close out even if exit not triggered
-MAX_HOLD_DAYS = 7
+MAX_HOLD_DAYS = 14
 
 # Min hold hours — don't buy something closing in under 2 hours
 MIN_HOLD_HOURS = 2
