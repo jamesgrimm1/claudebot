@@ -1,5 +1,5 @@
 {
-  "bankroll": 838.02,
+  "bankroll": 844.5,
   "trades": [
     {
       "id": "NB1776304868",
@@ -971,10 +971,13 @@
       "closes": "2026-04-16T12:00:00+00:00",
       "volume": 3437.870274000003,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T06:29:44.150316+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-16T22:32:00.871439+00:00",
+      "realized_pnl": 2.38
     },
     {
       "id": "NB1776327813",
@@ -1460,10 +1463,13 @@
       "closes": "2026-04-17T04:00:00+00:00",
       "volume": 45941.52907400001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T20:02:00.215906+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-16T22:32:03.505941+00:00",
+      "realized_pnl": 1.85
     },
     {
       "id": "NB1776369720",
@@ -1674,11 +1680,32 @@
       "placed_at": "2026-04-16T21:35:37.348846+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776378735",
+      "market_id": "1988390",
+      "market_slug": "highest-temperature-in-buenos-aires-on-april-17-2026-24c",
+      "market": "Will the highest temperature in Buenos Aires be 24\u00b0C on April 17?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 4.24,
+      "payout_if_wins": 8.83,
+      "profit_if_wins": 4.59,
+      "category": "weather",
+      "closes_in_days": 0.56,
+      "closes": "2026-04-17T12:00:00+00:00",
+      "volume": 3663.187213000002,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-16T22:32:15.856452+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 10.13,
   "daily_reset": "2026-04-16",
-  "scan_count": 12,
+  "scan_count": 13,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-16T15:19:37.061797+00:00"
 }
