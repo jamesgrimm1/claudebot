@@ -1,9 +1,31 @@
 {
-  "bankroll": 1000.00,
-  "trades": [],
+  "bankroll": 990.0,
+  "trades": [
+    {
+      "id": "NB1776303598",
+      "market_id": "1554859",
+      "market_slug": "x-money-released-by-april-30-2026",
+      "market": "X Money released by April 30, 2026?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 10.0,
+      "payout_if_wins": 20.0,
+      "profit_if_wins": 10.0,
+      "category": "other",
+      "closes_in_days": 13.93,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 9553.426497000002,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-16T01:39:58.768246+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    }
+  ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-16",
-  "scan_count": 0,
+  "scan_count": 1,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": ""
+  "last_summary_sent": "2026-04-16T01:39:54.622550+00:00"
 }
