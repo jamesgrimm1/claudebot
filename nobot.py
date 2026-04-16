@@ -61,9 +61,9 @@ NO_EXIT_TARGET = 90  # 90¢ NO
 
 # Stake sizing by NO entry price
 STAKE_TIERS = [
-    {"max_no": 52, "pct": 1.00},    # 45-52¢: 1.0% of bankroll
-    {"max_no": 58, "pct": 0.75},    # 52-58¢: 0.75% of bankroll
-    {"max_no": 62, "pct": 0.50},    # 58-62¢: 0.5% of bankroll
+    {"max_no": 52, "pct": 0.50},    # 45-52¢: 0.5% of bankroll
+    {"max_no": 58, "pct": 0.375},   # 52-58¢: 0.375% of bankroll
+    {"max_no": 62, "pct": 0.25},    # 58-62¢: 0.25% of bankroll
 ]
 
 # Min market volume — avoid thin books
@@ -441,11 +441,12 @@ def haiku_news_screen(markets, headlines):
 # ─────────────────────────────────────────────────────────
 
 def fetch_markets():
-    # Paginate through ALL active markets — not just top 500
-    raw     = []
-    offset  = 0
-    limit   = 500
-    while True:
+    # Paginate through active markets — cap at 10,000 to keep scan fast
+    MAX_FETCH = 10000
+    raw       = []
+    offset    = 0
+    limit     = 500
+    while len(raw) < MAX_FETCH:
         try:
             r = requests.get(
                 f"https://gamma-api.polymarket.com/markets"
@@ -461,10 +462,10 @@ def fetch_markets():
             if len(page) < limit:
                 break  # last page
             offset += limit
-            log(f"   📄 Fetched {len(raw)} markets so far...")
         except Exception as e:
             log(f"⚠️  Polymarket fetch error at offset {offset}: {e}")
             break
+    log(f"   📄 Fetched {len(raw)} total markets")
 
     now     = datetime.now(timezone.utc)
     markets = []
@@ -522,6 +523,16 @@ def fetch_markets():
         # Keyword block
         q_lower = m["question"].lower()
         if any(k in q_lower for k in BLOCK_KEYWORDS):
+            skipped += 1
+            continue
+
+        # Block match result markets — "win on YYYY-MM-DD" is the universal pattern
+        # for ALL soccer, basketball, esports match markets on Polymarket
+        if re.search(r'win on \d{4}-\d{2}-\d{2}', q_lower):
+            skipped += 1
+            continue
+        # Block "who will win" head-to-head markets
+        if q_lower.startswith("who will") or " vs " in q_lower or " vs. " in q_lower:
             skipped += 1
             continue
 
@@ -711,13 +722,21 @@ def single_scan():
     new_trades = 0
     open_ids   = {t["market_id"] for t in state["trades"] if t["status"] == "open"}
 
+    # Max deployment cap — never deploy more than 40% of starting bankroll at once
+    max_deploy    = state["bankroll"] * 0.40
+    current_deploy = sum(t["stake"] for t in state["trades"] if t["status"] == "open")
+
     for market in filtered:
         if market["id"] in open_ids:
             continue  # already open
+        if current_deploy >= max_deploy:
+            log(f"   💰 Deployment cap reached (${current_deploy:.2f} / ${max_deploy:.2f}) — holding fire")
+            break
         prev_bankroll = state["bankroll"]
         state = place_trade(market, state)
         if state["bankroll"] < prev_bankroll:
             new_trades += 1
+            current_deploy += (prev_bankroll - state["bankroll"])
 
     log(f"   {new_trades} new trade(s) placed")
 
