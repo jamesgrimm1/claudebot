@@ -743,10 +743,10 @@
     }
   ],
   "daily_loss": 0.0,
-  "daily_reset": "2026-04-15",
-  "scan_count": 106,
+  "daily_reset": "2026-04-16",
+  "scan_count": 107,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
-  "last_tier2_scan": "2026-04-15",
+  "last_tier2_scan": "2026-04-16",
   "last_tier3_scan": "2026-W15"
 }
