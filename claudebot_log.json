@@ -1,5 +1,5 @@
 {
-  "bankroll": 1980.04,
+  "bankroll": 1782.04,
   "trades": [
     {
       "id": "T1775098669",
@@ -740,11 +740,43 @@
       "placed_at": "2026-04-15T13:58:16.807231+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776461747",
+      "tier": 1,
+      "market_id": "1996328",
+      "market_slug": "highest-temperature-in-buenos-aires-on-april-18-2026-26c",
+      "market": "Will the highest temperature in Buenos Aires be 26\u00b0C on April 18?",
+      "position": "NO",
+      "entry_price": 68,
+      "stake": 198.0,
+      "potential_return": 291.18,
+      "potential_profit": 93.18,
+      "confidence": 79,
+      "true_prob": 8,
+      "market_prob": 32,
+      "category": "weather",
+      "closes_in_days": 0.6,
+      "closes": "2026-04-18T12:00:00+00:00",
+      "research_summary": "April average highs in Buenos Aires are ~20\u00b0C, declining from ~22\u00b0C early month to ~14.5\u00b0C late month. April 18 mid-month climatology suggests ~18-20\u00b0C average high. 26\u00b0C represents a +6\u00b0C anomaly above the seasonal norm, which is a rare event on any individual day. Even accounting for day-to-day variability, hitting exactly 26\u00b0C has very low probability.",
+      "key_factors": [
+        "April climatological average high ~20\u00b0C with declining trend through month",
+        "26\u00b0C is 6\u00b0C above average \u2014 falls well outside typical daily variability",
+        "Exact temperature match required further reduces probability vs. range-based question",
+        "Previous Buenos Aires temperature trade won correctly using similar climatological reasoning"
+      ],
+      "bear_case": "An unseasonable warm air mass or heat event could push temperatures significantly above average; without a specific 1-day forecast in hand, there's residual uncertainty about actual conditions",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-17T21:35:47.563340+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-17",
-  "scan_count": 113,
+  "scan_count": 114,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-12",
   "last_tier2_scan": "2026-04-17",

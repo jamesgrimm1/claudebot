@@ -1,5 +1,5 @@
 {
-  "bankroll": 791.45,
+  "bankroll": 788.48,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2736,11 +2736,32 @@
       "placed_at": "2026-04-17T20:36:34.830804+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776461667",
+      "market_id": "1931747",
+      "market_slug": "will-justin-bieber-feature-sza-during-his-coachella-performances",
+      "market": "Will Justin Bieber feature SZA during his Coachella performances?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 45,
+      "stake": 2.97,
+      "payout_if_wins": 5.4,
+      "profit_if_wins": 2.43,
+      "category": "other",
+      "closes_in_days": 1.1,
+      "closes": "2026-04-19T00:00:00+00:00",
+      "volume": 8800.755994,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-17T21:34:27.216805+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 38.81,
   "daily_reset": "2026-04-17",
-  "scan_count": 30,
+  "scan_count": 31,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-17T16:44:31.051960+00:00"
 }
