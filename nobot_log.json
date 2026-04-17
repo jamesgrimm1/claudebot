@@ -1,5 +1,5 @@
 {
-  "bankroll": 829.85,
+  "bankroll": 826.74,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2178,11 +2178,32 @@
       "placed_at": "2026-04-17T11:43:35.855261+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776430697",
+      "market_id": "1929111",
+      "market_slug": "will-wti-crude-oil-wti-hit-low-75-in-april-729-763-439-856",
+      "market": "Will WTI Crude Oil (WTI) hit (LOW) $75 in April?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 3.11,
+      "payout_if_wins": 5.36,
+      "profit_if_wins": 2.25,
+      "category": "other",
+      "closes_in_days": 12.46,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 387036.69229900005,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-17T12:58:17.088855+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 9.08,
   "daily_reset": "2026-04-17",
-  "scan_count": 22,
+  "scan_count": 23,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-17T04:38:08.777585+00:00"
 }
