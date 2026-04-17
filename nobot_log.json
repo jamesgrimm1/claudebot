@@ -1,5 +1,5 @@
 {
-  "bankroll": 799.19,
+  "bankroll": 801.43,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2495,10 +2495,13 @@
       "closes": "2026-04-18T04:00:00+00:00",
       "volume": 49903.84065499999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T16:44:48.595577+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-17T18:44:54.442937+00:00",
+      "realized_pnl": 1.14
     },
     {
       "id": "NB1776444288",
@@ -2516,10 +2519,13 @@
       "closes": "2026-04-18T04:00:00+00:00",
       "volume": 8635.315159999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T16:44:48.595613+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-17T18:44:54.495434+00:00",
+      "realized_pnl": 2.08
     },
     {
       "id": "NB1776444288",
@@ -2604,11 +2610,53 @@
       "placed_at": "2026-04-17T17:41:47.648406+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776451506",
+      "market_id": "2002696",
+      "market_slug": "us-x-iran-diplomatic-meeting-by-april-19-2026",
+      "market": "US x Iran diplomatic meeting by April 19, 2026?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 4.04,
+      "payout_if_wins": 8.24,
+      "profit_if_wins": 4.2,
+      "category": "other",
+      "closes_in_days": 1.22,
+      "closes": "2026-04-19T00:00:00+00:00",
+      "volume": 47091.79638400001,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-17T18:45:06.243119+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776451506",
+      "market_id": "1704821",
+      "market_slug": "will-there-be-60-or-more-average-daily-transits-of-the-strait-of-hormuz-on-april-30-965",
+      "market": "Will there be 60 or more average daily transits of the Strait of Hormuz on April 30?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 2.01,
+      "payout_if_wins": 3.41,
+      "profit_if_wins": 1.4,
+      "category": "other",
+      "closes_in_days": 12.22,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 36681.961842000004,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-17T18:45:06.243157+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 15.34,
   "daily_reset": "2026-04-17",
-  "scan_count": 27,
+  "scan_count": 28,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-17T16:44:31.051960+00:00"
 }
