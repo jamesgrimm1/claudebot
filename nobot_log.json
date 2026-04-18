@@ -1,5 +1,5 @@
 {
-  "bankroll": 774.05,
+  "bankroll": 785.1,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3128,10 +3128,13 @@
       "closes": "2026-04-18T12:00:00+00:00",
       "volume": 3871.1316800000004,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T03:38:49.395055+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T13:56:55.863083+00:00",
+      "realized_pnl": 2.81
     },
     {
       "id": "NB1776486325",
@@ -3326,10 +3329,13 @@
       "closes": "2026-04-18T12:00:00+00:00",
       "volume": 9580.30024300001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T09:39:50.199748+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T13:56:56.263587+00:00",
+      "realized_pnl": 2.5
     },
     {
       "id": "NB1776505190",
@@ -3455,15 +3461,39 @@
       "closes": "2026-05-01T03:59:59.999000+00:00",
       "volume": 6433.681702999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T12:40:17.784804+00:00",
+      "paper": true,
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T13:56:56.761993+00:00",
+      "realized_pnl": 0.97
+    },
+    {
+      "id": "NB1776520627",
+      "market_id": "1794435",
+      "market_slug": "will-gas-hit-low-3pt95-by-april-30",
+      "market": "Will gas hit (Low) $3.95 by April 30?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 3.95,
+      "payout_if_wins": 8.59,
+      "profit_if_wins": 4.64,
+      "category": "other",
+      "closes_in_days": 11.42,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 7342.496836999997,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T13:57:07.020436+00:00",
       "paper": true,
       "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 28.38,
   "daily_reset": "2026-04-18",
-  "scan_count": 43,
+  "scan_count": 44,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-18T06:07:41.276688+00:00"
 }
