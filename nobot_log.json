@@ -1,5 +1,5 @@
 {
-  "bankroll": 777.04,
+  "bankroll": 780.27,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1490,10 +1490,13 @@
       "closes": "2026-04-25T15:00:00+00:00",
       "volume": 3677.847618000001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T19:00:31.271055+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T17:30:02.896432+00:00",
+      "realized_pnl": 1.31
     },
     {
       "id": "NB1776369720",
@@ -2531,10 +2534,13 @@
       "closes": "2026-04-18T12:00:00+00:00",
       "volume": 3648.7922340000027,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T15:51:43.807046+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T17:30:05.144171+00:00",
+      "realized_pnl": 3.63
     },
     {
       "id": "NB1776444288",
@@ -3209,10 +3215,13 @@
       "closes": "2026-04-18T12:00:00+00:00",
       "volume": 4801.973356999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T04:25:25.581587+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-18T17:30:06.331547+00:00",
+      "realized_pnl": -2.84
     },
     {
       "id": "NB1776486325",
@@ -3603,11 +3612,74 @@
       "placed_at": "2026-04-18T16:28:55.624920+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776533416",
+      "market_id": "2003783",
+      "market_slug": "highest-temperature-in-wellington-on-april-19-2026-17c",
+      "market": "Will the highest temperature in Wellington be 17\u00b0C on April 19?",
+      "position": "NO",
+      "entry_no_price": 61,
+      "entry_yes_price": 39,
+      "stake": 1.97,
+      "payout_if_wins": 3.23,
+      "profit_if_wins": 1.26,
+      "category": "weather",
+      "closes_in_days": 0.77,
+      "closes": "2026-04-19T12:00:00+00:00",
+      "volume": 5031.147487999987,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T17:30:16.630697+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776533416",
+      "market_id": "2003722",
+      "market_slug": "highest-temperature-in-dallas-on-april-19-2026-71forbelow",
+      "market": "Will the highest temperature in Dallas be 71\u00b0F or below on April 19?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 1.97,
+      "payout_if_wins": 3.28,
+      "profit_if_wins": 1.31,
+      "category": "weather",
+      "closes_in_days": 0.77,
+      "closes": "2026-04-19T12:00:00+00:00",
+      "volume": 3851.716781000001,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T17:30:16.630738+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776533416",
+      "market_id": "2003641",
+      "market_slug": "highest-temperature-in-london-on-april-19-2026-16c",
+      "market": "Will the highest temperature in London be 16\u00b0C on April 19?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 3.92,
+      "payout_if_wins": 7.84,
+      "profit_if_wins": 3.92,
+      "category": "weather",
+      "closes_in_days": 0.77,
+      "closes": "2026-04-19T12:00:00+00:00",
+      "volume": 3693.0340740000033,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T17:30:16.630767+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 32.28,
+  "daily_loss": 35.12,
   "daily_reset": "2026-04-18",
-  "scan_count": 47,
+  "scan_count": 48,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-18T06:07:41.276688+00:00"
 }
