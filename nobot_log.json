@@ -1,5 +1,5 @@
 {
-  "bankroll": 780.29,
+  "bankroll": 777.04,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3026,10 +3026,13 @@
       "closes": "2026-04-18T12:00:00+00:00",
       "volume": 3494.426820999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T01:25:38.402564+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-18T16:28:43.496622+00:00",
+      "realized_pnl": 1.69
     },
     {
       "id": "NB1776483529",
@@ -3558,11 +3561,53 @@
       "placed_at": "2026-04-18T15:30:31.723946+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776529735",
+      "market_id": "1974453",
+      "market_slug": "will-trump-agree-to-unfreeze-iranian-assets-in-april",
+      "market": "Will Trump agree to unfreeze Iranian assets in April?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 3.92,
+      "payout_if_wins": 8.0,
+      "profit_if_wins": 4.08,
+      "category": "politics",
+      "closes_in_days": 11.31,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 92190.0161890001,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T16:28:55.624877+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776529735",
+      "market_id": "1748373",
+      "market_slug": "pltr-above-154-on-april-30-2026",
+      "market": "Will Palantir (PLTR) close above $154 end of April?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 3.9,
+      "payout_if_wins": 8.48,
+      "profit_if_wins": 4.58,
+      "category": "other",
+      "closes_in_days": 12.15,
+      "closes": "2026-04-30T20:00:00+00:00",
+      "volume": 5327.111303000001,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-18T16:28:55.624920+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 32.28,
   "daily_reset": "2026-04-18",
-  "scan_count": 46,
+  "scan_count": 47,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-18T06:07:41.276688+00:00"
 }
