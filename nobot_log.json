@@ -1,5 +1,5 @@
 {
-  "bankroll": 784.02,
+  "bankroll": 790.15,
   "trades": [
     {
       "id": "NB1776304868",
@@ -878,10 +878,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 9604.244263999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T06:29:44.150207+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-19T11:28:30.474660+00:00",
+      "realized_pnl": 1.85
     },
     {
       "id": "NB1776320984",
@@ -4550,10 +4553,13 @@
       "closes": "2026-04-19T12:00:00+00:00",
       "volume": 3591.193863000001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:39:39.422612+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-19T11:28:35.058010+00:00",
+      "realized_pnl": 1.96
     },
     {
       "id": "NB1776591579",
@@ -4575,11 +4581,32 @@
       "placed_at": "2026-04-19T09:39:39.422638+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776598123",
+      "market_id": "1976976",
+      "market_slug": "donald-trump-of-truth-social-posts-april-17-april-24-200plus",
+      "market": "Will Donald Trump post 200+ Truth Social posts from April 17 to April 24, 2026?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 3.97,
+      "payout_if_wins": 8.45,
+      "profit_if_wins": 4.48,
+      "category": "politics",
+      "closes_in_days": 5.19,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "volume": 3458.5838080000008,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-19T11:28:43.527989+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 11.65,
   "daily_reset": "2026-04-19",
-  "scan_count": 62,
+  "scan_count": 63,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-19T08:01:45.765828+00:00"
 }
