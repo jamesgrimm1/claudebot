@@ -1,5 +1,5 @@
 {
-  "bankroll": 799.94,
+  "bankroll": 805.82,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3734,10 +3734,13 @@
       "closes": "2026-04-19T12:00:00+00:00",
       "volume": 3693.0340740000033,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T17:30:16.630767+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-19T13:54:27.472773+00:00",
+      "realized_pnl": 3.45
     },
     {
       "id": "NB1776537317",
@@ -4520,10 +4523,13 @@
       "closes": "2026-04-19T12:00:00+00:00",
       "volume": 5256.306667,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:39:39.422558+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-19T13:54:29.645782+00:00",
+      "realized_pnl": 0.89
     },
     {
       "id": "NB1776591579",
@@ -4541,10 +4547,13 @@
       "closes": "2026-04-19T12:00:00+00:00",
       "volume": 4594.7637140000015,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:39:39.422586+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-19T13:54:29.697380+00:00",
+      "realized_pnl": 1.83
     },
     {
       "id": "NB1776591579",
@@ -4611,11 +4620,74 @@
       "placed_at": "2026-04-19T11:28:43.527989+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776606878",
+      "market_id": "1959499",
+      "market_slug": "will-the-price-of-bitcoin-be-between-74000-76000-on-april-19",
+      "market": "Will the price of Bitcoin be between $74,000 and $76,000 on April 19?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 4.07,
+      "payout_if_wins": 7.83,
+      "profit_if_wins": 3.76,
+      "category": "crypto",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-19T16:00:00+00:00",
+      "volume": 65746.434141,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-19T13:54:38.338141+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776606878",
+      "market_id": "1959501",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-19",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 19?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.04,
+      "payout_if_wins": 5.43,
+      "profit_if_wins": 2.39,
+      "category": "crypto",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-19T16:00:00+00:00",
+      "volume": 59422.86785100003,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-19T13:54:38.338182+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776606878",
+      "market_id": "2011051",
+      "market_slug": "highest-temperature-in-london-on-april-20-2026-13c",
+      "market": "Will the highest temperature in London be 13\u00b0C on April 20?",
+      "position": "NO",
+      "entry_no_price": 61,
+      "entry_yes_price": 39,
+      "stake": 2.02,
+      "payout_if_wins": 3.31,
+      "profit_if_wins": 1.29,
+      "category": "weather",
+      "closes_in_days": 0.92,
+      "closes": "2026-04-20T12:00:00+00:00",
+      "volume": 4217.367803000002,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-19T13:54:38.338216+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 11.65,
   "daily_reset": "2026-04-19",
-  "scan_count": 64,
+  "scan_count": 65,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-19T08:01:45.765828+00:00"
 }
