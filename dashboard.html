@@ -9,26 +9,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
-  --bg:     #080909;
-  --bg2:    #0e0f10;
-  --bg3:    #131415;
-  --bg4:    #181a1b;
-  --border: rgba(255,255,255,0.06);
-  --border2:rgba(255,255,255,0.11);
-  --text:   #eceef2;
-  --text2:  #6b7280;
-  --text3:  #374151;
+  --bg:     #080808;
+  --bg2:    #0c0c0c;
+  --bg3:    #111111;
+  --bg4:    #161616;
+  --border: rgba(255,255,255,0.055);
+  --border2:rgba(255,255,255,0.1);
+  --text:   #f0f0f0;
+  --text2:  #666666;
+  --text3:  #333333;
   --gold:   #C9922A;
   --gold2:  #e0aa45;
-  --gold-d: rgba(201,146,42,0.08);
-  --green:  #22c55e;
-  --green-d:rgba(34,197,94,0.1);
-  --red:    #ef4444;
-  --red-d:  rgba(239,68,68,0.1);
-  --blue:   #60a5fa;
-  --blue-d: rgba(96,165,250,0.1);
-  --purple: #a78bfa;
+  --gold-d: rgba(201,146,42,0.1);
+  --gold-d2:rgba(201,146,42,0.18);
+  --green:  #C9922A;
+  --green-d:rgba(201,146,42,0.1);
+  --red:    #888888;
+  --red-d:  rgba(136,136,136,0.1);
+  --blue:   #C9922A;
+  --blue-d: rgba(201,146,42,0.1);
+  --purple: #C9922A;
   --r:      10px;
+  --pos:    #C9922A;
+  --neg:    #888888;
+  --pos-d:  rgba(201,146,42,0.1);
+  --neg-d:  rgba(136,136,136,0.1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -117,7 +122,7 @@ body {
 .status-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--gold);
   animation: glow 2.5s ease-in-out infinite;
 }
 
@@ -125,8 +130,8 @@ body {
 .status-dot.error   { background: var(--red); animation: none; }
 
 @keyframes glow {
-  0%,100%{ box-shadow: 0 0 4px rgba(34,197,94,0.3); }
-  50%{ box-shadow: 0 0 10px rgba(34,197,94,0.6); }
+  0%,100%{ box-shadow: 0 0 4px rgba(201,146,42,0.3); }
+  50%{ box-shadow: 0 0 10px rgba(201,146,42,0.6); }
 }
 @keyframes spin-dot { to { transform: rotate(360deg); } }
 
@@ -215,7 +220,7 @@ body {
 .bot-tab-pip {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--gold);
   animation: glow 2.5s ease-in-out infinite;
 }
 
@@ -245,9 +250,10 @@ body {
 }
 
 .hero-card.accent-gold  { border-top: 2px solid var(--gold); }
-.hero-card.accent-green { border-top: 2px solid var(--green); }
-.hero-card.accent-red   { border-top: 2px solid var(--red); }
-.hero-card.accent-blue  { border-top: 2px solid var(--blue); }
+.hero-card.accent-dim   { border-top: 2px solid rgba(201,146,42,0.3); }
+.hero-card.accent-gold { border-top: 2px solid var(--green); }
+.hero-card.accent-dim   { border-top: 2px solid var(--red); }
+.hero-card.accent-gold  { border-top: 2px solid var(--blue); }
 
 .hc-label {
   font-family: 'DM Mono', monospace;
@@ -267,10 +273,10 @@ body {
   line-height: 1;
   color: var(--text);
 }
-.hc-value.green { color: var(--green); }
-.hc-value.red   { color: var(--red); }
+.hc-value.green { color: var(--gold); }
+.hc-value.red   { color: #888888; }
 .hc-value.gold  { color: var(--gold); }
-.hc-value.blue  { color: var(--blue); }
+.hc-value.blue  { color: var(--gold); }
 
 .hc-sub {
   font-size: 11px;
@@ -349,11 +355,11 @@ body {
   white-space: nowrap;
   display: inline-block;
 }
-.pill-green  { background: var(--green-d); color: var(--green); }
-.pill-red    { background: var(--red-d);   color: var(--red); }
+.pill-green  { background: var(--gold-d); color: var(--gold2); }
+.pill-red    { background: rgba(136,136,136,0.1); color: #999999; }
 .pill-gold   { background: var(--gold-d);  color: var(--gold2); }
-.pill-blue   { background: var(--blue-d);  color: var(--blue); }
-.pill-purple { background: rgba(167,139,250,0.1); color: var(--purple); }
+.pill-blue   { background: var(--gold-d);  color: var(--gold2); }
+.pill-purple { background: var(--gold-d); color: var(--gold2); }
 .pill-gray   { background: rgba(255,255,255,0.05); color: var(--text2); }
 
 /* ── Table ── */
@@ -437,7 +443,7 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
 }
 
 .pos-stake { font-size: 13px; font-weight: 600; color: var(--text); }
-.pos-upside { color: var(--green); font-size: 11px; font-family: 'DM Mono', monospace; }
+.pos-upside { color: var(--gold2); font-size: 11px; font-family: 'DM Mono', monospace; }
 .pos-watch-note { font-size: 10px; color: orange; margin-top: 6px; opacity: 0.85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ── Empty ── */
@@ -530,14 +536,14 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
         <div class="hc-value gold" id="cb-bank">—</div>
         <div class="hc-sub" id="cb-roi">—</div>
       </div>
-      <div class="hero-card accent-green">
+      <div class="hero-card accent-gold">
         <div class="hc-label">Realized P&L</div>
         <div class="hc-value" id="cb-pnl">—</div>
         <div class="hc-sub" id="cb-pnl-sub">—</div>
       </div>
-      <div class="hero-card accent-blue">
+      <div class="hero-card accent-gold">
         <div class="hc-label">Win Rate</div>
-        <div class="hc-value blue" id="cb-wr">—</div>
+        <div class="hc-value gold" id="cb-wr">—</div>
         <div class="hc-sub" id="cb-rec">—</div>
         <div class="wr-bar-bg"><div class="wr-bar-fill" id="cb-wrf" style="width:0"></div></div>
       </div>
@@ -587,14 +593,14 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
         <div class="hc-value gold" id="nb-bank">—</div>
         <div class="hc-sub" id="nb-roi">—</div>
       </div>
-      <div class="hero-card accent-green">
+      <div class="hero-card accent-gold">
         <div class="hc-label">Realized P&L</div>
         <div class="hc-value" id="nb-pnl">—</div>
         <div class="hc-sub" id="nb-pnl-sub">—</div>
       </div>
-      <div class="hero-card accent-blue">
+      <div class="hero-card accent-gold">
         <div class="hc-label">Win Rate</div>
-        <div class="hc-value blue" id="nb-wr">—</div>
+        <div class="hc-value gold" id="nb-wr">—</div>
         <div class="hc-sub" id="nb-rec">—</div>
         <div class="wr-bar-bg"><div class="wr-bar-fill" id="nb-wrf" style="width:0"></div></div>
       </div>
@@ -653,8 +659,8 @@ function dollar(n) { return '$' + Math.abs(n).toFixed(2); }
 function pct(n)    { return (n >= 0 ? '+' : '') + n.toFixed(1) + '%'; }
 function dLeft(c)  { if(!c) return '?'; var d = (new Date(c) - Date.now())/86400000; return d <= 0 ? 'closed' : d.toFixed(1) + 'd'; }
 function fmtDate(s){ return s ? new Date(s).toLocaleDateString('en-AU', {day:'numeric',month:'short',year:'2-digit'}) : '—'; }
-function wrCol(w)  { return w >= 65 ? 'var(--green)' : w >= 50 ? 'var(--gold)' : 'var(--red)'; }
-function wrCls(w)  { return w >= 65 ? 'green' : w >= 50 ? 'gold' : 'red'; }
+function wrCol(w)  { return w >= 50 ? 'var(--gold)' : '#666666'; }
+function wrCls(w)  { return w >= 50 ? 'gold' : 'red'; }
 function getCategory(q) {
   q = (q||'').toLowerCase();
   if (/bitcoin|ethereum|solana|btc|eth|crypto|xrp/.test(q)) return 'crypto';
@@ -687,11 +693,11 @@ function renderCB(d) {
 
   // Hero
   document.getElementById('cb-bank').textContent = '$' + d.bankroll.toFixed(2);
-  document.getElementById('cb-roi').textContent  = pct(roi) + ' ROI · ' + d.scan_count + ' scans';
+  document.getElementById('cb-roi').textContent  = '$' + d.bankroll.toFixed(2) + ' current · ' + d.scan_count + ' scans';
   var pe = document.getElementById('cb-pnl');
   pe.textContent = money(realized);
   pe.className   = 'hc-value ' + (realized >= 0 ? 'green' : 'red');
-  document.getElementById('cb-pnl-sub').textContent = won.length + 'W / ' + (closed.length-won.length) + 'L closed';
+  document.getElementById('cb-pnl-sub').textContent = pct(roi) + ' ROI · ' + won.length + 'W / ' + (closed.length-won.length) + 'L closed';
   var we = document.getElementById('cb-wr');
   we.textContent = wr + '%';
   we.className   = 'hc-value ' + wrCls(wr);
@@ -757,14 +763,14 @@ function renderCB(d) {
       var tcls = tier===1?'pill-blue':tier===2?'pill-gold':'pill-purple';
       var scls = t.status==='open'?'pill-gold':(t.won?'pill-green':'pill-red');
       var slabel = t.status==='open'?'open':(t.won?'won':'lost');
-      var pcolor = t.status==='open'?'var(--text2)':(pnl>=0?'var(--green)':'var(--red)');
+      var pcolor = t.status==='open'?'var(--text2)':(pnl>=0?'var(--gold)':'#888888');
       return '<tr>' +
         '<td class="td-market">' + t.market + '</td>' +
         '<td><span class="pill '+tcls+'">T'+tier+'</span></td>' +
         '<td><span class="pill '+(t.position==='YES'?'pill-green':'pill-red')+'">'+t.position+'</span></td>' +
         '<td class="mono">' + t.entry_price + '¢</td>' +
         '<td class="mono">' + dollar(t.stake) + '</td>' +
-        '<td class="mono" style="color:' + (t.confidence>=75?'var(--green)':t.confidence>=60?'var(--gold)':'var(--red)') + '">' + t.confidence + '%</td>' +
+        '<td class="mono" style="color:' + (t.confidence>=75?'var(--gold)':t.confidence>=60?'var(--gold2)':'#888888') + '">' + t.confidence + '%</td>' +
         '<td><span class="pill '+scls+'">'+slabel+'</span></td>' +
         '<td class="mono" style="color:'+pcolor+'">' + (t.status==='open'?'('+money(pnl)+')':money(pnl)) + '</td>' +
         '<td class="mono" style="color:var(--text2)">' + fmtDate(t.placed_at) + '</td>' +
@@ -791,7 +797,7 @@ function renderCBChart(trades, startedAt) {
     labels.push('Now'); vals.push(parseFloat(running.toFixed(2)));
   }
   var isUp = vals[vals.length-1] >= START;
-  var col   = isUp ? '#22c55e' : '#ef4444';
+  var col   = isUp ? '#C9922A' : '#555555';
   document.getElementById('cb-trend').textContent = isUp ? '▲ profitable' : '▼ in drawdown';
   document.getElementById('cb-trend').className   = 'pill ' + (isUp ? 'pill-green' : 'pill-red');
 
@@ -800,7 +806,7 @@ function renderCBChart(trades, startedAt) {
     data: { labels: labels, datasets: [{
       data: vals, borderColor: col, borderWidth: 2.5, pointRadius: 3,
       pointBackgroundColor: col, fill: true,
-      backgroundColor: function(ctx2){ var g = ctx2.chart.ctx.createLinearGradient(0,0,0,220); g.addColorStop(0, isUp?'rgba(34,197,94,0.18)':'rgba(239,68,68,0.18)'); g.addColorStop(1,'rgba(0,0,0,0)'); return g; },
+      backgroundColor: function(ctx2){ var g = ctx2.chart.ctx.createLinearGradient(0,0,0,220); g.addColorStop(0, isUp?'rgba(201,146,42,0.15)':'rgba(80,80,80,0.1)'); g.addColorStop(1,'rgba(0,0,0,0)'); return g; },
       tension: 0.35
     }]},
     options: {
@@ -824,7 +830,7 @@ function renderCBCatChart(trades) {
   var cats = {};
   trades.forEach(function(t){ var c = t.category || getCategory(t.market); cats[c]=(cats[c]||0)+1; });
   var labels = Object.keys(cats), vals = Object.values(cats);
-  var colors = ['#60a5fa','#22c55e','#f59e0b','#a78bfa','#f87171','#34d399','#fb923c'];
+  var colors = ['#C9922A','#e0aa45','#a06818','#d4a84b','#8a6020','#f0c060','#7a4f10'];
   cbCatChart = new Chart(ctx, {
     type: 'doughnut',
     data: { labels: labels, datasets: [{ data: vals, backgroundColor: colors.slice(0,labels.length), borderWidth: 0, hoverOffset: 4 }] },
@@ -850,11 +856,11 @@ function renderNB(d) {
   var dep = open.reduce(function(s,t){ return s+(t.stake||0); }, 0);
 
   document.getElementById('nb-bank').textContent = '$' + d.bankroll.toFixed(2);
-  document.getElementById('nb-roi').textContent  = pct(roi) + ' ROI · ' + d.scan_count + ' scans';
+  document.getElementById('nb-roi').textContent  = '$' + d.bankroll.toFixed(2) + ' current · ' + d.scan_count + ' scans';
   var pe = document.getElementById('nb-pnl');
   pe.textContent = money(realized);
   pe.className   = 'hc-value ' + (realized>=0?'green':'red');
-  document.getElementById('nb-pnl-sub').textContent = won.length+'W / '+(closed.length-won.length)+'L closed';
+  document.getElementById('nb-pnl-sub').textContent = pct(roi) + ' ROI · ' + won.length+'W / '+(closed.length-won.length)+'L closed';
   var we = document.getElementById('nb-wr');
   we.textContent = wr+'%'; we.className = 'hc-value '+wrCls(wr);
   document.getElementById('nb-rec').textContent = closed.length+' closed trades';
@@ -882,7 +888,7 @@ function renderNB(d) {
         '<td class="td-market">'+t.market+'</td>' +
         '<td class="mono"><span class="pill pill-red">NO@'+(t.entry_no_price||'?')+'¢</span></td>' +
         '<td class="mono">'+dollar(t.stake)+'</td>' +
-        '<td class="mono" style="color:var(--green)">+'+upside+'%</td>' +
+        '<td class="mono" style="color:var(--gold)">+'+upside+'%</td>' +
         '<td class="mono" style="color:var(--text2)">'+dLeft(t.closes)+' · '+(t.closes||'').slice(0,10)+'</td>' +
       '</tr>';
     }).join('')+'</tbody></table>'
@@ -900,7 +906,7 @@ function renderNB(d) {
         '<td class="mono">'+( t.entry_no_price||'?')+'¢</td>' +
         '<td class="mono">'+dollar(t.stake)+'</td>' +
         '<td><span class="pill '+(t.won?'pill-green':'pill-red')+'">'+(t.won?'won':'lost')+'</span></td>' +
-        '<td class="mono" style="color:'+(pnl>=0?'var(--green)':'var(--red)')+'">'+money(pnl)+'</td>' +
+        '<td class="mono" style="color:'+(pnl>=0?'var(--gold)':'#888888')+'">'+money(pnl)+'</td>' +
         '<td class="mono" style="color:var(--text2)">'+fmtDate(t.resolved_at)+'</td>' +
       '</tr>';
     }).join('')+'</tbody></table>'
@@ -929,7 +935,7 @@ function renderNBChart(closed) {
     data: { labels: labels, datasets: [{
       data: vals, borderColor: col, borderWidth: 2, pointRadius: 0,
       fill: true,
-      backgroundColor: function(ctx2){ var g = ctx2.chart.ctx.createLinearGradient(0,0,0,220); g.addColorStop(0,isUp?'rgba(34,197,94,0.15)':'rgba(239,68,68,0.15)'); g.addColorStop(1,'rgba(0,0,0,0)'); return g; },
+      backgroundColor: function(ctx2){ var g = ctx2.chart.ctx.createLinearGradient(0,0,0,220); g.addColorStop(0,isUp?'rgba(201,146,42,0.15)':'rgba(80,80,80,0.1)'); g.addColorStop(1,'rgba(0,0,0,0)'); return g; },
       tension: 0.3
     }]},
     options: {
@@ -963,7 +969,7 @@ function renderNBBracketChart(closed) {
       datasets: [{
         label: 'Win rate %',
         data: wrs,
-        backgroundColor: wrs.map(function(w){ return w>=65?'rgba(34,197,94,0.7)':w>=50?'rgba(201,146,42,0.7)':'rgba(239,68,68,0.7)'; }),
+        backgroundColor: wrs.map(function(w){ return w>=50?'rgba(201,146,42,0.75)':'rgba(80,80,80,0.4)'; }),
         borderRadius: 5,
         borderSkipped: false,
       }]
