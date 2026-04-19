@@ -1,36 +1,36 @@
 name: ClaudeBot + NoBot Paper Traders
-
 on:
   schedule:
     - cron: '0 */1 * * *'   # every hour — drives NoBot
   workflow_dispatch:
-
 jobs:
   run-bots:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: pip install anthropic requests ddgs feedparser
-
-      - name: Run NoBot (every hour)
+      - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nobot.py --single-scan
-
+      - name: Run NoBot V2 (every hour)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
+        run: python nobot_v2.py --single-scan
       - name: Run ClaudeBot (every 3rd hour only)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -45,11 +45,10 @@ jobs:
           else
             echo "Hour $HOUR — skipping ClaudeBot (runs every 3h)"
           fi
-
       - name: Commit updated logs back to repo
         run: |
           git config user.name "claudebot"
           git config user.email "claudebot@users.noreply.github.com"
-          git add claudebot_log.json nobot_log.json
+          git add claudebot_log.json nobot_log.json nobot_v2_log.json
           git diff --staged --quiet || git commit -m "bot: update logs [$(date '+%Y-%m-%d %H:%M')]"
           git push
