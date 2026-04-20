@@ -1,5 +1,5 @@
 {
-  "bankroll": 650.61,
+  "bankroll": 648.54,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5154,11 +5154,32 @@
       "placed_at": "2026-04-20T19:56:01.560382+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776717511",
+      "market_id": "2019471",
+      "market_slug": "highest-temperature-in-houston-on-april-21-2026-68-69f",
+      "market": "Will the highest temperature in Houston be between 68-69\u00b0F on April 21?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 2.07,
+      "payout_if_wins": 3.98,
+      "profit_if_wins": 1.91,
+      "category": "weather",
+      "closes_in_days": 0.64,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 3643.3514019999975,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T20:38:31.179182+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 27.78,
   "daily_reset": "2026-04-20",
-  "scan_count": 87,
+  "scan_count": 88,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T09:50:19.013457+00:00",
   "v2_note": "Trades replayed with V2 sizing: reversed brackets + volume multiplier"
