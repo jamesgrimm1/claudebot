@@ -1,5 +1,5 @@
 {
-  "bankroll": 647.18,
+  "bankroll": 640.51,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5196,12 +5196,54 @@
       "placed_at": "2026-04-20T21:39:17.765771+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776724548",
+      "market_id": "2019314",
+      "market_slug": "highest-temperature-in-hong-kong-on-april-21-2026-27c",
+      "market": "Will the highest temperature in Hong Kong be 27\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 4.03,
+      "payout_if_wins": 6.72,
+      "profit_if_wins": 2.69,
+      "category": "weather",
+      "closes_in_days": 0.56,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 8354.525214,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T22:35:48.313629+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776724548",
+      "market_id": "1981771",
+      "market_slug": "will-the-price-of-bitcoin-be-between-74000-76000-on-april-21",
+      "market": "Will the price of Bitcoin be between $74,000 and $76,000 on April 21?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 2.64,
+      "payout_if_wins": 4.71,
+      "profit_if_wins": 2.07,
+      "category": "crypto",
+      "closes_in_days": 0.73,
+      "closes": "2026-04-21T16:00:00+00:00",
+      "volume": 3886.288739,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T22:35:48.313678+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 27.78,
   "daily_reset": "2026-04-20",
-  "scan_count": 89,
+  "scan_count": 90,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-20T09:50:19.013457+00:00",
+  "last_summary_sent": "2026-04-20T22:35:28.058846+00:00",
   "v2_note": "Trades replayed with V2 sizing: reversed brackets + volume multiplier"
 }
