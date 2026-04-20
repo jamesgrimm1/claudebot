@@ -1,5 +1,5 @@
 {
-  "bankroll": 656.01,
+  "bankroll": 653.32,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1316,10 +1316,13 @@
       "closes": "2026-04-20T16:00:00+00:00",
       "volume": 8355.954742000004,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T15:19:50.216795+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-20T18:53:25.943879+00:00",
+      "realized_pnl": -2.86
     },
     {
       "id": "NB1776352790",
@@ -4826,10 +4829,13 @@
       "closes": "2026-04-20T16:00:00+00:00",
       "volume": 4348.587258999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T16:29:40.112805+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-20T18:53:28.233401+00:00",
+      "realized_pnl": -2.65
     },
     {
       "id": "NB1776616180",
@@ -5106,11 +5112,32 @@
       "placed_at": "2026-04-20T17:53:10.999553+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776711217",
+      "market_id": "2019315",
+      "market_slug": "highest-temperature-in-hong-kong-on-april-21-2026-28c",
+      "market": "Will the highest temperature in Hong Kong be 28\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 2.69,
+      "payout_if_wins": 4.8,
+      "profit_if_wins": 2.11,
+      "category": "weather",
+      "closes_in_days": 0.71,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 3717.007765999999,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T18:53:37.902236+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 22.27,
+  "daily_loss": 27.78,
   "daily_reset": "2026-04-20",
-  "scan_count": 85,
+  "scan_count": 86,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T09:50:19.013457+00:00",
   "v2_note": "Trades replayed with V2 sizing: reversed brackets + volume multiplier"
