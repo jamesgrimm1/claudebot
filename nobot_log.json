@@ -1,5 +1,5 @@
 {
-  "bankroll": 777.84,
+  "bankroll": 778.93,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5531,10 +5531,13 @@
       "closes": "2026-04-20T12:00:00+00:00",
       "volume": 6324.158633000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T07:12:14.368604+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-20T15:10:48.323815+00:00",
+      "realized_pnl": 1.21
     },
     {
       "id": "NB1776669134",
@@ -5639,10 +5642,13 @@
       "closes": "2026-04-20T12:00:00+00:00",
       "volume": 6514.13352400001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T09:50:18.382482+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-20T15:10:48.584641+00:00",
+      "realized_pnl": 1.87
     },
     {
       "id": "NB1776678618",
@@ -5727,11 +5733,74 @@
       "placed_at": "2026-04-20T11:13:07.938917+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776697858",
+      "market_id": "2029349",
+      "market_slug": "will-bitcoin-dip-to-74k-on-april-20",
+      "market": "Will Bitcoin dip to $74,000 on April 20?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 1.96,
+      "payout_if_wins": 3.16,
+      "profit_if_wins": 1.2,
+      "category": "crypto",
+      "closes_in_days": 0.53,
+      "closes": "2026-04-21T04:00:00+00:00",
+      "volume": 5700.418065999999,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T15:10:58.458608+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776697858",
+      "market_id": "2029338",
+      "market_slug": "will-bitcoin-reach-76k-on-april-20",
+      "market": "Will Bitcoin reach $76,000 on April 20?",
+      "position": "NO",
+      "entry_no_price": 61,
+      "entry_yes_price": 39,
+      "stake": 1.96,
+      "payout_if_wins": 3.21,
+      "profit_if_wins": 1.25,
+      "category": "crypto",
+      "closes_in_days": 0.53,
+      "closes": "2026-04-21T04:00:00+00:00",
+      "volume": 4453.254220999998,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T15:10:58.458654+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776697858",
+      "market_id": "1981769",
+      "market_slug": "ethereum-above-2300-on-april-21",
+      "market": "Will the price of Ethereum be above $2,300 on April 21?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 46,
+      "stake": 2.93,
+      "payout_if_wins": 5.33,
+      "profit_if_wins": 2.4,
+      "category": "crypto",
+      "closes_in_days": 1.03,
+      "closes": "2026-04-21T16:00:00+00:00",
+      "volume": 3783.630182000001,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T15:10:58.458686+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 27.3,
   "daily_reset": "2026-04-20",
-  "scan_count": 82,
+  "scan_count": 83,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T09:50:00.334644+00:00"
 }

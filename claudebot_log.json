@@ -1,5 +1,5 @@
 {
-  "bankroll": 1348.11,
+  "bankroll": 1213.3,
   "trades": [
     {
       "id": "T1775098669",
@@ -879,11 +879,43 @@
       "placed_at": "2026-04-20T09:53:12.519445+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776698018",
+      "tier": 1,
+      "market_id": "1939292",
+      "market_slug": "will-donald-trump-publicly-insult-someone-on-april-24-2026",
+      "market": "Will Donald Trump publicly insult someone on April 24, 2026?",
+      "position": "YES",
+      "entry_price": 78,
+      "stake": 134.81,
+      "potential_return": 172.83,
+      "potential_profit": 38.02,
+      "confidence": 82,
+      "true_prob": 93,
+      "market_prob": 78,
+      "category": "politics",
+      "closes_in_days": 3.4,
+      "closes": "2026-04-24T00:00:00+00:00",
+      "research_summary": "Trump has an extremely well-documented, years-long pattern of publicly insulting people on virtually every day through social media, press interactions, and speeches. April 2 BBC reporting confirms recent 'pointed criticism of allies.' Sub-40% approval historically correlates with more combative rhetoric. This question covers any insult to anyone across any public forum for the entire day.",
+      "key_factors": [
+        "Trump publicly insults people on 90-95%+ of days - one of the most reliable behavioral patterns in US politics",
+        "Extremely broad scope: any target, any public forum, entire 24-hour window",
+        "As president with daily press access, social media, and scheduled events, public output is high",
+        "Low approval rating (~39%) historically increases combative public rhetoric"
+      ],
+      "bear_case": "Resolution criteria might define 'insult' more narrowly than plain language suggests; Trump could have an uncharacteristically quiet day; potential health/travel event limiting public appearances",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-20T15:13:38.395820+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-20",
-  "scan_count": 129,
+  "scan_count": 130,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-20",
   "last_tier2_scan": "2026-04-20",
