@@ -4478,10 +4478,13 @@
       "closes": "2026-04-19T12:00:00+00:00",
       "volume": 3416.920434000003,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T06:25:25.330302+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-20T01:51:33.762898+00:00",
+      "realized_pnl": -2.73
     },
     {
       "id": "NB1776585723",
@@ -4523,10 +4526,13 @@
       "closes": "2026-04-20T04:00:00+00:00",
       "volume": 6316.05733,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:39:39.422487+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-20T01:51:33.870432+00:00",
+      "realized_pnl": -4.09
     },
     {
       "id": "NB1776591579",
@@ -4820,9 +4826,9 @@
       "model": "nobot-v2"
     }
   ],
-  "daily_loss": 55.15,
-  "daily_reset": "2026-04-19",
-  "scan_count": 75,
+  "daily_loss": 6.82,
+  "daily_reset": "2026-04-20",
+  "scan_count": 76,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-19T20:28:11.286033+00:00",
   "v2_note": "Trades replayed with V2 sizing: reversed brackets + volume multiplier"
