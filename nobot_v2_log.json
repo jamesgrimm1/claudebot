@@ -1,5 +1,5 @@
 {
-  "bankroll": 650.58,
+  "bankroll": 656.01,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3899,10 +3899,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 3755.4548539999987,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T18:35:17.987636+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-20T17:53:00.463538+00:00",
+      "realized_pnl": 1.61
     },
     {
       "id": "NB1776540934",
@@ -4928,10 +4931,13 @@
       "closes": "2026-04-21T04:00:00+00:00",
       "volume": 5700.418065999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T15:11:13.311846+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-20T17:53:01.477411+00:00",
+      "realized_pnl": 2.08
     },
     {
       "id": "NB1776697873",
@@ -5058,11 +5064,53 @@
       "placed_at": "2026-04-20T16:56:26.962127+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776707590",
+      "market_id": "1981773",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-21",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 21?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.75,
+      "payout_if_wins": 4.44,
+      "profit_if_wins": 1.69,
+      "category": "crypto",
+      "closes_in_days": 0.92,
+      "closes": "2026-04-21T16:00:00+00:00",
+      "volume": 4795.899876,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T17:53:10.999510+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776707590",
+      "market_id": "2029408",
+      "market_slug": "will-ethereum-reach-2350-on-april-20",
+      "market": "Will Ethereum reach $2,350 on April 20?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.73,
+      "payout_if_wins": 4.4,
+      "profit_if_wins": 1.67,
+      "category": "crypto",
+      "closes_in_days": 0.42,
+      "closes": "2026-04-21T04:00:00+00:00",
+      "volume": 3524.884282,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T17:53:10.999553+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 22.27,
   "daily_reset": "2026-04-20",
-  "scan_count": 84,
+  "scan_count": 85,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T09:50:19.013457+00:00",
   "v2_note": "Trades replayed with V2 sizing: reversed brackets + volume multiplier"

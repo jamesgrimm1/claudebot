@@ -1,5 +1,5 @@
 {
-  "bankroll": 787.9,
+  "bankroll": 789.82,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3899,10 +3899,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 3755.4548539999987,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T18:35:17.987636+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-20T17:52:43.030707+00:00",
+      "realized_pnl": 1.01
     },
     {
       "id": "NB1776540934",
@@ -5045,10 +5048,13 @@
       "closes": "2026-04-20T12:00:00+00:00",
       "volume": 3369.599705999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T20:28:10.697206+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-20T17:52:44.521152+00:00",
+      "realized_pnl": -2.97
     },
     {
       "id": "NB1776634035",
@@ -5585,10 +5591,13 @@
       "closes": "2026-04-20T12:00:00+00:00",
       "volume": 3464.9565210000005,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T07:12:14.368661+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-20T17:52:45.678917+00:00",
+      "realized_pnl": -3.87
     },
     {
       "id": "NB1776672283",
@@ -5756,10 +5765,13 @@
       "closes": "2026-04-21T04:00:00+00:00",
       "volume": 5700.418065999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T15:10:58.458608+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-20T17:52:46.109570+00:00",
+      "realized_pnl": 0.98
     },
     {
       "id": "NB1776697858",
@@ -5844,11 +5856,53 @@
       "placed_at": "2026-04-20T16:56:14.610143+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776707576",
+      "market_id": "1981773",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-21",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 21?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 1.98,
+      "payout_if_wins": 3.19,
+      "profit_if_wins": 1.21,
+      "category": "crypto",
+      "closes_in_days": 0.92,
+      "closes": "2026-04-21T16:00:00+00:00",
+      "volume": 4795.899876,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T17:52:56.632390+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776707576",
+      "market_id": "2029408",
+      "market_slug": "will-ethereum-reach-2350-on-april-20",
+      "market": "Will Ethereum reach $2,350 on April 20?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 1.98,
+      "payout_if_wins": 3.19,
+      "profit_if_wins": 1.21,
+      "category": "crypto",
+      "closes_in_days": 0.42,
+      "closes": "2026-04-21T04:00:00+00:00",
+      "volume": 3524.884282,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-20T17:52:56.632441+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 27.3,
+  "daily_loss": 34.14,
   "daily_reset": "2026-04-20",
-  "scan_count": 84,
+  "scan_count": 85,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T09:50:00.334644+00:00"
 }
