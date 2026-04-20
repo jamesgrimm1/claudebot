@@ -1121,14 +1121,26 @@ function loadData() {
   document.getElementById('main').style.display           = 'none';
 
   var bust = '?_=' + Date.now();
+  // NB2 is optional — if file not in repo yet, dashboard still loads
+  var nb2Fetch = fetch(NB2_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; });
+
   Promise.all([
     fetch(CB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('ClaudeBot HTTP ' + r.status); return r.json(); }),
     fetch(NB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('NoBot HTTP ' + r.status); return r.json(); }),
-    fetch(NB2_URL + bust).then(function(r){ if(!r.ok) throw new Error('NoBot V2 HTTP ' + r.status); return r.json(); })
+    nb2Fetch
   ]).then(function(results) {
     renderCB(results[0]);
     renderNB(results[1]);
-    renderNBV2(results[2], results[1]);
+    if (results[2]) {
+      renderNBV2(results[2], results[1]);
+    } else {
+      // V2 log not in repo yet — show placeholder
+      document.getElementById('nb2-bank').textContent = 'Not live yet';
+      document.getElementById('nb2-pnl').textContent  = '—';
+      document.getElementById('nb2-wr').textContent   = '—';
+      document.getElementById('nb2-open').textContent = '—';
+      document.getElementById('nb2-compare-table').innerHTML = '<div class="empty">Push nobot_v2_log.json to the repo to enable V2 tracking</div>';
+    }
 
     var now = new Date();
     dot.className    = 'status-dot';
