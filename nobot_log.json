@@ -1,5 +1,5 @@
 {
-  "bankroll": 772.7,
+  "bankroll": 768.99,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5774,10 +5774,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4096.235191,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T11:13:07.938917+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-21T03:04:39.792988+00:00",
+      "realized_pnl": 0.92
     },
     {
       "id": "NB1776697858",
@@ -6056,10 +6059,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 6921.473313000003,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T23:35:43.429347+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-21T03:04:40.570614+00:00",
+      "realized_pnl": 1.2
     },
     {
       "id": "NB1776728143",
@@ -6186,11 +6192,74 @@
       "placed_at": "2026-04-21T01:46:39.861713+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776740691",
+      "market_id": "2019401",
+      "market_slug": "highest-temperature-in-beijing-on-april-21-2026-26c",
+      "market": "Will the highest temperature in Beijing be 26\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 3.89,
+      "payout_if_wins": 7.78,
+      "profit_if_wins": 3.89,
+      "category": "weather",
+      "closes_in_days": 0.37,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 3688.2451589999996,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-21T03:04:51.457574+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776740691",
+      "market_id": "2019418",
+      "market_slug": "highest-temperature-in-wuhan-on-april-21-2026-18corhigher",
+      "market": "Will the highest temperature in Wuhan be 18\u00b0C or higher on April 21?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 3.87,
+      "payout_if_wins": 8.06,
+      "profit_if_wins": 4.19,
+      "category": "weather",
+      "closes_in_days": 0.37,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 3677.8402960000026,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-21T03:04:51.457619+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776740691",
+      "market_id": "1981818",
+      "market_slug": "will-the-price-of-ethereum-be-between-2200-2300-on-april-21",
+      "market": "Will the price of Ethereum be between $2,200 and $2,300 on April 21?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 1.93,
+      "payout_if_wins": 3.22,
+      "profit_if_wins": 1.29,
+      "category": "crypto",
+      "closes_in_days": 0.54,
+      "closes": "2026-04-21T16:00:00+00:00",
+      "volume": 3536.329575,
+      "exit_target": 90,
+      "status": "open",
+      "placed_at": "2026-04-21T03:04:51.457651+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 13.49,
   "daily_reset": "2026-04-21",
-  "scan_count": 92,
+  "scan_count": 93,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T22:34:57.389897+00:00"
 }
