@@ -1,5 +1,5 @@
 {
-  "bankroll": 805.08,
+  "bankroll": 796.75,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3507,11 +3507,51 @@
       "placed_at": "2026-04-21T08:24:22.808257+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776761799",
+      "market_id": "2019247",
+      "market_slug": "highest-temperature-in-ankara-on-april-21-2026-16c",
+      "market": "Will the highest temperature in Ankara be 16\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 5.01,
+      "payout_if_wins": 8.08,
+      "profit_if_wins": 3.07,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 6813.228080999999,
+      "status": "open",
+      "placed_at": "2026-04-21T08:56:39.431907+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776761799",
+      "market_id": "2019358",
+      "market_slug": "highest-temperature-in-madrid-on-april-21-2026-27c",
+      "market": "Will the highest temperature in Madrid be 27\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 3.32,
+      "payout_if_wins": 5.35,
+      "profit_if_wins": 2.03,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 4608.318310000005,
+      "status": "open",
+      "placed_at": "2026-04-21T08:56:39.431949+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 5.06,
   "daily_reset": "2026-04-21",
-  "scan_count": 89,
+  "scan_count": 90,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-21T03:04:52.129571+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
