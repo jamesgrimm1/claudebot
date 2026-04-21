@@ -1,5 +1,5 @@
 {
-  "bankroll": 1213.3,
+  "bankroll": 1152.64,
   "trades": [
     {
       "id": "T1775098669",
@@ -911,11 +911,43 @@
       "placed_at": "2026-04-20T15:13:38.395820+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776760911",
+      "tier": 1,
+      "market_id": "1921507",
+      "market_slug": "tsla-quarterly-earnings-nongaap-eps-04-22-2026-0pt39",
+      "market": "Will Tesla (TSLA) beat quarterly earnings?",
+      "position": "YES",
+      "entry_price": 21,
+      "stake": 60.66,
+      "potential_return": 288.86,
+      "potential_profit": 228.2,
+      "confidence": 76,
+      "true_prob": 55,
+      "market_prob": 21,
+      "category": "economics",
+      "closes_in_days": 1.5,
+      "closes": "2026-04-22T21:00:00+00:00",
+      "research_summary": "Historical S&P 500 earnings beat rate is ~75%; Tesla has beaten EPS consensus in most recent quarters. Wall Street expects modest 33% EPS growth on a low $0.12 Q1 2025 baseline (~$0.16 consensus target). Stock rallied 5% on April 17 indicating positive institutional positioning. Market pricing at 21% YES is deeply inconsistent with well-established base rates for large-cap earnings beats.",
+      "key_factors": [
+        "S&P 500 historical earnings beat rate ~75%, Tesla-specific rate similarly high",
+        "Modest consensus bar: 33% growth on $0.12 base equals ~$0.16 target",
+        "Pre-earnings 5% rally signals positive institutional sentiment",
+        "21% market price implies extreme miss probability inconsistent with decades of base rate data"
+      ],
+      "bear_case": "Unknown Tesla-specific negatives (delivery shortfall, margin compression, regulatory headwinds) could justify lower beat probability. Resolution criteria may differ from standard EPS beat. Market participants may have current quarter data not reflected in research.",
+      "kelly_tier": "quarter-Kelly (5.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-21T08:41:51.204695+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-21",
-  "scan_count": 136,
+  "scan_count": 137,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-20",
   "last_tier2_scan": "2026-04-21",
