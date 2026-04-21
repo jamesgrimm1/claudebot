@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install anthropic requests ddgs feedparser
+        run: pip install anthropic requests ddgs feedparser graphifyy
       - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -31,17 +31,28 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nobot_v2.py --single-scan
-      - name: Run ClaudeBot (every hour now)
+      - name: Run ClaudeBot (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python claudebot.py --single-scan
+      - name: Build knowledge graph from trade reflections
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -d "trade_reflections" ] && [ "$(ls -A trade_reflections)" ]; then
+            echo "Building knowledge graph from $(ls trade_reflections | wc -l) reflection files..."
+            graphify trade_reflections --no-viz --update 2>/dev/null || echo "Graphify skipped (first run or no changes)"
+          else
+            echo "No reflections yet — skipping graphify"
+          fi
       - name: Commit updated logs back to repo
         run: |
           git config user.name "claudebot"
           git config user.email "claudebot@users.noreply.github.com"
           git add claudebot_log.json nobot_log.json nobot_v2_log.json
-          git diff --staged --quiet || git commit -m "bot: update logs [$(date '+%Y-%m-%d %H:%M')]"
+          git add trade_reflections/ graphify-out/ 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "bot: update logs + reflections [$(date '+%Y-%m-%d %H:%M')]"
           git push
