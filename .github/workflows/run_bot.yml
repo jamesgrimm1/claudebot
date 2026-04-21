@@ -17,24 +17,6 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install anthropic requests ddgs feedparser
-      - name: Test economic calendar sources
-        run: |
-          python -c "
-          import requests
-          sources = [
-              ('Finnhub', 'https://finnhub.io/api/v1/calendar/economic?from=2026-04-21&to=2026-04-28&token=demo'),
-              ('Investing.com embed', 'https://sslecal2.investing.com/js/event_ajax.php?action=filter&dateFrom=2026-04-21&dateTo=2026-04-28&timeZone=0&lang_ID=56&instId=29&event_type=&countries=5,22,17,35,7,43,9'),
-              ('FX Empire', 'https://www.fxempire.com/api/v1/en/calendar/events?dateFrom=2026-04-21&dateTo=2026-04-28'),
-          ]
-          for name, url in sources:
-              try:
-                  r = requests.get(url, timeout=8, headers={'User-Agent':'Mozilla/5.0'})
-                  print(f'{name}: HTTP {r.status_code} | {len(r.text)} chars')
-                  if r.status_code == 200:
-                      print(f'  Preview: {r.text[:150]}')
-              except Exception as e:
-                  print(f'{name}: FAILED - {str(e)[:80]}')
-          "
       - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -55,6 +37,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python claudebot.py --single-scan
       - name: Build trade knowledge graph
         run: |
