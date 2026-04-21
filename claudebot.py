@@ -732,12 +732,21 @@ def haiku_screen(markets, state, tier_num):
             "Prioritise: confirmed facts not yet priced in, weather forecasts clearly "
             "contradicting odds, ongoing verifiable situations. "
             "IMPORTANT: pick a DIVERSE mix of categories — do not select 5 weather markets "
-            "when geopolitics, economics, or health markets also have edge."
+            "when geopolitics, economics, or health markets also have edge.\n\n"
+            "WEATHER MARKET PREFERENCE: strongly prefer weather markets phrased as "
+            "direction + threshold (e.g. 'above 30°C', 'below 10°C', '25°C or higher') "
+            "over exact integer matches (e.g. 'be exactly 28°C', 'be 14°C on April 22'). "
+            "Exact-integer markets have higher variance because they require a precise "
+            "outcome — direction/threshold markets have a wider range of winning outcomes "
+            "and are more reliably mispriced. Score exact-integer weather markets 1-2 "
+            "points lower than equivalent direction/threshold markets."
         ),
         2: (
             "Prioritise: structural mispricings over 8-30 days. Economic trajectories, "
             "political situations with known timelines, health outbreak trajectories. "
-            "Pick diverse categories."
+            "Pick diverse categories.\n\n"
+            "WEATHER MARKET PREFERENCE: prefer direction + threshold weather markets "
+            "(above/below/or higher/or lower) over exact integer temperature matches."
         ),
     }.get(tier_num, "")
 
@@ -1157,7 +1166,12 @@ def opus_analyze_short_medium(markets, research, state, tier_num):
         f"  ❌ Vague research, uncertain outcomes, sports\n"
         f"  ❌ Central bank/Fed/ECB decisions based only on analyst forecasts\n"
         f"     or conditional scenarios — these require CONFIRMED data releases\n"
-        f"     or explicit official forward guidance, not 'Bank X thinks Y might happen'\n\n"
+        f"     or explicit official forward guidance, not 'Bank X thinks Y might happen'\n"
+        f"  ❌ Weather markets asking for an EXACT integer temperature (e.g. 'be exactly\n"
+        f"     28°C') — these have high variance. Prefer direction/threshold markets\n"
+        f"     ('above 28°C', 'below 10°C', '25°C or higher') which have a wider range\n"
+        f"     of winning outcomes. Only take exact-integer weather bets with very high\n"
+        f"     confidence (≥88%) AND strong forecast data.\n\n"
         f"0 trades beats a bad trade.\n\n"
         f"PROBABILITIES: report as YES probability (0-100).\n"
         f"CONFIDENCE: ≥{tcfg['min_confidence']}% required.\n"
