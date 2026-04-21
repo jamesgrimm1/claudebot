@@ -47,7 +47,8 @@ ANTHROPIC_API_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
 TELEGRAM_BOT_TOKEN   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHANNEL_ID  = os.environ.get("TELEGRAM_CHANNEL_ID", "")
 TELEGRAM_PERSONAL_ID = os.environ.get("TELEGRAM_PERSONAL_ID", "")
-FINNHUB_API_KEY      = os.environ.get("FINNHUB_API_KEY", "")
+FINNHUB_API_KEY        = os.environ.get("FINNHUB_API_KEY", "")
+VISUAL_CROSSING_API_KEY = os.environ.get("VISUAL_CROSSING_API_KEY", "")
 
 SCREENER_MODEL     = "claude-haiku-4-5-20251001"
 ANALYST_MODEL      = "claude-opus-4-6"
@@ -842,6 +843,148 @@ def check_calendar_risk(market_question, closes_in_days):
     return "\n".join(warning_lines)
 
 
+# ─────────────────────────────────────────────────────────
+#  WEATHER FORECAST — Visual Crossing
+# ─────────────────────────────────────────────────────────
+
+# City name normalisation — Polymarket uses various formats
+CITY_ALIASES = {
+    "new york city": "New York,US",
+    "nyc":           "New York,US",
+    "los angeles":   "Los Angeles,US",
+    "san francisco": "San Francisco,US",
+    "buenos aires":  "Buenos Aires,Argentina",
+    "mexico city":   "Mexico City,Mexico",
+    "hong kong":     "Hong Kong",
+    "kuala lumpur":  "Kuala Lumpur,Malaysia",
+}
+
+_weather_cache = {}   # city+date → result
+
+def get_weather_forecast(market_question, target_date_str=None):
+    """
+    Fetch the actual forecast for the city and date mentioned in a
+    weather market question from Visual Crossing.
+
+    Returns a formatted string with tempmax, tempmin, precip, conditions
+    for the target date — ready to inject into the Opus research brief.
+
+    target_date_str: 'YYYY-MM-DD' — if None we parse from the market question
+    """
+    if not VISUAL_CROSSING_API_KEY:
+        return None
+
+    q = market_question.lower()
+
+    # ── Extract city from question ────────────────────────
+    city = None
+    for alias, canonical in CITY_ALIASES.items():
+        if alias in q:
+            city = canonical
+            break
+
+    if not city:
+        # Try to extract "in <City>" pattern
+        m = re.search(r'\bin ([A-Z][a-zA-Z\s]+?)(?:\s+be|\s+have|\s+reach|\s+exceed|\s+on|\?)', market_question)
+        if m:
+            city = m.group(1).strip()
+
+    if not city:
+        return None
+
+    # ── Extract target date ───────────────────────────────
+    if not target_date_str:
+        m = re.search(r'(\w+ \d{1,2},?\s*\d{4}|\d{4}-\d{2}-\d{2}|April \d+|on (\w+ \d+))', market_question)
+        if m:
+            try:
+                from datetime import datetime as _dt
+                raw = m.group(0).replace("on ", "").strip()
+                for fmt in ("%B %d %Y", "%B %d, %Y", "%Y-%m-%d", "%B %d"):
+                    try:
+                        parsed = _dt.strptime(raw, fmt)
+                        if parsed.year < 2000:
+                            parsed = parsed.replace(year=datetime.now(timezone.utc).year)
+                        target_date_str = parsed.strftime("%Y-%m-%d")
+                        break
+                    except ValueError:
+                        continue
+            except Exception:
+                pass
+
+    if not target_date_str:
+        # Default to tomorrow
+        target_date_str = (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y-%m-%d")
+
+    cache_key = f"{city}_{target_date_str}"
+    if cache_key in _weather_cache:
+        return _weather_cache[cache_key]
+
+    try:
+        url = (
+            f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services"
+            f"/timeline/{requests.utils.quote(city)}/{target_date_str}"
+            f"?unitGroup=metric&include=days&key={VISUAL_CROSSING_API_KEY}&contentType=json"
+        )
+        r = requests.get(url, timeout=8)
+
+        if r.status_code != 200:
+            log(f"     ⚠️  Visual Crossing HTTP {r.status_code} for {city} {target_date_str}")
+            return None
+
+        data  = r.json()
+        days  = data.get("days", [])
+        if not days:
+            return None
+
+        day       = days[0]
+        tempmax   = day.get("tempmax")
+        tempmin   = day.get("tempmin")
+        temp      = day.get("temp")
+        precip    = day.get("precip", 0)
+        precipprob = day.get("precipprob", 0)
+        conditions = day.get("conditions", "")
+        description = day.get("description", "")
+        resolved_addr = data.get("resolvedAddress", city)
+
+        # Convert to Fahrenheit if question mentions °F
+        def to_f(c):
+            return round(c * 9/5 + 32, 1) if c is not None else None
+
+        has_f = "°f" in q or "fahrenheit" in q
+        if has_f:
+            unit      = "°F"
+            hi        = to_f(tempmax)
+            lo        = to_f(tempmin)
+            avg       = to_f(temp)
+        else:
+            unit      = "°C"
+            hi        = round(tempmax, 1) if tempmax is not None else None
+            lo        = round(tempmin, 1) if tempmin is not None else None
+            avg       = round(temp, 1) if temp is not None else None
+
+        log(f"     🌤  Visual Crossing {city} {target_date_str}: high={hi}{unit} low={lo}{unit}")
+
+        result = (
+            f"\nLIVE WEATHER FORECAST (Visual Crossing, fetched now):\n"
+            f"  Location:    {resolved_addr}\n"
+            f"  Date:        {target_date_str}\n"
+            f"  High:        {hi}{unit}\n"
+            f"  Low:         {lo}{unit}\n"
+            f"  Avg:         {avg}{unit}\n"
+            f"  Conditions:  {conditions}\n"
+            f"  Precip prob: {precipprob}%  ({precip}mm)\n"
+            f"  Summary:     {description}\n"
+            f"Use these ACTUAL forecast values when evaluating temperature threshold markets.\n"
+        )
+
+        _weather_cache[cache_key] = result
+        return result
+
+    except Exception as e:
+        log(f"     ⚠️  Visual Crossing failed: {e}")
+        return None
+
+
 def _settle(trade, won, state):
     log(f"     Bankroll now: ${state['bankroll']:.2f}")
     write_trade_reflection(trade, state)
@@ -1401,6 +1544,14 @@ def research_all_markets(markets):
         if get_category(market["question"]) == "crypto":
             live_price = get_crypto_price(market["question"])
 
+        # Fetch live weather forecast for weather markets
+        weather_forecast = None
+        if get_category(market["question"]) == "weather":
+            weather_forecast = get_weather_forecast(
+                market["question"],
+                target_date_str=market.get("closes")[:10] if market.get("closes") else None
+            )
+
         # Fetch live CLOB order book depth
         book_depth = get_order_book_depth(market)
 
@@ -1416,6 +1567,10 @@ def research_all_markets(markets):
         # Prepend live price data
         if live_price:
             brief = live_price + "\n" + brief
+
+        # Prepend live weather forecast
+        if weather_forecast:
+            brief = weather_forecast + "\n" + brief
 
         # Append CLOB order book depth
         if book_depth:
