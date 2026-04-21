@@ -126,13 +126,27 @@ def fetch_resolved_markets(target=MARKET_BATCH):
                 continue
 
             # Must have clob token IDs for price history
-            clob_ids = m.get("clobTokenIds", [])
+            # Gamma API uses different field names depending on market age
+            clob_ids = (
+                m.get("clobTokenIds") or
+                m.get("clob_token_ids") or
+                m.get("tokens") or
+                []
+            )
             if isinstance(clob_ids, str):
                 try:
                     clob_ids = json.loads(clob_ids)
                 except Exception:
                     clob_ids = []
+            # tokens field returns list of dicts with token_id
+            if clob_ids and isinstance(clob_ids[0], dict):
+                clob_ids = [t.get("token_id", t.get("tokenId", "")) for t in clob_ids]
+            clob_ids = [c for c in clob_ids if c]
+
             if not clob_ids:
+                # Debug: show what fields are available on first skip
+                if len(markets) < 3:
+                    log(f"  DEBUG no clob_ids — available keys: {list(m.keys())}")
                 continue
 
             # Parse close date
@@ -224,29 +238,37 @@ def run_backtest(markets):
     Returns list of trade records.
     """
     log("Running NearCertain backtest simulation...")
-    trades       = []
-    skipped      = 0
-    no_history   = 0
-    wrong_range  = 0
-    now          = datetime.now(timezone.utc)
+    trades           = []
+    skip_recent      = 0
+    skip_category    = 0
+    skip_no_token    = 0
+    no_history       = 0
+    wrong_range      = 0
+    now              = datetime.now(timezone.utc)
+
+    # Debug: show first market's fields
+    if markets:
+        m0 = markets[0]
+        log(f"  DEBUG first market: end_dt={m0['end_dt']} days_ago={(now-m0['end_dt']).days} cat={m0['category']} clob_ids={m0['clob_ids'][:1] if m0['clob_ids'] else 'EMPTY'}")
 
     for i, m in enumerate(markets):
         if i % 10 == 0:
             log(f"  Processing market {i+1}/{len(markets)} | trades so far: {len(trades)}...")
 
         # Only use markets that closed > 1 day ago (confirmed resolution)
-        if (now - m["end_dt"]).days < 1:
-            skipped += 1
+        days_ago = (now - m["end_dt"]).days
+        if days_ago < 1:
+            skip_recent += 1
             continue
 
         # Skip blocked categories
         if m["category"] in BLOCKED_CATS:
-            skipped += 1
+            skip_category += 1
             continue
 
         yes_token = m["clob_ids"][0] if m["clob_ids"] else None
         if not yes_token:
-            skipped += 1
+            skip_no_token += 1
             continue
 
         # Try each entry window
@@ -296,9 +318,11 @@ def run_backtest(markets):
             time.sleep(0.05)
 
     log(f"  Generated {len(trades)} trades")
-    log(f"  Skipped: {skipped} (blocked cat/no token)")
-    log(f"  No history: {no_history}")
-    log(f"  Wrong price range: {wrong_range}")
+    log(f"  Skip recent (<1d ago):  {skip_recent}")
+    log(f"  Skip category blocked:  {skip_category}")
+    log(f"  Skip no CLOB token:     {skip_no_token}")
+    log(f"  No price history:       {no_history}")
+    log(f"  Wrong price range:      {wrong_range}")
     return trades
 
 # ─────────────────────────────────────────────────────────
