@@ -17,6 +17,8 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install anthropic requests ddgs feedparser
+          pip install anthropic requests ddgs feedparser
+          python -c "import requests; r=requests.get('https://cdn-nfs.faireconomy.media/ff_calendar_thisweek.json',timeout=8); print('FF Calendar:', r.status_code, len(r.json()), 'events')"
       - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
