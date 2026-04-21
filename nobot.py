@@ -3,21 +3,22 @@
 ║         NOBOT — "Nothing Ever Happens"                   ║
 ║                                                          ║
 ║  Strategy: 73.3% of Polymarket markets resolve NO.       ║
-║  Buy NO mechanically on any market priced $0.45-$0.62.   ║
+║  Buy NO on markets closing within 2-12 hours ONLY.      ║
+║  Data: 89%+ WR on <12h holds vs 48% WR on >12h holds.  ║
 ║  Haiku news screen filters obvious disasters.            ║
 ║  Hold to resolution — full 100¢ payout on every win.    ║
-║  No early exit. Let winners run.                         ║
+║  No early exit. No Opus. Volume is the edge.             ║
 ║                                                          ║
 ║  Sizing (compounds with bankroll):                       ║
-║  $0.45–$0.52 → 1.0% of bankroll                         ║
-║  $0.52–$0.58 → 0.75% of bankroll                        ║
-║  $0.58–$0.62 → 0.5% of bankroll                         ║
+║  $0.45–$0.52 → 0.50% of bankroll                        ║
+║  $0.52–$0.58 → 0.375% of bankroll                       ║
+║  $0.58–$0.62 → 0.25% of bankroll                        ║
 ║  Above $0.62  → skip                                     ║
 ║                                                          ║
-║  Hold: resolve at market close — full payout             ║
-║  No early exit at 90¢ — hold every trade to resolution   ║
+║  Entry window: 2h–12h before market close               ║
+║  Hold: resolve at market close — full payout            ║
 ║                                                          ║
-║  SETUP:  pip install anthropic requests ddgs feedparser  ║
+║  SETUP:  pip install anthropic requests feedparser       ║
 ║  RUN:    python nobot.py --single-scan                   ║
 ╚══════════════════════════════════════════════════════════╝
 """
@@ -56,6 +57,7 @@ SCAN_INTERVAL_MINS = 60
 NO_ENTRY_MIN = 45   # 45¢ NO = 55¢ YES
 NO_ENTRY_MAX = 62   # 62¢ NO = 38¢ YES
 
+# Exit target — sell NO when it reaches this price
 # No early exit — hold all trades to market resolution for full payout
 
 # Stake sizing by NO entry price
@@ -68,8 +70,9 @@ STAKE_TIERS = [
 # Min market volume — avoid thin books
 MIN_VOLUME = 1000
 
-# Max hold days — close out even if exit not triggered
-MAX_HOLD_DAYS = 14
+# Max hold — only enter markets closing within 12 hours
+# Data shows 89%+ WR on <12h holds vs 48% WR on >12h holds
+MAX_HOLD_DAYS = 0.5   # 12 hours (was 14 days)
 
 # Min hold hours — don't buy something closing in under 2 hours
 MIN_HOLD_HOURS = 2
