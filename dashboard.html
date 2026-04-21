@@ -503,6 +503,7 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     <div class="nav-tab active" onclick="setBot('cb',this)">ClaudeBot</div>
     <div class="nav-tab" onclick="setBot('nb',this)">NoBot V1</div>
     <div class="nav-tab" onclick="setBot('nb2',this)">NoBot V2</div>
+    <div class="nav-tab" onclick="setBot('proj',this)">Projections</div>
   </div>
   <div class="header-right">
     <div class="status-pill">
@@ -712,6 +713,51 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     </div>
   </div>
 
+  <!-- ── Projections view ── -->
+  <div id="view-proj" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">ClaudeBot — Live WR</div>
+        <div class="hc-value gold" id="proj-cb-wr">—</div>
+        <div class="hc-sub" id="proj-cb-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">NoBot V1 — Live WR</div>
+        <div class="hc-value gold" id="proj-nb-wr">—</div>
+        <div class="hc-sub" id="proj-nb-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">NoBot V2 — Live WR</div>
+        <div class="hc-value gold" id="proj-nb2-wr">—</div>
+        <div class="hc-sub" id="proj-nb2-sub">—</div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">ClaudeBot — 12 month projections</span>
+        <span class="pill pill-gold" id="proj-cb-badge">—</span>
+      </div>
+      <div id="proj-cb-table"></div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">NoBot V1 — 12 month projections</span>
+        <span class="pill pill-gold" id="proj-nb-badge">—</span>
+      </div>
+      <div id="proj-nb-table"></div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">NoBot V2 — 12 month projections</span>
+        <span class="pill pill-gold" id="proj-nb2-badge">—</span>
+      </div>
+      <div id="proj-nb2-table"></div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);padding:0 4px 24px;line-height:1.8">
+      Projections compound daily using live avg win/loss and trades/day from each bot's resolved trade history · Liquidity ceiling at $18,981 (NoBot) / $50,000 (ClaudeBot) · Live WR highlighted · Paper trade estimates only
+    </div>
+  </div>
+
 </div>
 <script>
 var CB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
@@ -746,9 +792,10 @@ function getCategory(q) {
 function setBot(bot, el) {
   document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
-  document.getElementById('view-cb').style.display  = bot === 'cb'  ? 'block' : 'none';
-  document.getElementById('view-nb').style.display  = bot === 'nb'  ? 'block' : 'none';
-  document.getElementById('view-nb2').style.display = bot === 'nb2' ? 'block' : 'none';
+  document.getElementById('view-cb').style.display   = bot === 'cb'   ? 'block' : 'none';
+  document.getElementById('view-nb').style.display   = bot === 'nb'   ? 'block' : 'none';
+  document.getElementById('view-nb2').style.display  = bot === 'nb2'  ? 'block' : 'none';
+  document.getElementById('view-proj').style.display = bot === 'proj' ? 'block' : 'none';
 }
 
 // ── ClaudeBot renderer ────────────────────────────────────
@@ -1108,6 +1155,97 @@ function renderNBBracketChart(closed, pfx, bracketRef) {
   else nb2BracketChart = newBChart;
 }
 
+// ── Projections engine ───────────────────────────────────
+function compound(start, wr, aw, al, dt, days, ceiling) {
+  var b = parseFloat(start);
+  for (var i = 0; i < days; i++) {
+    var scale = Math.min(b, ceiling) / START;
+    b += (wr * aw - (1 - wr) * al) * dt * scale;
+  }
+  return b;
+}
+
+function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBankroll) {
+  if (!closed || !closed.length) {
+    document.getElementById(pfxTable).innerHTML = '<div class="empty">No resolved trades yet</div>';
+    return;
+  }
+  var won   = closed.filter(function(t){ return t.won; });
+  var lost  = closed.filter(function(t){ return !t.won; });
+  if (!won.length || !lost.length) return;
+
+  var liveWr   = won.length / closed.length;
+  var avgWin   = won.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / won.length;
+  var avgLoss  = Math.abs(lost.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / lost.length);
+
+  // Trades per day — use days since first trade
+  var dates    = closed.map(function(t){ return new Date(t.resolved_at||t.placed_at); });
+  var minDate  = new Date(Math.min.apply(null, dates));
+  var daysSince = Math.max(1, (Date.now() - minDate) / 86400000);
+  var tradesPerDay = closed.length / daysSince;
+
+  var liveWrPct = Math.round(liveWr * 100);
+  document.getElementById(pfxWr).textContent = liveWrPct + '%';
+  document.getElementById(pfxSub).textContent =
+    won.length + 'W / ' + lost.length + 'L · ' +
+    tradesPerDay.toFixed(1) + ' trades/day · ' +
+    'avg win $' + avgWin.toFixed(2) + ' / avg loss $' + avgLoss.toFixed(2);
+
+  var scenarios = [55, 60, 65, 70, 75, 80, 85];
+  var months    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  var sb        = startBankroll || START;
+
+  document.getElementById(pfxBadge).textContent =
+    'Live ' + liveWrPct + '% WR · ' + tradesPerDay.toFixed(1) + ' trades/day';
+
+  var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
+  var rows = scenarios.map(function(wrPct) {
+    var wr   = wrPct / 100;
+    var isLive = Math.abs(wr - liveWr) < 0.03;
+    var rowStyle = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
+    var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
+    var vals = months.map(function(m) {
+      var v = compound(sb, wr, avgWin, avgLoss, tradesPerDay, m * 30, ceiling);
+      var isProfit = v >= sb;
+      var style = isLive
+        ? 'color:var(--gold)'
+        : (isProfit ? 'color:var(--text)' : 'color:#666666');
+      return '<td class="mono" style="' + style + '">$' + Math.round(v).toLocaleString() + '</td>';
+    });
+    var ev = (wr * avgWin - (1 - wr) * avgLoss) * tradesPerDay;
+    return '<tr' + rowStyle + '>' +
+      '<td class="mono"' + labelStyle + '>' + wrPct + '%' + (isLive ? ' ◀' : '') + '</td>' +
+      '<td class="mono" style="color:var(--text2)">$' + ev.toFixed(2) + '/day</td>' +
+      vals.join('') +
+      '</tr>';
+  }).join('');
+
+  document.getElementById(pfxTable).innerHTML =
+    '<table><thead><tr>' +
+      '<th>WR</th><th>Daily EV</th>' + hdrs +
+    '</tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
+function renderProjections(cbData, nbData, nb2Data) {
+  var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var nbClosed  = nbData  ? (nbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var nb2Closed = nb2Data ? (nb2Data.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+
+  var cbStart  = cbData  ? cbData.bankroll  : START;
+  var nbStart  = nbData  ? nbData.bankroll  : START;
+  var nb2Start = nb2Data ? nb2Data.bankroll : START;
+
+  projTable('proj-cb-badge',  'proj-cb-table',  'proj-cb-wr',  'proj-cb-sub',  cbClosed,  50000, cbStart);
+  projTable('proj-nb-badge',  'proj-nb-table',  'proj-nb-wr',  'proj-nb-sub',  nbClosed,  18981, nbStart);
+  projTable('proj-nb2-badge', 'proj-nb2-table', 'proj-nb2-wr', 'proj-nb2-sub', nb2Closed, 18981, nb2Start);
+
+  if (!nb2Data) {
+    document.getElementById('proj-nb2-wr').textContent = '—';
+    document.getElementById('proj-nb2-sub').textContent = 'Push nobot_v2_log.json to enable';
+    document.getElementById('proj-nb2-table').innerHTML = '<div class="empty">NoBot V2 log not in repo yet</div>';
+  }
+}
+
 // ── Load data ─────────────────────────────────────────────
 function loadData() {
   var dot = document.getElementById('status-dot');
@@ -1138,13 +1276,13 @@ function loadData() {
     if (results[2]) {
       renderNBV2(results[2], results[1]);
     } else {
-      // V2 log not in repo yet — show placeholder
       document.getElementById('nb2-bank').textContent = 'Not live yet';
       document.getElementById('nb2-pnl').textContent  = '—';
       document.getElementById('nb2-wr').textContent   = '—';
       document.getElementById('nb2-open').textContent = '—';
       document.getElementById('nb2-compare-table').innerHTML = '<div class="empty">Push nobot_v2_log.json to the repo to enable V2 tracking</div>';
     }
+    renderProjections(results[0], results[1], results[2]);
 
     var now = new Date();
     dot.className    = 'status-dot';
