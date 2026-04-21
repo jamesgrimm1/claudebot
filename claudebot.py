@@ -827,6 +827,7 @@ def fetch_markets_for_tier(tier_num):
             "category":       cat,
             "closes":         end_dt.isoformat(),
             "closes_in_days": round(cid, 2),
+            "clobTokenIds":   m.get("clobTokenIds", []),
         })
 
     markets.sort(key=lambda x: x["closes_in_days"])
@@ -1014,6 +1015,118 @@ def ddg_search(query, max_results=5):
         return []
 
 
+# ── Polymarket CLOB — live order book depth ───────────────
+# Public endpoint, no auth required
+CLOB_URL = "https://clob.polymarket.com"
+
+def get_order_book_depth(market):
+    """
+    Fetch live CLOB order book for a market using its clobTokenIds.
+    Returns a formatted string summarising depth, spread, and informed-money signals.
+    No authentication required — fully public endpoint.
+
+    Signals we extract:
+    - Total bid/ask depth (liquidity available)
+    - Spread (tighter = more efficient/sharper market)
+    - Bid wall: large block at a single price (informed money signal)
+    - Book imbalance: bid depth vs ask depth ratio
+    """
+    clob_ids = market.get("clobTokenIds") or market.get("clob_token_ids") or []
+    if not clob_ids:
+        # Try to parse from string if stored as JSON string
+        raw = market.get("clobTokenIds", "[]")
+        if isinstance(raw, str):
+            try:
+                import json as _json
+                clob_ids = _json.loads(raw)
+            except Exception:
+                clob_ids = []
+
+    if not clob_ids:
+        return None
+
+    # Fetch order book for the YES token (index 0)
+    token_id = clob_ids[0] if isinstance(clob_ids, list) else clob_ids
+    try:
+        r = requests.get(
+            f"{CLOB_URL}/book?token_id={token_id}",
+            timeout=6
+        )
+        if r.status_code != 200:
+            return None
+
+        book = r.json()
+        bids = book.get("bids", [])  # [{price, size}, ...]
+        asks = book.get("asks", [])
+
+        if not bids and not asks:
+            return None
+
+        # Compute depth
+        bid_depth  = sum(float(b.get("size", 0)) for b in bids)
+        ask_depth  = sum(float(a.get("size", 0)) for a in asks)
+        total_depth = bid_depth + ask_depth
+
+        # Best bid/ask and spread
+        best_bid = float(bids[0]["price"]) if bids else 0
+        best_ask = float(asks[0]["price"]) if asks else 1
+        spread   = round(best_ask - best_bid, 4)
+
+        # Detect bid wall — single price level with >30% of total bid depth
+        bid_wall = None
+        for b in bids[:5]:
+            sz = float(b.get("size", 0))
+            if bid_depth > 0 and sz / bid_depth > 0.30:
+                bid_wall = f"{float(b['price']):.2f}¢ (${sz:,.0f})"
+                break
+
+        # Book imbalance
+        imbalance = "balanced"
+        if bid_depth + ask_depth > 0:
+            bid_pct = bid_depth / (bid_depth + ask_depth)
+            if bid_pct > 0.70:
+                imbalance = f"bid-heavy ({bid_pct:.0%} bids) — buyers dominating"
+            elif bid_pct < 0.30:
+                imbalance = f"ask-heavy ({1-bid_pct:.0%} asks) — sellers dominating"
+
+        # Signal interpretation
+        signals = []
+        if total_depth < 500:
+            signals.append("⚠️ thin book (<$500 depth) — price easily moved, be cautious")
+        elif total_depth < 2000:
+            signals.append("moderate liquidity ($500-2k depth)")
+        else:
+            signals.append(f"good liquidity (${total_depth:,.0f} total depth)")
+
+        if spread > 0.05:
+            signals.append(f"wide spread ({spread:.3f}) — inefficient market, potential edge")
+        elif spread < 0.02:
+            signals.append(f"tight spread ({spread:.3f}) — efficient market, sharps present")
+
+        if bid_wall:
+            signals.append(f"bid wall at {bid_wall} — possible informed support")
+
+        log(f"     📊 CLOB depth: ${total_depth:,.0f} | spread: {spread:.3f} | {imbalance}")
+
+        return (
+            f"\nLIVE ORDER BOOK (CLOB, fetched now):\n"
+            f"  Best bid:    {best_bid:.3f} YES  |  Best ask: {best_ask:.3f} YES\n"
+            f"  Spread:      {spread:.3f}\n"
+            f"  Bid depth:   ${bid_depth:,.0f}\n"
+            f"  Ask depth:   ${ask_depth:,.0f}\n"
+            f"  Total depth: ${total_depth:,.0f}\n"
+            f"  Imbalance:   {imbalance}\n"
+            f"  Signals:     {' | '.join(signals)}\n"
+            f"  {'Bid wall: ' + bid_wall if bid_wall else ''}\n"
+            f"Note: Thin book or tight spread with heavy bids = sharp money present = "
+            f"higher bar required for NO entry. Wide spread = potential inefficiency.\n"
+        )
+
+    except Exception as e:
+        log(f"     ⚠️  CLOB depth fetch failed: {e}")
+        return None
+
+
 # ── Coin slug mapping ─────────────────────────────────────
 COIN_MAP = {
     "bitcoin":  {"binance": "BTCUSDT",  "coingecko": "bitcoin"},
@@ -1159,12 +1272,19 @@ def research_all_markets(markets):
         if get_category(market["question"]) == "crypto":
             live_price = get_crypto_price(market["question"])
 
+        # Fetch live CLOB order book depth
+        book_depth = get_order_book_depth(market)
+
         query, raw = search_market(market)
         brief = haiku_interpret(client, market, query, raw)
 
         # Prepend live price data
         if live_price:
             brief = live_price + "\n" + brief
+
+        # Append CLOB order book depth
+        if book_depth:
+            brief = brief + book_depth
 
         # Append graph context (patterns from trade history)
         if graph_context:
@@ -1329,7 +1449,12 @@ def opus_analyze_short_medium(markets, research, state, tier_num):
         f"     28°C') — these have high variance. Prefer direction/threshold markets\n"
         f"     ('above 28°C', 'below 10°C', '25°C or higher') which have a wider range\n"
         f"     of winning outcomes. Only take exact-integer weather bets with very high\n"
-        f"     confidence (≥88%) AND strong forecast data.\n\n"
+        f"     confidence (≥88%) AND strong forecast data.\n"
+        f"  ❌ Markets where LIVE ORDER BOOK shows tight spread (<0.02) AND heavy bid\n"
+        f"     depth — this signals sharp/informed money has already priced the market\n"
+        f"     efficiently. Require extra edge (≥5 points above min) before entering.\n"
+        f"  ✅ Markets with wide spread (>0.05) and thin book — potential inefficiency\n"
+        f"     that hasn't been arbed away yet.\n\n"
         f"0 trades beats a bad trade.\n\n"
         f"PROBABILITIES: report as YES probability (0-100).\n"
         f"CONFIDENCE: ≥{tcfg['min_confidence']}% required.\n"
