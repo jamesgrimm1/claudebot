@@ -358,7 +358,7 @@ def haiku_news_screen(markets, headlines):
 def fetch_markets():
     """
     Fetch markets where YES is priced at 75-95¢ (NO at 5-25¢)
-    closing within 2-12 hours.
+    closing within 2h to 7 days.
     """
     now = datetime.now(timezone.utc)
     markets = []
@@ -370,7 +370,7 @@ def fetch_markets():
             params={
                 "active":     "true",
                 "closed":     "false",
-                "limit":      1000,
+                "limit":      10000,
                 "order":      "endDate",
                 "ascending":  "true",
             },
@@ -404,7 +404,7 @@ def fetch_markets():
                 skipped += 1
                 continue
 
-            # Time filter: must close within 2-12 hours
+            # Time filter: must close within 2h to 7 days
             end_str = m.get("endDate") or m.get("endDateIso") or ""
             if not end_str:
                 continue
@@ -451,7 +451,7 @@ def fetch_markets():
         return []
 
     markets.sort(key=lambda x: x["closes_in_days"])
-    log(f"✅ {len(markets)} NearCertain candidates (YES 75-95¢, closing 2-12h)")
+    log(f"✅ {len(markets)} NearCertain candidates (YES 75-95¢, closing 2h-7d)")
     return markets
 
 # ─────────────────────────────────────────────────────────
