@@ -359,28 +359,34 @@ def fetch_markets():
     """
     Fetch markets where YES is priced at 75-95¢ (NO at 5-25¢)
     closing within 2h to 7 days.
+    Uses pagination to fetch up to 10,000 markets.
     """
-    now = datetime.now(timezone.utc)
-    markets = []
-    skipped = 0
+    now       = datetime.now(timezone.utc)
+    markets   = []
+    skipped   = 0
+    MAX_FETCH = 10000
+    offset    = 0
+    limit     = 500
+    raw_markets = []
 
     try:
-        r = requests.get(
-            "https://gamma-api.polymarket.com/markets",
-            params={
-                "active":     "true",
-                "closed":     "false",
-                "limit":      10000,
-                "order":      "endDate",
-                "ascending":  "true",
-            },
-            timeout=15
-        )
-        if r.status_code != 200:
-            log(f"⚠️  Gamma API error: {r.status_code}")
-            return []
+        while len(raw_markets) < MAX_FETCH:
+            r = requests.get(
+                f"https://gamma-api.polymarket.com/markets"
+                f"?active=true&closed=false&limit={limit}&offset={offset}",
+                timeout=15
+            )
+            if r.status_code != 200:
+                log(f"⚠️  Gamma API error: {r.status_code}")
+                break
+            page = r.json()
+            if not page:
+                break
+            raw_markets.extend(page)
+            if len(page) < limit:
+                break
+            offset += limit
 
-        raw_markets = r.json()
         log(f"   📄 Fetched {len(raw_markets)} total markets")
 
         for m in raw_markets:
