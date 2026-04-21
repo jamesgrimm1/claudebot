@@ -1,750 +1,410 @@
 #!/usr/bin/env python3
 """
 backtest_nearcertain.py
-Backtest the NearCertain strategy against real Polymarket resolved markets.
-
-Strategy: Buy NO when YES is priced 75-95¢ (market thinks event is near-certain).
-Thesis: Prediction markets systematically overprice near-certain events.
-
-Data source: Polymarket Gamma API (resolved markets) + CLOB price history
-Entry timing tested: T-7d, T-3d, T-1d before market close
-Target: 500-1000 simulated trades
-
+Downloads the Jon-Becker Polymarket dataset and backtests the NearCertain strategy.
+Strategy: Buy NO when YES is priced 75-95c.
+Run: python backtest_nearcertain.py
 Output: backtest_nearcertain_<timestamp>.html
 """
 
-import json
-import math
-import os
-import sys
-import time
-import requests
-import statistics
-from datetime import datetime, timezone, timedelta
+import os, sys, json, math, time, statistics, subprocess, urllib.request
+from datetime import datetime, timezone
 from collections import defaultdict
+from pathlib import Path
 
-# ─────────────────────────────────────────────────────────
-#  CONFIG
-# ─────────────────────────────────────────────────────────
-TARGET_TRADES   = 800       # aim for ~800 trades across all strategies/timings
-MARKET_BATCH    = 200       # markets to analyse — more = more trades
-YES_MIN         = 75        # NearCertain entry: YES at least 75¢
-YES_MAX         = 95        # NearCertain entry: YES at most 95¢
-FLAT_STAKE      = 10.0      # $10 flat stake for comparison
-STARTING_BR     = 1000.0   # for Kelly simulation
-MIN_VOLUME      = 2000      # minimum market volume
-BLOCKED_CATS    = {"sports", "crypto"}
-ENTRY_WINDOWS   = [1, 3, 7]  # days before close to simulate entry
-
-GAMMA_URL = "https://gamma-api.polymarket.com"
-CLOB_URL  = "https://clob.polymarket.com"
-
-# ─────────────────────────────────────────────────────────
-#  HELPERS
-# ─────────────────────────────────────────────────────────
+DATA_DIR    = Path("data/polymarket")
+MARKETS_DIR = DATA_DIR / "markets"
+TRADES_DIR  = DATA_DIR / "trades"
+DATA_URL    = "https://data.jbecker.dev/data.tar.zst"
+FLAT_STAKE  = 10.0
+STARTING_BR = 1000.0
+YES_MIN, YES_MAX = 75, 95
+MIN_VOLUME  = 2000
+BLOCKED_CATS = {"sports", "crypto"}
+ENTRY_WINDOWS = [1, 3, 7]
 
 def log(msg):
-    ts = datetime.now(timezone.utc).strftime("%H:%M:%S")
-    print(f"[{ts}] {msg}", flush=True)
+    print(f"[{datetime.now(timezone.utc).strftime('%H:%M:%S')}] {msg}", flush=True)
 
-def get_category(question):
-    q = question.lower()
-    if any(k in q for k in ["bitcoin","btc","ethereum","eth","crypto","solana","bnb","xrp","doge"]):
+def get_category(q):
+    q = (q or "").lower()
+    if any(k in q for k in ["bitcoin","btc","ethereum","eth","crypto","solana","bnb","xrp"]):
         return "crypto"
-    if any(k in q for k in ["temperature","weather","rain","snow","°c","°f","celsius","forecast"]):
+    if any(k in q for k in ["temperature","weather","rain","snow","celsius","forecast","°c","°f"]):
         return "weather"
-    if any(k in q for k in ["election","vote","president","congress","senate","trump","democrat","republican"]):
+    if any(k in q for k in ["election","vote","president","senate","trump","democrat","republican","parliament"]):
         return "politics"
-    if any(k in q for k in ["gdp","inflation","cpi","fed","fomc","rate","earnings","revenue","stock","nasdaq","s&p","tesla","apple","nvidia","amazon"]):
+    if any(k in q for k in ["gdp","inflation","cpi","fed","fomc","rate","earnings","stock","nasdaq","s&p","tesla","apple","nvidia"]):
         return "economics"
-    if any(k in q for k in ["goal","win","score","match","game","nba","nfl","fifa","premier league","championship","tournament"]):
+    if any(k in q for k in ["goal","win","score","match","game","nba","nfl","fifa","league","tournament","sport"]):
         return "sports"
     if any(k in q for k in ["outbreak","cases","disease","virus","measles","covid","flu"]):
         return "health"
     return "other"
 
-def safe_get(url, params=None, retries=3):
-    for i in range(retries):
-        try:
-            r = requests.get(url, params=params, timeout=12)
-            if r.status_code == 200:
-                return r.json()
-            time.sleep(0.5)
-        except Exception as e:
-            if i == retries - 1:
-                return None
-            time.sleep(1)
-    return None
+def download_dataset():
+    if MARKETS_DIR.exists() and any(MARKETS_DIR.glob("*.parquet")):
+        log(f"Dataset already present ({len(list(MARKETS_DIR.glob('*.parquet')))} market files)")
+        return True
+    log(f"Downloading dataset from {DATA_URL}...")
+    archive = Path("data.tar.zst")
+    try:
+        urllib.request.urlretrieve(DATA_URL, archive)
+        log(f"  Downloaded {archive.stat().st_size/1024/1024:.0f} MB")
+        Path("data").mkdir(exist_ok=True)
+        r = subprocess.run(["tar", "-xf", str(archive), "-C", "data"], capture_output=True, text=True)
+        if r.returncode != 0:
+            log(f"  tar failed: {r.stderr[:200]}")
+            return False
+        archive.unlink(missing_ok=True)
+        log("  Extracted successfully")
+        return True
+    except Exception as e:
+        log(f"  Failed: {e}")
+        return False
 
-# ─────────────────────────────────────────────────────────
-#  DATA COLLECTION
-# ─────────────────────────────────────────────────────────
+def load_data():
+    try:
+        import duckdb
+    except ImportError:
+        subprocess.run([sys.executable, "-m", "pip", "install", "duckdb", "pyarrow", "-q"])
+        import duckdb
 
-def fetch_resolved_markets(target=MARKET_BATCH):
-    """Fetch resolved binary markets from Gamma API."""
-    log(f"Fetching resolved markets (target: {target})...")
-    markets = []
-    offset  = 0
-    limit   = 100
+    con = duckdb.connect()
+    mfiles = list(MARKETS_DIR.glob("*.parquet"))
+    tfiles = list(TRADES_DIR.glob("*.parquet")) if TRADES_DIR.exists() else []
+    log(f"Market parquet files: {len(mfiles)}, Trade parquet files: {len(tfiles)}")
 
-    while len(markets) < target:
-        data = safe_get(
-            f"{GAMMA_URL}/markets",
-            params={
-                "closed":     "true",
-                "active":     "false",
-                "limit":      limit,
-                "offset":     offset,
-                "order":      "endDate",
-                "ascending":  "false",   # most recently resolved first
-            }
-        )
-        if not data:
-            break
+    if not mfiles:
+        return None, None
 
-        for m in data:
-            # Must be resolved
-            prices = m.get("outcomePrices")
-            if not prices:
-                continue
-            try:
-                p = json.loads(prices) if isinstance(prices, str) else prices
-                yes_final = float(p[0])
-                no_final  = float(p[1])
-            except Exception:
-                continue
+    # Inspect schema
+    sample = con.execute(f"SELECT * FROM '{mfiles[0]}' LIMIT 1").df()
+    log(f"Market columns: {list(sample.columns)}")
 
-            # Must have resolved cleanly (YES=1 or NO=1)
-            resolved_yes = yes_final >= 0.99
-            resolved_no  = no_final  >= 0.99
-            if not (resolved_yes or resolved_no):
-                continue
+    # Load resolved markets
+    mdf = con.execute(f"SELECT * FROM '{MARKETS_DIR}/*.parquet' LIMIT 10000").df()
+    log(f"Loaded {len(mdf)} markets")
 
-            # Must have volume
-            vol = float(m.get("volume", 0))
-            if vol < MIN_VOLUME:
-                continue
+    tdf = None
+    if tfiles:
+        tsample = con.execute(f"SELECT * FROM '{tfiles[0]}' LIMIT 1").df()
+        log(f"Trade columns: {list(tsample.columns)}")
+        tdf = con.execute(f"SELECT * FROM '{TRADES_DIR}/*.parquet' LIMIT 3000000").df()
+        log(f"Loaded {len(tdf)} trades")
 
-            # Must have clob token IDs for price history
-            # Gamma API uses different field names depending on market age
-            clob_ids = (
-                m.get("clobTokenIds") or
-                m.get("clob_token_ids") or
-                m.get("tokens") or
-                []
-            )
-            if isinstance(clob_ids, str):
+    return mdf, tdf
+
+def run_backtest(mdf, tdf):
+    log("Running backtest...")
+    trades = []
+    stats  = defaultdict(int)
+    cols   = list(mdf.columns)
+
+    def col(*candidates):
+        for c in candidates:
+            if c in cols: return c
+        return None
+
+    q_col  = col("question","title","market_question")
+    res_col= col("outcome","resolved_outcome","winner","result")
+    p_col  = col("bestAsk","best_ask","outcomePrices","price","lastTradePrice")
+    v_col  = col("volume","volume24hr","liquidity")
+    e_col  = col("endDate","end_date","endDateIso","closedTime","close_time")
+    id_col = col("id","market_id","condition_id","conditionId")
+    tk_col = col("clobTokenIds","clob_token_ids","token_id")
+
+    log(f"  Columns mapped: q={q_col} res={res_col} price={p_col} vol={v_col} end={e_col}")
+
+    # Build price lookup from trades
+    price_lookup = defaultdict(list)
+    if tdf is not None:
+        tcols = list(tdf.columns)
+        tt    = next((c for c in ["asset_id","token_id","makerAssetId","market"] if c in tcols), None)
+        tp    = next((c for c in ["price","yes_price","p"] if c in tcols), None)
+        ts    = next((c for c in ["timestamp","time","created_at","t"] if c in tcols), None)
+        if tt and tp and ts:
+            log(f"  Building price lookup (token={tt}, price={tp}, time={ts})...")
+            for _, row in tdf.iterrows():
+                tid = str(row.get(tt,""))
+                p   = row.get(tp)
+                t   = row.get(ts)
+                if tid and p is not None and t is not None:
+                    price_lookup[tid].append((float(t), float(p)))
+            log(f"  Price lookup: {len(price_lookup)} tokens")
+
+    for _, m in mdf.iterrows():
+        question = str(m.get(q_col,"") if q_col else "")
+        cat      = get_category(question)
+
+        if cat in BLOCKED_CATS:
+            stats["skip_cat"] += 1
+            continue
+
+        vol = 0
+        if v_col:
+            try: vol = float(m.get(v_col,0) or 0)
+            except: pass
+        if vol < MIN_VOLUME:
+            stats["skip_vol"] += 1
+            continue
+
+        # Resolution
+        resolved_yes = None
+        if res_col:
+            r = str(m.get(res_col,"")).lower()
+            if r in ("yes","1","true","win"): resolved_yes = True
+            elif r in ("no","0","false","lose"): resolved_yes = False
+        if resolved_yes is None:
+            op = m.get("outcomePrices")
+            if op:
                 try:
-                    clob_ids = json.loads(clob_ids)
-                except Exception:
-                    clob_ids = []
-            # tokens field returns list of dicts with token_id
-            if clob_ids and isinstance(clob_ids[0], dict):
-                clob_ids = [t.get("token_id", t.get("tokenId", "")) for t in clob_ids]
-            clob_ids = [c for c in clob_ids if c]
-
-            if not clob_ids:
-                # Debug: show what fields are available on first skip
-                if len(markets) < 3:
-                    log(f"  DEBUG no clob_ids — available keys: {list(m.keys())}")
-                continue
-
-            # Parse close date
-            end_str = m.get("endDate") or m.get("endDateIso") or ""
-            if not end_str:
-                continue
-            try:
-                end_dt = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
-            except Exception:
-                continue
-
-            cat = get_category(m.get("question", ""))
-
-            markets.append({
-                "id":           str(m.get("id", "")),
-                "question":     m.get("question", ""),
-                "category":     cat,
-                "volume":       vol,
-                "end_dt":       end_dt,
-                "clob_ids":     clob_ids,
-                "resolved_yes": resolved_yes,
-                "yes_final":    yes_final,
-            })
-
-            if len(markets) >= target:
-                break
-
-        if len(data) < limit:
-            break
-        offset += limit
-        time.sleep(0.2)
-
-    log(f"  Got {len(markets)} resolved markets")
-    return markets
-
-
-def fetch_price_at_days_before(token_id, end_dt, days_before):
-    """
-    Fetch YES token price approximately N days before market close.
-    Uses CLOB prices-history endpoint with interval=max, fidelity=720 (12h).
-    Note: fidelity < 720 returns empty for resolved markets (Polymarket limitation).
-    Returns price (0-1) or None if not available.
-    """
-    target_dt  = end_dt - timedelta(days=days_before)
-    target_ts  = int(target_dt.timestamp())
-
-    data = safe_get(
-        f"{CLOB_URL}/prices-history",
-        params={
-            "market":    token_id,
-            "interval":  "max",
-            "fidelity":  720,   # 12h in minutes — minimum that works for resolved markets
-        }
-    )
-
-    if not data:
-        return None
-
-    history = data.get("history", [])
-    if not history:
-        return None
-
-    # Find the price closest to our target timestamp
-    best = None
-    best_diff = float("inf")
-    for point in history:
-        ts = point.get("t", 0)
-        p  = point.get("p")
-        if p is None:
-            continue
-        diff = abs(ts - target_ts)
-        if diff < best_diff:
-            best_diff = diff
-            best = float(p)
-
-    # Reject if the closest point is more than 4 days away from target
-    if best is not None and best_diff > 4 * 86400:
-        return None
-
-    return best
-
-# ─────────────────────────────────────────────────────────
-#  BACKTEST ENGINE
-# ─────────────────────────────────────────────────────────
-
-def run_backtest(markets):
-    """
-    Simulate NearCertain trades at T-7d, T-3d, T-1d entry windows.
-    Returns list of trade records.
-    """
-    log("Running NearCertain backtest simulation...")
-    trades           = []
-    skip_category    = 0
-    skip_no_token    = 0
-    no_history       = 0
-    wrong_range      = 0
-    now              = datetime.now(timezone.utc)
-
-    # Debug: show first market's fields
-    if markets:
-        m0 = markets[0]
-        log(f"  DEBUG first market: end_dt={m0['end_dt']} days_ago={(now-m0['end_dt']).days} cat={m0['category']} clob_ids={m0['clob_ids'][:1] if m0['clob_ids'] else 'EMPTY'}")
-
-    for i, m in enumerate(markets):
-        if i % 10 == 0:
-            log(f"  Processing market {i+1}/{len(markets)} | trades so far: {len(trades)}...")
-
-        # Skip blocked categories
-        if m["category"] in BLOCKED_CATS:
-            skip_category += 1
+                    p = json.loads(op) if isinstance(op,str) else op
+                    if float(p[0])>=0.99: resolved_yes = True
+                    elif float(p[1])>=0.99: resolved_yes = False
+                except: pass
+        if resolved_yes is None:
+            stats["skip_no_res"] += 1
             continue
 
-        yes_token = m["clob_ids"][0] if m["clob_ids"] else None
-        if not yes_token:
-            skip_no_token += 1
-            continue
+        # End timestamp
+        end_ts = None
+        if e_col:
+            ev = m.get(e_col)
+            if ev:
+                try:
+                    if isinstance(ev,(int,float)): end_ts = float(ev)
+                    else:
+                        dt = datetime.fromisoformat(str(ev).replace("Z","+00:00"))
+                        end_ts = dt.timestamp()
+                except: pass
 
-        # Try each entry window
+        # Token ID
+        token_id = None
+        if tk_col:
+            t = m.get(tk_col)
+            if t:
+                try:
+                    if isinstance(t,str) and t.startswith("["):
+                        ids = json.loads(t)
+                        token_id = ids[0] if ids else None
+                    elif isinstance(t,(list,tuple)):
+                        token_id = t[0] if t else None
+                    else:
+                        token_id = str(t)
+                except: token_id = str(t)
+
+        market_id = str(m.get(id_col,"") if id_col else "")
+
         for days_before in ENTRY_WINDOWS:
-            # Market must have been open at entry time
-            if (now - m["end_dt"]).days < days_before:
-                continue
+            yes_price = None
 
-            # Fetch YES price at entry time
-            yes_price = fetch_price_at_days_before(yes_token, m["end_dt"], days_before)
+            # Try trade history
+            if token_id and end_ts and price_lookup.get(str(token_id)):
+                target = end_ts - days_before * 86400
+                pts    = price_lookup[str(token_id)]
+                best   = min(pts, key=lambda x: abs(x[0]-target))
+                if abs(best[0]-target) < 4*86400:
+                    p = best[1]
+                    yes_price = p if p<=1 else p/100
+
+            # Fallback to market price
+            if yes_price is None and p_col:
+                raw = m.get(p_col)
+                if raw:
+                    try:
+                        if isinstance(raw,str) and raw.startswith("["):
+                            prices = json.loads(raw)
+                            yes_price = float(prices[0])
+                        else:
+                            yes_price = float(raw)
+                        if yes_price > 1: yes_price /= 100
+                    except: pass
 
             if yes_price is None:
-                no_history += 1
+                if days_before == ENTRY_WINDOWS[0]:
+                    stats["no_price"] += 1
                 continue
 
-            yes_pct = round(yes_price * 100, 1)
-            no_pct  = round((1 - yes_price) * 100, 1)
+            yp = round(yes_price*100, 1)
+            np_ = round((1-yes_price)*100, 1)
 
-            # NearCertain filter: YES must be 75-95¢ at entry
-            if not (YES_MIN <= yes_pct <= YES_MAX):
-                wrong_range += 1
+            if not (YES_MIN <= yp <= YES_MAX):
+                if days_before == ENTRY_WINDOWS[0]:
+                    stats["wrong_range"] += 1
                 continue
 
-            # Simulate NO trade
-            won = not m["resolved_yes"]
+            if np_ <= 0: continue
 
-            # P&L calculation
-            if won:
-                payout = FLAT_STAKE * 100 / no_pct
-                pnl    = round(payout - FLAT_STAKE, 2)
-            else:
-                pnl = -FLAT_STAKE
+            won = not resolved_yes
+            pnl = round(FLAT_STAKE*100/np_ - FLAT_STAKE, 2) if won else -FLAT_STAKE
+
+            try:
+                from datetime import datetime as dt
+                end_date = dt.fromtimestamp(end_ts, tz=timezone.utc).strftime("%Y-%m") if end_ts else "unknown"
+            except: end_date = "unknown"
 
             trades.append({
-                "market_id":    m["id"],
-                "market":       m["question"][:80],
-                "category":     m["category"],
-                "entry_days":   days_before,
-                "yes_entry":    yes_pct,
-                "no_entry":     no_pct,
-                "won":          won,
-                "pnl":          pnl,
-                "volume":       m["volume"],
-                "end_dt":       m["end_dt"].strftime("%Y-%m-%d"),
+                "market_id":  market_id,
+                "market":     question[:80],
+                "category":   cat,
+                "entry_days": days_before,
+                "yes_entry":  yp,
+                "no_entry":   np_,
+                "won":        won,
+                "pnl":        pnl,
+                "volume":     vol,
+                "end_dt":     end_date,
             })
 
-            time.sleep(0.05)
-
     log(f"  Generated {len(trades)} trades")
-    log(f"  Skip category blocked:  {skip_category}")
-    log(f"  Skip no CLOB token:     {skip_no_token}")
-    log(f"  No price history:       {no_history}")
-    log(f"  Wrong price range:      {wrong_range}")
+    for k,v in stats.items():
+        if v: log(f"  {k}: {v}")
     return trades
 
-# ─────────────────────────────────────────────────────────
-#  STATISTICS
-# ─────────────────────────────────────────────────────────
-
 def calc_stats(trades):
-    if not trades:
-        return {}
-
-    won    = [t for t in trades if t["won"]]
-    lost   = [t for t in trades if not t["won"]]
-    n      = len(trades)
-    wr     = len(won) / n * 100
-    total_pnl = sum(t["pnl"] for t in trades)
-
-    gross_wins  = sum(t["pnl"] for t in won) if won else 0
-    gross_loss  = abs(sum(t["pnl"] for t in lost)) if lost else 0.001
-    pf          = round(gross_wins / gross_loss, 2) if gross_loss else float("inf")
-
-    avg_entry   = statistics.mean(t["no_entry"] for t in trades)
-    implied     = round(avg_entry, 1)
-    edge        = round(wr - implied, 1)
-
-    # Daily P&L for Sharpe
-    daily = defaultdict(float)
-    for t in trades:
-        daily[t["end_dt"]] += t["pnl"]
-    daily_vals = list(daily.values())
-    if len(daily_vals) > 1:
-        avg_d  = statistics.mean(daily_vals)
-        std_d  = statistics.stdev(daily_vals)
-        sharpe = round(avg_d / std_d * math.sqrt(252), 2) if std_d else 0
-    else:
-        sharpe = 0
-
-    # Max drawdown
-    equity = STARTING_BR
-    peak   = equity
-    max_dd = 0
+    if not trades: return {}
+    won  = [t for t in trades if t["won"]]
+    lost = [t for t in trades if not t["won"]]
+    n    = len(trades)
+    wr   = len(won)/n*100
+    total= sum(t["pnl"] for t in trades)
+    gw   = sum(t["pnl"] for t in won) if won else 0
+    gl   = abs(sum(t["pnl"] for t in lost)) if lost else 0.001
+    pf   = round(gw/gl, 2)
+    avg  = statistics.mean(t["no_entry"] for t in trades)
+    edge = round(wr-avg, 1)
+    daily= defaultdict(float)
+    for t in trades: daily[t["end_dt"]] += t["pnl"]
+    dv   = list(daily.values())
+    sharpe = round(statistics.mean(dv)/statistics.stdev(dv)*math.sqrt(252),2) if len(dv)>1 and statistics.stdev(dv) else 0
+    equity = STARTING_BR; peak = STARTING_BR; max_dd = 0
     for t in sorted(trades, key=lambda x: x["end_dt"]):
         equity += t["pnl"]
-        if equity > peak:
-            peak = equity
-        dd = (peak - equity) / peak * 100
-        if dd > max_dd:
-            max_dd = dd
-
-    # Kelly ROI (half-Kelly, capped)
-    p  = wr / 100
-    b  = (100 / avg_entry) - 1 if avg_entry > 0 else 0
-    if b > 0 and p > 0:
-        full_kelly = (b * p - (1 - p)) / b
-        half_kelly = max(0, full_kelly * 0.5)
-        half_kelly = min(half_kelly, 0.15)   # cap at 15%
-        # Simulate Kelly growth
-        br = STARTING_BR
-        for t in sorted(trades, key=lambda x: x["end_dt"]):
-            stake = min(br * half_kelly, br * 0.15)
-            if t["won"]:
-                br += stake * b
-            else:
-                br -= stake
-        kelly_roi = round((br - STARTING_BR) / STARTING_BR * 100, 1)
-    else:
-        kelly_roi = 0
-
-    return {
-        "n":         n,
-        "won":       len(won),
-        "lost":      len(lost),
-        "wr":        round(wr, 1),
-        "implied":   implied,
-        "edge":      edge,
-        "pf":        pf,
-        "flat_pnl":  round(total_pnl, 2),
-        "max_dd":    round(max_dd, 1),
-        "sharpe":    sharpe,
-        "kelly_roi": kelly_roi,
-    }
+        if equity>peak: peak=equity
+        dd=(peak-equity)/peak*100 if peak>0 else 0
+        if dd>max_dd: max_dd=dd
+    p=wr/100; b=(100/avg)-1 if avg>0 else 0
+    kelly_roi=0
+    if b>0 and p>0:
+        hk=max(0,min(((b*p-(1-p))/b)*0.5,0.15))
+        br=STARTING_BR
+        for t in sorted(trades,key=lambda x:x["end_dt"]):
+            s=min(br*hk,br*0.15)
+            br=br+s*b if t["won"] else br-s
+        kelly_roi=round((br-STARTING_BR)/STARTING_BR*100,1)
+    return {"n":n,"won":len(won),"lost":len(lost),"wr":round(wr,1),"implied":round(avg,1),
+            "edge":edge,"pf":pf,"flat_pnl":round(total,2),"max_dd":round(max_dd,1),"sharpe":sharpe,"kelly_roi":kelly_roi}
 
 def stats_by_entry(trades):
-    result = {}
-    for days in ENTRY_WINDOWS:
-        sub = [t for t in trades if t["entry_days"] == days]
-        if sub:
-            result[f"T-{days}d"] = calc_stats(sub)
-    return result
+    return {f"T-{d}d": calc_stats([t for t in trades if t["entry_days"]==d])
+            for d in ENTRY_WINDOWS if [t for t in trades if t["entry_days"]==d]}
 
-def stats_by_category(trades, entry_days=1):
-    sub = [t for t in trades if t["entry_days"] == entry_days]
-    result = {}
-    cats = set(t["category"] for t in sub)
-    for cat in cats:
-        g = [t for t in sub if t["category"] == cat]
-        if len(g) >= 3:
-            result[cat] = calc_stats(g)
-    return result
+def stats_by_category(trades, ed=1):
+    sub=[ t for t in trades if t["entry_days"]==ed]
+    return {c: calc_stats([t for t in sub if t["category"]==c])
+            for c in set(t["category"] for t in sub)
+            if len([t for t in sub if t["category"]==c])>=3}
 
-def stats_by_price_band(trades, entry_days=1):
-    """Break down WR by YES entry price band."""
-    sub = [t for t in trades if t["entry_days"] == entry_days]
-    bands = [
-        ("75-80¢ YES", 75, 80),
-        ("80-85¢ YES", 80, 85),
-        ("85-90¢ YES", 85, 90),
-        ("90-95¢ YES", 90, 95),
-    ]
-    result = {}
-    for label, lo, hi in bands:
-        g = [t for t in sub if lo <= t["yes_entry"] < hi]
-        if len(g) >= 3:
-            result[label] = calc_stats(g)
-    return result
+def stats_by_band(trades, ed=1):
+    sub=[t for t in trades if t["entry_days"]==ed]
+    return {l: calc_stats([t for t in sub if lo<=t["yes_entry"]<hi])
+            for l,lo,hi in [("75-80¢",75,80),("80-85¢",80,85),("85-90¢",85,90),("90-95¢",90,95)]
+            if len([t for t in sub if lo<=t["yes_entry"]<hi])>=3}
 
-def equity_curve(trades, entry_days=1):
-    sub = sorted(
-        [t for t in trades if t["entry_days"] == entry_days],
-        key=lambda x: x["end_dt"]
-    )
-    equity = STARTING_BR
-    points = [equity]
-    for t in sub:
-        equity += t["pnl"]
-        points.append(round(equity, 2))
-    return points
+def equity_curve(trades, ed=1):
+    sub=sorted([t for t in trades if t["entry_days"]==ed],key=lambda x:x["end_dt"])
+    br=STARTING_BR; pts=[br]
+    for t in sub: br+=t["pnl"]; pts.append(round(br,2))
+    return pts
 
-# ─────────────────────────────────────────────────────────
-#  HTML REPORT
-# ─────────────────────────────────────────────────────────
-
-def generate_html(trades, overall, by_entry, by_cat, by_price, eq_curve, ts):
-    n_markets = len(set(t["market_id"] for t in trades))
-
-    best_entry = max(by_entry.items(), key=lambda x: x[1].get("edge", 0)) if by_entry else ("—", {})
-    best_entry_label = best_entry[0]
-    best_edge = best_entry[1].get("edge", 0)
-    best_pf   = best_entry[1].get("pf", 0)
-    best_pnl  = best_entry[1].get("flat_pnl", 0)
-
-    def row_color(wr):
-        if wr >= 70: return "#1a3a1a"
-        if wr >= 60: return "#2a3a1a"
-        if wr >= 50: return "#3a3a1a"
-        return "#3a1a1a"
-
+def gen_html(trades, overall, by_entry, by_cat, by_band, eq, ts):
+    nm=len(set(t["market_id"] for t in trades))
+    be=max(by_entry.items(),key=lambda x:x[1].get("edge",0)) if by_entry else ("—",{})
     def badge(wr):
-        if wr >= 70: return f'<span style="color:#4ade80;font-weight:bold">{wr:.0f}%</span>'
-        if wr >= 60: return f'<span style="color:#a3e635">{wr:.0f}%</span>'
-        if wr >= 50: return f'<span style="color:#facc15">{wr:.0f}%</span>'
+        if wr>=70: return f'<span style="color:#4ade80;font-weight:bold">{wr:.0f}%</span>'
+        if wr>=60: return f'<span style="color:#a3e635">{wr:.0f}%</span>'
+        if wr>=50: return f'<span style="color:#facc15">{wr:.0f}%</span>'
         return f'<span style="color:#f87171">{wr:.0f}%</span>'
-
-    # Equity curve SVG
-    eq_min = min(eq_curve) if eq_curve else STARTING_BR
-    eq_max = max(eq_curve) if eq_curve else STARTING_BR + 1
-    eq_range = max(eq_max - eq_min, 1)
-    w, h = 700, 200
-    pts = []
-    for i, v in enumerate(eq_curve):
-        x = int(i / max(len(eq_curve)-1, 1) * w)
-        y = int(h - (v - eq_min) / eq_range * h)
-        pts.append(f"{x},{y}")
-    eq_svg = f"""<svg viewBox="0 0 {w} {h}" style="width:100%;background:#0d1117;border-radius:8px;margin:12px 0">
-  <polyline points="{' '.join(pts)}" fill="none" stroke="#3b82f6" stroke-width="2"/>
-  <text x="4" y="14" fill="#6b7280" font-size="11">+${eq_max-STARTING_BR:.0f}</text>
-  <text x="4" y="{h-4}" fill="#6b7280" font-size="11">${eq_min:.0f}</text>
-</svg>"""
-
-    # Entry timing table
-    entry_rows = ""
-    for label, s in sorted(by_entry.items()):
-        entry_rows += f"""
-        <tr style="background:{row_color(s['wr'])}">
-          <td>{label}</td>
-          <td>{s['n']}</td>
-          <td>{badge(s['wr'])}</td>
-          <td style="color:#9ca3af">{s['implied']}%</td>
-          <td style="color:#4ade80;font-weight:bold">+{s['edge']}%</td>
-          <td>{s['pf']}</td>
-          <td style="color:#4ade80">${s['flat_pnl']:+.0f}</td>
-          <td style="color:#60a5fa">{s['kelly_roi']:+.1f}%</td>
-          <td style="color:#f87171">{s['max_dd']:.1f}%</td>
-          <td>{s['sharpe']}</td>
-        </tr>"""
-
-    # Category table (T-1d)
-    cat_rows = ""
-    for cat, s in sorted(by_cat.items(), key=lambda x: -x[1].get("n", 0)):
-        cat_rows += f"""
-        <tr>
-          <td style="color:#e2e8f0">{cat}</td>
-          <td>{badge(s['wr'])}</td>
-          <td style="color:#9ca3af">n={s['n']}</td>
-          <td style="color:#4ade80">+{s['edge']}%</td>
-          <td style="color:#60a5fa">${s['flat_pnl']:+.0f}</td>
-        </tr>"""
-
-    # Price band table
-    band_rows = ""
-    for band, s in sorted(by_price.items()):
-        band_rows += f"""
-        <tr>
-          <td style="color:#e2e8f0">{band}</td>
-          <td>{badge(s['wr'])}</td>
-          <td style="color:#9ca3af">n={s['n']}</td>
-          <td style="color:#4ade80">+{s['edge']}%</td>
-          <td style="color:#a78bfa">${s['flat_pnl']:+.0f}</td>
-        </tr>"""
-
-    # Top/bottom trades
-    t1_trades = sorted([t for t in trades if t["entry_days"]==1], key=lambda x: -x["pnl"])
-    top10 = t1_trades[:8]
-    bot10 = t1_trades[-8:]
-
-    def trade_rows(tlist):
-        rows = ""
-        for t in tlist:
-            color = "#4ade80" if t["won"] else "#f87171"
-            icon  = "✅" if t["won"] else "❌"
-            rows += f"""<tr>
-              <td style="color:#cbd5e1;font-size:11px">{t['market'][:65]}</td>
-              <td><span style="background:#1e293b;padding:2px 6px;border-radius:4px;font-size:11px">{t['category']}</span></td>
-              <td style="color:#94a3b8">{t['yes_entry']}¢ YES</td>
-              <td style="color:#94a3b8">{t['no_entry']}¢ NO</td>
-              <td>{icon}</td>
-              <td style="color:{color};font-weight:bold">${t['pnl']:+.2f}</td>
-            </tr>"""
-        return rows
-
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>NearCertain Backtest Report</title>
-<style>
-  * {{ box-sizing:border-box; margin:0; padding:0 }}
-  body {{ background:#0d1117; color:#e2e8f0; font-family:'Segoe UI',system-ui,sans-serif; padding:24px; }}
-  h1 {{ font-size:22px; color:#f1f5f9; margin-bottom:4px }}
-  h2 {{ font-size:15px; color:#94a3b8; font-weight:400; margin-bottom:24px }}
-  h3 {{ font-size:14px; color:#cbd5e1; margin:28px 0 10px; border-bottom:1px solid #1e293b; padding-bottom:6px }}
-  .meta {{ color:#6b7280; font-size:12px; margin-bottom:24px }}
-  .grid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:28px }}
-  .card {{ background:#161b22; border:1px solid #21262d; border-radius:8px; padding:16px }}
-  .card-label {{ font-size:11px; color:#6b7280; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px }}
-  .card-value {{ font-size:22px; font-weight:700; color:#f1f5f9 }}
-  .card-sub {{ font-size:11px; color:#4b5563; margin-top:4px }}
-  table {{ width:100%; border-collapse:collapse; font-size:12px; margin-bottom:20px }}
-  th {{ background:#161b22; color:#6b7280; padding:8px 10px; text-align:left; border-bottom:1px solid #21262d; font-weight:500 }}
-  td {{ padding:7px 10px; border-bottom:1px solid #1e293b }}
-  tr:hover td {{ background:#161b22 }}
-  .badge-cat {{ background:#1e293b; padding:2px 8px; border-radius:4px; font-size:11px }}
-  .section {{ background:#161b22; border:1px solid #21262d; border-radius:8px; padding:20px; margin-bottom:20px }}
-  .note {{ background:#1c2333; border-left:3px solid #3b82f6; padding:10px 14px; border-radius:0 6px 6px 0; font-size:12px; color:#94a3b8; margin-top:16px }}
-</style>
-</head>
-<body>
-
+    def rc(wr): return "#1a3a1a" if wr>=70 else "#2a3a1a" if wr>=60 else "#3a3a1a" if wr>=50 else "#3a1a1a"
+    eq_min=min(eq); eq_max=max(eq); w,h=700,200
+    pts=" ".join(f"{int(i/max(len(eq)-1,1)*w)},{int(h-(v-eq_min)/max(eq_max-eq_min,1)*h)}" for i,v in enumerate(eq))
+    svg=f'<svg viewBox="0 0 {w} {h}" style="width:100%;background:#0d1117;border-radius:8px;margin:12px 0"><polyline points="{pts}" fill="none" stroke="#3b82f6" stroke-width="2"/><text x="4" y="14" fill="#6b7280" font-size="11">+${eq_max-STARTING_BR:.0f}</text><text x="4" y="{h-4}" fill="#6b7280" font-size="11">${eq_min:.0f}</text></svg>'
+    er="".join(f'<tr style="background:{rc(s["wr"])}"><td>{l}</td><td>{s["n"]}</td><td>{badge(s["wr"])}</td><td style="color:#9ca3af">{s["implied"]}%</td><td style="color:#4ade80;font-weight:bold">+{s["edge"]}%</td><td>{s["pf"]}</td><td style="color:#4ade80">${s["flat_pnl"]:+.0f}</td><td style="color:#60a5fa">{s["kelly_roi"]:+.1f}%</td><td style="color:#f87171">{s["max_dd"]:.1f}%</td><td>{s["sharpe"]}</td></tr>' for l,s in sorted(by_entry.items()))
+    cr="".join(f'<tr><td>{c}</td><td>{badge(s["wr"])}</td><td style="color:#9ca3af">n={s["n"]}</td><td style="color:#4ade80">+{s["edge"]}%</td><td>${s["flat_pnl"]:+.0f}</td></tr>' for c,s in sorted(by_cat.items(),key=lambda x:-x[1].get("n",0)))
+    br_rows="".join(f'<tr><td>{b}</td><td>{badge(s["wr"])}</td><td style="color:#9ca3af">n={s["n"]}</td><td style="color:#4ade80">+{s["edge"]}%</td><td>${s["flat_pnl"]:+.0f}</td></tr>' for b,s in sorted(by_band.items()))
+    t1=sorted([t for t in trades if t["entry_days"]==1],key=lambda x:-x["pnl"])
+    def tr_(t): c="#4ade80" if t["won"] else "#f87171"; return f'<tr><td style="color:#cbd5e1;font-size:11px">{t["market"][:65]}</td><td style="font-size:11px">{t["category"]}</td><td style="color:#94a3b8">{t["yes_entry"]}¢</td><td>{"✅" if t["won"] else "❌"}</td><td style="color:{c};font-weight:bold">${t["pnl"]:+.2f}</td></tr>'
+    return f"""<!DOCTYPE html><html><head><meta charset="UTF-8"><title>NearCertain Backtest</title>
+<style>*{{box-sizing:border-box;margin:0;padding:0}}body{{background:#0d1117;color:#e2e8f0;font-family:system-ui,sans-serif;padding:24px}}h1{{font-size:22px;color:#f1f5f9;margin-bottom:4px}}h2{{font-size:13px;color:#94a3b8;font-weight:400;margin-bottom:20px}}.meta{{color:#6b7280;font-size:12px;margin-bottom:24px}}.grid{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}}.card{{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:16px}}.cl{{font-size:11px;color:#6b7280;text-transform:uppercase;margin-bottom:6px}}.cv{{font-size:22px;font-weight:700}}.cs{{font-size:11px;color:#4b5563;margin-top:4px}}table{{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px}}th{{background:#161b22;color:#6b7280;padding:8px 10px;text-align:left;border-bottom:1px solid #21262d;font-weight:500}}td{{padding:7px 10px;border-bottom:1px solid #1e293b}}.sec{{background:#161b22;border:1px solid #21262d;border-radius:8px;padding:20px;margin-bottom:20px}}h3{{font-size:14px;color:#cbd5e1;margin:0 0 10px;border-bottom:1px solid #1e293b;padding-bottom:6px}}.note{{background:#1c2333;border-left:3px solid #3b82f6;padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#94a3b8;margin-top:12px}}</style></head><body>
 <h1>🔵 NearCertain Backtest Report</h1>
-<h2>Strategy: Buy NO when YES is priced 75-95¢ — markets systematically overprice near-certain events</h2>
-<div class="meta">Generated {ts}  ·  {n_markets} resolved markets  ·  {len(trades)} simulated trades  ·  {len(ENTRY_WINDOWS)} entry timings tested</div>
-
+<h2>Buy NO when YES 75-95¢ — prediction markets overprice near-certain events</h2>
+<div class="meta">Generated {ts} · {nm} markets · {len(trades)} trades · jon-becker/prediction-market-analysis dataset</div>
 <div class="grid">
-  <div class="card">
-    <div class="card-label">Markets Analysed</div>
-    <div class="card-value">{n_markets}</div>
-    <div class="card-sub">Resolved binary Yes/No</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Best Entry Timing</div>
-    <div class="card-value" style="color:#3b82f6">{best_entry_label}</div>
-    <div class="card-sub">by actual edge</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Best Edge (WR − implied)</div>
-    <div class="card-value" style="color:#4ade80">+{best_edge}%</div>
-    <div class="card-sub">win rate minus NO entry price</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Best Profit Factor</div>
-    <div class="card-value" style="color:#a78bfa">{best_pf}</div>
-    <div class="card-sub">gross wins / gross losses</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Flat Stake P&L (best)</div>
-    <div class="card-value" style="color:#4ade80">${best_pnl:+.0f}</div>
-    <div class="card-sub">$10/trade flat sizing</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Overall Win Rate</div>
-    <div class="card-value">{overall['wr']}%</div>
-    <div class="card-sub">{overall['won']}W / {overall['lost']}L</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Overall Edge</div>
-    <div class="card-value" style="color:#4ade80">+{overall['edge']}%</div>
-    <div class="card-sub">vs {overall['implied']}% implied</div>
-  </div>
-  <div class="card">
-    <div class="card-label">Max Drawdown (best)</div>
-    <div class="card-value" style="color:#fb923c">{best_entry[1].get('max_dd',0):.1f}%</div>
-    <div class="card-sub">flat $10 sizing</div>
-  </div>
+<div class="card"><div class="cl">Markets</div><div class="cv">{nm}</div></div>
+<div class="card"><div class="cl">Best Entry</div><div class="cv" style="color:#3b82f6">{be[0]}</div></div>
+<div class="card"><div class="cl">Best Edge</div><div class="cv" style="color:#4ade80">+{be[1].get("edge",0)}%</div></div>
+<div class="card"><div class="cl">Best PF</div><div class="cv" style="color:#a78bfa">{be[1].get("pf",0)}</div></div>
+<div class="card"><div class="cl">Overall WR</div><div class="cv">{overall.get("wr",0)}%</div><div class="cs">{overall.get("won",0)}W/{overall.get("lost",0)}L</div></div>
+<div class="card"><div class="cl">Overall Edge</div><div class="cv" style="color:#4ade80">+{overall.get("edge",0)}%</div></div>
+<div class="card"><div class="cl">Flat P&L (best)</div><div class="cv" style="color:#4ade80">${be[1].get("flat_pnl",0):+.0f}</div></div>
+<div class="card"><div class="cl">Max DD</div><div class="cv" style="color:#fb923c">{be[1].get("max_dd",0):.1f}%</div></div>
 </div>
-
-<div class="section">
-  <h3>Strategy Results by Entry Timing</h3>
-  <table>
-    <tr>
-      <th>Entry</th><th>Trades</th><th>Win Rate</th><th>Implied</th>
-      <th>Edge ★</th><th>PF</th><th>Flat P&L</th><th>Kelly ROI</th>
-      <th>Max DD</th><th>Sharpe</th>
-    </tr>
-    {entry_rows}
-  </table>
-  <div class="note">
-    ★ <b>Edge</b> = actual win rate − implied probability from NO entry price.
-    Positive edge = the strategy genuinely beats the market's pricing.
-    Profit Factor &gt; 1.0 = profitable. Sharpe &gt; 1.0 = strong risk-adjusted return.
-  </div>
-</div>
-
-<div class="section">
-  <h3>Equity Curve (flat $10/trade, T-1d entry)</h3>
-  {eq_svg}
-</div>
-
-<div class="section">
-  <h3>Win Rate by Entry Price Band (T-1d entry)</h3>
-  <p style="font-size:12px;color:#6b7280;margin-bottom:10px">
-    Higher YES price = more aggressively overbid = stronger NearCertain signal
-  </p>
-  <table>
-    <tr><th>YES Entry Band</th><th>Win Rate</th><th>Trades</th><th>Edge</th><th>Flat P&L</th></tr>
-    {band_rows}
-  </table>
-</div>
-
-<div class="section">
-  <h3>Win Rate by Category (T-1d entry)</h3>
-  <table>
-    <tr><th>Category</th><th>Win Rate</th><th>Trades</th><th>Edge</th><th>Flat P&L</th></tr>
-    {cat_rows}
-  </table>
-  <div class="note">
-    Crypto and Sports are blocked in the live bot — confirmed by backtest weak performance in those categories.
-  </div>
-</div>
-
-<div class="section">
-  <h3>Top 8 Wins + Top 8 Losses (flat $10 sizing, T-1d entry)</h3>
-  <table>
-    <tr><th>Market</th><th>Category</th><th>Entry YES</th><th>Entry NO</th><th>Result</th><th>P&L</th></tr>
-    {trade_rows(top10)}
-    <tr><td colspan="6" style="color:#374151;font-size:11px;padding:8px 10px">— Top losses —</td></tr>
-    {trade_rows(bot10)}
-  </table>
-</div>
-
-<div class="section">
-  <h3>Methodology</h3>
-  <p style="font-size:12px;color:#94a3b8;line-height:1.7">
-    <b>Data:</b> Resolved binary Yes/No markets from Polymarket Gamma API.
-    Price history from CLOB API (daily fidelity). Only markets with confirmed
-    resolution (outcomePrices = [1,0] or [0,1]) and volume &gt; ${MIN_VOLUME} are included.<br><br>
-    <b>Entry simulation:</b> For each entry timing (T-7d, T-3d, T-1d before close),
-    the YES token price from CLOB history is used as the entry price.
-    Only markets where YES was 75-95¢ at entry time are included in NearCertain results.<br><br>
-    <b>Sizing:</b> Flat = $10 per trade regardless of price band.
-    Kelly = half-Kelly on $1,000 starting bankroll, capped at 15% per trade.<br><br>
-    <b>Blocked categories:</b> Crypto (57% live WR — near 50/50) and Sports (in-game markets legitimately near-certain).<br><br>
-    <b>Limitations:</b> Entry prices reconstructed from daily CLOB snapshots —
-    intraday slippage not modelled. Polymarket 0.1-0.2% taker fee not included.
-    Markets without CLOB price history in the entry window are excluded.
-  </p>
-</div>
-
-</body>
-</html>"""
-    return html
-
-# ─────────────────────────────────────────────────────────
-#  MAIN
-# ─────────────────────────────────────────────────────────
+<div class="sec"><h3>Results by Entry Timing</h3>
+<table><tr><th>Entry</th><th>Trades</th><th>Win Rate</th><th>Implied</th><th>Edge ★</th><th>PF</th><th>Flat P&L</th><th>Kelly ROI</th><th>Max DD</th><th>Sharpe</th></tr>{er}</table>
+<div class="note">★ Edge = actual WR − implied probability from NO entry price. Positive = strategy beats market pricing.</div></div>
+<div class="sec"><h3>Equity Curve (flat $10/trade, T-1d entry)</h3>{svg}</div>
+<div class="sec"><h3>Win Rate by YES Entry Price Band (T-1d)</h3>
+<table><tr><th>YES Band</th><th>Win Rate</th><th>Trades</th><th>Edge</th><th>Flat P&L</th></tr>{br_rows}</table></div>
+<div class="sec"><h3>Win Rate by Category (T-1d)</h3>
+<table><tr><th>Category</th><th>Win Rate</th><th>Trades</th><th>Edge</th><th>P&L</th></tr>{cr}</table>
+<div class="note">Crypto + Sports blocked in live bot based on backtest data.</div></div>
+<div class="sec"><h3>Top 8 Wins + Top 8 Losses (T-1d)</h3>
+<table><tr><th>Market</th><th>Category</th><th>YES Entry</th><th>Result</th><th>P&L</th></tr>
+{"".join(tr_(t) for t in t1[:8])}
+<tr><td colspan="5" style="color:#374151;font-size:11px;padding:8px">— Top losses —</td></tr>
+{"".join(tr_(t) for t in t1[-8:])}
+</table></div>
+<div class="sec"><h3>Methodology</h3>
+<p style="font-size:12px;color:#94a3b8;line-height:1.7"><b>Data:</b> Jon-Becker prediction-market-analysis dataset (Polymarket on-chain data from Cloudflare R2).<br><br>
+<b>Strategy:</b> NearCertain buys NO when YES is priced 75-95¢. Entry at T-7d, T-3d, T-1d using trade price history.<br><br>
+<b>Blocked:</b> Crypto and Sports categories.<br><b>Min volume:</b> ${MIN_VOLUME}.<br><br>
+<b>Limitations:</b> Price history from trade snapshots. 0.1-0.2% taker fee not included.</p></div>
+</body></html>"""
 
 def main():
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    log("=" * 60)
-    log("NearCertain Backtest")
-    log(f"Strategy: Buy NO when YES 75-95¢, hold to resolution")
-    log(f"Entry windows: T-{', T-'.join(str(d) for d in ENTRY_WINDOWS)}d")
-    log("=" * 60)
+    log("="*60)
+    log("NearCertain Backtest — jon-becker dataset")
+    log(f"Strategy: Buy NO when YES {YES_MIN}-{YES_MAX}¢")
+    log("="*60)
 
-    # Fetch data
-    markets = fetch_resolved_markets(target=MARKET_BATCH)
-    if not markets:
-        log("❌ No markets fetched — check API connectivity")
+    if not download_dataset():
         sys.exit(1)
 
-    # Run backtest
-    trades = run_backtest(markets)
+    mdf, tdf = load_data()
+    if mdf is None or len(mdf)==0:
+        log("❌ No data loaded"); sys.exit(1)
+
+    trades = run_backtest(mdf, tdf)
     if not trades:
-        log("❌ No trades generated — check CLOB price history availability")
-        sys.exit(1)
+        log("❌ No trades generated"); sys.exit(1)
 
-    log(f"\n{'='*40}")
-    log(f"RESULTS: {len(trades)} trades across {len(set(t['market_id'] for t in trades))} markets")
-
-    # Calculate stats
+    log(f"\nRESULTS: {len(trades)} trades across {len(set(t['market_id'] for t in trades))} markets")
     overall  = calc_stats(trades)
     by_entry = stats_by_entry(trades)
-    by_cat   = stats_by_category(trades, entry_days=1)
-    by_price = stats_by_price_band(trades, entry_days=1)
-    eq_curve = equity_curve(trades, entry_days=1)
+    by_cat   = stats_by_category(trades)
+    by_band  = stats_by_band(trades)
+    eq       = equity_curve(trades)
 
-    log(f"Overall WR:    {overall['wr']}%")
-    log(f"Overall edge:  +{overall['edge']}%")
-    log(f"Profit factor: {overall['pf']}")
-    log(f"Flat P&L:      ${overall['flat_pnl']:+.2f}")
+    log(f"Overall: {overall['wr']}% WR | edge +{overall['edge']}% | PF {overall['pf']} | ${overall['flat_pnl']:+.2f}")
+    for l,s in sorted(by_entry.items()):
+        log(f"  {l}: {s['wr']}% WR | edge +{s['edge']}% | ${s['flat_pnl']:+.0f}")
 
-    for label, s in sorted(by_entry.items()):
-        log(f"  {label}: {s['wr']}% WR | edge +{s['edge']}% | PF {s['pf']} | ${s['flat_pnl']:+.0f}")
-
-    # Generate report
-    html  = generate_html(trades, overall, by_entry, by_cat, by_price, eq_curve,
-                          datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"))
+    html  = gen_html(trades, overall, by_entry, by_cat, by_band, eq, datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"))
     fname = f"backtest_nearcertain_{ts}.html"
-    with open(fname, "w") as f:
-        f.write(html)
-    log(f"\n✅ Report saved: {fname}")
-    return fname
+    with open(fname,"w") as f: f.write(html)
+    log(f"\n✅ Report: {fname}")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
