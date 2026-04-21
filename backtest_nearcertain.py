@@ -239,7 +239,6 @@ def run_backtest(markets):
     """
     log("Running NearCertain backtest simulation...")
     trades           = []
-    skip_recent      = 0
     skip_category    = 0
     skip_no_token    = 0
     no_history       = 0
@@ -254,12 +253,6 @@ def run_backtest(markets):
     for i, m in enumerate(markets):
         if i % 10 == 0:
             log(f"  Processing market {i+1}/{len(markets)} | trades so far: {len(trades)}...")
-
-        # Only use markets that closed > 1 day ago (confirmed resolution)
-        days_ago = (now - m["end_dt"]).days
-        if days_ago < 1:
-            skip_recent += 1
-            continue
 
         # Skip blocked categories
         if m["category"] in BLOCKED_CATS:
@@ -318,7 +311,6 @@ def run_backtest(markets):
             time.sleep(0.05)
 
     log(f"  Generated {len(trades)} trades")
-    log(f"  Skip recent (<1d ago):  {skip_recent}")
     log(f"  Skip category blocked:  {skip_category}")
     log(f"  Skip no CLOB token:     {skip_no_token}")
     log(f"  No price history:       {no_history}")
