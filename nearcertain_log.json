@@ -1,8 +1,25 @@
 {
-  "bankroll": 1000.0,
-  "trades": [],
+  "bankroll": 985.0,
+  "trades": [
+    {
+      "id": "NC20260421112916998448",
+      "market_id": "1288110",
+      "market": "Will the Bank of Brazil decrease the Selic rate after April 2026 meeting?",
+      "category": "economics",
+      "position": "NO",
+      "entry_no_price": 5,
+      "entry_yes_price": 95,
+      "stake": 15.0,
+      "closes": "2026-04-28T00:00:00+00:00",
+      "closes_in_days": 6.521,
+      "status": "open",
+      "placed_at": "2026-04-21T11:29:16.998455+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    }
+  ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-21",
-  "scan_count": 3,
+  "scan_count": 4,
   "started": "2026-04-21T00:00:00+00:00"
 }
