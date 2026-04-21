@@ -10,7 +10,7 @@
 ║  Data: 1.1B on-chain records (SII-WANGZJ dataset)        ║
 ║                                                          ║
 ║  Entry window: YES priced at 75-95¢ (NO at 5-25¢)       ║
-║  Hold: 2-12 hours before market close only              ║
+║  Hold: up to 7 days (backtest WR improves further out)   ║
 ║  Blocks: sports, crypto (known weak spots)              ║
 ║  Sizing: higher NO price = bigger stake (YES most        ║
 ║  aggressively overbid = strongest edge)                  ║
@@ -57,7 +57,10 @@ YES_MIN = 75    # YES at least 75¢ (NO ≤ 25¢)
 YES_MAX = 95    # YES at most 95¢ (NO ≥ 5¢) — above 95 is genuine certainty
 
 # ── Hold window ──────────────────────────────────────────
-MAX_HOLD_DAYS  = 0.5   # 12h max — live data confirms <12h = 89%+ WR
+# Backtest shows WR IMPROVES with longer hold on NearCertain:
+# T-7d: 74.9% WR (+56.9% edge) vs T-1d: 73.8% WR (+55.8% edge)
+# Structural mispricing is baked in from day one — time doesn't decay it
+MAX_HOLD_DAYS  = 7.0   # up to 7 days
 MIN_HOLD_HOURS = 2     # don't enter if closing in under 2h
 
 # ── Stake sizing ─────────────────────────────────────────
@@ -74,7 +77,7 @@ STAKE_TIERS = [
 MIN_VOLUME        = 2000    # thin books = adverse selection
 DAILY_LOSS_LIMIT  = 150.00
 NEWS_LOOKBACK_HOURS = 72
-MAX_OPEN_POSITIONS  = 20    # cap total exposure
+MAX_OPEN_POSITIONS  = 60    # 7-day window = more concurrent positions
 
 # ── Blocked categories ────────────────────────────────────
 # Crypto: backtest shows 57% WR in NearCertain — barely above 50%, not worth the risk
@@ -493,6 +496,12 @@ def place_trade(market, state):
     open_count = len([t for t in state["trades"] if t["status"] == "open"])
     if open_count >= MAX_OPEN_POSITIONS:
         log(f"  ⛔ Max open positions ({MAX_OPEN_POSITIONS}) reached")
+        return
+
+    # Deployment cap — don't deploy more than 60% of bankroll at once
+    deployed = sum(t["stake"] for t in state["trades"] if t["status"] == "open")
+    if deployed >= state["bankroll"] * 0.60:
+        log(f"  ⛔ Deployment cap (60%) reached — ${deployed:.2f} already out")
         return
 
     trade = {
