@@ -38,6 +38,7 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
         run: python claudebot.py --single-scan
       - name: Build trade knowledge graph
         run: |
