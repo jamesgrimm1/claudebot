@@ -818,6 +818,19 @@ def fetch_markets_for_tier(tier_num):
         if cid < (1 / 24):
             skipped += 1
             continue
+
+        # Hard filter: skip exact-integer weather markets — prefer above/below/or higher/or lower
+        # Exact matches (e.g. "be 14°C on April 22") have higher variance than
+        # direction/threshold markets ("be 14°C or higher") — data confirms lower WR
+        if cat == "weather":
+            is_direction = any(k in q_lower for k in [
+                "or higher", "or lower", "or above", "or below",
+                "above ", "below ", "at least", "at most",
+                "more than", "less than", "exceed", "between"
+            ])
+            if not is_direction:
+                skipped += 1
+                continue
         markets.append({
             "id":             str(m.get("id", "")),
             "slug":           m.get("slug", ""),
