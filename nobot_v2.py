@@ -88,7 +88,9 @@ VOLUME_MULTIPLIERS = [
 MIN_VOLUME = 1000
 
 # Max hold days — close out even if exit not triggered
-MAX_HOLD_DAYS = 14
+# Entry window: only markets closing within 2-12 hours
+# Data confirms 89%+ WR on <12h holds vs 48% WR on >12h holds
+MAX_HOLD_DAYS = 0.5   # 12 hours max (was 14 days)
 
 # Min hold hours — don't buy something closing in under 2 hours
 MIN_HOLD_HOURS = 2
