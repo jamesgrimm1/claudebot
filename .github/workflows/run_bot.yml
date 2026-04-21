@@ -1,7 +1,7 @@
 name: ClaudeBot + NoBot Paper Traders
 on:
   schedule:
-    - cron: '0 */1 * * *'   # every hour — drives NoBot
+    - cron: '7 * * * *'
   workflow_dispatch:
 jobs:
   run-bots:
@@ -31,20 +31,13 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nobot_v2.py --single-scan
-      - name: Run ClaudeBot (every 3rd hour only)
+      - name: Run ClaudeBot (every hour now)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
-        run: |
-          HOUR=$(date -u +%-H)
-          if (( HOUR % 3 == 0 )); then
-            echo "Hour $HOUR — running ClaudeBot"
-            python claudebot.py --single-scan
-          else
-            echo "Hour $HOUR — skipping ClaudeBot (runs every 3h)"
-          fi
+        run: python claudebot.py --single-scan
       - name: Commit updated logs back to repo
         run: |
           git config user.name "claudebot"
