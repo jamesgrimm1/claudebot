@@ -1,5 +1,5 @@
 {
-  "bankroll": 768.99,
+  "bankroll": 767.07,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4772,10 +4772,13 @@
       "closes": "2026-04-20T12:00:00+00:00",
       "volume": 4217.367803000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T13:54:38.338216+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-21T04:42:27.870478+00:00",
+      "realized_pnl": -2.02
     },
     {
       "id": "NB1776609330",
@@ -6255,11 +6258,31 @@
       "placed_at": "2026-04-21T03:04:51.457651+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776746562",
+      "market_id": "2019402",
+      "market_slug": "highest-temperature-in-beijing-on-april-21-2026-27c",
+      "market": "Will the highest temperature in Beijing be 27\u00b0C on April 21?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 1.92,
+      "payout_if_wins": 3.2,
+      "profit_if_wins": 1.28,
+      "category": "weather",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-21T12:00:00+00:00",
+      "volume": 4667.840450000001,
+      "status": "open",
+      "placed_at": "2026-04-21T04:42:42.990235+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 13.49,
+  "daily_loss": 15.51,
   "daily_reset": "2026-04-21",
-  "scan_count": 93,
+  "scan_count": 94,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-20T22:34:57.389897+00:00"
 }
