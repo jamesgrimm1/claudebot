@@ -56,6 +56,10 @@ DAILY_LOSS_LIMIT   = 150.00
 SCAN_INTERVAL_MINS = 180
 LOG_FILE           = "claudebot_log.json"
 
+# Reflection loop — trade journal for graphify knowledge graph
+REFLECTIONS_DIR    = "trade_reflections"
+GRAPH_REPORT_FILE  = "graphify-out/GRAPH_REPORT.md"
+
 REASSESS_INTERVAL_DAYS = 3   # reassess open T2/T3 trades every N days
 MIN_DAYS_REMAINING     = 5   # skip reassessment if trade closes within N days
 
@@ -562,7 +566,155 @@ def days_until(dt):
 #  MARKET RESOLUTION
 # ─────────────────────────────────────────────────────────
 
-def _settle(trade, won, state):
+# ─────────────────────────────────────────────────────────
+#  REFLECTION LOOP — trade journal + graphify knowledge graph
+# ─────────────────────────────────────────────────────────
+
+def write_trade_reflection(trade, state):
+    """
+    Write a markdown reflection file for every resolved trade.
+    These files accumulate in trade_reflections/ and are fed into
+    graphify to build a queryable knowledge graph of what works.
+    """
+    os.makedirs(REFLECTIONS_DIR, exist_ok=True)
+
+    trade_id  = trade.get("id", "unknown")
+    won       = trade.get("won", False)
+    outcome   = "WON" if won else "LOST"
+    pnl       = trade.get("realized_pnl", 0)
+    tier      = trade.get("tier", 1)
+    category  = trade.get("category", "other")
+    position  = trade.get("position", "?")
+    entry     = trade.get("entry_price", "?")
+    stake     = trade.get("stake", 0)
+    conf      = trade.get("confidence", "?")
+    market_p  = trade.get("market_prob", "?")
+    true_p    = trade.get("true_prob", "?")
+    edge      = trade.get("edge_pct", "?")
+    market    = trade.get("market", "")
+    research  = trade.get("research_summary", "")
+    bear      = trade.get("bear_case", "")
+    key_facts = trade.get("key_factors", [])
+    news_trig = trade.get("news_triggered", False)
+    placed    = trade.get("placed_at", "")[:10]
+    resolved  = trade.get("resolved_at", "")[:10]
+    closes    = trade.get("closes", "")[:10]
+    cid       = trade.get("closes_in_days", "?")
+    kelly_t   = trade.get("kelly_tier", "")
+
+    # Calculate hold duration
+    try:
+        p_dt = datetime.fromisoformat(trade["placed_at"].replace("Z", "+00:00"))
+        r_dt = datetime.fromisoformat(trade["resolved_at"].replace("Z", "+00:00"))
+        hold_h = (r_dt - p_dt).total_seconds() / 3600
+        hold_str = f"{hold_h:.1f} hours"
+    except Exception:
+        hold_str = "unknown"
+
+    # Win/loss diagnosis
+    if won:
+        diagnosis = "THESIS CORRECT"
+        if conf != "?" and isinstance(conf, (int, float)):
+            if conf >= 85:
+                diagnosis = "HIGH CONFIDENCE — VALIDATED"
+            elif conf >= 75:
+                diagnosis = "MODERATE CONFIDENCE — VALIDATED"
+        if news_trig:
+            diagnosis += " · NEWS-TRIGGERED EDGE"
+    else:
+        diagnosis = "THESIS WRONG"
+        if bear:
+            diagnosis = f"BEAR CASE MATERIALISED: {bear[:80]}"
+
+    roi_pct = (pnl / stake * 100) if stake else 0
+
+    md = f"""# Trade Reflection — {trade_id}
+
+## Outcome
+- **Result:** {outcome} ${pnl:+.2f} ({roi_pct:+.1f}% ROI)
+- **Diagnosis:** {diagnosis}
+- **Market:** {market}
+- **Category:** {category}
+- **Position:** {position} @ {entry}¢
+- **Tier:** T{tier} | **Sizing:** {kelly_t}
+- **Stake:** ${stake:.2f}
+
+## Timing
+- **Placed:** {placed}
+- **Resolved:** {resolved}
+- **Closes:** {closes} ({cid}d remaining at entry)
+- **Hold duration:** {hold_str}
+
+## Pricing & Edge
+- **Market implied:** {market_p}% YES
+- **Opus true prob:** {true_p}% YES
+- **Confidence:** {conf}%
+- **Edge:** {edge}%
+- **News triggered:** {news_trig}
+
+## Research
+{research}
+
+## Key Factors
+{chr(10).join(f'- {f}' for f in key_facts) if key_facts else '- None recorded'}
+
+## Bear Case
+{bear if bear else 'None recorded'}
+
+## Bankroll After
+${state['bankroll']:.2f}
+
+## Patterns
+- category: {category}
+- outcome: {outcome}
+- hold_hours: {hold_str}
+- tier: T{tier}
+- confidence_band: {f'{(conf//10)*10}-{(conf//10)*10+9}%' if isinstance(conf, (int,float)) else 'unknown'}
+- position: {position}
+- news_triggered: {news_trig}
+- entry_bracket: {'45-52c' if isinstance(entry,(int,float)) and entry<=52 else '53-62c' if isinstance(entry,(int,float)) else 'unknown'}
+"""
+
+    fname = f"{REFLECTIONS_DIR}/{trade_id}_{category}_{outcome}.md"
+    try:
+        with open(fname, "w") as f:
+            f.write(md)
+        log(f"  📝 Reflection saved: {fname.split('/')[-1]}")
+    except Exception as e:
+        log(f"  ⚠️  Reflection write failed: {e}")
+
+
+def load_graph_context():
+    """
+    Load the graphify GRAPH_REPORT.md if it exists.
+    Returns a string to inject into Opus research context.
+    Graphify builds this from trade_reflections/ — it captures
+    what patterns, categories, and confidence bands are working.
+    """
+    if not os.path.exists(GRAPH_REPORT_FILE):
+        return ""
+    try:
+        with open(GRAPH_REPORT_FILE, "r") as f:
+            report = f.read()
+        # Trim to avoid token overload — first 2000 chars covers god nodes + patterns
+        trimmed = report[:2500].strip()
+        log(f"  🧠 Graph context loaded ({len(trimmed)} chars)")
+        return (
+            "\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "KNOWLEDGE GRAPH — PATTERNS FROM TRADE HISTORY\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            f"{trimmed}\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
+            "Use these patterns to inform your analysis. "
+            "If the graph shows a category or pattern has a poor track record, "
+            "weight that into your confidence and edge estimates.\n"
+        )
+    except Exception as e:
+        log(f"  ⚠️  Graph context load failed: {e}")
+        return ""
+
+
+
     trade["status"]       = "closed"
     trade["won"]          = won
     trade["resolved_at"]  = datetime.now(timezone.utc).isoformat()
@@ -576,6 +728,7 @@ def _settle(trade, won, state):
         state["daily_loss"]   = round(state.get("daily_loss", 0) + trade["stake"], 2)
         log(f"  ❌ LOST -${trade['stake']:.2f}  [{TIERS[trade.get('tier',1)]['label']}]  {trade['market'][:55]}")
     log(f"     Bankroll now: ${state['bankroll']:.2f}")
+    write_trade_reflection(trade, state)
     telegram_trade_resolved(trade, state)
 
 
@@ -994,8 +1147,9 @@ def haiku_interpret(client, market, query, raw_results):
 
 
 def research_all_markets(markets):
-    client   = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    research = {}
+    client        = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    research      = {}
+    graph_context = load_graph_context()   # load once per scan
     log(f"🔬 Researching {len(markets)} markets...")
     for i, market in enumerate(markets):
         log(f"  [{i+1}/{len(markets)}] {market['question'][:65]}")
@@ -1008,9 +1162,13 @@ def research_all_markets(markets):
         query, raw = search_market(market)
         brief = haiku_interpret(client, market, query, raw)
 
-        # Prepend live price data to the research brief
+        # Prepend live price data
         if live_price:
             brief = live_price + "\n" + brief
+
+        # Append graph context (patterns from trade history)
+        if graph_context:
+            brief = brief + graph_context
 
         log(f"     📋 {brief[:100]}...")
         research[market["id"]] = brief
@@ -1815,6 +1973,17 @@ def single_scan():
 
     log("── Save ──────────────────────────────────────────────────")
     save_state(state)
+
+    # Backfill reflections for any closed trades that don't have one yet
+    os.makedirs(REFLECTIONS_DIR, exist_ok=True)
+    existing = set(os.listdir(REFLECTIONS_DIR))
+    for t in state["trades"]:
+        if t["status"] == "closed":
+            fname = f"{t.get('id','unknown')}_{t.get('category','other')}_{'WON' if t.get('won') else 'LOST'}.md"
+            if fname not in existing:
+                write_trade_reflection(t, state)
+                existing.add(fname)
+
     print_portfolio(state)
 
 
