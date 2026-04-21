@@ -2324,10 +2324,13 @@
       "closes": "2026-04-20T16:00:00+00:00",
       "volume": 53788.27489599991,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T06:25:25.330197+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-21T12:03:36.055667+00:00",
+      "realized_pnl": -2.94
     },
     {
       "id": "NB1776579925",
@@ -3713,9 +3716,9 @@
       "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 45.64,
+  "daily_loss": 48.58,
   "daily_reset": "2026-04-21",
-  "scan_count": 94,
+  "scan_count": 95,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-21T08:23:33.513626+00:00"
 }
