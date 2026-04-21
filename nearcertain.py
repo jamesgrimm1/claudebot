@@ -373,7 +373,7 @@ def fetch_markets():
         while len(raw_markets) < MAX_FETCH:
             r = requests.get(
                 f"https://gamma-api.polymarket.com/markets"
-                f"?active=true&closed=false&limit={limit}&offset={offset}",
+                f"?active=true&closed=false&limit={limit}&offset={offset}&order=endDate&ascending=true",
                 timeout=15
             )
             if r.status_code != 200:
