@@ -47,6 +47,7 @@ ANTHROPIC_API_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
 TELEGRAM_BOT_TOKEN   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHANNEL_ID  = os.environ.get("TELEGRAM_CHANNEL_ID", "")
 TELEGRAM_PERSONAL_ID = os.environ.get("TELEGRAM_PERSONAL_ID", "")
+FINNHUB_API_KEY      = os.environ.get("FINNHUB_API_KEY", "")
 
 SCREENER_MODEL     = "claude-haiku-4-5-20251001"
 ANALYST_MODEL      = "claude-opus-4-6"
@@ -715,18 +716,133 @@ def load_graph_context():
 
 
 
-    trade["status"]       = "closed"
-    trade["won"]          = won
-    trade["resolved_at"]  = datetime.now(timezone.utc).isoformat()
-    if won:
-        payout                = trade.get("potential_return", trade["stake"])
-        trade["realized_pnl"] = round(payout - trade["stake"], 2)
-        state["bankroll"]     = round(state["bankroll"] + payout, 2)
-        log(f"  ✅ WON  +${trade['realized_pnl']:.2f}  [{TIERS[trade.get('tier',1)]['label']}]  {trade['market'][:55]}")
-    else:
-        trade["realized_pnl"] = round(-trade["stake"], 2)
-        state["daily_loss"]   = round(state.get("daily_loss", 0) + trade["stake"], 2)
-        log(f"  ❌ LOST -${trade['stake']:.2f}  [{TIERS[trade.get('tier',1)]['label']}]  {trade['market'][:55]}")
+# ─────────────────────────────────────────────────────────
+#  ECONOMIC CALENDAR — Finnhub
+# ─────────────────────────────────────────────────────────
+
+# Events that should block or flag economics/central bank trades
+HIGH_IMPACT_BLOCK_KEYWORDS = [
+    "rate decision", "interest rate", "fed", "fomc", "ecb", "boe", "boj",
+    "rba", "rbnz", "monetary policy", "central bank",
+    "nonfarm", "non-farm", "nfp", "employment", "unemployment",
+    "cpi", "inflation", "pce", "gdp", "retail sales",
+    "earnings", "quarterly results",
+]
+
+_eco_calendar_cache = {"data": None, "fetched": None}
+
+def get_economic_calendar(days_ahead=7):
+    """
+    Fetch upcoming high-impact economic events from Finnhub.
+    Cached per scan — only fetches once per workflow run.
+    Returns list of events: {date, time, country, event, impact, actual, estimate, prev}
+    """
+    if not FINNHUB_API_KEY:
+        return []
+
+    # Use cache if fetched in last 55 mins
+    now = datetime.now(timezone.utc)
+    if _eco_calendar_cache["data"] is not None and _eco_calendar_cache["fetched"]:
+        age = (now - _eco_calendar_cache["fetched"]).total_seconds()
+        if age < 3300:
+            return _eco_calendar_cache["data"]
+
+    try:
+        date_from = now.strftime("%Y-%m-%d")
+        date_to   = (now + timedelta(days=days_ahead)).strftime("%Y-%m-%d")
+        r = requests.get(
+            "https://finnhub.io/api/v1/calendar/economic",
+            params={"from": date_from, "to": date_to, "token": FINNHUB_API_KEY},
+            timeout=8
+        )
+        if r.status_code != 200:
+            log(f"  ⚠️  Finnhub calendar: HTTP {r.status_code}")
+            return []
+
+        raw = r.json().get("economicCalendar", [])
+
+        # Filter to high impact only
+        events = []
+        for e in raw:
+            if e.get("impact") in ("high", "3"):
+                events.append({
+                    "date":     e.get("time", "")[:10],
+                    "time":     e.get("time", "")[11:16],
+                    "country":  e.get("country", ""),
+                    "event":    e.get("event", ""),
+                    "impact":   "HIGH",
+                    "actual":   e.get("actual", ""),
+                    "estimate": e.get("estimate", ""),
+                    "prev":     e.get("prev", ""),
+                })
+
+        _eco_calendar_cache["data"]    = events
+        _eco_calendar_cache["fetched"] = now
+        log(f"  📅 Economic calendar: {len(events)} high-impact events in next {days_ahead}d")
+        return events
+
+    except Exception as e:
+        log(f"  ⚠️  Finnhub calendar failed: {e}")
+        return []
+
+
+def check_calendar_risk(market_question, closes_in_days):
+    """
+    Check if a market's resolution window overlaps with high-impact
+    economic events. Returns a warning string for Opus, or None.
+
+    Used to flag markets where a known scheduled release could flip
+    the outcome — ECB rate decision, FOMC, NFP, earnings etc.
+    """
+    events = get_economic_calendar(days_ahead=max(7, int(closes_in_days) + 2))
+    if not events:
+        return None
+
+    q_lower = market_question.lower()
+
+    # Find relevant events — ones that could affect this specific market
+    relevant = []
+    for e in events:
+        ev_lower = e["event"].lower()
+        country  = e["country"].upper()
+
+        # Check if this event type could flip the market outcome
+        is_macro = any(k in ev_lower for k in HIGH_IMPACT_BLOCK_KEYWORDS)
+
+        # Check country relevance
+        country_relevant = (
+            ("usd" in q_lower or "fed" in q_lower or "us" in q_lower or "dollar" in q_lower) and country == "US"
+            or ("eur" in q_lower or "ecb" in q_lower or "euro" in q_lower) and country in ("EU", "DE", "FR")
+            or ("gbp" in q_lower or "boe" in q_lower or "uk" in q_lower) and country == "GB"
+            or ("jpy" in q_lower or "boj" in q_lower or "japan" in q_lower) and country == "JP"
+            or ("oil" in q_lower or "wti" in q_lower or "crude" in q_lower) and is_macro
+            or ("stock" in q_lower or "spx" in q_lower or "nasdaq" in q_lower or "s&p" in q_lower) and country == "US" and is_macro
+            or ("earn" in q_lower or "eps" in q_lower or "revenue" in q_lower or "quarterly" in q_lower)
+        )
+
+        if is_macro and country_relevant:
+            relevant.append(e)
+
+    if not relevant:
+        return None
+
+    warning_lines = ["⚠️ ECONOMIC CALENDAR RISK — high-impact events in resolution window:"]
+    for e in relevant[:4]:
+        warning_lines.append(
+            f"  {e['date']} {e['time']} UTC | {e['country']} | {e['event']}"
+            + (f" | est: {e['estimate']}" if e['estimate'] else "")
+            + (f" | prev: {e['prev']}" if e['prev'] else "")
+        )
+    warning_lines.append(
+        "These scheduled releases could significantly move the market before resolution. "
+        "Require extra edge and confidence before entering. "
+        "For central bank decisions — only trade if you have CONFIRMED forward guidance, "
+        "not analyst forecasts."
+    )
+    return "\n".join(warning_lines)
+
+
+def _settle(trade, won, state):
     log(f"     Bankroll now: ${state['bankroll']:.2f}")
     write_trade_reflection(trade, state)
     telegram_trade_resolved(trade, state)
@@ -1288,6 +1404,12 @@ def research_all_markets(markets):
         # Fetch live CLOB order book depth
         book_depth = get_order_book_depth(market)
 
+        # Check economic calendar risk
+        cal_risk = check_calendar_risk(
+            market["question"],
+            market.get("closes_in_days", 7)
+        )
+
         query, raw = search_market(market)
         brief = haiku_interpret(client, market, query, raw)
 
@@ -1298,6 +1420,11 @@ def research_all_markets(markets):
         # Append CLOB order book depth
         if book_depth:
             brief = brief + book_depth
+
+        # Append calendar risk warning
+        if cal_risk:
+            log(f"     📅 Calendar risk flagged")
+            brief = brief + "\n\n" + cal_risk
 
         # Append graph context (patterns from trade history)
         if graph_context:
