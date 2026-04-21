@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install anthropic requests ddgs feedparser graphifyy
+        run: pip install anthropic requests ddgs feedparser
       - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -38,20 +38,13 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python claudebot.py --single-scan
-      - name: Build knowledge graph from trade reflections
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Build trade knowledge graph
         run: |
-          if [ -d "trade_reflections" ] && [ "$(ls -A trade_reflections)" ]; then
-            COUNT=$(ls trade_reflections | wc -l)
-            echo "Building knowledge graph from $COUNT reflection files..."
-            if [ -f "graphify-out/graph.json" ]; then
-              graphify trade_reflections --no-viz --update || echo "Graphify update failed"
-            else
-              graphify trade_reflections --no-viz || echo "Graphify build failed"
-            fi
+          if [ -d "trade_reflections" ] && [ "$(ls -A trade_reflections 2>/dev/null)" ]; then
+            echo "Building knowledge graph from $(ls trade_reflections | wc -l) reflection files..."
+            python build_graph.py
           else
-            echo "No reflections yet - skipping graphify"
+            echo "No reflection files yet - skipping graph build"
           fi
       - name: Commit updated logs back to repo
         run: |
