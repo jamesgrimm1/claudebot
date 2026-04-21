@@ -1,5 +1,5 @@
 {
-  "bankroll": 985.0,
+  "bankroll": 965.38,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -16,10 +16,42 @@
       "placed_at": "2026-04-21T11:29:16.998455+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260421140421283024",
+      "market_id": "1003803",
+      "market": "Will the Dravida Munnetra Kazhagam (DMK) win the most seats in the 2026 Tamil Nadu Legislative Assembly election?",
+      "category": "politics",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.92,
+      "closes": "2026-04-23T00:00:00+00:00",
+      "closes_in_days": 1.414,
+      "status": "open",
+      "placed_at": "2026-04-21T14:04:21.283031+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260421140422556601",
+      "market_id": "1374114",
+      "market": "Will the Bank of Russia decrease the key rate after the April Meeting?",
+      "category": "economics",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 14.7,
+      "closes": "2026-04-24T00:00:00+00:00",
+      "closes_in_days": 2.414,
+      "status": "open",
+      "placed_at": "2026-04-21T14:04:22.556804+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-21",
-  "scan_count": 5,
+  "scan_count": 6,
   "started": "2026-04-21T00:00:00+00:00"
 }
