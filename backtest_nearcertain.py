@@ -27,7 +27,7 @@ from collections import defaultdict
 #  CONFIG
 # ─────────────────────────────────────────────────────────
 TARGET_TRADES   = 800       # aim for ~800 trades across all strategies/timings
-MARKET_BATCH    = 100       # markets to analyse (each gives multiple trades)
+MARKET_BATCH    = 200       # markets to analyse — more = more trades
 YES_MIN         = 75        # NearCertain entry: YES at least 75¢
 YES_MAX         = 95        # NearCertain entry: YES at most 95¢
 FLAT_STAKE      = 10.0      # $10 flat stake for comparison
@@ -172,23 +172,19 @@ def fetch_resolved_markets(target=MARKET_BATCH):
 def fetch_price_at_days_before(token_id, end_dt, days_before):
     """
     Fetch YES token price approximately N days before market close.
-    Uses CLOB price history endpoint.
+    Uses CLOB prices-history endpoint with interval=max, fidelity=720 (12h).
+    Note: fidelity < 720 returns empty for resolved markets (Polymarket limitation).
     Returns price (0-1) or None if not available.
     """
     target_dt  = end_dt - timedelta(days=days_before)
     target_ts  = int(target_dt.timestamp())
 
-    # Request a window around the target date
-    start_ts = target_ts - 86400   # 1 day before
-    end_ts   = target_ts + 86400   # 1 day after
-
     data = safe_get(
         f"{CLOB_URL}/prices-history",
         params={
             "market":    token_id,
-            "startTs":   start_ts,
-            "endTs":     end_ts,
-            "fidelity":  1,          # daily fidelity
+            "interval":  "max",
+            "fidelity":  720,   # 12h in minutes — minimum that works for resolved markets
         }
     )
 
@@ -212,6 +208,10 @@ def fetch_price_at_days_before(token_id, end_dt, days_before):
             best_diff = diff
             best = float(p)
 
+    # Reject if the closest point is more than 4 days away from target
+    if best is not None and best_diff > 4 * 86400:
+        return None
+
     return best
 
 # ─────────────────────────────────────────────────────────
@@ -224,13 +224,15 @@ def run_backtest(markets):
     Returns list of trade records.
     """
     log("Running NearCertain backtest simulation...")
-    trades   = []
-    skipped  = 0
-    now      = datetime.now(timezone.utc)
+    trades       = []
+    skipped      = 0
+    no_history   = 0
+    wrong_range  = 0
+    now          = datetime.now(timezone.utc)
 
     for i, m in enumerate(markets):
         if i % 10 == 0:
-            log(f"  Processing market {i+1}/{len(markets)}...")
+            log(f"  Processing market {i+1}/{len(markets)} | trades so far: {len(trades)}...")
 
         # Only use markets that closed > 1 day ago (confirmed resolution)
         if (now - m["end_dt"]).days < 1:
@@ -257,6 +259,7 @@ def run_backtest(markets):
             yes_price = fetch_price_at_days_before(yes_token, m["end_dt"], days_before)
 
             if yes_price is None:
+                no_history += 1
                 continue
 
             yes_pct = round(yes_price * 100, 1)
@@ -264,12 +267,13 @@ def run_backtest(markets):
 
             # NearCertain filter: YES must be 75-95¢ at entry
             if not (YES_MIN <= yes_pct <= YES_MAX):
+                wrong_range += 1
                 continue
 
             # Simulate NO trade
-            won = not m["resolved_yes"]   # we bet NO, so we win if it doesn't resolve YES
+            won = not m["resolved_yes"]
 
-            # P&L calculation (buying NO at no_pct cents)
+            # P&L calculation
             if won:
                 payout = FLAT_STAKE * 100 / no_pct
                 pnl    = round(payout - FLAT_STAKE, 2)
@@ -289,9 +293,12 @@ def run_backtest(markets):
                 "end_dt":       m["end_dt"].strftime("%Y-%m-%d"),
             })
 
-            time.sleep(0.1)   # rate limiting
+            time.sleep(0.05)
 
-    log(f"  Generated {len(trades)} trades ({skipped} markets skipped)")
+    log(f"  Generated {len(trades)} trades")
+    log(f"  Skipped: {skipped} (blocked cat/no token)")
+    log(f"  No history: {no_history}")
+    log(f"  Wrong price range: {wrong_range}")
     return trades
 
 # ─────────────────────────────────────────────────────────
