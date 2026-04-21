@@ -72,8 +72,8 @@ TIERS = {
         "max_positions":  6,
         "fixed_pct":      None,
         "kelly": [
-            {"min_conf": 90, "fraction": 1.0, "max_pct": 15.0},
-            {"min_conf": 75, "fraction": 0.5, "max_pct": 10.0},
+            {"min_conf": 90, "fraction": 0.5, "max_pct": 8.0},   # was 1.0 / 15% — halved until calibration confirmed
+            {"min_conf": 75, "fraction": 0.25, "max_pct": 5.0},  # was 0.5 / 10% — halved until calibration confirmed
         ],
         "short_disc_1d":  0.65,
         "short_disc_2d":  0.80,
@@ -90,8 +90,8 @@ TIERS = {
         "max_positions":  3,
         "fixed_pct":      None,
         "kelly": [
-            {"min_conf": 90, "fraction": 0.5,  "max_pct": 8.0},
-            {"min_conf": 80, "fraction": 0.25, "max_pct": 5.0},
+            {"min_conf": 90, "fraction": 0.25, "max_pct": 4.0},  # was 0.5 / 8% — halved until calibration confirmed
+            {"min_conf": 80, "fraction": 0.125, "max_pct": 2.5}, # was 0.25 / 5% — halved until calibration confirmed
         ],
         "time_discount":  0.75,
         "screener_top_n": 8,
