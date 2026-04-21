@@ -5,7 +5,7 @@
 ║  Strategy: 73.3% of Polymarket markets resolve NO.       ║
 ║  Buy NO mechanically on any market priced $0.45-$0.62.   ║
 ║  Haiku news screen filters obvious disasters.            ║
-║  Exit at NO=$0.90 to recycle capital fast.               ║
+║  Hold to resolution — full 100¢ payout on every win.    ║
 ║  No deep research. No Opus. Volume is the edge.          ║
 ║                                                          ║
 ║  V2 SIZING — reversed brackets + volume multiplier:      ║
@@ -21,8 +21,8 @@
 ║  $10-100k → 2.5x   |  $50-100k → 1.5x                   ║
 ║  > $100k  → 1.0x  (sharp markets — no edge)              ║
 ║                                                          ║
-║  Exit: sell when NO price reaches $0.90                  ║
-║  Hold: resolve if market closes before hitting $0.90     ║
+║  Hold: resolve at market close — full payout             ║
+║  No early exit at 90¢ — hold every trade to resolution   ║
 ║                                                          ║
 ║  SETUP:  pip install anthropic requests ddgs feedparser  ║
 ║  RUN:    python nobot_v2.py --single-scan                ║
@@ -63,8 +63,7 @@ SCAN_INTERVAL_MINS = 60
 NO_ENTRY_MIN = 45   # 45¢ NO = 55¢ YES
 NO_ENTRY_MAX = 62   # 62¢ NO = 38¢ YES
 
-# Exit target — sell NO when it reaches this price
-NO_EXIT_TARGET = 90  # 90¢ NO
+# No early exit — hold all trades to market resolution for full payout
 
 # V2 stake sizing — REVERSED brackets (higher NO price = bigger base %)
 # Each base % is then multiplied by the volume tier multiplier
@@ -315,18 +314,12 @@ def days_until(dt):
 #  MARKET RESOLUTION
 # ─────────────────────────────────────────────────────────
 
-def _settle(trade, won, state, exit_price=None):
+def _settle(trade, won, state):
     trade["status"]      = "closed"
     trade["won"]         = won
     trade["resolved_at"] = datetime.now(timezone.utc).isoformat()
 
-    if exit_price:
-        # Early exit — sold at exit_price
-        payout               = round(trade["stake"] * exit_price / trade["entry_no_price"], 2)
-        trade["realized_pnl"] = round(payout - trade["stake"], 2)
-        state["bankroll"]    = round(state["bankroll"] + payout, 2)
-        log(f"  🎯 EXIT  +${trade['realized_pnl']:.2f}  (sold NO @ {exit_price}¢)  {trade['market'][:55]}")
-    elif won:
+    if won:
         payout               = round(trade["stake"] * 100 / trade["entry_no_price"], 2)
         trade["realized_pnl"] = round(payout - trade["stake"], 2)
         state["bankroll"]    = round(state["bankroll"] + payout, 2)
@@ -361,11 +354,6 @@ def resolve_open_trades(state):
             prices   = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
             yes_price = round(float(prices[0]) * 100)
             no_price  = round(float(prices[1]) * 100)
-
-            # Check exit target — NO reached 90¢
-            if no_price >= NO_EXIT_TARGET:
-                _settle(trade, True, state, exit_price=no_price)
-                continue
 
             # Check if market resolved
             if mkt.get("active", True) and not mkt.get("closed", False):
@@ -643,7 +631,6 @@ def place_trade(market, state):
         "closes_in_days":   market["closes_in_days"],
         "closes":           market["closes"],
         "volume":           market["volume"],
-        "exit_target":      NO_EXIT_TARGET,
         "status":           "open",
         "placed_at":        datetime.now(timezone.utc).isoformat(),
         "paper":            True,
@@ -653,7 +640,7 @@ def place_trade(market, state):
     state["bankroll"] = round(state["bankroll"] - stake, 2)
     state["trades"].append(trade)
 
-    log(f"  🔴 NO @ {no_price}¢ | ${stake:.2f} stake | exit@{NO_EXIT_TARGET}¢ | "
+    log(f"  🔴 NO @ {no_price}¢ | ${stake:.2f} stake | "
         f"{market['category']} | {market['question'][:50]}")
 
     telegram_new_trade(trade, state)
