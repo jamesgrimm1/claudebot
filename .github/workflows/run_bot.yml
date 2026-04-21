@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '7 * * * *'
   workflow_dispatch:
+    inputs:
+      run_backtest:
+        description: 'Run NearCertain backtest'
+        required: false
+        default: 'false'
 jobs:
   run-bots:
     runs-on: ubuntu-latest
@@ -17,6 +22,11 @@ jobs:
           python-version: '3.11'
       - name: Install dependencies
         run: pip install anthropic requests ddgs feedparser
+      - name: Run NearCertain backtest (manual trigger only)
+        if: github.event.inputs.run_backtest == 'true'
+        run: |
+          python backtest_nearcertain.py
+          echo "Backtest complete"
       - name: Run NoBot V1 (every hour)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -61,5 +71,6 @@ jobs:
           git config user.email "claudebot@users.noreply.github.com"
           git add claudebot_log.json nobot_log.json nobot_v2_log.json nearcertain_log.json
           git add trade_reflections/ graphify-out/ 2>/dev/null || true
+          git add backtest_nearcertain_*.html 2>/dev/null || true
           git diff --staged --quiet || git commit -m "bot: update logs + reflections [$(date '+%Y-%m-%d %H:%M')]"
           git push
