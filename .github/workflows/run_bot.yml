@@ -43,10 +43,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ -d "trade_reflections" ] && [ "$(ls -A trade_reflections)" ]; then
-            echo "Building knowledge graph from $(ls trade_reflections | wc -l) reflection files..."
-            graphify trade_reflections --no-viz --update 2>/dev/null || echo "Graphify skipped (first run or no changes)"
+            COUNT=$(ls trade_reflections | wc -l)
+            echo "Building knowledge graph from $COUNT reflection files..."
+            if [ -f "graphify-out/graph.json" ]; then
+              graphify trade_reflections --no-viz --update || echo "Graphify update failed"
+            else
+              graphify trade_reflections --no-viz || echo "Graphify build failed"
+            fi
           else
-            echo "No reflections yet — skipping graphify"
+            echo "No reflections yet - skipping graphify"
           fi
       - name: Commit updated logs back to repo
         run: |
