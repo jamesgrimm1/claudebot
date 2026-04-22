@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-22T06:06:56.525451",
-  "total_trades": 23,
+  "generated": "2026-04-22T08:05:05.045729",
+  "total_trades": 24,
   "trades": [
     {
       "won": true,
@@ -118,6 +118,19 @@
       "bear": "ECB historically cautious on reversals; forecasts may be conditional on inflation data not yet published; other banks may disagree with Barclays/JPM",
       "news": false,
       "path": "trade_reflections/T1775446385_economics_LOST.md"
+    },
+    {
+      "won": false,
+      "category": "health",
+      "conf": 82,
+      "hold_h": null,
+      "tier": "2",
+      "position": "YES",
+      "pnl": 0.0,
+      "market": "Will there be at least 2200 measles cases in the U.S. by April 30, 2026?",
+      "bear": "Sharp deceleration in daily case rate not captured in available data; public health interventions containing active outbreaks; seasonal decline in measles transmission already underway",
+      "news": false,
+      "path": "trade_reflections/T1775271291_health_LOST.md"
     },
     {
       "won": true,
