@@ -41,7 +41,7 @@ except ImportError:
 
 ANTHROPIC_API_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
 TELEGRAM_BOT_TOKEN   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
-TELEGRAM_CHANNEL_ID  = os.environ.get("TELEGRAM_CHANNEL_ID", "")
+TELEGRAM_CHANNEL_ID  = ""  # disabled — no public channel for NearCertain
 TELEGRAM_PERSONAL_ID = os.environ.get("TELEGRAM_PERSONAL_ID", "")
 
 SCREENER_MODEL     = "claude-haiku-4-5-20251001"
