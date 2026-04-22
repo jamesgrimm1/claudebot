@@ -1010,9 +1010,18 @@ def resolve_open_trades(state):
                 if mkt.get("active", True) and not mkt.get("closed", False):
                     continue
                 prices    = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
-                yes_price = float(prices[0])
-                no_price  = float(prices[1])
-                won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                # For grouped/negRisk markets with many buckets, prices[0] is YES and
+                # the winning outcome is whichever bucket hits 1.0
+                # For standard binary: prices[0]=YES, prices[1]=NO
+                if len(prices) > 2:
+                    # Multi-outcome: if any bucket hit 1.0, the market resolved
+                    # For a NO position in a binary-style grouped market, we won if prices[0] < 0.99
+                    yes_price = float(prices[0])
+                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
+                else:
+                    yes_price = float(prices[0])
+                    no_price  = float(prices[1])
+                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
                 _settle(trade, won, state)
             except Exception as e:
                 log(f"  ⚠️  Could not check {market_id}: {e}")
@@ -1072,6 +1081,12 @@ def fetch_markets_for_tier(tier_num):
             continue
         q_lower = m["question"].lower()
         if any(k in q_lower for k in ["up or down", "odd or even", "odd/even", "total kills"]):
+            skipped += 1
+            continue
+
+        # Block negRisk grouped markets (e.g. "between $120-$130") —
+        # these are multi-outcome buckets and resolve incorrectly with binary logic
+        if m.get("negRisk", False):
             skipped += 1
             continue
         if cid < (1 / 24):
