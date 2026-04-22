@@ -1,5 +1,5 @@
 {
-  "bankroll": 695.55,
+  "bankroll": 676.58,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -264,10 +264,13 @@
       "stake": 8.41,
       "closes": "2026-04-22T14:00:00+00:00",
       "closes_in_days": 0.944,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T15:21:28.391047+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-22T13:59:15.758365+00:00",
+      "realized_pnl": -8.41
     },
     {
       "id": "NC20260421152129486814",
@@ -445,10 +448,13 @@
       "potential_payout": 17.95,
       "closes": "2026-04-22T13:00:00+00:00",
       "closes_in_days": 0.392,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T03:35:15.067250+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-22T13:59:16.554418+00:00",
+      "realized_pnl": -3.77
     },
     {
       "id": "NC20260422033515067340",
@@ -959,10 +965,64 @@
       "placed_at": "2026-04-22T09:45:22.551279+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260422135936152858",
+      "market_id": "1740731",
+      "market": "Atl\u00e9tico San Luis vs. Club Santos Laguna: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 17,
+      "entry_yes_price": 83,
+      "stake": 5.22,
+      "potential_profit": 25.49,
+      "potential_payout": 30.71,
+      "closes": "2026-04-23T01:00:00+00:00",
+      "closes_in_days": 0.459,
+      "status": "open",
+      "placed_at": "2026-04-22T13:59:36.152870+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260422135936152928",
+      "market_id": "2032309",
+      "market": "LoL: Galions vs Joblife (BO1) - LFL Regular Season",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 3.45,
+      "potential_profit": 10.93,
+      "potential_payout": 14.38,
+      "closes": "2026-04-23T01:00:00+00:00",
+      "closes_in_days": 0.459,
+      "status": "open",
+      "placed_at": "2026-04-22T13:59:36.152946+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260422135936153028",
+      "market_id": "2014230",
+      "market": "LoL: Gen.G vs DN SOOPers (BO3) - LCK Rounds 1-2",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 10.3,
+      "potential_profit": 118.45,
+      "potential_payout": 128.75,
+      "closes": "2026-04-23T16:00:00+00:00",
+      "closes_in_days": 1.084,
+      "status": "open",
+      "placed_at": "2026-04-22T13:59:36.153039+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 32.67,
+  "daily_loss": 44.85,
   "daily_reset": "2026-04-22",
-  "scan_count": 16,
+  "scan_count": 17,
   "started": "2026-04-21T00:00:00+00:00"
 }

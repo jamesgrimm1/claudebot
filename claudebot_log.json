@@ -1,5 +1,5 @@
 {
-  "bankroll": 1505.09,
+  "bankroll": 1429.84,
   "trades": [
     {
       "id": "T1775098669",
@@ -946,11 +946,44 @@
       "placed_at": "2026-04-21T08:41:51.204695+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776866531",
+      "tier": 1,
+      "market_id": "2029474",
+      "market_slug": "will-xrp-reach-1pt5-april-20-26",
+      "market": "Will XRP reach $1.50 April 20-26?",
+      "position": "YES",
+      "entry_price": 64,
+      "stake": 75.25,
+      "potential_return": 117.58,
+      "potential_profit": 42.33,
+      "confidence": 77,
+      "true_prob": 80,
+      "market_prob": 64,
+      "category": "crypto",
+      "closes_in_days": 4.6,
+      "closes": "2026-04-27T04:00:00+00:00",
+      "research_summary": "XRP at $1.46, only 2.74% below $1.50 target. Strong recent momentum (+6.78% 7d, +1.74% 24h). Touch-once resolution over 4.5 remaining days of 24/7 trading. Daily volatility (3-5%) exceeds required move. Random walk probability ~75% with no drift, ~80%+ with observed positive drift.",
+      "key_factors": [
+        "Only $0.04 (2.74%) gap to target - well within single-day volatility",
+        "Touch-once resolution across 4.5 days of 24/7 markets",
+        "Strong positive momentum: +6.78% weekly",
+        "Daily crypto vol (3-5%) exceeds entire required move",
+        "75-79% confidence band is calibration sweet spot (88% actual WR)"
+      ],
+      "bear_case": "Broad crypto selloff from tariff/regulatory news could push XRP away. 2-7 day hold duration has 43% historical WR. Momentum reversal risk.",
+      "kelly_tier": "quarter-Kelly (5.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-22T14:02:11.324245+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-22",
-  "scan_count": 159,
+  "scan_count": 160,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-22",
   "last_tier2_scan": "2026-04-22",
