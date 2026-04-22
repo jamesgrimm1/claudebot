@@ -1,5 +1,5 @@
 {
-  "bankroll": 807.65,
+  "bankroll": 800.95,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1568,10 +1568,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 3504.006652,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T01:25:38.402541+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-22T09:44:33.457228+00:00",
+      "realized_pnl": -3.86
     },
     {
       "id": "NB1776483529",
@@ -3512,10 +3515,13 @@
       "closes": "2026-04-27T04:00:00+00:00",
       "volume": 8198.606034999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T11:13:07.938840+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-22T09:44:35.499206+00:00",
+      "realized_pnl": -3.85
     },
     {
       "id": "NB1776683587",
@@ -3669,10 +3675,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4465.069357000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T08:24:03.266514+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-22T09:44:35.746965+00:00",
+      "realized_pnl": 1.29
     },
     {
       "id": "NB1776759843",
@@ -4165,11 +4174,71 @@
       "placed_at": "2026-04-22T08:03:13.440514+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776851086",
+      "market_id": "2029738",
+      "market_slug": "highest-temperature-in-madrid-on-april-22-2026-25c",
+      "market": "Will the highest temperature in Madrid be 25\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 43,
+      "stake": 3.04,
+      "payout_if_wins": 5.33,
+      "profit_if_wins": 2.29,
+      "category": "weather",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 4870.732693999999,
+      "status": "open",
+      "placed_at": "2026-04-22T09:44:46.642905+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776851086",
+      "market_id": "2029883",
+      "market_slug": "highest-temperature-in-moscow-on-april-22-2026-12c",
+      "market": "Will the highest temperature in Moscow be 12\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 4.04,
+      "payout_if_wins": 8.98,
+      "profit_if_wins": 4.94,
+      "category": "weather",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 3839.101641999999,
+      "status": "open",
+      "placed_at": "2026-04-22T09:44:46.642947+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776851086",
+      "market_id": "2029596",
+      "market_slug": "highest-temperature-in-atlanta-on-april-22-2026-82-83f",
+      "market": "Will the highest temperature in Atlanta be between 82-83\u00b0F on April 22?",
+      "position": "NO",
+      "entry_no_price": 53,
+      "entry_yes_price": 47,
+      "stake": 3.01,
+      "payout_if_wins": 5.68,
+      "profit_if_wins": 2.67,
+      "category": "weather",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 3741.806350000003,
+      "status": "open",
+      "placed_at": "2026-04-22T09:44:46.642970+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 18.24,
+  "daily_loss": 25.95,
   "daily_reset": "2026-04-22",
-  "scan_count": 104,
+  "scan_count": 105,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-22T00:10:49.177041+00:00"
 }
