@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-22T14:02:12.620006",
-  "total_trades": 24,
+  "generated": "2026-04-22T15:21:06.399029",
+  "total_trades": 25,
   "trades": [
     {
       "won": true,
@@ -274,6 +274,19 @@
       "bear": "An unseasonable warm air mass or heat event could push temperatures significantly above average; without a specific 1-day forecast in hand, there's residual uncertainty about actual conditions",
       "news": false,
       "path": "trade_reflections/T1776461747_weather_WON.md"
+    },
+    {
+      "won": false,
+      "category": "weather",
+      "conf": 78,
+      "hold_h": null,
+      "tier": "1",
+      "position": "NO",
+      "pnl": 0.0,
+      "market": "Will the highest temperature in Ankara be 16\u00b0C on April 22?",
+      "bear": "The 12\u00b0C forecast may apply to April 18-20 only \u2014 if a rapid warming trend pushes temperatures toward the 16-17\u00b0C late-April climatological average, probability of exactly 16\u00b0C increases significantly",
+      "news": true,
+      "path": "trade_reflections/T1776678792_weather_LOST.md"
     },
     {
       "won": true,
