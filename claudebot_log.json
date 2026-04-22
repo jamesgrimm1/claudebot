@@ -878,10 +878,13 @@
       "bear_case": "The 12\u00b0C forecast may apply to April 18-20 only \u2014 if a rapid warming trend pushes temperatures toward the 16-17\u00b0C late-April climatological average, probability of exactly 16\u00b0C increases significantly",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": true,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T09:53:12.519445+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "realized_pnl": -149.79,
+      "resolved_at": "2026-04-22T12:00:00+00:00"
     },
     {
       "id": "T1776698018",
@@ -983,7 +986,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-22",
-  "scan_count": 162,
+  "scan_count": 161,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-22",
   "last_tier2_scan": "2026-04-22",
