@@ -1,5 +1,5 @@
 {
-  "bankroll": 1235.21,
+  "bankroll": 1216.76,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1822,11 +1822,51 @@
       "placed_at": "2026-04-22T03:34:59.926829+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776833474",
+      "market_id": "2037629",
+      "market_slug": "lowest-temperature-in-nyc-on-april-22-2026-44-45f",
+      "market": "Will the lowest temperature in New York City be between 44-45\u00b0F on April 22?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 9.26,
+      "payout_if_wins": 15.43,
+      "profit_if_wins": 6.17,
+      "category": "weather",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 5226.923770000001,
+      "status": "open",
+      "placed_at": "2026-04-22T04:51:14.502256+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776833474",
+      "market_id": "2029916",
+      "market_slug": "highest-temperature-in-busan-on-april-22-2026-20c",
+      "market": "Will the highest temperature in Busan be 20\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 9.19,
+      "payout_if_wins": 15.58,
+      "profit_if_wins": 6.39,
+      "category": "weather",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 4495.174871999999,
+      "status": "open",
+      "placed_at": "2026-04-22T04:51:14.502288+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 15.48,
   "daily_reset": "2026-04-22",
-  "scan_count": 101,
+  "scan_count": 102,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-22T00:10:49.177041+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
