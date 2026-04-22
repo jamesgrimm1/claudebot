@@ -1,5 +1,5 @@
 {
-  "bankroll": 1152.64,
+  "bankroll": 1505.09,
   "trades": [
     {
       "id": "T1775098669",
@@ -844,10 +844,13 @@
       "bear_case": "Major unexpected positive catalyst (ETF approval, massive institutional buy) could spike SOL, though 41%+ in 48 hours to a specific range remains highly improbable",
       "kelly_tier": "full-Kelly (15.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:41:54.799923+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-21T21:00:00+00:00",
+      "realized_pnl": 88.11
     },
     {
       "id": "T1776678792",
