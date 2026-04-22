@@ -993,68 +993,68 @@ def resolve_open_trades(state):
     log(f"🔍 Checking {len(open_trades)} open position(s)...")
     for trade in open_trades:
         market_id = trade.get("market_id", "")
-        if market_id and not market_id.startswith("d0"):
-            resolved = False
-            try:
-                r = requests.get(
-                    f"https://gamma-api.polymarket.com/markets/{market_id}",
-                    timeout=10
-                )
-                if r.status_code == 200:
-                    mkt = r.json()
-                    if mkt.get("active", True) and not mkt.get("closed", False):
-                        pass  # not resolved yet via Gamma
-                    else:
-                        prices = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
-                        if len(prices) > 2:
-                            yes_price = float(prices[0])
-                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
-                        else:
-                            yes_price = float(prices[0])
-                            no_price  = float(prices[1])
-                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
-                        _settle(trade, won, state)
-                        resolved = True
-            except Exception as e:
-                log(f"  ⚠️  Gamma check failed for {market_id}: {e}")
-
-            # Fallback: try CLOB prices endpoint if Gamma didn't resolve
-            if not resolved and trade["status"] == "open":
-                try:
-                    # Get clob token ids from gamma
-                    r2 = requests.get(
-                        f"https://gamma-api.polymarket.com/markets?id={market_id}",
-                        timeout=10
-                    )
-                    if r2.status_code == 200:
-                        data = r2.json()
-                        mkt2 = data[0] if isinstance(data, list) and data else data
-                        active = mkt2.get("active", True)
-                        closed_flag = mkt2.get("closed", False)
-                        if not active or closed_flag:
-                            prices = json.loads(mkt2.get("outcomePrices", "[0.5,0.5]"))
-                            if len(prices) >= 2:
-                                yes_price = float(prices[0])
-                                no_price  = float(prices[1])
-                                if yes_price >= 0.99 or no_price >= 0.99:
-                                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
-                                    _settle(trade, won, state)
-                                    resolved = True
-                except Exception as e:
-                    log(f"  ⚠️  CLOB fallback failed for {market_id}: {e}")
-
-            # Time-based fallback: if past close date by >24h and still open, flag it
-            if not resolved and trade["status"] == "open":
-                close_dt = parse_utc(trade.get("closes"))
-                if close_dt:
-                    hours_past = (datetime.now(timezone.utc) - close_dt).total_seconds() / 3600
-                    if hours_past > 24:
-                        log(f"  ⚠️  {trade['market'][:50]} is {hours_past:.0f}h past close — manual review needed")
-        else:
+        if not market_id or market_id.startswith("d0"):
+            # Fallback for markets without proper IDs — settle by time
             close_dt = parse_utc(trade.get("closes"))
             if close_dt and datetime.now(timezone.utc) > close_dt:
                 import random
                 _settle(trade, random.random() > 0.5, state)
+            continue
+
+        resolved = False
+
+        # Primary: /markets/{id}
+        for url in [
+            f"https://gamma-api.polymarket.com/markets/{market_id}",
+            f"https://gamma-api.polymarket.com/markets?id={market_id}",
+        ]:
+            if resolved:
+                break
+            try:
+                r = requests.get(url, timeout=12)
+                if r.status_code != 200:
+                    continue
+                raw = r.json()
+                mkt = raw[0] if isinstance(raw, list) and raw else raw
+
+                prices_raw = mkt.get("outcomePrices")
+                if not prices_raw:
+                    continue
+
+                prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+                prices = [float(p) for p in prices]
+
+                # Check if any price has resolved to near-1 — this is more reliable
+                # than checking active/closed flags which can lag
+                if len(prices) >= 2:
+                    yes_price = prices[0]
+                    no_price  = prices[1]
+
+                    if yes_price >= 0.99 or no_price >= 0.99:
+                        # Market has resolved
+                        if len(prices) > 2:
+                            # Multi-outcome (negRisk grouped)
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
+                        else:
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                        _settle(trade, won, state)
+                        resolved = True
+                    else:
+                        # Prices not resolved yet — check if it's just the active flag lagging
+                        # If market is marked closed but prices haven't snapped, skip
+                        pass
+
+            except Exception as e:
+                log(f"  ⚠️  Resolve attempt failed ({url[:50]}): {e}")
+
+        # If still not resolved and past close time by >24h, log a warning
+        if not resolved and trade["status"] == "open":
+            close_dt = parse_utc(trade.get("closes"))
+            if close_dt:
+                hours_past = (datetime.now(timezone.utc) - close_dt).total_seconds() / 3600
+                if hours_past > 24:
+                    log(f"  ⚠️  {trade['market'][:55]} — {hours_past:.0f}h past close, not resolved in API yet")
+
     return state
 
 
