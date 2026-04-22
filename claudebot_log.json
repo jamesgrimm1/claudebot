@@ -1,5 +1,5 @@
 {
-  "bankroll": 1429.84,
+  "bankroll": 1358.35,
   "trades": [
     {
       "id": "T1775098669",
@@ -982,11 +982,42 @@
       "placed_at": "2026-04-22T14:02:11.324245+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1776877932",
+      "tier": 1,
+      "market_id": "2047411",
+      "market_slug": "us-x-iran-diplomatic-meeting-by-april-28-2026",
+      "market": "US x Iran diplomatic meeting by April 28, 2026?",
+      "position": "NO",
+      "entry_price": 50,
+      "stake": 71.49,
+      "potential_return": 142.98,
+      "potential_profit": 71.49,
+      "confidence": 78,
+      "true_prob": 28,
+      "market_prob": 50,
+      "category": "geopolitics",
+      "closes_in_days": 5.3,
+      "closes": "2026-04-28T00:00:00+00:00",
+      "research_summary": "Iran explicitly stated no plans to send negotiators after US seized Iranian cargo ship in Strait of Hormuz. First round collapsed April 11-12 with no agreement. Active escalation and explicit refusal to negotiate with only 6 days remaining makes new diplomatic meeting unlikely.",
+      "key_factors": [
+        "Iran explicitly stated no plans to send negotiators for new round",
+        "US ship seizure in Strait of Hormuz represents escalation making diplomacy harder",
+        "Only 6 days remain with zero scheduled meetings and no back-channel momentum reported"
+      ],
+      "bear_case": "Diplomacy can shift rapidly \u2014 both sides have incentives to avoid war, Trump extended ceasefire showing US engagement interest, and surprise back-channel breakthroughs are possible in geopolitics",
+      "kelly_tier": "quarter-Kelly (5.0%)",
+      "news_triggered": true,
+      "status": "open",
+      "placed_at": "2026-04-22T17:12:12.967802+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-22",
-  "scan_count": 161,
+  "scan_count": 162,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-22",
   "last_tier2_scan": "2026-04-22",
