@@ -1,5 +1,5 @@
 {
-  "bankroll": 845.32,
+  "bankroll": 850.64,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3316,10 +3316,13 @@
       "closes_in_days": 0.3,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 6157.704046000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T04:42:56.041024+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:50:31.895108+00:00",
+      "realized_pnl": 3.02
     },
     {
       "id": "NB1776746576",
@@ -3382,10 +3385,13 @@
       "closes_in_days": 0.23,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 5458.540014000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T06:30:46.905400+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:50:32.048678+00:00",
+      "realized_pnl": -4.84
     },
     {
       "id": "NB1776753046",
@@ -3597,10 +3603,13 @@
       "closes_in_days": 0.13,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4608.318310000005,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T08:56:39.431949+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:50:32.406595+00:00",
+      "realized_pnl": 2.03
     },
     {
       "id": "NB1776816674",
@@ -3701,11 +3710,51 @@
       "placed_at": "2026-04-22T00:11:14.472337+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776819041",
+      "market_id": "2029699",
+      "market_slug": "highest-temperature-in-hong-kong-on-april-22-2026-30c",
+      "market": "Will the highest temperature in Hong Kong be 30\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 5.28,
+      "payout_if_wins": 9.26,
+      "profit_if_wins": 3.98,
+      "category": "weather",
+      "closes_in_days": 0.46,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 8011.617109000009,
+      "status": "open",
+      "placed_at": "2026-04-22T00:50:41.150490+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776819041",
+      "market_id": "2029557",
+      "market_slug": "highest-temperature-in-toronto-on-april-22-2026-19corhigher",
+      "market": "Will the highest temperature in Toronto be 19\u00b0C or higher on April 22?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 2.69,
+      "payout_if_wins": 5.85,
+      "profit_if_wins": 3.16,
+      "category": "weather",
+      "closes_in_days": 0.46,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 6453.342090999999,
+      "status": "open",
+      "placed_at": "2026-04-22T00:50:41.150532+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 22.89,
+  "daily_loss": 27.73,
   "daily_reset": "2026-04-22",
-  "scan_count": 103,
+  "scan_count": 104,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-21T15:20:58.276149+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

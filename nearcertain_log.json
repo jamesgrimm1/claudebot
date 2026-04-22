@@ -1,5 +1,5 @@
 {
-  "bankroll": 765.93,
+  "bankroll": 754.44,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -79,10 +79,13 @@
       "stake": 7.19,
       "closes": "2026-04-21T19:00:00+00:00",
       "closes_in_days": 0.152,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T15:21:15.840012+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-22T00:50:42.048424+00:00",
+      "realized_pnl": -7.19
     },
     {
       "id": "NC20260421152116949280",
@@ -404,10 +407,28 @@
       "placed_at": "2026-04-22T00:11:21.358723+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260422005052989660",
+      "market_id": "2040634",
+      "market": "Will the highest temperature in Panama City be 31\u00b0C or higher on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 9,
+      "entry_yes_price": 91,
+      "stake": 11.49,
+      "potential_profit": 116.18,
+      "potential_payout": 127.67,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 1.465,
+      "status": "open",
+      "placed_at": "2026-04-22T00:50:52.989682+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 14.37,
+  "daily_loss": 21.56,
   "daily_reset": "2026-04-22",
-  "scan_count": 9,
+  "scan_count": 10,
   "started": "2026-04-21T00:00:00+00:00"
 }

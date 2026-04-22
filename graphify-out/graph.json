@@ -1,7 +1,20 @@
 {
-  "generated": "2026-04-22T00:18:21.556802",
-  "total_trades": 22,
+  "generated": "2026-04-22T00:52:59.398831",
+  "total_trades": 23,
   "trades": [
+    {
+      "won": true,
+      "category": "crypto",
+      "conf": 90,
+      "hold_h": 59.3,
+      "tier": "1",
+      "position": "NO",
+      "pnl": 88.11,
+      "market": "Will the price of Solana be between $120 and $130 on April 21?",
+      "bear": "Major unexpected positive catalyst (ETF approval, massive institutional buy) could spike SOL, though 41%+ in 48 hours to a specific range remains highly improbable",
+      "news": false,
+      "path": "trade_reflections/T1776591714_crypto_WON.md"
+    },
     {
       "won": true,
       "category": "other",
