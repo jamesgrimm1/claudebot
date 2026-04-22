@@ -503,6 +503,8 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     <div class="nav-tab active" onclick="setBot('cb',this)">ClaudeBot</div>
     <div class="nav-tab" onclick="setBot('nb',this)">NoBot V1</div>
     <div class="nav-tab" onclick="setBot('nb2',this)">NoBot V2</div>
+    <div class="nav-tab" onclick="setBot('nb3',this)">NoBot V3</div>
+    <div class="nav-tab" onclick="setBot('nc',this)">NearCertain</div>
     <div class="nav-tab" onclick="setBot('proj',this)">Projections</div>
   </div>
   <div class="header-right">
@@ -713,6 +715,133 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     </div>
   </div>
 
+  <!-- ── NoBot V3 view ── -->
+  <div id="view-nb3" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">V3 — Weather Only · Bigger Stakes</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Weather markets only · Stakes 3× V1 · $25 cap · 83%+ WR historical</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="nb3-bank">—</div>
+        <div class="hc-sub" id="nb3-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&L</div>
+        <div class="hc-value" id="nb3-pnl">—</div>
+        <div class="hc-sub" id="nb3-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="nb3-wr">—</div>
+        <div class="hc-sub" id="nb3-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="nb3-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="nb3-open">—</div>
+        <div class="hc-sub" id="nb3-dep">—</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P&L history (closed trades)</span>
+          <span class="pill" id="nb3-trend">—</span>
+        </div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="nb3-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Win rate by price bracket</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="nb3-bracket-chart"></canvas></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">Largest open positions</span>
+        <span class="pill pill-gold" id="nb3-open-count">0</span>
+      </div>
+      <div id="nb3-open-table"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Recent closed trades</span>
+        <span class="pill pill-gray" id="nb3-trade-count">0 closed</span>
+      </div>
+      <div id="nb3-trade-table"></div>
+    </div>
+  </div>
+
+  <!-- ── NearCertain view ── -->
+  <div id="view-nc" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">NearCertain — "Almost Sure? Think Again."</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Buy NO when YES 75-95¢ · Backtest: 70% WR · 1-7 day holds · Sports + Crypto blocked</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="nc-bank">—</div>
+        <div class="hc-sub" id="nc-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&L</div>
+        <div class="hc-value" id="nc-pnl">—</div>
+        <div class="hc-sub" id="nc-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="nc-wr">—</div>
+        <div class="hc-sub" id="nc-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="nc-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="nc-open">—</div>
+        <div class="hc-sub" id="nc-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Potential Profit</div>
+        <div class="hc-value gold" id="nc-potential">—</div>
+        <div class="hc-sub">if all open positions win</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P&L history (closed trades)</span>
+          <span class="pill" id="nc-trend">—</span>
+        </div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="nc-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Win rate by NO entry price</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="nc-bracket-chart"></canvas></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">Open positions</span>
+        <span class="pill pill-gold" id="nc-open-count">0</span>
+      </div>
+      <div id="nc-open-table"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Recent closed trades</span>
+        <span class="pill pill-gray" id="nc-trade-count">0 closed</span>
+      </div>
+      <div id="nc-trade-table"></div>
+    </div>
+  </div>
+
   <!-- ── Projections view ── -->
   <div id="view-proj" style="display:none">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px">
@@ -763,6 +892,8 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
 var CB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
 var NB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_log.json';
 var NB2_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
+var NB3_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
+var NC_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
 var START   = 1000;
 var cbChart = null, cbCatChart = null, nbChart = null, nbBracketChart = null, nb2Chart = null, nb2BracketChart = null;
 
@@ -795,6 +926,8 @@ function setBot(bot, el) {
   document.getElementById('view-cb').style.display   = bot === 'cb'   ? 'block' : 'none';
   document.getElementById('view-nb').style.display   = bot === 'nb'   ? 'block' : 'none';
   document.getElementById('view-nb2').style.display  = bot === 'nb2'  ? 'block' : 'none';
+  document.getElementById('view-nb3').style.display  = bot === 'nb3'  ? 'block' : 'none';
+  document.getElementById('view-nc').style.display   = bot === 'nc'   ? 'block' : 'none';
   document.getElementById('view-proj').style.display = bot === 'proj' ? 'block' : 'none';
 }
 
@@ -1155,7 +1288,134 @@ function renderNBBracketChart(closed, pfx, bracketRef) {
   else nb2BracketChart = newBChart;
 }
 
-// ── Projections engine ───────────────────────────────────
+// ── NoBot V3 renderer ─────────────────────────────────────
+function renderNBV3(d) {
+  renderNBGeneric(d, 'nb3', {ref:'nb3Chart'}, {ref:'nb3BracketChart'});
+}
+
+// ── NearCertain renderer ──────────────────────────────────
+function renderNC(d) {
+  if (!d) return;
+  var START_NC = 1000;
+  var trades  = d.trades || [];
+  var closed  = trades.filter(function(t){ return t.status === 'closed'; });
+  var open    = trades.filter(function(t){ return t.status === 'open'; });
+  var won     = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0);
+  var deployed = open.reduce(function(s,t){ return s + (t.stake||0); }, 0);
+  var potential = open.reduce(function(s,t){ return s + (t.potential_profit||0); }, 0);
+  var wr = closed.length ? won.length / closed.length : 0;
+  var roi = (d.bankroll - START_NC) / START_NC * 100;
+
+  document.getElementById('nc-bank').textContent    = '$' + d.bankroll.toFixed(2);
+  document.getElementById('nc-roi').textContent     = '$' + d.bankroll.toFixed(2) + ' current · ' + (d.scan_count||0) + ' scans';
+  document.getElementById('nc-pnl').textContent     = (realized >= 0 ? '+' : '') + '$' + realized.toFixed(2);
+  document.getElementById('nc-pnl-sub').textContent = roi.toFixed(1) + '% ROI · ' + closed.length + ' resolved';
+  document.getElementById('nc-wr').textContent      = closed.length ? Math.round(wr * 100) + '%' : '—';
+  document.getElementById('nc-rec').textContent     = won.length + 'W / ' + (closed.length - won.length) + 'L';
+  document.getElementById('nc-wrf').style.width     = Math.round(wr * 100) + '%';
+  document.getElementById('nc-open').textContent    = open.length;
+  document.getElementById('nc-dep').textContent     = '$' + deployed.toFixed(2) + ' deployed';
+  document.getElementById('nc-potential').textContent = '+$' + potential.toFixed(2);
+  document.getElementById('nc-open-count').textContent = open.length + ' open';
+  document.getElementById('nc-trade-count').textContent = closed.length + ' closed';
+
+  // Open positions table
+  var opEl = document.getElementById('nc-open-table');
+  if (!open.length) {
+    opEl.innerHTML = '<div class="empty">No open positions</div>';
+  } else {
+    var sorted = open.slice().sort(function(a,b){ return (a.closes_in_days||0) - (b.closes_in_days||0); });
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Cat</th><th>NO@</th><th>Stake</th><th>If win</th><th>Closes</th></tr></thead><tbody>' +
+      sorted.map(function(t){
+        var pot = t.potential_profit || 0;
+        return '<tr>' +
+          '<td>' + (t.market||'').substring(0,55) + '</td>' +
+          '<td><span class="pill pill-gray">' + (t.category||'?') + '</span></td>' +
+          '<td class="mono">' + t.entry_no_price + '¢</td>' +
+          '<td class="mono">$' + (t.stake||0).toFixed(2) + '</td>' +
+          '<td class="mono" style="color:var(--gold)">+$' + pot.toFixed(2) + '</td>' +
+          '<td class="mono">' + (t.closes_in_days||0).toFixed(1) + 'd</td>' +
+          '</tr>';
+      }).join('') + '</tbody></table>';
+  }
+
+  // Closed trades table
+  var clEl = document.getElementById('nc-trade-table');
+  if (!closed.length) {
+    clEl.innerHTML = '<div class="empty">No resolved trades yet</div>';
+  } else {
+    var recent = closed.slice().reverse().slice(0,20);
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Cat</th><th>NO@</th><th>P&L</th><th>Result</th></tr></thead><tbody>' +
+      recent.map(function(t){
+        var pnl = t.realized_pnl || 0;
+        var col = t.won ? 'color:var(--gold)' : 'color:#666';
+        return '<tr>' +
+          '<td>' + (t.market||'').substring(0,55) + '</td>' +
+          '<td><span class="pill pill-gray">' + (t.category||'?') + '</span></td>' +
+          '<td class="mono">' + t.entry_no_price + '¢</td>' +
+          '<td class="mono" style="' + col + '">' + (pnl>=0?'+':'') + '$' + pnl.toFixed(2) + '</td>' +
+          '<td>' + (t.won ? '✅' : '❌') + '</td>' +
+          '</tr>';
+      }).join('') + '</tbody></table>';
+  }
+
+  // P&L chart
+  if (closed.length) {
+    var cumPnl = 0;
+    var labels = []; var data = [];
+    closed.forEach(function(t, i){
+      cumPnl += (t.realized_pnl||0);
+      labels.push(i+1);
+      data.push(parseFloat(cumPnl.toFixed(2)));
+    });
+    var isUp = data[data.length-1] >= 0;
+    var ctx = document.getElementById('nc-chart').getContext('2d');
+    if (window.ncChartInst) window.ncChartInst.destroy();
+    window.ncChartInst = new Chart(ctx, {
+      type: 'line',
+      data: { labels: labels, datasets: [{
+        data: data, borderColor: isUp ? '#c9922a' : '#888',
+        borderWidth: 2, pointRadius: 0, fill: false, tension: 0.3
+      }]},
+      options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{ x:{display:false}, y:{grid:{color:'rgba(255,255,255,0.05)'}} } }
+    });
+  }
+
+  // NO price bracket chart
+  var bands = [
+    {label:'5-10¢', lo:5,  hi:10},
+    {label:'10-15¢',lo:10, hi:15},
+    {label:'15-20¢',lo:15, hi:20},
+    {label:'20-25¢',lo:20, hi:25},
+  ];
+  var bLabels = []; var bWR = []; var bN = [];
+  bands.forEach(function(b){
+    var g = closed.filter(function(t){ return t.entry_no_price >= b.lo && t.entry_no_price < b.hi; });
+    if (g.length) {
+      bLabels.push(b.label);
+      bWR.push(Math.round(g.filter(function(t){ return t.won; }).length / g.length * 100));
+      bN.push(g.length);
+    }
+  });
+  if (bLabels.length) {
+    var ctx2 = document.getElementById('nc-bracket-chart').getContext('2d');
+    if (window.ncBracketInst) window.ncBracketInst.destroy();
+    window.ncBracketInst = new Chart(ctx2, {
+      type: 'bar',
+      data: { labels: bLabels, datasets: [{
+        label: 'Win rate %', data: bWR,
+        backgroundColor: '#c9922a', borderRadius: 4
+      }]},
+      options: { responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{ y:{min:0, max:100, ticks:{callback:function(v){ return v+'%'; }},
+          grid:{color:'rgba(255,255,255,0.05)'}},
+          x:{grid:{display:false}} } }
+    });
+  }
+}
 function compound(start, wr, aw, al, dt, days, ceiling) {
   var b = parseFloat(start);
   for (var i = 0; i < days; i++) {
@@ -1260,16 +1520,26 @@ function loadData() {
   document.getElementById('main').style.display           = 'none';
 
   var bust = '?_=' + Date.now();
-  // NB2 is optional — timeout after 4s so it never blocks the dashboard
+  // NB2, NB3 and NC are optional — timeout after 4s so they never block the dashboard
   var nb2Fetch = Promise.race([
     fetch(NB2_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var nb3Fetch = Promise.race([
+    fetch(NB3_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var ncFetch = Promise.race([
+    fetch(NC_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
     new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
   ]);
 
   Promise.all([
     fetch(CB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('ClaudeBot HTTP ' + r.status); return r.json(); }),
     fetch(NB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('NoBot HTTP ' + r.status); return r.json(); }),
-    nb2Fetch
+    nb2Fetch,
+    nb3Fetch,
+    ncFetch
   ]).then(function(results) {
     renderCB(results[0]);
     renderNB(results[1]);
@@ -1281,6 +1551,24 @@ function loadData() {
       document.getElementById('nb2-wr').textContent   = '—';
       document.getElementById('nb2-open').textContent = '—';
       document.getElementById('nb2-compare-table').innerHTML = '<div class="empty">Push nobot_v2_log.json to the repo to enable V2 tracking</div>';
+    }
+    if (results[3]) {
+      renderNBV3(results[3]);
+    } else {
+      document.getElementById('nb3-bank').textContent = 'Not live yet';
+      document.getElementById('nb3-pnl').textContent  = '—';
+      document.getElementById('nb3-wr').textContent   = '—';
+      document.getElementById('nb3-open').textContent = '—';
+    }
+    if (results[4]) {
+      renderNC(results[4]);
+    } else {
+      document.getElementById('nc-bank').textContent     = 'Not live yet';
+      document.getElementById('nc-pnl').textContent      = '—';
+      document.getElementById('nc-wr').textContent       = '—';
+      document.getElementById('nc-open').textContent     = '—';
+      document.getElementById('nc-potential').textContent = '—';
+      document.getElementById('nc-open-table').innerHTML  = '<div class="empty">Push nearcertain_log.json to the repo to enable tracking</div>';
     }
     renderProjections(results[0], results[1], results[2]);
 
