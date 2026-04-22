@@ -1,13 +1,13 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-22 19:25 UTC · 26 resolved trades*
+*Generated 2026-04-22 21:04 UTC · 27 resolved trades*
 
 ---
 
 ## Overall Performance
-- **Win rate:** 57.7% (15W / 11L)
+- **Win rate:** 55.6% (15W / 12L)
 - **Total P&L:** $+1303.06
 - **Avg win:** $140.09
-- **Avg loss:** $-72.57
+- **Avg loss:** $-66.52
 
 ## Win Rate by Category
 
@@ -15,7 +15,7 @@
 - **crypto**: 67% WR (4W/2L) · P&L $+463.96
 - **other**: 67% WR (2W/1L) · P&L $+155.68
 - **politics**: 33% WR (1W/2L) · P&L $-218.39 ⚠️
-- **economics**: 0% WR (0W/1L) · P&L $-63.00 ⚠️
+- **economics**: 0% WR (0W/2L) · P&L $-63.00 ⚠️
 - **health**: 0% WR (0W/1L) · P&L $+0.00 ⚠️
 - **commodities**: 0% WR (0W/1L) · P&L $-70.00 ⚠️
 - **stocks**: 100% WR (1W/0L) · P&L $+144.16 ⭐
@@ -23,7 +23,7 @@
 
 ## Calibration — Confidence vs Actual Win Rate
 
-- **75-79% conf**: 78% actual WR (9 trades) — +1pt gap ✅ well-calibrated
+- **75-79% conf**: 70% actual WR (10 trades) — -7pt gap 🎯 underconfident
 - **80-84% conf**: 45% actual WR (11 trades) — -37pt gap ⚠️ OVERCONFIDENT
 - **85-89% conf**: 67% actual WR (3 trades) — -20pt gap ⚠️ OVERCONFIDENT
 - **90-94% conf**: 50% actual WR (2 trades) — -42pt gap ⚠️ OVERCONFIDENT
@@ -38,7 +38,7 @@
 
 ## YES vs NO Performance
 
-- **YES**: 50% WR (10 trades) · P&L $+354.95
+- **YES**: 45% WR (11 trades) · P&L $+354.95
 - **NO**: 62% WR (16 trades) · P&L $+948.11
 
 ## News-Triggered Trades
@@ -49,7 +49,7 @@
 - Best category: **crypto** — prioritise these markets
 - Worst category: **politics** — apply extra scrutiny or avoid
 - ⚠️ CALIBRATION WARNING: 85%+ confidence trades hitting only 50% WR — Opus is overconfident at high confidence levels. Apply skepticism and reduce Kelly sizing on high-confidence calls.
-- Recurring loss themes: forecast (3x), resolution (3x), sharp (2x)
+- Recurring loss themes: resolution (4x), forecast (3x), sharp (2x)
 
 ---
 *This report updates automatically after every trade resolution.*
