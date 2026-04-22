@@ -1,5 +1,5 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-22 00:11 UTC · 22 resolved trades*
+*Generated 2026-04-22 00:18 UTC · 22 resolved trades*
 
 ---
 
