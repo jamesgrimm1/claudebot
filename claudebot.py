@@ -283,7 +283,9 @@ def telegram_trade_resolved(trade, state):
     emoji   = "✅" if won else "❌"
     result  = "WON" if won else "LOST"
     pnl     = trade.get("realized_pnl", 0)
-    pnl_str = f"+${pnl:.2f}" if pnl >= 0 else f"-${abs(pnl):.2f}"
+    # Public: show % return on THIS trade only — no bankroll, no dollar P&L
+    trade_pct = round(pnl / trade["stake"] * 100, 1) if trade.get("stake") else 0
+    pct_str   = f"+{trade_pct}%" if trade_pct >= 0 else f"{trade_pct}%"
     roi     = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
     closed  = [t for t in state["trades"] if t["status"] == "closed"]
     won_ct  = sum(1 for t in closed if t.get("won"))
@@ -293,11 +295,15 @@ def telegram_trade_resolved(trade, state):
         f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
         f"{'─' * 30}\n"
         f"<b>{trade['market']}</b>\n"
-        f"Position: <b>{trade['position']} @ {trade['entry_price']}¢</b>"
+        f"Position: <b>{trade['position']} @ {trade['entry_price']}¢</b>\n"
+        f"Return: <b>{pct_str} on this trade</b>\n"
+        f"{'─' * 30}\n"
+        f"📊 Record: <b>{won_ct}W / {lost_ct}L</b>"
     )
     send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
 
     if TELEGRAM_PERSONAL_ID:
+        pnl_str = f"+${pnl:.2f}" if pnl >= 0 else f"-${abs(pnl):.2f}"
         wr = (won_ct / len(closed) * 100) if closed else 0
         private_msg = (
             f"{emoji} <b>TRADE RESOLVED — {result}</b>\n"
@@ -331,18 +337,7 @@ def telegram_daily_summary(state):
         pos_public  += f"  {badge} {t['position']} | {closes_str} | {t['market'][:40]}\n"
         pos_private += f"  {badge} {t['position']} | ${t['stake']:.2f} | {closes_str} | {t['market'][:40]}\n"
 
-    public_msg = (
-        f"📅 <b>CLAUDEBOT DAILY SUMMARY</b>\n"
-        f"{'─' * 30}\n"
-        f"📊 Record: <b>{len(won_t)}W / {len(lost_t)}L — {win_rate:.0f}% win rate</b>\n"
-        f"{'─' * 30}\n"
-        f"📋 Open ({len(open_t)}):\n"
-        + (pos_public if pos_public else "  None\n") +
-        f"{'─' * 30}\n"
-        f"⚡T1 short | 📅T2 medium | 🎯T3 long"
-    )
-    send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
-
+    # Daily summary goes to personal only — no bankroll/P&L on public channel
     if TELEGRAM_PERSONAL_ID:
         private_msg = (
             f"📅 <b>CLAUDEBOT DAILY — PRIVATE</b>\n"
@@ -999,32 +994,62 @@ def resolve_open_trades(state):
     for trade in open_trades:
         market_id = trade.get("market_id", "")
         if market_id and not market_id.startswith("d0"):
+            resolved = False
             try:
                 r = requests.get(
                     f"https://gamma-api.polymarket.com/markets/{market_id}",
                     timeout=10
                 )
-                if r.status_code != 200:
-                    continue
-                mkt = r.json()
-                if mkt.get("active", True) and not mkt.get("closed", False):
-                    continue
-                prices    = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
-                # For grouped/negRisk markets with many buckets, prices[0] is YES and
-                # the winning outcome is whichever bucket hits 1.0
-                # For standard binary: prices[0]=YES, prices[1]=NO
-                if len(prices) > 2:
-                    # Multi-outcome: if any bucket hit 1.0, the market resolved
-                    # For a NO position in a binary-style grouped market, we won if prices[0] < 0.99
-                    yes_price = float(prices[0])
-                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
-                else:
-                    yes_price = float(prices[0])
-                    no_price  = float(prices[1])
-                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
-                _settle(trade, won, state)
+                if r.status_code == 200:
+                    mkt = r.json()
+                    if mkt.get("active", True) and not mkt.get("closed", False):
+                        pass  # not resolved yet via Gamma
+                    else:
+                        prices = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
+                        if len(prices) > 2:
+                            yes_price = float(prices[0])
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
+                        else:
+                            yes_price = float(prices[0])
+                            no_price  = float(prices[1])
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                        _settle(trade, won, state)
+                        resolved = True
             except Exception as e:
-                log(f"  ⚠️  Could not check {market_id}: {e}")
+                log(f"  ⚠️  Gamma check failed for {market_id}: {e}")
+
+            # Fallback: try CLOB prices endpoint if Gamma didn't resolve
+            if not resolved and trade["status"] == "open":
+                try:
+                    # Get clob token ids from gamma
+                    r2 = requests.get(
+                        f"https://gamma-api.polymarket.com/markets?id={market_id}",
+                        timeout=10
+                    )
+                    if r2.status_code == 200:
+                        data = r2.json()
+                        mkt2 = data[0] if isinstance(data, list) and data else data
+                        active = mkt2.get("active", True)
+                        closed_flag = mkt2.get("closed", False)
+                        if not active or closed_flag:
+                            prices = json.loads(mkt2.get("outcomePrices", "[0.5,0.5]"))
+                            if len(prices) >= 2:
+                                yes_price = float(prices[0])
+                                no_price  = float(prices[1])
+                                if yes_price >= 0.99 or no_price >= 0.99:
+                                    won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                                    _settle(trade, won, state)
+                                    resolved = True
+                except Exception as e:
+                    log(f"  ⚠️  CLOB fallback failed for {market_id}: {e}")
+
+            # Time-based fallback: if past close date by >24h and still open, flag it
+            if not resolved and trade["status"] == "open":
+                close_dt = parse_utc(trade.get("closes"))
+                if close_dt:
+                    hours_past = (datetime.now(timezone.utc) - close_dt).total_seconds() / 3600
+                    if hours_past > 24:
+                        log(f"  ⚠️  {trade['market'][:50]} is {hours_past:.0f}h past close — manual review needed")
         else:
             close_dt = parse_utc(trade.get("closes"))
             if close_dt and datetime.now(timezone.utc) > close_dt:
