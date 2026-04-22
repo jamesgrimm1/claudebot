@@ -1,18 +1,18 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-21 15:21 UTC · 21 resolved trades*
+*Generated 2026-04-22 00:11 UTC · 22 resolved trades*
 
 ---
 
 ## Overall Performance
-- **Win rate:** 66.7% (14W / 7L)
+- **Win rate:** 63.6% (14W / 8L)
 - **Total P&L:** $+1214.95
 - **Avg win:** $143.80
-- **Avg loss:** $-114.04
+- **Avg loss:** $-99.78
 
 ## Win Rate by Category
 
 - **weather**: 75% WR (6W/2L) · P&L $+256.39
-- **crypto**: 75% WR (3W/1L) · P&L $+375.85
+- **crypto**: 60% WR (3W/2L) · P&L $+375.85
 - **politics**: 33% WR (1W/2L) · P&L $-218.39 ⚠️
 - **other**: 100% WR (2W/0L) · P&L $+155.68 ⭐
 - **economics**: 0% WR (0W/1L) · P&L $-63.00 ⚠️
@@ -25,6 +25,7 @@
 - **75-79% conf**: 88% actual WR (8 trades) — +10pt gap 🎯 underconfident
 - **80-84% conf**: 50% actual WR (10 trades) — -32pt gap ⚠️ OVERCONFIDENT
 - **85-89% conf**: 67% actual WR (3 trades) — -20pt gap ⚠️ OVERCONFIDENT
+- **90-94% conf**: 0% actual WR (1 trades) — -92pt gap ⚠️ OVERCONFIDENT
 
 ## Win Rate by Hold Duration
 
@@ -36,14 +37,14 @@
 ## YES vs NO Performance
 
 - **YES**: 56% WR (9 trades) · P&L $+354.95
-- **NO**: 75% WR (12 trades) · P&L $+860.00
+- **NO**: 69% WR (13 trades) · P&L $+860.00
 
 ## News-Triggered Trades
 - **Win rate:** 100% (2 trades)
 
 ## Key Patterns (for trade evaluation)
 
-- Best category: **crypto** — prioritise these markets
+- Best category: **weather** — prioritise these markets
 - Worst category: **politics** — apply extra scrutiny or avoid
 - Recurring loss themes: resolution (3x), forecast (2x), sharp (1x)
 

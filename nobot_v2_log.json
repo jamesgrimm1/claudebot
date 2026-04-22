@@ -1,5 +1,5 @@
 {
-  "bankroll": 796.75,
+  "bankroll": 845.32,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1046,10 +1046,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 4775.934748000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T11:43:35.855261+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:05.027665+00:00",
+      "realized_pnl": 2.94
     },
     {
       "id": "NB1776430697",
@@ -2045,10 +2048,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 7707.456750999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T01:49:34.472798+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:06.530806+00:00",
+      "realized_pnl": -4.11
     },
     {
       "id": "NB1776563374",
@@ -2828,10 +2834,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 321632.6287379998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T04:52:05.802999+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:07.070963+00:00",
+      "realized_pnl": -3.41
     },
     {
       "id": "NB1776660725",
@@ -2921,10 +2930,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 3478.636364,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T04:52:05.803257+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:07.118608+00:00",
+      "realized_pnl": -3.39
     },
     {
       "id": "NB1776660725",
@@ -3053,10 +3065,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 8203.748405000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139603+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:07.353802+00:00",
+      "realized_pnl": -2.59
     },
     {
       "id": "NB1776740711",
@@ -3074,10 +3089,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 7107.831365000001,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139652+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:07.416162+00:00",
+      "realized_pnl": 3.41
     },
     {
       "id": "NB1776740711",
@@ -3137,10 +3155,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 5006.509717999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139748+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:07.562833+00:00",
+      "realized_pnl": -2.55
     },
     {
       "id": "NB1776740711",
@@ -3200,10 +3221,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4029.109925999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139837+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:07.718132+00:00",
+      "realized_pnl": 2.22
     },
     {
       "id": "NB1776740711",
@@ -3245,10 +3269,13 @@
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 3677.8402960000026,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139894+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:07.791527+00:00",
+      "realized_pnl": 1.81
     },
     {
       "id": "NB1776740711",
@@ -3266,10 +3293,13 @@
       "closes": "2026-04-21T16:00:00+00:00",
       "volume": 3536.329575,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139921+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:07.868088+00:00",
+      "realized_pnl": 2.19
     },
     {
       "id": "NB1776746576",
@@ -3306,10 +3336,13 @@
       "closes_in_days": 0.3,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4667.840450000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T04:42:56.041074+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:07.971994+00:00",
+      "realized_pnl": -3.26
     },
     {
       "id": "NB1776753046",
@@ -3326,10 +3359,13 @@
       "closes_in_days": 0.23,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 8856.197969000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T06:30:46.905349+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:08.048398+00:00",
+      "realized_pnl": 3.25
     },
     {
       "id": "NB1776753046",
@@ -3386,10 +3422,13 @@
       "closes_in_days": 0.23,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 5316.091696000004,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T06:30:46.905464+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-22T00:11:08.226936+00:00",
+      "realized_pnl": -3.58
     },
     {
       "id": "NB1776753046",
@@ -3446,10 +3485,13 @@
       "closes_in_days": 0.23,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 4239.470851,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T06:30:46.905552+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:08.397733+00:00",
+      "realized_pnl": 1.94
     },
     {
       "id": "NB1776755067",
@@ -3466,10 +3508,13 @@
       "closes_in_days": 0.21,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 9026.155608000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T07:04:27.834240+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:08.445308+00:00",
+      "realized_pnl": 3.52
     },
     {
       "id": "NB1776759862",
@@ -3486,10 +3531,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 3777.429021999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T08:24:22.808215+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:08.498813+00:00",
+      "realized_pnl": 2.61
     },
     {
       "id": "NB1776759862",
@@ -3526,10 +3574,13 @@
       "closes_in_days": 0.13,
       "closes": "2026-04-21T12:00:00+00:00",
       "volume": 6813.228080999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T08:56:39.431907+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-22T00:11:08.624806+00:00",
+      "realized_pnl": 3.07
     },
     {
       "id": "NB1776761799",
@@ -3550,11 +3601,111 @@
       "placed_at": "2026-04-21T08:56:39.431949+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776816674",
+      "market_id": "2029499",
+      "market_slug": "highest-temperature-in-london-on-april-22-2026-16c",
+      "market": "Will the highest temperature in London be 16\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 2.71,
+      "payout_if_wins": 5.89,
+      "profit_if_wins": 3.18,
+      "category": "weather",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 6334.351826000006,
+      "status": "open",
+      "placed_at": "2026-04-22T00:11:14.472227+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776816674",
+      "market_id": "2029698",
+      "market_slug": "highest-temperature-in-hong-kong-on-april-22-2026-29c",
+      "market": "Will the highest temperature in Hong Kong be 29\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 4.1,
+      "payout_if_wins": 7.88,
+      "profit_if_wins": 3.78,
+      "category": "weather",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 5049.201,
+      "status": "open",
+      "placed_at": "2026-04-22T00:11:14.472266+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776816674",
+      "market_id": "2029709",
+      "market_slug": "highest-temperature-in-shanghai-on-april-22-2026-18c",
+      "market": "Will the highest temperature in Shanghai be 18\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.51,
+      "payout_if_wins": 6.27,
+      "profit_if_wins": 2.76,
+      "category": "weather",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 4706.833765000007,
+      "status": "open",
+      "placed_at": "2026-04-22T00:11:14.472294+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776816674",
+      "market_id": "2037630",
+      "market_slug": "lowest-temperature-in-nyc-on-april-22-2026-46-47f",
+      "market": "Will the lowest temperature in New York City be between 46-47\u00b0F on April 22?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 3.53,
+      "payout_if_wins": 5.98,
+      "profit_if_wins": 2.45,
+      "category": "weather",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 4404.9310189999915,
+      "status": "open",
+      "placed_at": "2026-04-22T00:11:14.472317+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776816674",
+      "market_id": "2029737",
+      "market_slug": "highest-temperature-in-madrid-on-april-22-2026-24c",
+      "market": "Will the highest temperature in Madrid be 24\u00b0C on April 22?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 2.7,
+      "payout_if_wins": 5.4,
+      "profit_if_wins": 2.7,
+      "category": "weather",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-22T12:00:00+00:00",
+      "volume": 3742.0262120000007,
+      "status": "open",
+      "placed_at": "2026-04-22T00:11:14.472337+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 10.43,
-  "daily_reset": "2026-04-21",
-  "scan_count": 101,
+  "daily_loss": 22.89,
+  "daily_reset": "2026-04-22",
+  "scan_count": 102,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-21T15:20:58.276149+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

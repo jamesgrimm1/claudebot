@@ -946,11 +946,11 @@
     }
   ],
   "daily_loss": 0.0,
-  "daily_reset": "2026-04-21",
-  "scan_count": 150,
+  "daily_reset": "2026-04-22",
+  "scan_count": 151,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-21",
-  "last_tier2_scan": "2026-04-21",
+  "last_tier2_scan": "2026-04-22",
   "last_tier3_scan": "2026-W16",
   "last_reassessment": "2026-04-19T06:25:25.990455+00:00"
 }

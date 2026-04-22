@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-21T15:21:48.042385",
-  "total_trades": 21,
+  "generated": "2026-04-22T00:11:52.197170",
+  "total_trades": 22,
   "trades": [
     {
       "won": true,
@@ -209,6 +209,19 @@
       "bear": "Easter Egg Roll is a children's event; staff could successfully keep Trump on brief scripted remarks with no media Q&A, and Trump might deliberately avoid the topic at a family event",
       "news": false,
       "path": "trade_reflections/T1775359671_politics_WON.md"
+    },
+    {
+      "won": false,
+      "category": "crypto",
+      "conf": 90,
+      "hold_h": null,
+      "tier": "1",
+      "position": "NO",
+      "pnl": 0.0,
+      "market": "Will the price of Solana be between $120 and $130 on April 21?",
+      "bear": "Major unexpected positive catalyst (ETF approval, massive institutional buy) could spike SOL, though 41%+ in 48 hours to a specific range remains highly improbable",
+      "news": false,
+      "path": "trade_reflections/T1776591714_crypto_LOST.md"
     },
     {
       "won": true,
