@@ -215,10 +215,7 @@ def should_send_summary(state):
 
 
 def telegram_nobot_summary(state):
-    """12-hour summary to private channel only."""
-    if not TELEGRAM_PERSONAL_ID:
-        return
-
+    """12-hour summary — public channel (no bankroll) + private (full details)."""
     trades   = state["trades"]
     open_t   = [t for t in trades if t["status"] == "open"]
     closed_t = [t for t in trades if t["status"] == "closed"]
@@ -231,23 +228,38 @@ def telegram_nobot_summary(state):
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
     deployed = sum(t["stake"] for t in open_t)
 
-    msg = (
-        f"📊 <b>NOBOT — 12H SUMMARY</b>\n"
-        f"{'─' * 28}\n"
-        f"🏦 Bankroll: <b>${state['bankroll']:.2f}</b> ({roi:+.1f}% ROI)\n"
-        f"💰 Realized P&L: <b>${realized:+.2f}</b>\n"
-        f"{'─' * 28}\n"
-        f"📋 Open: <b>{len(open_t)}</b> positions (${deployed:.2f} deployed)\n"
-        f"{'─' * 28}\n"
-        f"📈 Win rate: <b>{win_rate:.0f}%</b> "
-        f"({len(won_t)}W / {len(lost_t)}L)\n"
-        f"✅ Won: <b>${won_pnl:+.2f}</b>\n"
-        f"❌ Lost: <b>${lost_pnl:.2f}</b>\n"
-        f"{'─' * 28}\n"
-        f"🔄 Total scans: <b>{state.get('scan_count', 0)}</b>"
-    )
-    send_telegram(msg, TELEGRAM_PERSONAL_ID)
-    log("📨 NoBot 12h summary sent")
+    # Public — no bankroll, no P&L dollars
+    if TELEGRAM_CHANNEL_ID:
+        public_msg = (
+            f"🌦️ <b>NOBOT V3 — 12H UPDATE</b>\n"
+            f"{'─' * 28}\n"
+            f"📈 Win rate: <b>{win_rate:.0f}%</b> "
+            f"({len(won_t)}W / {len(lost_t)}L)\n"
+            f"📋 Open positions: <b>{len(open_t)}</b>\n"
+            f"🔄 Total scans: <b>{state.get('scan_count', 0)}</b>"
+        )
+        send_telegram(public_msg, TELEGRAM_CHANNEL_ID)
+
+    # Private — full details
+    if TELEGRAM_PERSONAL_ID:
+        private_msg = (
+            f"📊 <b>NOBOT V3 — 12H SUMMARY (PRIVATE)</b>\n"
+            f"{'─' * 28}\n"
+            f"🏦 Bankroll: <b>${state['bankroll']:.2f}</b> ({roi:+.1f}% ROI)\n"
+            f"💰 Realized P&L: <b>${realized:+.2f}</b>\n"
+            f"{'─' * 28}\n"
+            f"📋 Open: <b>{len(open_t)}</b> positions (${deployed:.2f} deployed)\n"
+            f"{'─' * 28}\n"
+            f"📈 Win rate: <b>{win_rate:.0f}%</b> "
+            f"({len(won_t)}W / {len(lost_t)}L)\n"
+            f"✅ Won: <b>${won_pnl:+.2f}</b>\n"
+            f"❌ Lost: <b>${lost_pnl:.2f}</b>\n"
+            f"{'─' * 28}\n"
+            f"🔄 Total scans: <b>{state.get('scan_count', 0)}</b>"
+        )
+        send_telegram(private_msg, TELEGRAM_PERSONAL_ID)
+
+    log("📨 NoBot V3 12h summary sent")
 
 # ─────────────────────────────────────────────────────────
 #  STATE
