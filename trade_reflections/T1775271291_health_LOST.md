@@ -35,7 +35,7 @@ CDC data shows 1,575 confirmed measles cases as of March 26 (day 85 of 2026), av
 Sharp deceleration in daily case rate not captured in available data; public health interventions containing active outbreaks; seasonal decline in measles transmission already underway
 
 ## Bankroll After
-$1429.84
+$1358.35
 
 ## Patterns
 - category: health
