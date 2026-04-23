@@ -626,17 +626,16 @@ function switchTab(el) {
   document.getElementById('view-'+el.dataset.view).classList.add('active');
 }
 
-function compound(b, wr, avgWin, avgLoss, tpd, days, ceil) {
-  var daily = wr * avgWin - (1-wr) * avgLoss;
-  for(var i=0;i<days;i++) {
-    if(b >= ceil) { b = ceil; break; }
-    b += daily;
-    if(b < 10) break;
+function compound(start, wr, aw, al, dt, days, ceiling) {
+  var b = parseFloat(start);
+  for (var i = 0; i < days; i++) {
+    var scale = Math.min(b, ceiling) / START;
+    b += (wr * aw - (1 - wr) * al) * dt * scale;
   }
-  return Math.max(b, 0);
+  return b;
 }
 
-function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios) {
+function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios, startBankroll) {
   if(!closed||!closed.length){
     document.getElementById(tableId).innerHTML='<div style="padding:10px 14px;font-size:9px;color:var(--muted)">No data yet</div>';
     return;
@@ -657,9 +656,7 @@ function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios) {
   document.getElementById(subId).textContent=
     won.length+'W / '+lost.length+'L · '+tpd.toFixed(1)+' trades/day · avg win $'+avgWin.toFixed(2);
 
-  var sb=closed.length?closed[0].stake*100:1000;
-  // Use bankroll from state — approximate from first trade context
-  sb=1000;
+  var sb = startBankroll || 1000;
 
   var months=[3,6,9,12];
   var rows=scenarios.map(function(wrPct){
@@ -690,9 +687,12 @@ function renderProjectionsMobile(cbData, nb3Data, ncData) {
   var nb3Closed = nb3Data ? (nb3Data.trades||[]).filter(function(t){return t.status==='closed';}) : [];
   var ncClosed  = ncData  ? (ncData.trades||[]).filter(function(t){return t.status==='closed';}) : [];
 
-  mProjTable('m-proj-cb-table',  'm-proj-cb-wr',  'm-proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85]);
-  mProjTable('m-proj-nb3-table', 'm-proj-nb3-wr', 'm-proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85]);
-  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, [5,10,15,20,25,30]);
+  var cbBank  = cbData  ? cbData.bankroll  : 1000;
+  var nb3Bank = nb3Data ? nb3Data.bankroll : 1000;
+  var ncBank  = ncData  ? ncData.bankroll  : 1000;
+  mProjTable('m-proj-cb-table',  'm-proj-cb-wr',  'm-proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85], cbBank);
+  mProjTable('m-proj-nb3-table', 'm-proj-nb3-wr', 'm-proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85], nb3Bank);
+  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, [5,10,15,20,25,30],    ncBank);
 }
 
 function load() {
