@@ -844,7 +844,7 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
 
   <!-- ── Projections view ── -->
   <div id="view-proj" style="display:none">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px">
       <div class="hero-card accent-gold">
         <div class="hc-label">ClaudeBot — Live WR</div>
         <div class="hc-value gold" id="proj-cb-wr">—</div>
@@ -864,6 +864,11 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
         <div class="hc-label">NoBot V3 — Live WR</div>
         <div class="hc-value gold" id="proj-nb3-wr">—</div>
         <div class="hc-sub" id="proj-nb3-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">NearCertain — Live WR</div>
+        <div class="hc-value gold" id="proj-nc-wr">—</div>
+        <div class="hc-sub" id="proj-nc-sub">—</div>
       </div>
     </div>
     <div class="card" style="margin-bottom:16px">
@@ -894,8 +899,15 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
       </div>
       <div id="proj-nb3-table"></div>
     </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">NearCertain — Fade the Overconfident — 12 month projections</span>
+        <span class="pill pill-gold" id="proj-nc-badge">—</span>
+      </div>
+      <div id="proj-nc-table"></div>
+    </div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);padding:0 4px 24px;line-height:1.8">
-      Projections compound daily using live avg win/loss and trades/day from each bot's resolved trade history · Liquidity ceiling at $18,981 (NoBot V1/V2) / $25,000 (NoBot V3 weather) / $50,000 (ClaudeBot) · Live WR highlighted · Paper trade estimates only
+      Projections compound daily using live avg win/loss and trades/day from each bot's resolved trade history · Liquidity ceiling at $18,981 (NoBot V1/V2) / $25,000 (NoBot V3 weather) / $50,000 (ClaudeBot / NearCertain) · Live WR highlighted · Paper trade estimates only
     </div>
   </div>
 
@@ -1502,7 +1514,7 @@ function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBank
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 
-function renderProjections(cbData, nbData, nb2Data, nb3Data) {
+function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData) {
   var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
   var nbClosed  = nbData  ? (nbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
   var nb2Closed = nb2Data ? (nb2Data.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
@@ -1518,6 +1530,15 @@ function renderProjections(cbData, nbData, nb2Data, nb3Data) {
   projTable('proj-nb2-badge', 'proj-nb2-table', 'proj-nb2-wr', 'proj-nb2-sub', nb2Closed, 18981, nb2Start);
   projTable('proj-nb3-badge', 'proj-nb3-table', 'proj-nb3-wr', 'proj-nb3-sub', nb3Closed, 25000, nb3Start);
 
+  var ncClosed = ncData  ? (ncData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var ncStart  = ncData  ? ncData.bankroll  : 1000;
+  projTable('proj-nc-badge', 'proj-nc-table', 'proj-nc-wr', 'proj-nc-sub', ncClosed, 50000, ncStart);
+
+  if (!ncData) {
+    document.getElementById('proj-nc-wr').textContent  = '—';
+    document.getElementById('proj-nc-sub').textContent = 'Push nearcertain_log.json to enable';
+    document.getElementById('proj-nc-table').innerHTML = '<div class="empty">NearCertain log not in repo yet</div>';
+  }
   if (!nb2Data) {
     document.getElementById('proj-nb2-wr').textContent = '—';
     document.getElementById('proj-nb2-sub').textContent = 'Push nobot_v2_log.json to enable';
@@ -1594,7 +1615,7 @@ function loadData() {
       document.getElementById('nc-potential').textContent = '—';
       document.getElementById('nc-open-table').innerHTML  = '<div class="empty">Push nearcertain_log.json to the repo to enable tracking</div>';
     }
-    renderProjections(results[0], results[1], results[2], results[3]);
+    renderProjections(results[0], results[1], results[2], results[3], results[4]);
 
     var now = new Date();
     dot.className    = 'status-dot';
