@@ -1,5 +1,5 @@
 {
-  "bankroll": 738.11,
+  "bankroll": 709.01,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -616,10 +616,13 @@
       "potential_payout": 105.5,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.298,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T04:51:26.011150+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T06:11:17.897665+00:00",
+      "realized_pnl": -10.55
     },
     {
       "id": "NC20260422045126011191",
@@ -1556,10 +1559,82 @@
       "placed_at": "2026-04-23T05:34:56.118541+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423061130861514",
+      "market_id": "2040740",
+      "market": "Will the highest temperature in Manila be 36\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 7,
+      "entry_yes_price": 93,
+      "stake": 11.07,
+      "potential_profit": 147.07,
+      "potential_payout": 158.14,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.242,
+      "status": "open",
+      "placed_at": "2026-04-23T06:11:30.861532+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423061130861603",
+      "market_id": "2040596",
+      "market": "Will the highest temperature in Busan be 18\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 7.27,
+      "potential_profit": 53.31,
+      "potential_payout": 60.58,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.242,
+      "status": "open",
+      "placed_at": "2026-04-23T06:11:30.861615+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423061130861714",
+      "market_id": "2040226",
+      "market": "Will the highest temperature in Seoul be 22\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 7.2,
+      "potential_profit": 44.23,
+      "potential_payout": 51.43,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.242,
+      "status": "open",
+      "placed_at": "2026-04-23T06:11:30.861726+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423061130861914",
+      "market_id": "1976942",
+      "market": "Will White House post 140-159 posts from April 17 to April 24, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 23,
+      "entry_yes_price": 77,
+      "stake": 3.56,
+      "potential_profit": 11.92,
+      "potential_payout": 15.48,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "closes_in_days": 1.409,
+      "status": "open",
+      "placed_at": "2026-04-23T06:11:30.861925+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 25.79,
+  "daily_loss": 36.34,
   "daily_reset": "2026-04-23",
-  "scan_count": 30,
+  "scan_count": 31,
   "started": "2026-04-21T00:00:00+00:00"
 }
