@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-22T23:54:08.461180",
-  "total_trades": 27,
+  "generated": "2026-04-23T01:03:47.550889",
+  "total_trades": 28,
   "trades": [
     {
       "won": true,
@@ -40,6 +40,19 @@
       "bear": "Black swan event (ETF approval, major protocol upgrade, massive short squeeze) could theoretically drive 15%+ single-day move, but no such catalyst is known",
       "news": true,
       "path": "trade_reflections/T1776137447_crypto_WON.md"
+    },
+    {
+      "won": true,
+      "category": "economics",
+      "conf": 76,
+      "hold_h": 40.3,
+      "tier": "1",
+      "position": "YES",
+      "pnl": 228.2,
+      "market": "Will Tesla (TSLA) beat quarterly earnings?",
+      "bear": "Unknown Tesla-specific negatives (delivery shortfall, margin compression, regulatory headwinds) could justify lower beat probability. Resolution criteria may differ from standard EPS beat. Market participants may have current quarter data not reflected in research.",
+      "news": false,
+      "path": "trade_reflections/T1776760911_economics_WON.md"
     },
     {
       "won": true,

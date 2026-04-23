@@ -1,5 +1,5 @@
 {
-  "bankroll": 1358.35,
+  "bankroll": 1647.21,
   "trades": [
     {
       "id": "T1775098669",
@@ -945,10 +945,13 @@
       "bear_case": "Unknown Tesla-specific negatives (delivery shortfall, margin compression, regulatory headwinds) could justify lower beat probability. Resolution criteria may differ from standard EPS beat. Market participants may have current quarter data not reflected in research.",
       "kelly_tier": "quarter-Kelly (5.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T08:41:51.204695+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-23T01:01:40.717740+00:00",
+      "realized_pnl": 228.2
     },
     {
       "id": "T1776866531",
@@ -1016,11 +1019,11 @@
     }
   ],
   "daily_loss": 0.0,
-  "daily_reset": "2026-04-22",
-  "scan_count": 167,
+  "daily_reset": "2026-04-23",
+  "scan_count": 168,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-22",
-  "last_tier2_scan": "2026-04-22",
+  "last_tier2_scan": "2026-04-23",
   "last_tier3_scan": "2026-W16",
   "last_reassessment": "2026-04-22T08:03:49.088308+00:00"
 }
