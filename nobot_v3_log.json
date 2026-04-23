@@ -1,5 +1,5 @@
 {
-  "bankroll": 1186.75,
+  "bankroll": 1199.46,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1687,10 +1687,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 6334.351826000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T00:11:02.677421+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-23T03:29:32.739147+00:00",
+      "realized_pnl": 24.17
     },
     {
       "id": "NB1776816662",
@@ -2158,12 +2161,72 @@
       "placed_at": "2026-04-23T01:01:18.467625+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776914982",
+      "market_id": "2040226",
+      "market_slug": "highest-temperature-in-seoul-on-april-23-2026-22c",
+      "market": "Will the highest temperature in Seoul be 22\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 9.24,
+      "payout_if_wins": 14.9,
+      "profit_if_wins": 5.66,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 9356.634160000014,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:42.822228+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776914982",
+      "market_id": "2040256",
+      "market_slug": "highest-temperature-in-nyc-on-april-23-2026-72-73f",
+      "market": "Will the highest temperature in New York City be between 72-73\u00b0F on April 23?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 13.75,
+      "payout_if_wins": 23.71,
+      "profit_if_wins": 9.96,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3776.5081010000017,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:42.822262+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776914982",
+      "market_id": "2040462",
+      "market_slug": "highest-temperature-in-beijing-on-april-23-2026-25c",
+      "market": "Will the highest temperature in Beijing be 25\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 9.06,
+      "payout_if_wins": 15.36,
+      "profit_if_wins": 6.3,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3713.0107289999996,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:42.822286+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 37.63,
   "daily_reset": "2026-04-23",
-  "scan_count": 117,
+  "scan_count": 118,
   "started": "2026-04-16T02:01:08.863467+00:00",
-  "last_summary_sent": "2026-04-22T13:59:08.607813+00:00",
+  "last_summary_sent": "2026-04-23T03:29:31.322582+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
 }

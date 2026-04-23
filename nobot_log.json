@@ -1,5 +1,5 @@
 {
-  "bankroll": 826.61,
+  "bankroll": 828.61,
   "trades": [
     {
       "id": "NB1776304868",
@@ -668,10 +668,13 @@
       "closes": "2026-04-23T00:00:00+00:00",
       "volume": 6781.022674999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T19:00:31.271036+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-23T03:28:54.748103+00:00",
+      "realized_pnl": -4.28
     },
     {
       "id": "NB1776369720",
@@ -3802,10 +3805,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 6334.351826000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T00:11:02.677421+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-23T03:29:01.434516+00:00",
+      "realized_pnl": 5.02
     },
     {
       "id": "NB1776816662",
@@ -4388,11 +4394,71 @@
       "placed_at": "2026-04-23T01:01:00.256282+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776914953",
+      "market_id": "2040226",
+      "market_slug": "highest-temperature-in-seoul-on-april-23-2026-22c",
+      "market": "Will the highest temperature in Seoul be 22\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.09,
+      "payout_if_wins": 3.37,
+      "profit_if_wins": 1.28,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 9356.634160000014,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:13.582602+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776914953",
+      "market_id": "2040256",
+      "market_slug": "highest-temperature-in-nyc-on-april-23-2026-72-73f",
+      "market": "Will the highest temperature in New York City be between 72-73\u00b0F on April 23?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 3.13,
+      "payout_if_wins": 5.4,
+      "profit_if_wins": 2.27,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3776.5081010000017,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:13.582641+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1776914953",
+      "market_id": "2040462",
+      "market_slug": "highest-temperature-in-beijing-on-april-23-2026-25c",
+      "market": "Will the highest temperature in Beijing be 25\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 2.08,
+      "payout_if_wins": 3.53,
+      "profit_if_wins": 1.45,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3713.0107289999996,
+      "status": "open",
+      "placed_at": "2026-04-23T03:29:13.582670+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 8.31,
+  "daily_loss": 12.59,
   "daily_reset": "2026-04-23",
-  "scan_count": 117,
+  "scan_count": 118,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-22T13:58:47.528735+00:00"
+  "last_summary_sent": "2026-04-23T03:28:51.407875+00:00"
 }
