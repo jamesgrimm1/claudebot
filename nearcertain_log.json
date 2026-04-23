@@ -562,10 +562,13 @@
       "potential_payout": 136.88,
       "closes": "2026-04-23T13:00:00+00:00",
       "closes_in_days": 1.392,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T03:35:15.067517+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T14:04:26.014941+00:00",
+      "realized_pnl": -10.95
     },
     {
       "id": "NC20260422033515067555",
@@ -1132,10 +1135,13 @@
       "potential_payout": 56.42,
       "closes": "2026-04-23T13:00:00+00:00",
       "closes_in_days": 0.902,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T15:20:50.824742+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T14:04:26.584927+00:00",
+      "realized_pnl": -6.77
     },
     {
       "id": "NC20260422162154112189",
@@ -1264,10 +1270,13 @@
       "potential_payout": 166.75,
       "closes": "2026-04-23T13:00:00+00:00",
       "closes_in_days": 0.499,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:32.904298+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T14:04:26.987447+00:00",
+      "realized_pnl": -13.34
     },
     {
       "id": "NC20260423010132904340",
@@ -1282,10 +1291,13 @@
       "potential_payout": 131.4,
       "closes": "2026-04-23T13:00:00+00:00",
       "closes_in_days": 0.499,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:32.904348+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T14:04:27.047024+00:00",
+      "realized_pnl": -13.14
     },
     {
       "id": "NC20260423010132904383",
@@ -1897,8 +1909,8 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 76.64,
+  "daily_loss": 120.84,
   "daily_reset": "2026-04-23",
-  "scan_count": 38,
+  "scan_count": 39,
   "started": "2026-04-21T00:00:00+00:00"
 }
