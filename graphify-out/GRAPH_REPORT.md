@@ -1,5 +1,5 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-23 16:03 UTC · 28 resolved trades*
+*Generated 2026-04-23 16:29 UTC · 28 resolved trades*
 
 ---
 
@@ -13,13 +13,13 @@
 
 - **weather**: 67% WR (6W/3L) · P&L $+256.39
 - **crypto**: 67% WR (4W/2L) · P&L $+463.96
-- **politics**: 33% WR (1W/2L) · P&L $-218.39 ⚠️
-- **economics**: 33% WR (1W/2L) · P&L $+165.20 ⚠️
 - **other**: 67% WR (2W/1L) · P&L $+155.68
-- **commodities**: 0% WR (0W/1L) · P&L $-70.00 ⚠️
-- **entertainment**: 100% WR (1W/0L) · P&L $+634.26 ⭐
+- **economics**: 33% WR (1W/2L) · P&L $+165.20 ⚠️
+- **politics**: 33% WR (1W/2L) · P&L $-218.39 ⚠️
 - **health**: 0% WR (0W/1L) · P&L $+0.00 ⚠️
+- **commodities**: 0% WR (0W/1L) · P&L $-70.00 ⚠️
 - **stocks**: 100% WR (1W/0L) · P&L $+144.16 ⭐
+- **entertainment**: 100% WR (1W/0L) · P&L $+634.26 ⭐
 
 ## Calibration — Confidence vs Actual Win Rate
 
@@ -46,8 +46,8 @@
 
 ## Key Patterns (for trade evaluation)
 
-- Best category: **weather** — prioritise these markets
-- Worst category: **politics** — apply extra scrutiny or avoid
+- Best category: **crypto** — prioritise these markets
+- Worst category: **economics** — apply extra scrutiny or avoid
 - ⚠️ CALIBRATION WARNING: 85%+ confidence trades hitting only 50% WR — Opus is overconfident at high confidence levels. Apply skepticism and reduce Kelly sizing on high-confidence calls.
 - Recurring loss themes: resolution (4x), forecast (3x), sharp (2x)
 
