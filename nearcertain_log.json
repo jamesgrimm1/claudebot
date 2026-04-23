@@ -1,5 +1,5 @@
 {
-  "bankroll": 669.13,
+  "bankroll": 659.09,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -697,10 +697,13 @@
       "potential_payout": 56.0,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.246,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T06:05:34.289477+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T08:58:05.654650+00:00",
+      "realized_pnl": -6.72
     },
     {
       "id": "NC20260422060534289533",
@@ -841,10 +844,13 @@
       "potential_payout": 14.23,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.164,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T08:03:47.022427+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T08:58:05.690051+00:00",
+      "realized_pnl": -3.13
     },
     {
       "id": "NC20260422080347022487",
@@ -1006,10 +1012,13 @@
       "potential_payout": 33.5,
       "closes": "2026-04-22T23:30:00+00:00",
       "closes_in_days": 0.573,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T09:45:22.551158+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T08:58:05.817601+00:00",
+      "realized_pnl": -5.36
     },
     {
       "id": "NC20260422094522551233",
@@ -1724,10 +1733,28 @@
       "placed_at": "2026-04-23T07:36:49.788712+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423085816520810",
+      "market_id": "2040727",
+      "market": "Will the highest temperature in Karachi be 33\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 10.04,
+      "potential_profit": 157.29,
+      "potential_payout": 167.33,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.126,
+      "status": "open",
+      "placed_at": "2026-04-23T08:58:16.520828+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 41.56,
+  "daily_loss": 56.77,
   "daily_reset": "2026-04-23",
-  "scan_count": 33,
+  "scan_count": 34,
   "started": "2026-04-21T00:00:00+00:00"
 }

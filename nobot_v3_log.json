@@ -1,5 +1,5 @@
 {
-  "bankroll": 1175.04,
+  "bankroll": 1232.73,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1756,10 +1756,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 4404.9310189999915,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T00:11:02.677501+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-23T08:57:54.513655+00:00",
+      "realized_pnl": -9.88
     },
     {
       "id": "NB1776816662",
@@ -1822,10 +1825,13 @@
       "closes_in_days": 0.47,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 6453.342090999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T00:50:26.818351+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-23T08:57:54.550655+00:00",
+      "realized_pnl": 22.42
     },
     {
       "id": "NB1776828899",
@@ -1865,10 +1871,13 @@
       "closes_in_days": 0.3,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 5226.923770000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T04:51:14.502256+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-23T08:57:54.598066+00:00",
+      "realized_pnl": 6.17
     },
     {
       "id": "NB1776833474",
@@ -1997,10 +2006,13 @@
       "closes_in_days": 0.16,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 3606.490894,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T08:03:34.631366+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-23T08:57:54.682129+00:00",
+      "realized_pnl": -17.48
     },
     {
       "id": "NB1776851106",
@@ -2063,10 +2075,13 @@
       "closes_in_days": 0.09,
       "closes": "2026-04-22T12:00:00+00:00",
       "volume": 3741.806350000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T09:45:06.643155+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-23T08:57:54.723485+00:00",
+      "realized_pnl": -12.76
     },
     {
       "id": "NB1776906078",
@@ -2143,10 +2158,13 @@
       "closes_in_days": 0.46,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 4200.318114,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:18.467612+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-23T08:57:54.876366+00:00",
+      "realized_pnl": 5.91
     },
     {
       "id": "NB1776906078",
@@ -2287,11 +2305,31 @@
       "placed_at": "2026-04-23T07:36:36.583035+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776934681",
+      "market_id": "2040619",
+      "market_slug": "highest-temperature-in-helsinki-on-april-23-2026-9c",
+      "market": "Will the highest temperature in Helsinki be 9\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 14.03,
+      "payout_if_wins": 24.19,
+      "profit_if_wins": 10.16,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3946.722234000001,
+      "status": "open",
+      "placed_at": "2026-04-23T08:58:01.448534+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 57.92,
+  "daily_loss": 98.04,
   "daily_reset": "2026-04-23",
-  "scan_count": 123,
+  "scan_count": 124,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-23T03:29:31.322582+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
