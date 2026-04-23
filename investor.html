@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Prescient</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #080b0f;
+    --bg2:      #0d1117;
+    --bg3:      #161b22;
+    --border:   #21262d;
+    --gold:     #c9a84c;
+    --gold-d:   #1a1508;
+    --gold-l:   #e8c96d;
+    --text:     #e2e8f0;
+    --text2:    #8b949e;
+    --text3:    #484f58;
+    --green:    #3fb950;
+    --red:      #f85149;
+    --blue:     #58a6ff;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg2);
+  }
+  .header-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .header-sub {
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .investor-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .investor-since {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  /* Main */
+  .main { padding: 28px 32px; max-width: 900px; }
+
+  /* Hero strip */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .hero-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+  }
+  .hero-card.accent { border-color: #2a2008; background: #0d0b04; }
+  .hc-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .hc-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; line-height: 1; }
+  .hc-sub { font-size: 11px; color: var(--text2); margin-top: 5px; }
+  .gold { color: var(--gold-l); }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+
+  /* Section */
+  .section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .pill {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--bg3);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+  .pill-gold { background: var(--gold-d); color: var(--gold); border-color: #3a2a08; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    background: var(--bg);
+    color: var(--text3);
+    padding: 9px 16px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 10px 16px; border-bottom: 1px solid #0d1117; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #0d1117; }
+  .mono { font-family: 'DM Mono', monospace; }
+  .right { text-align: right; }
+
+  /* Loading / error */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    gap: 16px;
+  }
+  .spinner {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 12px; color: var(--text3); }
+
+  .error-box {
+    background: #1a0a0a;
+    border: 1px solid #3a1a1a;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    color: var(--red);
+    font-size: 13px;
+    margin: 40px auto;
+    max-width: 400px;
+  }
+
+  /* Returns bar */
+  .returns-bar-bg {
+    background: var(--bg3);
+    border-radius: 4px;
+    height: 4px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .returns-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--gold);
+    transition: width 0.6s ease;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 32px;
+    font-size: 10px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .main { padding: 16px; }
+    .header { padding: 16px; }
+    .hero { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="loading-screen" class="loading">
+  <div class="spinner"></div>
+  <div class="loading-text">Loading your portfolio...</div>
+</div>
+
+<div id="error-screen" style="display:none; padding:32px;">
+  <div class="error-box" id="error-msg">Unable to load portfolio.</div>
+</div>
+
+<div id="main" style="display:none;">
+  <div class="header">
+    <div>
+      <div class="header-brand">Prescient</div>
+      <div class="header-sub">NoBot V3 — Weather Strategy</div>
+    </div>
+    <div class="header-right">
+      <div class="investor-name" id="inv-name">—</div>
+      <div class="investor-since" id="inv-since">—</div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="hero">
+      <div class="hero-card accent">
+        <div class="hc-label">Current Value</div>
+        <div class="hc-value gold" id="inv-value">—</div>
+        <div class="hc-sub" id="inv-roi">—</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Initial Deposit</div>
+        <div class="hc-value" id="inv-deposit">—</div>
+        <div class="hc-sub">USDC</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Net Profit</div>
+        <div class="hc-value" id="inv-profit">—</div>
+        <div class="hc-sub" id="inv-fees">—</div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="inv-wr">—</div>
+        <div class="returns-bar-bg"><div class="returns-bar-fill" id="inv-wrf" style="width:0"></div></div>
+        <div class="hc-sub" id="inv-trades">—</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Transaction History</span>
+        <span class="pill pill-gold" id="tx-count">0 trades</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Market</th>
+            <th class="right">Result</th>
+            <th class="right">Your P&L</th>
+            <th class="right">Fee</th>
+            <th class="right">Net</th>
+            <th class="right">Balance</th>
+          </tr>
+        </thead>
+        <tbody id="tx-table">
+          <tr><td colspan="7" style="text-align:center;color:var(--text3);padding:24px">No transactions yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Portfolio values are updated after each resolved trade &nbsp;·&nbsp;
+    Performance fee deducted from winning trades only &nbsp;·&nbsp;
+    All values in USDC &nbsp;·&nbsp;
+    Prescient — paper trading strategy
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';  // replace with your Supabase project URL
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';  // replace with anon/public key
+
+function getToken() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('token') || '';
+}
+
+function money(v) {
+  const abs = Math.abs(v);
+  const sign = v >= 0 ? '+' : '-';
+  return sign + '$' + abs.toFixed(2);
+}
+
+function pct(v) {
+  const sign = v >= 0 ? '+' : '';
+  return sign + v.toFixed(2) + '%';
+}
+
+function dateStr(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: '2-digit' });
+}
+
+async function sb(path, token) {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: {
+      'apikey':            SUPABASE_ANON_KEY,
+      'Authorization':     `Bearer ${SUPABASE_ANON_KEY}`,
+      'x-investor-token':  token,
+      'Content-Type':      'application/json',
+    }
+  });
+  if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+  return r.json();
+}
+
+async function load() {
+  const token = getToken();
+  if (!token) {
+    document.getElementById('loading-screen').style.display = 'none';
+    document.getElementById('error-screen').style.display = 'block';
+    document.getElementById('error-msg').textContent = 'Invalid or missing access token.';
+    return;
+  }
+
+  try {
+    // Fetch investor
+    const investors = await sb(`investors?select=*&access_token=eq.${token}`, token);
+    if (!investors || investors.length === 0) {
+      throw new Error('Investor not found');
+    }
+    const inv = investors[0];
+
+    // Fetch transactions
+    const txs = await sb(
+      `transactions?investor_id=eq.${inv.id}&select=*&order=resolved_at.desc`,
+      token
+    );
+
+    // Populate header
+    document.getElementById('inv-name').textContent = inv.name;
+    document.getElementById('inv-since').textContent = 'Since ' + dateStr(inv.joined_at);
+
+    // Hero stats
+    const deposit  = parseFloat(inv.deposit_usdc);
+    const balance  = parseFloat(inv.current_balance);
+    const profit   = balance - deposit;
+    const roi      = (profit / deposit) * 100;
+    const fees     = parseFloat(inv.total_fees_paid);
+
+    document.getElementById('inv-value').textContent   = '$' + balance.toFixed(2);
+    document.getElementById('inv-roi').textContent     = pct(roi) + ' ROI';
+    document.getElementById('inv-deposit').textContent = '$' + deposit.toFixed(2);
+    document.getElementById('inv-profit').textContent  = money(profit);
+    document.getElementById('inv-profit').className    = 'hc-value ' + (profit >= 0 ? 'green' : 'red');
+    document.getElementById('inv-fees').textContent    = 'Fees paid: $' + fees.toFixed(2);
+
+    const won    = txs.filter(t => t.won).length;
+    const total  = txs.length;
+    const wr     = total ? Math.round(won / total * 100) : 0;
+    document.getElementById('inv-wr').textContent     = wr + '%';
+    document.getElementById('inv-wrf').style.width    = wr + '%';
+    document.getElementById('inv-trades').textContent = won + 'W / ' + (total - won) + 'L';
+    document.getElementById('tx-count').textContent   = total + ' trades';
+
+    // Transaction table
+    if (txs.length > 0) {
+      const tbody = document.getElementById('tx-table');
+      tbody.innerHTML = txs.map(tx => {
+        const net_pnl = parseFloat(tx.net_pnl);
+        const color   = tx.won ? 'var(--green)' : 'var(--red)';
+        const icon    = tx.won ? '✅' : '❌';
+        return `<tr>
+          <td style="color:var(--text2)">${dateStr(tx.resolved_at)}</td>
+          <td style="font-size:11px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${tx.market}</td>
+          <td class="right">${icon}</td>
+          <td class="right" style="color:${color}">${money(parseFloat(tx.gross_pnl))}</td>
+          <td class="right" style="color:var(--text3)">${tx.fee_charged > 0 ? '-$' + parseFloat(tx.fee_charged).toFixed(2) : '—'}</td>
+          <td class="right" style="color:${color};font-weight:500">${money(net_pnl)}</td>
+          <td class="right" style="color:var(--text2)">$${parseFloat(tx.balance_after).toFixed(2)}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    // Show
+    document.getElementById('loading-screen').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+
+  } catch(e) {
+    document.getElementById('loading-screen').style.display = 'none';
+    document.getElementById('error-screen').style.display = 'block';
+    document.getElementById('error-msg').textContent = 'Unable to load portfolio: ' + e.message;
+  }
+}
+
+load();
+</script>
+</body>
+</html>
