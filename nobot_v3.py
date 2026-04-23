@@ -744,9 +744,32 @@ def single_scan():
     max_deploy    = state["bankroll"] * 0.40
     current_deploy = sum(t["stake"] for t in state["trades"] if t["status"] == "open")
 
+    # Pre-build city+date index from all open trades — prevents two bets same city same day
+    def _city_from_slug(slug):
+        slug = slug.replace("highest-temperature-in-", "").replace("lowest-temperature-in-", "")
+        return slug.split("-on-")[0] if "-on-" in slug else slug
+
+    city_day_booked = set()
+    for t in state["trades"]:
+        if t["status"] == "open":
+            c = _city_from_slug(t.get("market_slug", ""))
+            d = t.get("closes", "")[:10]
+            if c and d:
+                city_day_booked.add(f"{c}_{d}")
+
     for market in filtered:
         if market["id"] in open_ids:
             continue  # already open
+
+        # Block second bet on same city same close date
+        city_slug = market.get('slug', '').replace('highest-temperature-in-', '').replace('lowest-temperature-in-', '')
+        city_slug = city_slug.split('-on-')[0] if '-on-' in city_slug else city_slug
+        close_date = market.get('closes', '')[:10]
+        city_key = f"{city_slug}_{close_date}"
+        if city_key in city_day_booked and city_slug:
+            log(f"   skip duplicate city/date: {market['question'][:55]}")
+            continue
+
         if current_deploy >= max_deploy:
             log(f"   💰 Deployment cap reached (${current_deploy:.2f} / ${max_deploy:.2f}) — holding fire")
             break
@@ -755,6 +778,9 @@ def single_scan():
         if state["bankroll"] < prev_bankroll:
             new_trades += 1
             current_deploy += (prev_bankroll - state["bankroll"])
+            # Mark this city+date as booked so next market in same scan is blocked
+            if city_slug and close_date:
+                city_day_booked.add(city_key)
 
     log(f"   {new_trades} new trade(s) placed")
 
