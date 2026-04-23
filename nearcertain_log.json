@@ -1,5 +1,5 @@
 {
-  "bankroll": 672.1,
+  "bankroll": 924.08,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -212,10 +212,13 @@
       "stake": 13.4,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.86,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T15:21:23.719732+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T11:42:45.530193+00:00",
+      "realized_pnl": -13.4
     },
     {
       "id": "NC20260421152124981587",
@@ -1732,10 +1735,13 @@
       "potential_payout": 127.38,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T07:36:49.788712+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-23T11:42:51.631281+00:00",
+      "realized_pnl": 117.19
     },
     {
       "id": "NC20260423085816520810",
@@ -1750,10 +1756,13 @@
       "potential_payout": 167.33,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.126,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T08:58:16.520828+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-23T11:42:51.755417+00:00",
+      "realized_pnl": 157.29
     },
     {
       "id": "NC20260423102616128323",
@@ -1772,10 +1781,100 @@
       "placed_at": "2026-04-23T10:26:16.128341+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423114305443150",
+      "market_id": "1744090",
+      "market": "Randers FC vs. FC Fredericia: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 7.25,
+      "potential_profit": 33.03,
+      "potential_payout": 40.28,
+      "closes": "2026-04-23T16:00:00+00:00",
+      "closes_in_days": 0.179,
+      "status": "open",
+      "placed_at": "2026-04-23T11:43:05.443171+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423114305443258",
+      "market_id": "2054005",
+      "market": "Dota 2: Aurora vs Heroic (BO3) - PGL Wallachia Playoffs",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 9.6,
+      "potential_profit": 70.4,
+      "potential_payout": 80.0,
+      "closes": "2026-04-23T16:30:00+00:00",
+      "closes_in_days": 0.199,
+      "status": "open",
+      "placed_at": "2026-04-23T11:43:05.443273+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423114305443334",
+      "market_id": "1754557",
+      "market": "Go Ahead Eagles vs. AZ: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 9.5,
+      "potential_profit": 58.36,
+      "potential_payout": 67.86,
+      "closes": "2026-04-23T16:45:00+00:00",
+      "closes_in_days": 0.21,
+      "status": "open",
+      "placed_at": "2026-04-23T11:43:05.443348+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423114305443409",
+      "market_id": "1744081",
+      "market": "S\u00f8nderjyske Fodbold vs. FC Midtjylland: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 7.05,
+      "potential_profit": 37.01,
+      "potential_payout": 44.06,
+      "closes": "2026-04-23T18:00:00+00:00",
+      "closes_in_days": 0.262,
+      "status": "open",
+      "placed_at": "2026-04-23T11:43:05.443424+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423114305443544",
+      "market_id": "1763099",
+      "market": "Macarthur FC vs. Wellington Phoenix FC: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 9.33,
+      "potential_profit": 57.31,
+      "potential_payout": 66.64,
+      "closes": "2026-04-24T09:35:00+00:00",
+      "closes_in_days": 0.911,
+      "status": "open",
+      "placed_at": "2026-04-23T11:43:05.443563+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 56.77,
+  "daily_loss": 70.17,
   "daily_reset": "2026-04-23",
-  "scan_count": 35,
+  "scan_count": 36,
   "started": "2026-04-21T00:00:00+00:00"
 }
