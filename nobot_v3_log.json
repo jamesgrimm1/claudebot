@@ -1,5 +1,5 @@
 {
-  "bankroll": 1206.51,
+  "bankroll": 1175.04,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2247,11 +2247,51 @@
       "placed_at": "2026-04-23T06:40:30.317418+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776929796",
+      "market_id": "2040345",
+      "market_slug": "highest-temperature-in-munich-on-april-23-2026-17c",
+      "market": "Will the highest temperature in Munich be 17\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 18.1,
+      "payout_if_wins": 34.81,
+      "profit_if_wins": 16.71,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3797.0657860000033,
+      "status": "open",
+      "placed_at": "2026-04-23T07:36:36.583001+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1776929796",
+      "market_id": "2040411",
+      "market_slug": "highest-temperature-in-milan-on-april-23-2026-22c",
+      "market": "Will the highest temperature in Milan be 22\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 13.37,
+      "payout_if_wins": 24.76,
+      "profit_if_wins": 11.39,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3558.8311260000014,
+      "status": "open",
+      "placed_at": "2026-04-23T07:36:36.583035+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 57.92,
   "daily_reset": "2026-04-23",
-  "scan_count": 122,
+  "scan_count": 123,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-23T03:29:31.322582+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

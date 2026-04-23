@@ -1,5 +1,5 @@
 {
-  "bankroll": 829.5,
+  "bankroll": 830.54,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2048,10 +2048,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 542290.8908739989,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T01:49:34.472763+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-23T07:36:19.275748+00:00",
+      "realized_pnl": 2.64
     },
     {
       "id": "NB1776563374",
@@ -4366,11 +4369,51 @@
       "placed_at": "2026-04-23T06:40:23.328227+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776929788",
+      "market_id": "2040345",
+      "market_slug": "highest-temperature-in-munich-on-april-23-2026-17c",
+      "market": "Will the highest temperature in Munich be 17\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 2.66,
+      "payout_if_wins": 5.12,
+      "profit_if_wins": 2.46,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3797.0657860000033,
+      "status": "open",
+      "placed_at": "2026-04-23T07:36:28.020850+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776929788",
+      "market_id": "2040411",
+      "market_slug": "highest-temperature-in-milan-on-april-23-2026-22c",
+      "market": "Will the highest temperature in Milan be 22\u00b0C on April 23?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 2.58,
+      "payout_if_wins": 4.78,
+      "profit_if_wins": 2.2,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "volume": 3558.8311260000014,
+      "status": "open",
+      "placed_at": "2026-04-23T07:36:28.020892+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 15.4,
   "daily_reset": "2026-04-23",
-  "scan_count": 126,
+  "scan_count": 127,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T04:58:41.134324+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
