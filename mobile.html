@@ -38,7 +38,6 @@ padding-top: max(env(safe-area-inset-top), 0px);
 padding-bottom: calc(max(env(safe-area-inset-bottom), 0px) + 80px);
 }
 
-/* ── Header ── */
 .header {
 display: flex; align-items: center; justify-content: space-between;
 padding: 18px 16px 16px;
@@ -76,7 +75,6 @@ transition: color .2s, border-color .2s;
 @keyframes spin { to { transform: rotate(360deg); } }
 .refresh-btn.spinning { animation: spin 0.7s linear infinite; }
 
-/* ── States ── */
 .loading-state {
 display: flex; flex-direction: column; align-items: center;
 justify-content: center; padding: 100px 0; gap: 14px;
@@ -95,7 +93,6 @@ font-size: 11px; color: var(–red); line-height: 1.8;
 
 #content { display: none; }
 
-/* ── Bot tabs ── */
 .tab-bar {
 display: flex; gap: 0;
 padding: 12px 16px 0;
@@ -117,7 +114,6 @@ flex-shrink: 0;
 }
 .tab.active { color: var(–gold); border-bottom-color: var(–gold); }
 
-/* ── Bot section ── */
 .bot-view { display: none; }
 .bot-view.active { display: block; }
 
@@ -138,7 +134,6 @@ color: var(–gold); font-weight: 500;
 }
 .bot-scancount { font-size: 9px; color: var(–muted); margin-left: auto; }
 
-/* ── Stats grid ── */
 .stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
 .stat {
 background: var(–s1);
@@ -165,7 +160,6 @@ color: var(–muted); margin-bottom: 6px;
 .neg { color: var(–red); }
 .gld { color: var(–gold); }
 
-/* ── Summary row ── */
 .summary-row {
 display: flex; gap: 8px; padding: 0 16px 14px;
 }
@@ -176,7 +170,6 @@ font-size:9px; color:var(–muted2); text-align:center; letter-spacing:0.5px;
 }
 .summary-pill strong { display:block; font-size:14px; color:var(–text); font-family:‘DM Serif Display’,serif; margin-bottom:2px; }
 
-/* ── Trade list ── */
 .trades-header {
 font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
 color:var(–muted); padding:16px 16px 8px;
@@ -228,7 +221,38 @@ margin-bottom:4px;
 
 .empty-msg { font-size:10px; color:var(–muted); padding:6px 0; }
 
-/* ── Divider ── */
+.proj-card {
+background: var(–s1); border: 1px solid var(–border);
+border-radius: 14px; margin: 0 16px 12px; overflow: hidden;
+}
+.proj-card-header {
+padding: 12px 14px 10px;
+border-bottom: 1px solid var(–border);
+display: flex; align-items: center; justify-content: space-between;
+}
+.proj-card-title {
+font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–gold);
+}
+.proj-card-wr {
+font-family: ‘DM Serif Display’, serif; font-size: 18px; color: var(–gold);
+}
+.proj-card-sub {
+font-size: 8px; color: var(–muted2); padding: 0 14px 8px; margin-top: 4px;
+}
+.proj-table { width: 100%; border-collapse: collapse; font-size: 9px; }
+.proj-table th {
+background: var(–bg); color: var(–muted); padding: 6px 10px;
+text-align: left; font-weight: 400; font-size: 8px;
+letter-spacing: 0.5px; border-bottom: 1px solid var(–border);
+}
+.proj-table td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.proj-table tr:last-child td { border-bottom: none; }
+.proj-table tr.live-row { background: rgba(201,146,42,0.06); }
+.proj-table tr.live-row td:first-child { color: var(–gold); font-weight: 500; }
+.proj-footer {
+font-size: 8px; color: var(–muted); padding: 16px;
+line-height: 1.8; letter-spacing: 0.3px;
+}
 .section-divider {
 margin: 22px 0 0;
 border: none; border-top:1px solid var(–border);
@@ -242,7 +266,7 @@ border: none; border-top:1px solid var(–border);
   <div class="wordmark">presc<em>i</em>ent</div>
   <div class="header-right">
     <div class="ts" id="ts">—</div>
-    <button class="refresh-btn" id="refresh-btn" onclick="load()">↻</button>
+    <button class="refresh-btn" id="refresh-btn" onclick="load()">&#x21BB;</button>
   </div>
 </div>
 
@@ -258,7 +282,9 @@ border: none; border-top:1px solid var(–border);
     <div class="tab active" data-view="cb" onclick="switchTab(this)">ClaudeBot</div>
     <div class="tab" data-view="nb" onclick="switchTab(this)">NoBot V1</div>
     <div class="tab" data-view="nb2" onclick="switchTab(this)">NoBot V2</div>
+    <div class="tab" data-view="nb3" onclick="switchTab(this)">NoBot V3</div>
     <div class="tab" data-view="nc" onclick="switchTab(this)">NearCertain</div>
+    <div class="tab" data-view="proj" onclick="switchTab(this)">Projections</div>
   </div>
 
   <!-- ClaudeBot -->
@@ -277,7 +303,7 @@ border: none; border-top:1px solid var(–border);
           <div class="stat-sub" id="cb-roi">—</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Realized P&L</div>
+          <div class="stat-label">Realized P&amp;L</div>
           <div class="stat-val" id="cb-pnl">—</div>
           <div class="stat-sub" id="cb-rec">—</div>
         </div>
@@ -313,7 +339,7 @@ border: none; border-top:1px solid var(–border);
           <div class="stat-sub" id="nb-roi">—</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Realized P&L</div>
+          <div class="stat-label">Realized P&amp;L</div>
           <div class="stat-val" id="nb-pnl">—</div>
           <div class="stat-sub" id="nb-rec">—</div>
         </div>
@@ -349,7 +375,7 @@ border: none; border-top:1px solid var(–border);
           <div class="stat-sub" id="nb2-roi">—</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Realized P&L</div>
+          <div class="stat-label">Realized P&amp;L</div>
           <div class="stat-val" id="nb2-pnl">—</div>
           <div class="stat-sub" id="nb2-rec">—</div>
         </div>
@@ -369,6 +395,42 @@ border: none; border-top:1px solid var(–border);
     <div class="trade-list" id="nb2-list"></div>
   </div>
 
+  <!-- NoBot V3 -->
+
+  <div class="bot-view" id="view-nb3">
+    <div class="section">
+      <div class="bot-header">
+        <div class="live-dot"></div>
+        <div class="bot-label">NoBot V3 — Weather</div>
+        <div class="bot-scancount" id="nb3-scans">—</div>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label">Bankroll</div>
+          <div class="stat-val gld" id="nb3-bank">—</div>
+          <div class="stat-sub" id="nb3-roi">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Realized P&amp;L</div>
+          <div class="stat-val" id="nb3-pnl">—</div>
+          <div class="stat-sub" id="nb3-rec">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Win Rate</div>
+          <div class="stat-val" id="nb3-wr">—</div>
+          <div class="stat-bar"><div class="stat-bar-fill" id="nb3-wrf" style="width:0"></div></div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Open</div>
+          <div class="stat-val" id="nb3-open">—</div>
+          <div class="stat-sub" id="nb3-dep">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="trades-header">Largest Open Positions</div>
+    <div class="trade-list" id="nb3-list"></div>
+  </div>
+
   <!-- NearCertain -->
 
   <div class="bot-view" id="view-nc">
@@ -385,7 +447,7 @@ border: none; border-top:1px solid var(–border);
           <div class="stat-sub" id="nc-roi">—</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Realized P&L</div>
+          <div class="stat-label">Realized P&amp;L</div>
           <div class="stat-val" id="nc-pnl">—</div>
           <div class="stat-sub" id="nc-rec">—</div>
         </div>
@@ -415,12 +477,56 @@ border: none; border-top:1px solid var(–border);
     <div class="trade-list" id="nc-list"></div>
   </div>
 
+  <!-- Projections -->
+
+  <div class="bot-view" id="view-proj">
+    <div style="padding:16px 0 0">
+      <div style="font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding:0 16px 12px">12 Month Projections</div>
+
+```
+  <!-- ClaudeBot -->
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <div class="proj-card-title">ClaudeBot</div>
+      <div class="proj-card-wr" id="m-proj-cb-wr">—</div>
+    </div>
+    <div class="proj-card-sub" id="m-proj-cb-sub">—</div>
+    <div id="m-proj-cb-table"></div>
+  </div>
+
+  <!-- NoBot V3 -->
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <div class="proj-card-title">NoBot V3</div>
+      <div class="proj-card-wr" id="m-proj-nb3-wr">—</div>
+    </div>
+    <div class="proj-card-sub" id="m-proj-nb3-sub">—</div>
+    <div id="m-proj-nb3-table"></div>
+  </div>
+
+  <!-- NearCertain -->
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <div class="proj-card-title">NearCertain</div>
+      <div class="proj-card-wr" id="m-proj-nc-wr">—</div>
+    </div>
+    <div class="proj-card-sub" id="m-proj-nc-sub">—</div>
+    <div id="m-proj-nc-table"></div>
+  </div>
+
+  <div class="proj-footer">Projections compound monthly using live avg win/loss &amp; trades/day &middot; Paper trade estimates only</div>
+</div>
+```
+
+  </div>
+
 </div>
 
 <script>
 var CB  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
 var NB  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_log.json';
 var NB2 = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
+var NB3 = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
 var NC  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
 var START = 1000;
 
@@ -461,7 +567,7 @@ function renderCB(d) {
     list.innerHTML+='<div class="trade-card side-'+(pos?'yes':'no')+'">'+
       '<div class="trade-badges"><span class="badge b-t'+tier+'">T'+tier+'</span><span class="badge '+(pos?'b-yes':'b-no')+'">'+t.position+'</span></div>'+
       '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
-      '<div class="trade-meta">'+(t.category||'?')+' · '+dLeft(t.closes)+'</div></div>'+
+      '<div class="trade-meta">'+(t.category||'?')+' &middot; '+dLeft(t.closes)+'</div></div>'+
       '<div class="trade-right"><div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
       '<div class="trade-upside">'+upside+'% ROI</div></div></div>';
   });
@@ -475,7 +581,7 @@ function renderNBGeneric(pfx, d) {
   top.forEach(function(t){
     var upside=t.stake&&t.payout_if_wins?Math.round((t.payout_if_wins/t.stake-1)*100):0;
     list.innerHTML+='<div class="trade-card side-no">'+
-      '<div class="trade-badges"><span class="badge b-no">NO@'+(t.entry_no_price||'?')+'¢</span></div>'+
+      '<div class="trade-badges"><span class="badge b-no">NO@'+(t.entry_no_price||'?')+'c</span></div>'+
       '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
       '<div class="trade-meta">'+dLeft(t.closes)+'</div></div>'+
       '<div class="trade-right"><div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
@@ -502,7 +608,7 @@ function renderNC(d) {
     var roi=t.entry_no_price?Math.round((100/t.entry_no_price-1)*100):0;
     list.innerHTML+='<div class="trade-card side-nc">'+
       '<div class="trade-badges">'+
-        '<span class="badge b-nc">NO@'+t.entry_no_price+'¢</span>'+
+        '<span class="badge b-nc">NO@'+t.entry_no_price+'c</span>'+
         '<span class="badge b-cat">'+(t.category||'?')+'</span>'+
       '</div>'+
       '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
@@ -518,6 +624,75 @@ function switchTab(el) {
   document.querySelectorAll('.bot-view').forEach(function(v){ v.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('view-'+el.dataset.view).classList.add('active');
+}
+
+function compound(b, wr, avgWin, avgLoss, tpd, days, ceil) {
+  var daily = wr * avgWin - (1-wr) * avgLoss;
+  for(var i=0;i<days;i++) {
+    if(b >= ceil) { b = ceil; break; }
+    b += daily;
+    if(b < 10) break;
+  }
+  return Math.max(b, 0);
+}
+
+function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios) {
+  if(!closed||!closed.length){
+    document.getElementById(tableId).innerHTML='<div style="padding:10px 14px;font-size:9px;color:var(--muted)">No data yet</div>';
+    return;
+  }
+  var won=closed.filter(function(t){return t.won;});
+  var lost=closed.filter(function(t){return !t.won;});
+  if(!won.length||!lost.length) return;
+
+  var liveWr=won.length/closed.length;
+  var avgWin=won.reduce(function(s,t){return s+(t.realized_pnl||0);},0)/won.length;
+  var avgLoss=Math.abs(lost.reduce(function(s,t){return s+(t.realized_pnl||0);},0)/lost.length);
+  var dates=closed.map(function(t){return new Date(t.resolved_at||t.placed_at);});
+  var minDate=new Date(Math.min.apply(null,dates));
+  var daysSince=Math.max(1,(Date.now()-minDate)/86400000);
+  var tpd=closed.length/daysSince;
+
+  document.getElementById(wrId).textContent=Math.round(liveWr*100)+'%';
+  document.getElementById(subId).textContent=
+    won.length+'W / '+lost.length+'L · '+tpd.toFixed(1)+' trades/day · avg win $'+avgWin.toFixed(2);
+
+  var sb=closed.length?closed[0].stake*100:1000;
+  // Use bankroll from state — approximate from first trade context
+  sb=1000;
+
+  var months=[3,6,9,12];
+  var rows=scenarios.map(function(wrPct){
+    var wr=wrPct/100;
+    var isLive=Math.abs(wr-liveWr)<0.03;
+    var ev=(wr*avgWin-(1-wr)*avgLoss)*tpd;
+    var vals=months.map(function(m){
+      var v=compound(sb,wr,avgWin,avgLoss,tpd,m*30,ceiling);
+      var col=isLive?'color:var(--gold)':v>=sb?'color:var(--text)':'color:var(--muted)';
+      return '<td style="'+col+'">$'+Math.round(v).toLocaleString()+'</td>';
+    });
+    var evCol=ev>=0?'color:var(--green)':'color:var(--red)';
+    return '<tr'+(isLive?' class="live-row"':'')+'>'+
+      '<td>'+(isLive?'<span style="color:var(--gold)">':'')+ wrPct+'%'+(isLive?' &#9664;</span>':'')+'</td>'+
+      '<td style="'+evCol+'">$'+ev.toFixed(2)+'</td>'+
+      vals.join('')+
+      '</tr>';
+  }).join('');
+
+  document.getElementById(tableId).innerHTML=
+    '<table class="proj-table"><thead><tr>'+
+    '<th>WR</th><th>EV/day</th><th>3mo</th><th>6mo</th><th>9mo</th><th>12mo</th>'+
+    '</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+function renderProjectionsMobile(cbData, nb3Data, ncData) {
+  var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){return t.status==='closed';}) : [];
+  var nb3Closed = nb3Data ? (nb3Data.trades||[]).filter(function(t){return t.status==='closed';}) : [];
+  var ncClosed  = ncData  ? (ncData.trades||[]).filter(function(t){return t.status==='closed';}) : [];
+
+  mProjTable('m-proj-cb-table',  'm-proj-cb-wr',  'm-proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85]);
+  mProjTable('m-proj-nb3-table', 'm-proj-nb3-wr', 'm-proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85]);
+  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, [5,10,15,20,25,30]);
 }
 
 function load() {
@@ -537,18 +712,22 @@ function load() {
     fetch(CB+bust).then(function(r){ if(!r.ok)throw new Error('CB '+r.status); return r.json(); }),
     fetch(NB+bust).then(function(r){ if(!r.ok)throw new Error('NB '+r.status); return r.json(); }),
     optional(NB2),
+    optional(NB3),
     optional(NC)
   ]).then(function(res){
     renderCB(res[0]);
     renderNBGeneric('nb', res[1]);
     if(res[2]) renderNBGeneric('nb2', res[2]);
-    else document.getElementById('nb2-bank').textContent='Not live';
-    if(res[3]) renderNC(res[3]);
-    else document.getElementById('nc-bank').textContent='Not live';
+    else { document.getElementById('nb2-bank').textContent='Not live'; document.getElementById('nb2-pnl').textContent='—'; document.getElementById('nb2-wr').textContent='—'; document.getElementById('nb2-open').textContent='—'; }
+    if(res[3]) renderNBGeneric('nb3', res[3]);
+    else { document.getElementById('nb3-bank').textContent='Not live'; document.getElementById('nb3-pnl').textContent='—'; document.getElementById('nb3-wr').textContent='—'; document.getElementById('nb3-open').textContent='—'; }
+    if(res[4]) renderNC(res[4]);
+    else { document.getElementById('nc-bank').textContent='Not live'; document.getElementById('nc-pnl').textContent='—'; document.getElementById('nc-wr').textContent='—'; document.getElementById('nc-open').textContent='—'; }
+    renderProjectionsMobile(res[0], res[3], res[4]);
 
     var now=new Date();
     document.getElementById('ts').innerHTML=
-      now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'<br>'+
+      now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+ '<br>'+
       now.toLocaleDateString([],{day:'numeric',month:'short'});
     document.getElementById('loading').style.display='none';
     document.getElementById('content').style.display='block';
