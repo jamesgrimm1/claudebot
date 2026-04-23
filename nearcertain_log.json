@@ -1,5 +1,5 @@
 {
-  "bankroll": 780.04,
+  "bankroll": 760.68,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -1430,10 +1430,64 @@
       "placed_at": "2026-04-23T03:30:02.317364+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423045913797846",
+      "market_id": "2040330",
+      "market": "Will the highest temperature in Lucknow be 42\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 21,
+      "entry_yes_price": 79,
+      "stake": 3.9,
+      "potential_profit": 14.67,
+      "potential_payout": 18.57,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.292,
+      "status": "open",
+      "placed_at": "2026-04-23T04:59:13.797870+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423045913798068",
+      "market_id": "2049420",
+      "market": "Will the highest temperature in Seoul be 21\u00b0C or higher on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 23,
+      "entry_yes_price": 77,
+      "stake": 3.88,
+      "potential_profit": 12.99,
+      "potential_payout": 16.87,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 1.292,
+      "status": "open",
+      "placed_at": "2026-04-23T04:59:13.798083+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423045913798139",
+      "market_id": "1937077",
+      "market": "Will Procter & Gamble (PG) beat quarterly earnings?",
+      "category": "economics",
+      "position": "NO",
+      "entry_no_price": 7,
+      "entry_yes_price": 93,
+      "stake": 11.58,
+      "potential_profit": 153.85,
+      "potential_payout": 165.43,
+      "closes": "2026-04-24T13:00:00+00:00",
+      "closes_in_days": 1.334,
+      "status": "open",
+      "placed_at": "2026-04-23T04:59:13.798152+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 25.79,
   "daily_reset": "2026-04-23",
-  "scan_count": 28,
+  "scan_count": 29,
   "started": "2026-04-21T00:00:00+00:00"
 }

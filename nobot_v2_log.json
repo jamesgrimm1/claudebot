@@ -1,5 +1,5 @@
 {
-  "bankroll": 825.93,
+  "bankroll": 821.99,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3167,10 +3167,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 5057.474098999998,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T03:05:11.139718+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-23T04:58:44.027732+00:00",
+      "realized_pnl": -3.87
     },
     {
       "id": "NB1776740711",
@@ -4317,12 +4320,32 @@
       "placed_at": "2026-04-23T03:29:30.657557+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776920331",
+      "market_id": "1999922",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-23",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 23?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 3.94,
+      "payout_if_wins": 7.88,
+      "profit_if_wins": 3.94,
+      "category": "crypto",
+      "closes_in_days": 0.46,
+      "closes": "2026-04-23T16:00:00+00:00",
+      "volume": 7447.913712999999,
+      "status": "open",
+      "placed_at": "2026-04-23T04:58:51.584104+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 7.43,
+  "daily_loss": 11.3,
   "daily_reset": "2026-04-23",
-  "scan_count": 122,
+  "scan_count": 123,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-22T16:21:24.477076+00:00",
+  "last_summary_sent": "2026-04-23T04:58:41.134324+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
 }
