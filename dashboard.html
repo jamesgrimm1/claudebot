@@ -1453,6 +1453,67 @@ function compound(start, wr, aw, al, dt, days, ceiling) {
   return b;
 }
 
+function ncProjTable(closed, ceiling, startBankroll) {
+  if (!closed || !closed.length) {
+    document.getElementById('proj-nc-table').innerHTML = '<div class="empty">No resolved trades yet</div>';
+    return;
+  }
+  var won  = closed.filter(function(t){ return t.won; });
+  var lost = closed.filter(function(t){ return !t.won; });
+  if (!won.length || !lost.length) return;
+
+  var liveWr  = won.length / closed.length;
+  var avgWin  = won.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / won.length;
+  var avgLoss = Math.abs(lost.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / lost.length);
+
+  var dates      = closed.map(function(t){ return new Date(t.resolved_at||t.placed_at); });
+  var minDate    = new Date(Math.min.apply(null, dates));
+  var daysSince  = Math.max(1, (Date.now() - minDate) / 86400000);
+  var tradesPerDay = closed.length / daysSince;
+
+  var liveWrPct = Math.round(liveWr * 100);
+  document.getElementById('proj-nc-wr').textContent = liveWrPct + '%';
+  document.getElementById('proj-nc-sub').textContent =
+    won.length + 'W / ' + lost.length + 'L · ' +
+    tradesPerDay.toFixed(1) + ' trades/day · ' +
+    'avg win $' + avgWin.toFixed(2) + ' / avg loss $' + avgLoss.toFixed(2);
+
+  document.getElementById('proj-nc-badge').textContent =
+    'Live ' + liveWrPct + '% WR · ' + tradesPerDay.toFixed(1) + ' trades/day';
+
+  var scenarios = [5, 10, 15, 20, 25, 30];
+  var months    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  var sb        = startBankroll || 1000;
+
+  var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
+  var rows = scenarios.map(function(wrPct) {
+    var wr     = wrPct / 100;
+    var isLive = Math.abs(wr - liveWr) < 0.03;
+    var rowStyle  = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
+    var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
+    var vals = months.map(function(m) {
+      var v = compound(sb, wr, avgWin, avgLoss, tradesPerDay, m * 30, ceiling);
+      var isProfit = v >= sb;
+      var style = isLive
+        ? 'color:var(--gold)'
+        : (isProfit ? 'color:var(--text)' : 'color:#666666');
+      return '<td class="mono" style="' + style + '">$' + Math.round(v).toLocaleString() + '</td>';
+    });
+    var ev = (wr * avgWin - (1 - wr) * avgLoss) * tradesPerDay;
+    var evStyle = ev >= 0 ? 'color:var(--green)' : 'color:var(--red)';
+    return '<tr' + rowStyle + '>' +
+      '<td class="mono"' + labelStyle + '>' + wrPct + '%' + (isLive ? ' ◀' : '') + '</td>' +
+      '<td class="mono" style="' + evStyle + '">$' + ev.toFixed(2) + '/day</td>' +
+      vals.join('') +
+      '</tr>';
+  }).join('');
+
+  document.getElementById('proj-nc-table').innerHTML =
+    '<table><thead><tr>' +
+      '<th>WR scenario</th><th>Daily EV</th>' + hdrs +
+    '</tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
 function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBankroll) {
   if (!closed || !closed.length) {
     document.getElementById(pfxTable).innerHTML = '<div class="empty">No resolved trades yet</div>';
@@ -1532,7 +1593,7 @@ function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData) {
 
   var ncClosed = ncData  ? (ncData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
   var ncStart  = ncData  ? ncData.bankroll  : 1000;
-  projTable('proj-nc-badge', 'proj-nc-table', 'proj-nc-wr', 'proj-nc-sub', ncClosed, 50000, ncStart);
+  ncProjTable(ncClosed, 50000, ncStart);
 
   if (!ncData) {
     document.getElementById('proj-nc-wr').textContent  = '—';
