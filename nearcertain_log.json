@@ -1,5 +1,5 @@
 {
-  "bankroll": 810.01,
+  "bankroll": 793.87,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -1355,10 +1355,46 @@
       "placed_at": "2026-04-23T01:01:32.904544+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423013324395216",
+      "market_id": "2040377",
+      "market": "Will the highest temperature in Hong Kong be 27\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 4.05,
+      "potential_profit": 12.15,
+      "potential_payout": 16.2,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.435,
+      "status": "open",
+      "placed_at": "2026-04-23T01:33:24.395229+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423013324395290",
+      "market_id": "2040085",
+      "market": "Will the lowest temperature in Seoul be 11\u00b0C on April 23?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 12.09,
+      "potential_profit": 189.41,
+      "potential_payout": 201.5,
+      "closes": "2026-04-23T12:00:00+00:00",
+      "closes_in_days": 0.435,
+      "status": "open",
+      "placed_at": "2026-04-23T01:33:24.395301+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 15.86,
   "daily_reset": "2026-04-23",
-  "scan_count": 26,
+  "scan_count": 27,
   "started": "2026-04-21T00:00:00+00:00"
 }
