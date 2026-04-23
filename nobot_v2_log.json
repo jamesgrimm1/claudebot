@@ -1,5 +1,5 @@
 {
-  "bankroll": 864.87,
+  "bankroll": 870.9,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4229,10 +4229,13 @@
       "closes_in_days": 0.46,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 5299.819199000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:10.645284+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-23T16:01:13.670583+00:00",
+      "realized_pnl": 3.85
     },
     {
       "id": "NB1776906070",
@@ -4476,11 +4479,31 @@
       "placed_at": "2026-04-23T08:57:53.843164+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1776960081",
+      "market_id": "2052051",
+      "market_slug": "wti-closes-above-95-on-april-23-2026",
+      "market": "WTI Crude Oil (WTI) closes above $95 on April 23?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 1.83,
+      "payout_if_wins": 3.98,
+      "profit_if_wins": 2.15,
+      "category": "other",
+      "closes_in_days": 0.21,
+      "closes": "2026-04-23T21:00:00+00:00",
+      "volume": 4487.754150000001,
+      "status": "open",
+      "placed_at": "2026-04-23T16:01:21.446955+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 24.1,
   "daily_reset": "2026-04-23",
-  "scan_count": 134,
+  "scan_count": 135,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T04:58:41.134324+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
