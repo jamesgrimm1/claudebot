@@ -1,5 +1,5 @@
 {
-  "bankroll": 955.02,
+  "bankroll": 1022.88,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -472,10 +472,13 @@
       "potential_payout": 127.67,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 1.465,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T00:50:52.989682+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:41.334941+00:00",
+      "realized_pnl": -11.49
     },
     {
       "id": "NC20260422033515067239",
@@ -697,10 +700,13 @@
       "potential_payout": 170.5,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 1.298,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T04:51:26.011353+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:41.469235+00:00",
+      "realized_pnl": -10.23
     },
     {
       "id": "NC20260422060534289455",
@@ -1213,10 +1219,13 @@
       "potential_payout": 44.0,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.818,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T16:21:54.112410+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:41.584243+00:00",
+      "realized_pnl": -6.6
     },
     {
       "id": "NC20260422171110047234",
@@ -1273,10 +1282,13 @@
       "potential_payout": 20.32,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.457,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:32.904252+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:41.634360+00:00",
+      "realized_pnl": -4.47
     },
     {
       "id": "NC20260423010132904291",
@@ -1483,10 +1495,13 @@
       "potential_payout": 32.72,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.354,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T03:30:02.317364+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.181392+00:00",
+      "realized_pnl": -5.89
     },
     {
       "id": "NC20260423045913797846",
@@ -1501,10 +1516,13 @@
       "potential_payout": 18.57,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.292,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T04:59:13.797870+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.215147+00:00",
+      "realized_pnl": -3.9
     },
     {
       "id": "NC20260423045913798068",
@@ -1555,10 +1573,13 @@
       "potential_payout": 33.59,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.268,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T05:34:56.118250+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.485151+00:00",
+      "realized_pnl": -5.71
     },
     {
       "id": "NC20260423053456118308",
@@ -1630,10 +1651,13 @@
       "potential_payout": 158.14,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.242,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T06:11:30.861532+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.655090+00:00",
+      "realized_pnl": -11.07
     },
     {
       "id": "NC20260423061130861603",
@@ -1729,10 +1753,13 @@
       "potential_payout": 105.8,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T07:36:49.788541+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.871396+00:00",
+      "realized_pnl": -10.58
     },
     {
       "id": "NC20260423073649788592",
@@ -1747,10 +1774,13 @@
       "potential_payout": 28.94,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T07:36:49.788600+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.912040+00:00",
+      "realized_pnl": -5.21
     },
     {
       "id": "NC20260423073649788643",
@@ -1765,10 +1795,13 @@
       "potential_payout": 115.0,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T07:36:49.788653+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:42.999613+00:00",
+      "realized_pnl": -10.35
     },
     {
       "id": "NC20260423073649788702",
@@ -1843,10 +1876,13 @@
       "potential_payout": 40.28,
       "closes": "2026-04-23T16:00:00+00:00",
       "closes_in_days": 0.179,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T11:43:05.443171+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:43.072248+00:00",
+      "realized_pnl": -7.25
     },
     {
       "id": "NC20260423114305443258",
@@ -1882,10 +1918,13 @@
       "potential_payout": 67.86,
       "closes": "2026-04-23T16:45:00+00:00",
       "closes_in_days": 0.21,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T11:43:05.443348+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-23T20:59:43.110305+00:00",
+      "realized_pnl": 58.36
     },
     {
       "id": "NC20260423114305443409",
@@ -1900,10 +1939,13 @@
       "potential_payout": 44.06,
       "closes": "2026-04-23T18:00:00+00:00",
       "closes_in_days": 0.262,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T11:43:05.443424+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T20:59:43.304822+00:00",
+      "realized_pnl": -7.05
     },
     {
       "id": "NC20260423114305443544",
@@ -1942,8 +1984,8 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 197.7,
+  "daily_loss": 297.5,
   "daily_reset": "2026-04-23",
-  "scan_count": 47,
+  "scan_count": 48,
   "started": "2026-04-21T00:00:00+00:00"
 }
