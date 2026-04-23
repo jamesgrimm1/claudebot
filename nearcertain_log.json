@@ -1,5 +1,5 @@
 {
-  "bankroll": 924.08,
+  "bankroll": 926.87,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -1300,10 +1300,13 @@
       "potential_payout": 40.44,
       "closes": "2026-04-23T13:00:00+00:00",
       "closes_in_days": 0.499,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T01:01:32.904389+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-23T12:54:07.205829+00:00",
+      "realized_pnl": -6.47
     },
     {
       "id": "NC20260423010132904439",
@@ -1663,10 +1666,13 @@
       "potential_payout": 16.9,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T07:36:49.788481+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-23T12:54:08.484254+00:00",
+      "realized_pnl": 13.35
     },
     {
       "id": "NC20260423073649788530",
@@ -1871,10 +1877,28 @@
       "placed_at": "2026-04-23T11:43:05.443563+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260423125418965436",
+      "market_id": "2052005",
+      "market": "S&P 500 (SPY) closes above $705 on April 23?",
+      "category": "economics",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 14.11,
+      "potential_profit": 162.26,
+      "potential_payout": 176.38,
+      "closes": "2026-04-23T20:00:00+00:00",
+      "closes_in_days": 0.296,
+      "status": "open",
+      "placed_at": "2026-04-23T12:54:18.965465+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 70.17,
+  "daily_loss": 76.64,
   "daily_reset": "2026-04-23",
-  "scan_count": 37,
+  "scan_count": 38,
   "started": "2026-04-21T00:00:00+00:00"
 }
