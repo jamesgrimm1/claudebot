@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-24T22:32:10.615611",
-  "total_trades": 30,
+  "generated": "2026-04-24T23:33:12.584995",
+  "total_trades": 31,
   "trades": [
     {
       "won": true,
@@ -144,6 +144,19 @@
       "bear": "Unprecedented black swan event (nuclear conflict, simultaneous OPEC collapse + global recession announcement) could trigger extreme selling, though still unlikely to reach $50 from $93 in 5 days",
       "news": false,
       "path": "trade_reflections/T1776591713_other_LOST.md"
+    },
+    {
+      "won": true,
+      "category": "other",
+      "conf": 95,
+      "hold_h": 133.8,
+      "tier": "1",
+      "position": "NO",
+      "pnl": 298.78,
+      "market": "Will WTI Crude Oil (WTI) hit (LOW) $50 Week of April 20 2026?",
+      "bear": "Unprecedented black swan event (nuclear conflict, simultaneous OPEC collapse + global recession announcement) could trigger extreme selling, though still unlikely to reach $50 from $93 in 5 days",
+      "news": false,
+      "path": "trade_reflections/T1776591713_other_WON.md"
     },
     {
       "won": false,

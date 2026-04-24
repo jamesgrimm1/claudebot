@@ -1,5 +1,5 @@
 {
-  "bankroll": 1642.59,
+  "bankroll": 2252.35,
   "trades": [
     {
       "id": "T1775098669",
@@ -812,10 +812,13 @@
       "bear_case": "Unprecedented black swan event (nuclear conflict, simultaneous OPEC collapse + global recession announcement) could trigger extreme selling, though still unlikely to reach $50 from $93 in 5 days",
       "kelly_tier": "full-Kelly (15.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T09:41:53.274011+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-24T23:32:33.498301+00:00",
+      "realized_pnl": 298.78
     },
     {
       "id": "T1776591714",
@@ -1089,7 +1092,7 @@
   ],
   "daily_loss": 86.45,
   "daily_reset": "2026-04-24",
-  "scan_count": 217,
+  "scan_count": 218,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-24",
   "last_tier2_scan": "2026-04-24",
