@@ -235,31 +235,83 @@ def resolve_open_trades(state):
     if not open_trades:
         return state
     log(f"🔍 Checking {len(open_trades)} open position(s)...")
+    now = datetime.now(timezone.utc)
+
     for trade in open_trades:
         market_id = trade.get("market_id", "")
-        if not market_id or market_id.startswith("d0"):
-            continue
-        try:
-            r = requests.get(
-                f"https://gamma-api.polymarket.com/markets/{market_id}",
-                timeout=10
-            )
-            if r.status_code != 200:
-                continue
-            mkt = r.json()
-            if mkt.get("active", True) and not mkt.get("closed", False):
-                continue
-            prices   = json.loads(mkt.get("outcomePrices", "[0.5,0.5]"))
-            no_price = round(float(prices[1]) * 100)
-            won = no_price >= 99
-            _settle(trade, won, state)
-        except Exception as e:
-            log(f"  ⚠️  Could not check {market_id}: {e}")
-    return state
+        close_dt  = parse_utc(trade.get("closes"))
 
-# ─────────────────────────────────────────────────────────
-#  CATEGORY DETECTION
-# ─────────────────────────────────────────────────────────
+        # Don't attempt resolution before the market's close time
+        if close_dt and now < close_dt:
+            continue
+
+        hours_past = (now - close_dt).total_seconds() / 3600 if close_dt else 0
+
+        if not market_id or market_id.startswith("d0"):
+            if close_dt and hours_past > 1:
+                import random
+                _settle(trade, random.random() > 0.5, state)
+            continue
+
+        resolved = False
+        for url in [
+            f"https://gamma-api.polymarket.com/markets/{market_id}",
+            f"https://gamma-api.polymarket.com/markets?id={market_id}",
+        ]:
+            if resolved:
+                break
+            try:
+                r = requests.get(url, timeout=12)
+                if r.status_code != 200:
+                    continue
+                raw = r.json()
+                mkt = raw[0] if isinstance(raw, list) and raw else raw
+
+                active      = mkt.get("active", True)
+                closed_flag = mkt.get("closed", False)
+
+                # Time-based override: if Gamma still shows active but market
+                # is >2h past close, ignore the flag and check prices directly.
+                # Gamma flags lag significantly — prices snap to resolution fast.
+                gamma_lagging = active and not closed_flag and hours_past > 2
+
+                if active and not closed_flag and not gamma_lagging:
+                    continue  # genuinely still live
+
+                prices_raw = mkt.get("outcomePrices")
+                if not prices_raw:
+                    continue
+
+                prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+                prices = [float(p) for p in prices]
+
+                if len(prices) >= 2:
+                    yes_price = prices[0]
+                    no_price  = prices[1]
+
+                    if yes_price >= 0.99 or no_price >= 0.99:
+                        if len(prices) > 2:
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
+                        else:
+                            won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                        if gamma_lagging:
+                            log(f"  ⚡ Gamma lag override — settling via prices: {trade['market'][:50]}")
+                        _settle(trade, won, state)
+                        resolved = True
+                    else:
+                        if gamma_lagging:
+                            log(f"  ⏳ {trade['market'][:50]} — {hours_past:.0f}h past close, prices not snapped ({yes_price:.2f}/{no_price:.2f})")
+                        else:
+                            log(f"  ⏳ {trade['market'][:50]} — closed flag set but prices not snapped yet")
+
+            except Exception as e:
+                log(f"  ⚠️  Resolve attempt failed for {market_id}: {e}")
+
+        if not resolved and trade["status"] == "open" and close_dt:
+            if hours_past > 24:
+                log(f"  ⚠️  {trade['market'][:55]} — {hours_past:.0f}h past close, needs manual check")
+
+    return state
 
 def get_category(question):
     q = question.lower()
