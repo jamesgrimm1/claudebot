@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,22 +11,22 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
-–gold:#C9922A; –gold-dim:rgba(201,146,42,0.10); –gold-glow:rgba(201,146,42,0.20);
-–bg:#080808; –s1:#111; –s2:#181818; –s3:#1f1f1f;
-–border:rgba(255,255,255,0.06); –border2:rgba(255,255,255,0.10);
-–text:#f0ede8; –muted:#4a4a4a; –muted2:#666;
-–green:#2ecc71; –red:#e74c3c;
-–green-dim:rgba(46,204,113,0.10); –red-dim:rgba(231,76,60,0.10);
-–blue:#3d9be9; –blue-dim:rgba(61,155,233,0.10);
-–purple:#9b6dff; –purple-dim:rgba(155,109,255,0.10);
+--gold:#C9922A; --gold-dim:rgba(201,146,42,0.10); --gold-glow:rgba(201,146,42,0.20);
+--bg:#080808; --s1:#111; --s2:#181818; --s3:#1f1f1f;
+--border:rgba(255,255,255,0.06); --border2:rgba(255,255,255,0.10);
+--text:#f0ede8; --muted:#4a4a4a; --muted2:#666;
+--green:#2ecc71; --red:#e74c3c;
+--green-dim:rgba(46,204,113,0.10); --red-dim:rgba(231,76,60,0.10);
+--blue:#3d9be9; --blue-dim:rgba(61,155,233,0.10);
+--purple:#9b6dff; --purple-dim:rgba(155,109,255,0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
 
 html, body {
-font-family: ‘DM Mono’, monospace;
-background: var(–bg);
-color: var(–text);
+font-family: 'DM Mono', monospace;
+background: var(--bg);
+color: var(--text);
 min-height: 100vh;
 -webkit-font-smoothing: antialiased;
 overscroll-behavior: none;
@@ -46,32 +45,32 @@ background: rgba(8,8,8,0.92);
 backdrop-filter: blur(12px);
 -webkit-backdrop-filter: blur(12px);
 z-index: 20;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 }
 
 .wordmark {
-font-family: ‘DM Serif Display’, serif;
+font-family: 'DM Serif Display', serif;
 font-size: 22px;
 letter-spacing: -0.5px;
-color: var(–text);
+color: var(--text);
 }
-.wordmark em { color: var(–gold); font-style: normal; }
+.wordmark em { color: var(--gold); font-style: normal; }
 
 .header-right { display:flex; align-items:center; gap:10px; }
 
 .ts {
-font-size: 9px; color: var(–muted2);
+font-size: 9px; color: var(--muted2);
 letter-spacing: 0.3px; text-align:right; line-height:1.6;
 }
 
 .refresh-btn {
 width: 32px; height: 32px; border-radius: 50%;
-background: var(–s2); border: 1px solid var(–border2);
-color: var(–muted2); font-size: 16px; cursor: pointer;
+background: var(--s2); border: 1px solid var(--border2);
+color: var(--muted2); font-size: 16px; cursor: pointer;
 display: flex; align-items: center; justify-content: center;
 transition: color .2s, border-color .2s;
 }
-.refresh-btn:active { color: var(–gold); border-color: var(–gold); }
+.refresh-btn:active { color: var(--gold); border-color: var(--gold); }
 @keyframes spin { to { transform: rotate(360deg); } }
 .refresh-btn.spinning { animation: spin 0.7s linear infinite; }
 
@@ -81,14 +80,14 @@ justify-content: center; padding: 100px 0; gap: 14px;
 }
 .loading-ring {
 width: 32px; height: 32px; border-radius: 50%;
-border: 2px solid var(–s3); border-top-color: var(–gold);
+border: 2px solid var(--s3); border-top-color: var(--gold);
 animation: spin 0.8s linear infinite;
 }
-.loading-text { font-size: 9px; letter-spacing: 3px; color: var(–muted); text-transform: uppercase; }
+.loading-text { font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
 
 .error-state {
 display: none; padding: 80px 24px; text-align: center;
-font-size: 11px; color: var(–red); line-height: 1.8;
+font-size: 11px; color: var(--red); line-height: 1.8;
 }
 
 #content { display: none; }
@@ -98,7 +97,7 @@ display: flex; gap: 0;
 padding: 12px 16px 0;
 overflow-x: auto;
 scrollbar-width: none;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid var(--border);
 position: sticky; top: 55px; z-index: 15;
 background: rgba(8,8,8,0.92);
 backdrop-filter: blur(12px);
@@ -107,12 +106,12 @@ backdrop-filter: blur(12px);
 .tab-bar::-webkit-scrollbar { display: none; }
 .tab {
 font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-color: var(–muted2); padding: 8px 14px 9px;
+color: var(--muted2); padding: 8px 14px 9px;
 border-bottom: 2px solid transparent; white-space: nowrap;
 cursor: pointer; transition: color .2s, border-color .2s;
 flex-shrink: 0;
 }
-.tab.active { color: var(–gold); border-bottom-color: var(–gold); }
+.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 
 .bot-view { display: none; }
 .bot-view.active { display: block; }
@@ -121,144 +120,143 @@ flex-shrink: 0;
 
 .bot-header { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
 .live-dot {
-width:6px; height:6px; background:var(–green); border-radius:50%;
+width:6px; height:6px; background:var(--green); border-radius:50%;
 flex-shrink:0;
-box-shadow: 0 0 6px var(–green);
+box-shadow: 0 0 6px var(--green);
 animation: pulse 2.5s ease-in-out infinite;
 }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 
 .bot-label {
 font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-color: var(–gold); font-weight: 500;
+color: var(--gold); font-weight: 500;
 }
-.bot-scancount { font-size: 9px; color: var(–muted); margin-left: auto; }
+.bot-scancount { font-size: 9px; color: var(--muted); margin-left: auto; }
 
 .stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
 .stat {
-background: var(–s1);
-border: 1px solid var(–border);
+background: var(--s1);
+border: 1px solid var(--border);
 border-radius: 14px;
 padding: 14px 15px;
 position: relative; overflow: hidden;
 }
 .stat::before {
-content:’’; position:absolute; top:0; right:0;
+content:''; position:absolute; top:0; right:0;
 width:40px; height:40px;
-background: radial-gradient(circle at top right, var(–gold-dim), transparent 70%);
+background: radial-gradient(circle at top right, var(--gold-dim), transparent 70%);
 }
 .stat-label {
 font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
-color: var(–muted); margin-bottom: 6px;
+color: var(--muted); margin-bottom: 6px;
 }
-.stat-val { font-family:‘DM Serif Display’,serif; font-size:24px; line-height:1; letter-spacing:-0.5px; }
-.stat-sub { font-size:9px; color:var(–muted2); margin-top:5px; }
-.stat-bar { height:2px; background:var(–s3); border-radius:2px; margin-top:10px; overflow:hidden; }
+.stat-val { font-family:'DM Serif Display',serif; font-size:24px; line-height:1; letter-spacing:-0.5px; }
+.stat-sub { font-size:9px; color:var(--muted2); margin-top:5px; }
+.stat-bar { height:2px; background:var(--s3); border-radius:2px; margin-top:10px; overflow:hidden; }
 .stat-bar-fill { height:100%; border-radius:2px; transition:width 1.2s cubic-bezier(.25,.46,.45,.94); }
 
-.pos { color: var(–green); }
-.neg { color: var(–red); }
-.gld { color: var(–gold); }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.gld { color: var(--gold); }
 
 .summary-row {
 display: flex; gap: 8px; padding: 0 16px 14px;
 }
 .summary-pill {
-flex:1; background:var(–s1); border:1px solid var(–border);
+flex:1; background:var(--s1); border:1px solid var(--border);
 border-radius:10px; padding:10px 12px;
-font-size:9px; color:var(–muted2); text-align:center; letter-spacing:0.5px;
+font-size:9px; color:var(--muted2); text-align:center; letter-spacing:0.5px;
 }
-.summary-pill strong { display:block; font-size:14px; color:var(–text); font-family:‘DM Serif Display’,serif; margin-bottom:2px; }
+.summary-pill strong { display:block; font-size:14px; color:var(--text); font-family:'DM Serif Display',serif; margin-bottom:2px; }
 
 .trades-header {
 font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
-color:var(–muted); padding:16px 16px 8px;
+color:var(--muted); padding:16px 16px 8px;
 }
 
 .trade-list { padding: 0 16px; display:flex; flex-direction:column; gap:7px; }
 
 .trade-card {
-background: var(–s1); border:1px solid var(–border);
+background: var(--s1); border:1px solid var(--border);
 border-radius:13px; padding:12px 13px;
 display:flex; align-items:flex-start; gap:10px;
 position: relative; overflow:hidden;
 }
 .trade-card::after {
-content:’’; position:absolute; left:0; top:0; bottom:0;
+content:''; position:absolute; left:0; top:0; bottom:0;
 width:3px; border-radius:3px 0 0 3px;
 }
-.trade-card.side-yes::after { background:var(–green); }
-.trade-card.side-no::after  { background:var(–red); }
-.trade-card.side-nc::after  { background:var(–purple); }
+.trade-card.side-yes::after { background:var(--green); }
+.trade-card.side-no::after  { background:var(--red); }
+.trade-card.side-nc::after  { background:var(--purple); }
 
 .trade-badges { display:flex; flex-direction:column; gap:4px; flex-shrink:0; }
 .badge {
 font-size:8px; font-weight:500; letter-spacing:0.5px;
 padding:2px 7px; border-radius:5px; white-space:nowrap; text-transform:uppercase;
 }
-.b-yes  { background:var(–green-dim);  color:var(–green);  }
-.b-no   { background:var(–red-dim);    color:var(–red);    }
-.b-nc   { background:var(–purple-dim); color:var(–purple); }
-.b-t1   { background:var(–blue-dim);   color:var(–blue);   }
-.b-t2   { background:var(–gold-dim);   color:var(–gold);   }
-.b-t3   { background:var(–purple-dim); color:var(–purple); }
-.b-cat  { background:var(–s3);         color:var(–muted2); }
+.b-yes  { background:var(--green-dim);  color:var(--green);  }
+.b-no   { background:var(--red-dim);    color:var(--red);    }
+.b-nc   { background:var(--purple-dim); color:var(--purple); }
+.b-t1   { background:var(--blue-dim);   color:var(--blue);   }
+.b-t2   { background:var(--gold-dim);   color:var(--gold);   }
+.b-t3   { background:var(--purple-dim); color:var(--purple); }
+.b-cat  { background:var(--s3);         color:var(--muted2); }
 
 .trade-body { flex:1; min-width:0; }
 .trade-name {
-font-family:‘DM Serif Display’,serif;
+font-family:'DM Serif Display',serif;
 font-size:12px; line-height:1.35;
 overflow:hidden; display:-webkit-box;
 -webkit-line-clamp:2; -webkit-box-orient:vertical;
 margin-bottom:4px;
 }
-.trade-meta { font-size:9px; color:var(–muted2); }
+.trade-meta { font-size:9px; color:var(--muted2); }
 
 .trade-right { text-align:right; flex-shrink:0; }
-.trade-stake { font-family:‘DM Serif Display’,serif; font-size:15px; }
-.trade-upside { font-size:9px; color:var(–green); margin-top:2px; }
-.trade-win-amt { font-size:9px; color:var(–purple); margin-top:2px; }
+.trade-stake { font-family:'DM Serif Display',serif; font-size:15px; }
+.trade-upside { font-size:9px; color:var(--green); margin-top:2px; }
+.trade-win-amt { font-size:9px; color:var(--purple); margin-top:2px; }
 
-.empty-msg { font-size:10px; color:var(–muted); padding:6px 0; }
+.empty-msg { font-size:10px; color:var(--muted); padding:6px 0; }
 
 .proj-card {
-background: var(–s1); border: 1px solid var(–border);
-border-radius: 14px; margin: 0 16px 12px; overflow: hidden;
+  background: var(--s1); border: 1px solid var(--border);
+  border-radius: 14px; margin: 0 16px 12px; overflow: hidden;
 }
 .proj-card-header {
-padding: 12px 14px 10px;
-border-bottom: 1px solid var(–border);
-display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
 }
 .proj-card-title {
-font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(–gold);
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
 }
 .proj-card-wr {
-font-family: ‘DM Serif Display’, serif; font-size: 18px; color: var(–gold);
+  font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold);
 }
 .proj-card-sub {
-font-size: 8px; color: var(–muted2); padding: 0 14px 8px; margin-top: 4px;
+  font-size: 8px; color: var(--muted2); padding: 0 14px 8px; margin-top: 4px;
 }
 .proj-table { width: 100%; border-collapse: collapse; font-size: 9px; }
 .proj-table th {
-background: var(–bg); color: var(–muted); padding: 6px 10px;
-text-align: left; font-weight: 400; font-size: 8px;
-letter-spacing: 0.5px; border-bottom: 1px solid var(–border);
+  background: var(--bg); color: var(--muted); padding: 6px 10px;
+  text-align: left; font-weight: 400; font-size: 8px;
+  letter-spacing: 0.5px; border-bottom: 1px solid var(--border);
 }
 .proj-table td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
 .proj-table tr:last-child td { border-bottom: none; }
 .proj-table tr.live-row { background: rgba(201,146,42,0.06); }
-.proj-table tr.live-row td:first-child { color: var(–gold); font-weight: 500; }
+.proj-table tr.live-row td:first-child { color: var(--gold); font-weight: 500; }
 .proj-footer {
-font-size: 8px; color: var(–muted); padding: 16px;
-line-height: 1.8; letter-spacing: 0.3px;
+  font-size: 8px; color: var(--muted); padding: 16px;
+  line-height: 1.8; letter-spacing: 0.3px;
 }
 .section-divider {
 margin: 22px 0 0;
-border: none; border-top:1px solid var(–border);
+border: none; border-top:1px solid var(--border);
 }
 </style>
-
 </head>
 <body>
 
@@ -288,7 +286,6 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- ClaudeBot -->
-
   <div class="bot-view active" id="view-cb">
     <div class="section">
       <div class="bot-header">
@@ -324,7 +321,6 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- NoBot V1 -->
-
   <div class="bot-view" id="view-nb">
     <div class="section">
       <div class="bot-header">
@@ -360,7 +356,6 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- NoBot V2 -->
-
   <div class="bot-view" id="view-nb2">
     <div class="section">
       <div class="bot-header">
@@ -396,7 +391,6 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- NoBot V3 -->
-
   <div class="bot-view" id="view-nb3">
     <div class="section">
       <div class="bot-header">
@@ -432,7 +426,6 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- NearCertain -->
-
   <div class="bot-view" id="view-nc">
     <div class="section">
       <div class="bot-header">
@@ -478,46 +471,42 @@ border: none; border-top:1px solid var(–border);
   </div>
 
   <!-- Projections -->
-
   <div class="bot-view" id="view-proj">
     <div style="padding:16px 0 0">
       <div style="font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding:0 16px 12px">12 Month Projections</div>
 
-```
-  <!-- ClaudeBot -->
-  <div class="proj-card">
-    <div class="proj-card-header">
-      <div class="proj-card-title">ClaudeBot</div>
-      <div class="proj-card-wr" id="m-proj-cb-wr">—</div>
+      <!-- ClaudeBot -->
+      <div class="proj-card">
+        <div class="proj-card-header">
+          <div class="proj-card-title">ClaudeBot</div>
+          <div class="proj-card-wr" id="m-proj-cb-wr">—</div>
+        </div>
+        <div class="proj-card-sub" id="m-proj-cb-sub">—</div>
+        <div id="m-proj-cb-table"></div>
+      </div>
+
+      <!-- NoBot V3 -->
+      <div class="proj-card">
+        <div class="proj-card-header">
+          <div class="proj-card-title">NoBot V3</div>
+          <div class="proj-card-wr" id="m-proj-nb3-wr">—</div>
+        </div>
+        <div class="proj-card-sub" id="m-proj-nb3-sub">—</div>
+        <div id="m-proj-nb3-table"></div>
+      </div>
+
+      <!-- NearCertain -->
+      <div class="proj-card">
+        <div class="proj-card-header">
+          <div class="proj-card-title">NearCertain</div>
+          <div class="proj-card-wr" id="m-proj-nc-wr">—</div>
+        </div>
+        <div class="proj-card-sub" id="m-proj-nc-sub">—</div>
+        <div id="m-proj-nc-table"></div>
+      </div>
+
+      <div class="proj-footer">Projections compound monthly using live avg win/loss &amp; trades/day &middot; Paper trade estimates only</div>
     </div>
-    <div class="proj-card-sub" id="m-proj-cb-sub">—</div>
-    <div id="m-proj-cb-table"></div>
-  </div>
-
-  <!-- NoBot V3 -->
-  <div class="proj-card">
-    <div class="proj-card-header">
-      <div class="proj-card-title">NoBot V3</div>
-      <div class="proj-card-wr" id="m-proj-nb3-wr">—</div>
-    </div>
-    <div class="proj-card-sub" id="m-proj-nb3-sub">—</div>
-    <div id="m-proj-nb3-table"></div>
-  </div>
-
-  <!-- NearCertain -->
-  <div class="proj-card">
-    <div class="proj-card-header">
-      <div class="proj-card-title">NearCertain</div>
-      <div class="proj-card-wr" id="m-proj-nc-wr">—</div>
-    </div>
-    <div class="proj-card-sub" id="m-proj-nc-sub">—</div>
-    <div id="m-proj-nc-table"></div>
-  </div>
-
-  <div class="proj-footer">Projections compound monthly using live avg win/loss &amp; trades/day &middot; Paper trade estimates only</div>
-</div>
-```
-
   </div>
 
 </div>
@@ -661,7 +650,7 @@ function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios, startBankr
   var months=[3,6,9,12];
   var rows=scenarios.map(function(wrPct){
     var wr=wrPct/100;
-    var isLive=Math.abs(wr-liveWr)<0.03;
+    var isLive=(wrPct===liveWrRounded);
     var ev=(wr*avgWin-(1-wr)*avgLoss)*tpd;
     var vals=months.map(function(m){
       var v=compound(sb,wr,avgWin,avgLoss,tpd,m*30,ceiling);
@@ -692,7 +681,22 @@ function renderProjectionsMobile(cbData, nb3Data, ncData) {
   var ncBank  = ncData  ? ncData.bankroll  : 1000;
   mProjTable('m-proj-cb-table',  'm-proj-cb-wr',  'm-proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85], cbBank);
   mProjTable('m-proj-nb3-table', 'm-proj-nb3-wr', 'm-proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85], nb3Bank);
-  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, [5,10,15,20,25,30],    ncBank);
+  // Build NC scenarios dynamically with live WR inserted
+  var ncWon = ncClosed.filter(function(t){return t.won;});
+  var ncLiveWr = ncClosed.length ? ncWon.length/ncClosed.length : 0;
+  var ncLiveWrPct = Math.round(ncLiveWr*100);
+  var ncBands = [5,10,15,20,25,30];
+  var ncScenarios = [];
+  var ncInserted = false;
+  for (var ni=0; ni<ncBands.length; ni++) {
+    if (!ncInserted && ncLiveWrPct > (ncBands[ni-1]||0) && ncLiveWrPct < ncBands[ni]) {
+      ncScenarios.push(ncLiveWrPct); ncInserted=true;
+    }
+    ncScenarios.push(ncBands[ni]);
+    if (!ncInserted && ncLiveWrPct===ncBands[ni]) { ncInserted=true; }
+  }
+  if (!ncInserted && ncLiveWrPct>ncBands[ncBands.length-1]) { ncScenarios.push(ncLiveWrPct); }
+  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, ncScenarios, ncBank);
 }
 
 function load() {
