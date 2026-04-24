@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-24T09:07:12.720889",
-  "total_trades": 28,
+  "generated": "2026-04-24T10:07:01.394244",
+  "total_trades": 29,
   "trades": [
     {
       "won": true,
@@ -235,6 +235,19 @@
       "bear": "Weekend tariff escalation announcements targeting China/semiconductors could cause a large Monday gap down; NVIDIA is highly exposed to US-China trade tensions",
       "news": false,
       "path": "trade_reflections/T1776038559_stocks_WON.md"
+    },
+    {
+      "won": true,
+      "category": "politics",
+      "conf": 82,
+      "hold_h": 90.8,
+      "tier": "1",
+      "position": "YES",
+      "pnl": 38.02,
+      "market": "Will Donald Trump publicly insult someone on April 24, 2026?",
+      "bear": "Resolution criteria might define 'insult' more narrowly than plain language suggests; Trump could have an uncharacteristically quiet day; potential health/travel event limiting public appearances",
+      "news": false,
+      "path": "trade_reflections/T1776698018_politics_WON.md"
     },
     {
       "won": true,

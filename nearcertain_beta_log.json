@@ -1,5 +1,5 @@
 {
-  "bankroll": 962.23,
+  "bankroll": 960.79,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -2295,10 +2295,13 @@
       "potential_payout": 1.75,
       "closes": "2026-04-24T09:00:00+00:00",
       "closes_in_days": 0.162,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T05:07:30.940808+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T10:03:29.514294+00:00",
+      "realized_pnl": -0.49
     },
     {
       "id": "NC20260424050730940855",
@@ -3127,11 +3130,65 @@
       "placed_at": "2026-04-24T09:05:32.707033+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424100340666573",
+      "market_id": "2049810",
+      "market": "Will the highest temperature in Helsinki be 11\u00b0C on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.48,
+      "potential_profit": 1.02,
+      "potential_payout": 1.5,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 0.081,
+      "status": "open",
+      "placed_at": "2026-04-24T10:03:40.666594+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424100340666808",
+      "market_id": "2061366",
+      "market": "Dota 2: Nigma Galaxy vs Cheeki_Breeki (BO3) - DreamLeague Division 2 Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 0.48,
+      "potential_profit": 4.32,
+      "potential_payout": 4.8,
+      "closes": "2026-04-24T15:00:00+00:00",
+      "closes_in_days": 0.206,
+      "status": "open",
+      "placed_at": "2026-04-24T10:03:40.666826+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424100340666932",
+      "market_id": "2007048",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 24?",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.48,
+      "potential_profit": 1.02,
+      "potential_payout": 1.5,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "closes_in_days": 0.248,
+      "status": "open",
+      "placed_at": "2026-04-24T10:03:40.666946+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 0.49,
+  "daily_loss": 0.98,
   "daily_reset": "2026-04-24",
-  "scan_count": 6,
+  "scan_count": 7,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }

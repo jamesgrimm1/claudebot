@@ -1,5 +1,5 @@
 {
-  "bankroll": 1647.21,
+  "bankroll": 1729.04,
   "trades": [
     {
       "id": "T1775098669",
@@ -913,10 +913,13 @@
       "bear_case": "Resolution criteria might define 'insult' more narrowly than plain language suggests; Trump could have an uncharacteristically quiet day; potential health/travel event limiting public appearances",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-20T15:13:38.395820+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-24T10:03:48.309446+00:00",
+      "realized_pnl": 38.02
     },
     {
       "id": "T1776760911",
@@ -1016,11 +1019,42 @@
       "placed_at": "2026-04-22T17:12:12.967802+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1777025177",
+      "tier": 1,
+      "market_id": "1907905",
+      "market_slug": "will-king-charles-say-george-or-washington-during-the-joint-meeting-of-congress",
+      "market": "Will King Charles say \"George\" or \"Washington\" during the joint meeting of Congress?",
+      "position": "YES",
+      "entry_price": 56,
+      "stake": 91.0,
+      "potential_return": 162.5,
+      "potential_profit": 71.5,
+      "confidence": 76,
+      "true_prob": 78,
+      "market_prob": 56,
+      "category": "politics",
+      "closes_in_days": 3.6,
+      "closes": "2026-04-28T00:00:00+00:00",
+      "research_summary": "King Charles confirmed to address joint meeting of Congress on April 28, 2026 \u2014 only second British monarch to do so. Speech is a formal diplomatic address reinforcing U.S.-U.K. alliance. 'Washington' is the name of the city where the speech takes place, making it nearly obligatory to reference. Queen Elizabeth's 1991 precedent referenced Washington. Low-volume market ($98) suggests pricing inefficiency.",
+      "key_factors": [
+        "Washington is literally the city name \u2014 'here in Washington' or similar phrasing is near-automatic in any Congressional address",
+        "Diplomatic speeches about U.S.-U.K. alliance routinely reference founding figures and shared history",
+        "Queen Elizabeth's 1991 Congress speech precedent included Washington references; thin $98 volume suggests market inefficiency"
+      ],
+      "bear_case": "Event cancellation/postponement due to U.S.-U.K. tensions; resolution criteria technicality; extremely terse speech avoiding both words; market closes same day as speech creating timing risk",
+      "kelly_tier": "quarter-Kelly (5.0%)",
+      "news_triggered": true,
+      "status": "open",
+      "placed_at": "2026-04-24T10:06:17.027822+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-24",
-  "scan_count": 202,
+  "scan_count": 203,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-24",
   "last_tier2_scan": "2026-04-24",
