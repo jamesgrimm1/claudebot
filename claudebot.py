@@ -180,10 +180,22 @@ def get_category(question):
                               "natural gas", "gold price", "silver price",
                               "commodity", "barrel"]):
         return "commodities"
+    if any(k in q for k in ["amazon", "amzn", "tesla", "tsla", "nvidia", "nvda",
+                              "apple", "aapl", "microsoft", "msft", "google", "googl",
+                              "meta", "netflix", "nflx", "palantir", "pltr",
+                              "intel", "intc", "shopify", "shop", "robinhood", "hood",
+                              "american express", "axp", "lockheed", "lmt",
+                              "general dynamics", "honeywell", "hon", "moody", "mco",
+                              "cbre", "procter", "american airlines", "aal",
+                              "texas instruments", "txn", "at&t", "coursera", "cour",
+                              "ss&c", "ssnc", "dow inc", "united bankshares", "ubsi",
+                              "stock price", "close above", "close below",
+                              "quarterly earnings", "beat earnings", "beat quarterly",
+                              "finish week", "week of"]):
+        return "stocks"
     if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession",
                               "unemployment", "economy", "s&p", "nasdaq", "dow",
-                              "jobs", "robinhood", "hood", "amazon", "amzn",
-                              "stock", "market cap", "earnings", "ecb", "interest"]):
+                              "market cap", "ecb", "interest", "s&p 500", "spy"]):
         return "economics"
     if any(k in q for k in ["war", "military", "attack", "ceasefire", "hezbollah",
                               "ukraine", "russia", "israel", "hamas", "conflict",
