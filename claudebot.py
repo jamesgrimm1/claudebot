@@ -1596,6 +1596,85 @@ def haiku_interpret(client, market, query, raw_results):
         return f"Research failed: {e}"
 
 
+
+def get_stock_price(question):
+    """
+    Fetch live stock price via Finnhub for stock/earnings markets.
+    Returns a formatted string ready to inject into the research prompt.
+    """
+    if not FINNHUB_API_KEY:
+        return None
+
+    q = question.lower()
+
+    # Map common tickers mentioned in market questions
+    TICKER_MAP = {
+        "amazon": "AMZN", "amzn": "AMZN",
+        "tesla": "TSLA",  "tsla": "TSLA",
+        "nvidia": "NVDA",  "nvda": "NVDA",
+        "google": "GOOGL", "googl": "GOOGL", "alphabet": "GOOGL",
+        "apple": "AAPL",   "aapl": "AAPL",
+        "microsoft": "MSFT", "msft": "MSFT",
+        "meta": "META",
+        "netflix": "NFLX", "nflx": "NFLX",
+        "palantir": "PLTR", "pltr": "PLTR",
+        "s&p 500": "SPY",  "spy": "SPY",
+        "spy": "SPY",
+        "nasdaq": "QQQ",   "qqq": "QQQ",
+        "shopify": "SHOP",
+        "intel": "INTC",   "intc": "INTC",
+        "american express": "AXP", "axp": "AXP",
+        "lockheed": "LMT",  "lmt": "LMT",
+        "general dynamics": "GD", " gd ": "GD",
+        "honeywell": "HON",  "hon": "HON",
+        "dow ": "DOW",
+        "at&t": "T",
+        "moody": "MCO",
+        "cbre": "CBRE",
+        "procter": "PG",    " pg ": "PG",
+        "american airlines": "AAL", "aal": "AAL",
+        "texas instruments": "TXN", "txn": "TXN",
+    }
+
+    ticker = None
+    for keyword, sym in TICKER_MAP.items():
+        if keyword in q:
+            ticker = sym
+            break
+
+    if not ticker:
+        return None
+
+    try:
+        r = requests.get(
+            "https://finnhub.io/api/v1/quote",
+            params={"symbol": ticker, "token": FINNHUB_API_KEY},
+            timeout=6
+        )
+        if r.status_code == 200:
+            d = r.json()
+            price   = d.get("c", 0)   # current price
+            prev    = d.get("pc", 0)  # previous close
+            high    = d.get("h", 0)
+            low     = d.get("l", 0)
+            if price and price > 0:
+                chg_pct = ((price - prev) / prev * 100) if prev else 0
+                log(f"     📈 Finnhub {ticker}: ${price:.2f} ({chg_pct:+.2f}% vs prev close)")
+                return (
+                    f"LIVE PRICE DATA ({ticker} via Finnhub, fetched now):\n"
+                    f"  Current price:  ${price:.2f}\n"
+                    f"  Previous close: ${prev:.2f}\n"
+                    f"  Change:         {chg_pct:+.2f}%\n"
+                    f"  Today high:     ${high:.2f}\n"
+                    f"  Today low:      ${low:.2f}\n"
+                    f"  NOTE: Use this live price as the definitive current price — "
+                    f"ignore any stale prices from web search results.\n"
+                )
+    except Exception as e:
+        log(f"     ⚠️  Finnhub price fetch failed for {ticker}: {e}")
+
+    return None
+
 def research_all_markets(markets):
     client        = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     research      = {}
@@ -1608,6 +1687,10 @@ def research_all_markets(markets):
         live_price = None
         if get_category(market["question"]) == "crypto":
             live_price = get_crypto_price(market["question"])
+
+        # Fetch live stock price for stock/economics markets
+        if not live_price and get_category(market["question"]) in ("stocks", "economics", "other"):
+            live_price = get_stock_price(market["question"])
 
         # Fetch live weather forecast for weather markets
         weather_forecast = None
