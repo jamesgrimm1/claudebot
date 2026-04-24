@@ -44,10 +44,13 @@
       "stake": 14.7,
       "closes": "2026-04-24T00:00:00+00:00",
       "closes_in_days": 2.414,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T14:04:22.556804+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T10:42:18.093569+00:00",
+      "realized_pnl": -14.7
     },
     {
       "id": "NC20260421152114730540",
@@ -2608,8 +2611,8 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 13.94,
+  "daily_loss": 28.64,
   "daily_reset": "2026-04-24",
-  "scan_count": 61,
+  "scan_count": 62,
   "started": "2026-04-21T00:00:00+00:00"
 }
