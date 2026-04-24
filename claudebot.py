@@ -1013,15 +1013,16 @@ def resolve_open_trades(state):
 
     for trade in open_trades:
         market_id = trade.get("market_id", "")
+        close_dt  = parse_utc(trade.get("closes"))
 
         # Don't attempt resolution before the market's close time
-        close_dt = parse_utc(trade.get("closes"))
         if close_dt and now < close_dt:
             continue
 
+        hours_past = (now - close_dt).total_seconds() / 3600 if close_dt else 0
+
         if not market_id or market_id.startswith("d0"):
-            # No proper ID — settle by time only if well past close
-            if close_dt and (now - close_dt).total_seconds() > 3600:
+            if close_dt and hours_past > 1:
                 import random
                 _settle(trade, random.random() > 0.5, state)
             continue
@@ -1040,11 +1041,16 @@ def resolve_open_trades(state):
                 raw = r.json()
                 mkt = raw[0] if isinstance(raw, list) and raw else raw
 
-                # Require market to be inactive/closed — don't rely on prices alone
                 active      = mkt.get("active", True)
                 closed_flag = mkt.get("closed", False)
-                if active and not closed_flag:
-                    continue  # still live, skip
+
+                # Time-based override: if Gamma still shows active but market
+                # is >2h past close, ignore the flag and check prices directly.
+                # Gamma flags lag significantly — prices snap to resolution fast.
+                gamma_lagging = active and not closed_flag and hours_past > 2
+
+                if active and not closed_flag and not gamma_lagging:
+                    continue  # genuinely still live
 
                 prices_raw = mkt.get("outcomePrices")
                 if not prices_raw:
@@ -1057,31 +1063,29 @@ def resolve_open_trades(state):
                     yes_price = prices[0]
                     no_price  = prices[1]
 
-                    # Only settle if prices have snapped to near 0/1
                     if yes_price >= 0.99 or no_price >= 0.99:
                         if len(prices) > 2:
                             won = (yes_price >= 0.99) if trade["position"] == "YES" else (yes_price < 0.01)
                         else:
                             won = (yes_price >= 0.99) if trade["position"] == "YES" else (no_price >= 0.99)
+                        if gamma_lagging:
+                            log(f"  ⚡ Gamma lag override — settling via prices: {trade['market'][:50]}")
                         _settle(trade, won, state)
                         resolved = True
                     else:
-                        log(f"  ⏳ {trade['market'][:55]} — closed but prices not snapped yet ({yes_price:.2f}/{no_price:.2f})")
+                        if gamma_lagging:
+                            log(f"  ⏳ {trade['market'][:50]} — {hours_past:.0f}h past close, prices not snapped ({yes_price:.2f}/{no_price:.2f})")
+                        else:
+                            log(f"  ⏳ {trade['market'][:50]} — closed flag set but prices not snapped yet")
 
             except Exception as e:
                 log(f"  ⚠️  Resolve attempt failed for {market_id}: {e}")
 
         if not resolved and trade["status"] == "open" and close_dt:
-            hours_past = (now - close_dt).total_seconds() / 3600
             if hours_past > 24:
                 log(f"  ⚠️  {trade['market'][:55]} — {hours_past:.0f}h past close, needs manual check")
 
     return state
-
-
-# ─────────────────────────────────────────────────────────
-#  MARKET FETCHING
-# ─────────────────────────────────────────────────────────
 
 def fetch_markets_for_tier(tier_num):
     tcfg     = TIERS[tier_num]
@@ -1812,8 +1816,27 @@ def opus_analyze_short_medium(markets, research, state, tier_num):
         f"  ✅ Markets with wide spread (>0.05) and thin book — potential inefficiency\n"
         f"     that hasn't been arbed away yet.\n\n"
         f"0 trades beats a bad trade.\n\n"
+        f"CONFIDENCE CALIBRATION — READ CAREFULLY:\n"
+        f"  Your confidence must reflect OUTCOME CERTAINTY, not reasoning quality.\n"
+        f"  Strong logical arguments do NOT justify high confidence on uncertain events.\n"
+        f"  Apply these hard caps:\n"
+        f"  • Politics / human behaviour / speeches / social media:\n"
+        f"    Hard cap: 78%. These are inherently unpredictable regardless of context.\n"
+        f"    Even if Trump 'always' says something, cap at 78%.\n"
+        f"  • Geopolitics / diplomacy / military events:\n"
+        f"    Hard cap: 80%. Situations can shift rapidly without warning.\n"
+        f"  • Economics / central bank / earnings:\n"
+        f"    Hard cap: 82%. Only if confirmed data release, not analyst forecasts.\n"
+        f"  • Crypto / stocks closing same day with current price data:\n"
+        f"    Allow up to 88% ONLY if price is already beyond threshold.\n"
+        f"  • Weather with specific day forecast within 6 hours:\n"
+        f"    Allow up to 88% ONLY if same-day forecast is clearly outside threshold.\n"
+        f"  • Verifiable events already confirmed in research:\n"
+        f"    Allow up to 90%.\n"
+        f"  If you find yourself assigning >80% to a political or behavioural market,\n"
+        f"  that is a calibration error — reduce it.\n\n"
         f"PROBABILITIES: report as YES probability (0-100).\n"
-        f"CONFIDENCE: ≥{tcfg['min_confidence']}% required.\n"
+        f"CONFIDENCE: ≥{tcfg['min_confidence']}% required."
         f"DIVERSIFICATION: Max {MAX_PER_CATEGORY} per category across ALL tiers.\n\n"
         f"Return ONLY valid JSON array ([] if nothing qualifies):\n"
         f'[{{"market_id":"ID","market":"question","position":"YES or NO",'
