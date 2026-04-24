@@ -1565,7 +1565,18 @@ function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBank
     tradesPerDay.toFixed(1) + ' trades/day · ' +
     'avg win $' + avgWin.toFixed(2) + ' / avg loss $' + avgLoss.toFixed(2);
 
-  var scenarios = [55, 60, 65, 70, 75, 80, 85];
+  // Insert live WR into scenarios if it doesn't already match a band
+  var baseBands2 = [55, 60, 65, 70, 75, 80, 85];
+  var scenarios = [];
+  var liveInserted2 = false;
+  for (var si2 = 0; si2 < baseBands2.length; si2++) {
+    if (!liveInserted2 && liveWrPct > (baseBands2[si2-1]||0) && liveWrPct < baseBands2[si2]) {
+      scenarios.push(liveWrPct); liveInserted2 = true;
+    }
+    scenarios.push(baseBands2[si2]);
+    if (!liveInserted2 && liveWrPct === baseBands2[si2]) { liveInserted2 = true; }
+  }
+  if (!liveInserted2 && liveWrPct > baseBands2[baseBands2.length-1]) { scenarios.push(liveWrPct); }
   var months    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   var sb        = startBankroll || START;
 
