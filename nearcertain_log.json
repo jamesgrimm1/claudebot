@@ -1,5 +1,5 @@
 {
-  "bankroll": 899.24,
+  "bankroll": 885.75,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2387,10 +2387,28 @@
       "placed_at": "2026-04-24T06:09:37.814920+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424061430117203",
+      "market_id": "2056960",
+      "market": "Will the highest temperature in Dallas be 84\u00b0F or higher on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 7,
+      "entry_yes_price": 93,
+      "stake": 13.49,
+      "potential_profit": 179.22,
+      "potential_payout": 192.71,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 1.24,
+      "status": "open",
+      "placed_at": "2026-04-24T06:14:30.117221+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 5.63,
   "daily_reset": "2026-04-24",
-  "scan_count": 57,
+  "scan_count": 58,
   "started": "2026-04-21T00:00:00+00:00"
 }

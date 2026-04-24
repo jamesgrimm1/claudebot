@@ -1,5 +1,5 @@
 {
-  "bankroll": 830.83,
+  "bankroll": 826.68,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4972,11 +4972,31 @@
       "placed_at": "2026-04-24T06:09:04.390602+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777011239",
+      "market_id": "2049522",
+      "market_slug": "highest-temperature-in-lucknow-on-april-24-2026-42c",
+      "market": "Will the highest temperature in Lucknow be 42\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 4.15,
+      "payout_if_wins": 8.65,
+      "profit_if_wins": 4.5,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 3885.4152649999996,
+      "status": "open",
+      "placed_at": "2026-04-24T06:13:59.801453+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.8,
   "daily_reset": "2026-04-24",
-  "scan_count": 147,
+  "scan_count": 148,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T03:31:12.478859+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 974.81,
+  "bankroll": 973.34,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -2656,11 +2656,65 @@
       "placed_at": "2026-04-24T06:09:46.441684+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424061439185638",
+      "market_id": "2049791",
+      "market": "Will the highest temperature in Busan be 21\u00b0C on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 33,
+      "entry_yes_price": 67,
+      "stake": 0.49,
+      "potential_profit": 0.99,
+      "potential_payout": 1.48,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 0.24,
+      "status": "open",
+      "placed_at": "2026-04-24T06:14:39.185660+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424061439185896",
+      "market_id": "2007950",
+      "market": "Will FCSB win on 2026-04-24?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 35,
+      "entry_yes_price": 65,
+      "stake": 0.49,
+      "potential_profit": 0.91,
+      "potential_payout": 1.4,
+      "closes": "2026-04-24T17:30:00+00:00",
+      "closes_in_days": 0.469,
+      "status": "open",
+      "placed_at": "2026-04-24T06:14:39.185915+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424061439186099",
+      "market_id": "2056960",
+      "market": "Will the highest temperature in Dallas be 84\u00b0F or higher on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 7,
+      "entry_yes_price": 93,
+      "stake": 0.49,
+      "potential_profit": 6.51,
+      "potential_payout": 7.0,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 1.24,
+      "status": "open",
+      "placed_at": "2026-04-24T06:14:39.186119+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-24",
-  "scan_count": 3,
+  "scan_count": 4,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }

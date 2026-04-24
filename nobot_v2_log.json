@@ -1,5 +1,5 @@
 {
-  "bankroll": 828.84,
+  "bankroll": 827.1,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4838,11 +4838,31 @@
       "placed_at": "2026-04-24T06:09:16.296968+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777011250",
+      "market_id": "2049522",
+      "market_slug": "highest-temperature-in-lucknow-on-april-24-2026-42c",
+      "market": "Will the highest temperature in Lucknow be 42\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 1.74,
+      "payout_if_wins": 3.62,
+      "profit_if_wins": 1.88,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 3885.4152649999996,
+      "status": "open",
+      "placed_at": "2026-04-24T06:14:10.472554+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 13.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 151,
+  "scan_count": 152,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T06:09:05.046288+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
