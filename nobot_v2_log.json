@@ -1,5 +1,5 @@
 {
-  "bankroll": 803.59,
+  "bankroll": 809.59,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2735,10 +2735,13 @@
       "closes": "2026-04-24T16:00:00+00:00",
       "volume": 4561.161457000003,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T22:26:29.708222+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-24T19:43:07.879459+00:00",
+      "realized_pnl": -2.62
     },
     {
       "id": "NB1776641295",
@@ -4606,10 +4609,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 5782.530431,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T01:48:28.970731+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-24T19:43:08.265730+00:00",
+      "realized_pnl": -5.4
     },
     {
       "id": "NB1776995308",
@@ -4669,10 +4675,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 4129.70142,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T01:48:28.970811+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-24T19:43:08.359803+00:00",
+      "realized_pnl": 2.4
     },
     {
       "id": "NB1776995308",
@@ -4932,10 +4941,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-24T16:00:00+00:00",
       "volume": 518716.84672500053,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T09:04:57.455801+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-24T19:43:08.982223+00:00",
+      "realized_pnl": -1.75
     },
     {
       "id": "NB1777021497",
@@ -5118,9 +5130,9 @@
       "model": "nobot-v2"
     }
   ],
-  "daily_loss": 26.82,
+  "daily_loss": 36.59,
   "daily_reset": "2026-04-24",
-  "scan_count": 165,
+  "scan_count": 166,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T18:36:01.752031+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
