@@ -1232,8 +1232,12 @@ function renderNBV2(d, v1data) {
 
 function renderNBChart(closed, pfx, chartRef) {
   var ctx = document.getElementById(pfx+'-chart').getContext('2d');
-  if (pfx === 'nb' && nbChart) { nbChart.destroy(); }
-  if (pfx === 'nb2' && nb2Chart) { nb2Chart.destroy(); }
+  // Destroy any existing chart on this canvas — prevents "canvas already in use" error
+  var existingChart = Chart.getChart(pfx+'-chart');
+  if (existingChart) { existingChart.destroy(); }
+  if (pfx === 'nb' && nbChart) { nbChart.destroy(); nbChart = null; }
+  if (pfx === 'nb2' && nb2Chart) { nb2Chart.destroy(); nb2Chart = null; }
+  if (pfx === 'nb3' && nb3Chart) { nb3Chart.destroy(); nb3Chart = null; }
   var sorted = closed.slice().sort(function(a,b){ return new Date(a.resolved_at||a.placed_at)-new Date(b.resolved_at||b.placed_at); });
   var running = 0, labels = ['Start'], vals = [0];
   sorted.forEach(function(t, i){
@@ -1271,8 +1275,11 @@ function renderNBChart(closed, pfx, chartRef) {
 
 function renderNBBracketChart(closed, pfx, bracketRef) {
   var ctx = document.getElementById(pfx+'-bracket-chart').getContext('2d');
-  if (pfx === 'nb' && nbBracketChart) { nbBracketChart.destroy(); }
-  if (pfx === 'nb2' && nb2BracketChart) { nb2BracketChart.destroy(); }
+  var existingBChart = Chart.getChart(pfx+'-bracket-chart');
+  if (existingBChart) { existingBChart.destroy(); }
+  if (pfx === 'nb' && nbBracketChart) { nbBracketChart.destroy(); nbBracketChart = null; }
+  if (pfx === 'nb2' && nb2BracketChart) { nb2BracketChart.destroy(); nb2BracketChart = null; }
+  if (pfx === 'nb3' && nb3BracketChart) { nb3BracketChart.destroy(); nb3BracketChart = null; }
   var brackets = [{label:'45-50¢',min:45,max:50},{label:'50-52¢',min:50,max:52},{label:'52-55¢',min:52,max:55},{label:'55-58¢',min:55,max:58},{label:'58-62¢',min:58,max:62}];
   var wrs = brackets.map(function(b){
     var sub = closed.filter(function(t){ return t.entry_no_price > b.min && t.entry_no_price <= b.max; });
