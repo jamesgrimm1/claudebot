@@ -176,6 +176,10 @@ def get_category(question):
                               "policy", "tariff", "doge", "approval", "rogan",
                               "dana white", "ufc"]):
         return "politics"
+    if any(k in q for k in ["wti", "crude oil", "brent", "oil price",
+                              "natural gas", "gold price", "silver price",
+                              "commodity", "barrel"]):
+        return "commodities"
     if any(k in q for k in ["fed", "rate", "inflation", "gdp", "recession",
                               "unemployment", "economy", "s&p", "nasdaq", "dow",
                               "jobs", "robinhood", "hood", "amazon", "amzn",
@@ -1634,6 +1638,12 @@ def get_stock_price(question):
         "procter": "PG",    " pg ": "PG",
         "american airlines": "AAL", "aal": "AAL",
         "texas instruments": "TXN", "txn": "TXN",
+        # Commodities — Finnhub futures
+        "wti": "USOIL", "crude oil": "USOIL", "oil ": "USOIL",
+        "brent": "UKOIL",
+        "gold": "XAUUSD", " xau": "XAUUSD",
+        "silver": "XAGUSD",
+        "natural gas": "NG1:NYMEX",
     }
 
     ticker = None
@@ -1689,7 +1699,7 @@ def research_all_markets(markets):
             live_price = get_crypto_price(market["question"])
 
         # Fetch live stock price for stock/economics markets
-        if not live_price and get_category(market["question"]) in ("stocks", "economics", "other"):
+        if not live_price and get_category(market["question"]) in ("stocks", "economics", "other", "commodities", "crypto"):
             live_price = get_stock_price(market["question"])
 
         # Fetch live weather forecast for weather markets
