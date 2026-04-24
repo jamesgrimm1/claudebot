@@ -1481,14 +1481,32 @@ function ncProjTable(closed, ceiling, startBankroll) {
   document.getElementById('proj-nc-badge').textContent =
     'Live ' + liveWrPct + '% WR · ' + tradesPerDay.toFixed(1) + ' trades/day';
 
-  var scenarios = [5, 10, 15, 20, 25, 30];
+  // Build scenarios: fixed bands + exact live WR inserted in the right place
+  var baseBands = [5, 10, 15, 20, 25, 30];
+  var liveWrRounded = Math.round(liveWr * 100);
+  var scenarios = [];
+  var liveInserted = false;
+  for (var si = 0; si < baseBands.length; si++) {
+    // Insert live WR before the next band if it falls between current and next
+    if (!liveInserted && liveWrRounded > (baseBands[si-1]||0) && liveWrRounded < baseBands[si]) {
+      scenarios.push(liveWrRounded);
+      liveInserted = true;
+    }
+    scenarios.push(baseBands[si]);
+    if (!liveInserted && liveWrRounded === baseBands[si]) {
+      liveInserted = true; // exact match with a band, no need to insert
+    }
+  }
+  if (!liveInserted && liveWrRounded > baseBands[baseBands.length-1]) {
+    scenarios.push(liveWrRounded);
+  }
   var months    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   var sb        = startBankroll || 1000;
 
   var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
   var rows = scenarios.map(function(wrPct) {
     var wr     = wrPct / 100;
-    var isLive = Math.abs(wr - liveWr) < 0.03;
+    var isLive = (wrPct === liveWrRounded);
     var rowStyle  = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
     var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
     var vals = months.map(function(m) {
@@ -1550,7 +1568,7 @@ function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBank
   var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
   var rows = scenarios.map(function(wrPct) {
     var wr   = wrPct / 100;
-    var isLive = Math.abs(wr - liveWr) < 0.03;
+    var isLive = (wrPct === liveWrRounded);
     var rowStyle = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
     var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
     var vals = months.map(function(m) {
