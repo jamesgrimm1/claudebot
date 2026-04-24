@@ -1575,7 +1575,7 @@ function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBank
   var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
   var rows = scenarios.map(function(wrPct) {
     var wr   = wrPct / 100;
-    var isLive = (wrPct === liveWrRounded);
+    var isLive = (wrPct === liveWrPct);
     var rowStyle = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
     var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
     var vals = months.map(function(m) {
