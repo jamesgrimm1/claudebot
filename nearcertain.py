@@ -87,6 +87,8 @@ BLOCKED_CATEGORIES = {
     "sports",
     "crypto",
     "conflict",
+    "economics",   # 13% WR, -$90 P&L — no edge
+    "politics",    # 0% WR, -$22 P&L — no edge
 }
 
 # ── Keyword blocks ────────────────────────────────────────
