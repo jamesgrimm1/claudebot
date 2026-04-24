@@ -818,14 +818,21 @@ def single_scan():
         if current_deploy >= max_deploy:
             log(f"   💰 Deployment cap reached (${current_deploy:.2f} / ${max_deploy:.2f}) — holding fire")
             break
+
+        # Reserve city+date slot BEFORE placing — prevents same-scan duplicates
+        # where two markets pass the check before either trade is confirmed placed
+        if city_slug and close_date:
+            city_day_booked.add(city_key)
+
         prev_bankroll = state["bankroll"]
         state = place_trade(market, state)
         if state["bankroll"] < prev_bankroll:
             new_trades += 1
             current_deploy += (prev_bankroll - state["bankroll"])
-            # Mark this city+date as booked so next market in same scan is blocked
+        else:
+            # Trade was not placed (e.g. rejected) — release the reservation
             if city_slug and close_date:
-                city_day_booked.add(city_key)
+                city_day_booked.discard(city_key)
 
     log(f"   {new_trades} new trade(s) placed")
 
