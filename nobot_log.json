@@ -1,5 +1,5 @@
 {
-  "bankroll": 818.44,
+  "bankroll": 819.3,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4487,10 +4487,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 3776.5081010000017,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T03:29:13.582641+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-24T09:04:28.159867+00:00",
+      "realized_pnl": 2.27
     },
     {
       "id": "NB1776914953",
@@ -4553,10 +4556,13 @@
       "closes_in_days": 0.22,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 3533.8529750000016,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T06:40:14.301105+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-24T09:04:28.323453+00:00",
+      "realized_pnl": -4.15
     },
     {
       "id": "NB1776929776",
@@ -4771,10 +4777,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 4195.691080000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T01:48:18.749677+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-24T09:04:28.719496+00:00",
+      "realized_pnl": 2.55
     },
     {
       "id": "NB1776995298",
@@ -5035,11 +5044,71 @@
       "placed_at": "2026-04-24T07:41:35.333438+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777021480",
+      "market_id": "1976997",
+      "market_slug": "elon-musk-of-tweets-april-17-april-24-200-219",
+      "market": "Will Elon Musk post 200-219 tweets from April 17 to April 24, 2026?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 4.15,
+      "payout_if_wins": 8.47,
+      "profit_if_wins": 4.32,
+      "category": "other",
+      "closes_in_days": 0.29,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "volume": 518716.84672500053,
+      "status": "open",
+      "placed_at": "2026-04-24T09:04:40.694982+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777021480",
+      "market_id": "2049613",
+      "market_slug": "highest-temperature-in-madrid-on-april-24-2026-23c",
+      "market": "Will the highest temperature in Madrid be 23\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.06,
+      "payout_if_wins": 3.43,
+      "profit_if_wins": 1.37,
+      "category": "weather",
+      "closes_in_days": 0.12,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 5530.580357000002,
+      "status": "open",
+      "placed_at": "2026-04-24T09:04:40.695029+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777021480",
+      "market_id": "2049612",
+      "market_slug": "highest-temperature-in-madrid-on-april-24-2026-22c",
+      "market": "Will the highest temperature in Madrid be 22\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 4.12,
+      "payout_if_wins": 8.24,
+      "profit_if_wins": 4.12,
+      "category": "weather",
+      "closes_in_days": 0.12,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 3525.848897999998,
+      "status": "open",
+      "placed_at": "2026-04-24T09:04:40.695063+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 18.99,
+  "daily_loss": 23.14,
   "daily_reset": "2026-04-24",
-  "scan_count": 149,
+  "scan_count": 150,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T03:31:12.478859+00:00"
 }
