@@ -1,5 +1,5 @@
 {
-  "bankroll": 806.09,
+  "bankroll": 803.59,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5096,11 +5096,31 @@
       "placed_at": "2026-04-24T16:51:40.061500+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777052586",
+      "market_id": "2009098",
+      "market_slug": "will-tsla-close-between-375-and-380-week-april-24-2026",
+      "market": "Will Tesla (TSLA) close at $375-$380 on the final day of trading of the week of Apr 20 \u2013 Apr 24?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 45,
+      "stake": 2.5,
+      "payout_if_wins": 4.55,
+      "profit_if_wins": 2.05,
+      "category": "other",
+      "closes_in_days": 0.1,
+      "closes": "2026-04-24T20:00:00+00:00",
+      "volume": 4278.258609999998,
+      "status": "open",
+      "placed_at": "2026-04-24T17:43:06.591118+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 26.82,
   "daily_reset": "2026-04-24",
-  "scan_count": 163,
+  "scan_count": 164,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T06:09:05.046288+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
