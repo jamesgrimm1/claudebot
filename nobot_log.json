@@ -1,5 +1,5 @@
 {
-  "bankroll": 856.18,
+  "bankroll": 852.97,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4812,11 +4812,31 @@
       "placed_at": "2026-04-24T01:48:18.749723+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777000341",
+      "market_id": "2049580",
+      "market_slug": "highest-temperature-in-shanghai-on-april-24-2026-20c",
+      "market": "Will the highest temperature in Shanghai be 20\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 3.21,
+      "payout_if_wins": 5.63,
+      "profit_if_wins": 2.42,
+      "category": "weather",
+      "closes_in_days": 0.37,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 6941.896926000004,
+      "status": "open",
+      "placed_at": "2026-04-24T03:12:21.659434+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.8,
   "daily_reset": "2026-04-24",
-  "scan_count": 142,
+  "scan_count": 143,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T15:29:32.759738+00:00"
 }

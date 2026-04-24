@@ -1,5 +1,5 @@
 {
-  "bankroll": 859.45,
+  "bankroll": 854.16,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4678,11 +4678,31 @@
       "placed_at": "2026-04-24T01:48:28.970834+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777000352",
+      "market_id": "2049580",
+      "market_slug": "highest-temperature-in-shanghai-on-april-24-2026-20c",
+      "market": "Will the highest temperature in Shanghai be 20\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 5.29,
+      "payout_if_wins": 9.28,
+      "profit_if_wins": 3.99,
+      "category": "weather",
+      "closes_in_days": 0.37,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 6941.896926000004,
+      "status": "open",
+      "placed_at": "2026-04-24T03:12:32.248403+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 13.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 146,
+  "scan_count": 147,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T17:27:07.454521+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

@@ -1,5 +1,5 @@
 {
-  "bankroll": 1292.28,
+  "bankroll": 1301.19,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2239,10 +2239,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 3776.5081010000017,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T03:29:42.822262+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-24T03:12:32.967440+00:00",
+      "realized_pnl": 9.96
     },
     {
       "id": "NB1776914982",
@@ -2282,10 +2285,13 @@
       "closes_in_days": 0.22,
       "closes": "2026-04-23T12:00:00+00:00",
       "volume": 3533.8529750000016,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-23T06:40:30.317418+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-24T03:12:33.008610+00:00",
+      "realized_pnl": -18.37
     },
     {
       "id": "NB1776929796",
@@ -2455,11 +2461,31 @@
       "placed_at": "2026-04-24T01:48:37.335200+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777000359",
+      "market_id": "2049580",
+      "market_slug": "highest-temperature-in-shanghai-on-april-24-2026-20c",
+      "market": "Will the highest temperature in Shanghai be 20\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 14.8,
+      "payout_if_wins": 25.96,
+      "profit_if_wins": 11.16,
+      "category": "weather",
+      "closes_in_days": 0.37,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 6941.896926000004,
+      "status": "open",
+      "placed_at": "2026-04-24T03:12:39.491838+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 36.19,
+  "daily_loss": 54.56,
   "daily_reset": "2026-04-24",
-  "scan_count": 142,
+  "scan_count": 143,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-23T15:30:06.263284+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
