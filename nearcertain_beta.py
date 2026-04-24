@@ -60,8 +60,8 @@ SCAN_INTERVAL_MINS = 60
 # ── Entry window ─────────────────────────────────────────
 # YES must be priced at 75-95¢ → NO at 5-25¢
 # The market thinks it's nearly certain → backtest says NO wins 70%
-YES_MIN = 1     # Beta: no lower bound — collect data across all price ranges
-YES_MAX = 99    # Beta: no upper bound — collect data across all price ranges
+YES_MIN = 65    # Beta: slightly wider than main (75) to capture more edge cases
+YES_MAX = 95    # Beta: same upper bound — above 95 is genuine certainty, no edge
 
 # ── Hold window ──────────────────────────────────────────
 # Backtest shows WR IMPROVES with longer hold on NearCertain:
