@@ -1,5 +1,5 @@
 {
-  "bankroll": 819.3,
+  "bankroll": 816.89,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2627,10 +2627,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 3691.1507210000027,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T14:35:30.032092+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-24T13:45:34.885786+00:00",
+      "realized_pnl": -3.02
     },
     {
       "id": "NB1776616180",
@@ -5040,10 +5043,13 @@
       "closes_in_days": 0.18,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 3596.5652430000014,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T07:41:35.333438+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-24T13:45:36.284566+00:00",
+      "realized_pnl": 3.79
     },
     {
       "id": "NB1777021480",
@@ -5104,11 +5110,71 @@
       "placed_at": "2026-04-24T09:04:40.695063+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777038345",
+      "market_id": "2007048",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-24",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 24?",
+      "position": "NO",
+      "entry_no_price": 61,
+      "entry_yes_price": 39,
+      "stake": 2.07,
+      "payout_if_wins": 3.39,
+      "profit_if_wins": 1.32,
+      "category": "crypto",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "volume": 52482.435606999985,
+      "status": "open",
+      "placed_at": "2026-04-24T13:45:45.482028+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777038345",
+      "market_id": "2001558",
+      "market_slug": "will-trumps-approval-rating-be-between-39pt0-and-39pt4-on-april-24-2026",
+      "market": "Will Trump\u2019s approval rating be between 39.0 and 39.4 on April 24, 2026?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 4.13,
+      "payout_if_wins": 8.79,
+      "profit_if_wins": 4.66,
+      "category": "politics",
+      "closes_in_days": 0.43,
+      "closes": "2026-04-25T00:00:00+00:00",
+      "volume": 8619.879151000003,
+      "status": "open",
+      "placed_at": "2026-04-24T13:45:45.482058+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777038345",
+      "market_id": "2001557",
+      "market_slug": "will-trumps-approval-rating-be-between-38pt5-and-38pt9-on-april-24-2026",
+      "market": "Will Trump\u2019s approval rating be between 38.5 and 38.9 on April 24, 2026?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 4.11,
+      "payout_if_wins": 8.74,
+      "profit_if_wins": 4.63,
+      "category": "politics",
+      "closes_in_days": 0.43,
+      "closes": "2026-04-25T00:00:00+00:00",
+      "volume": 7904.313540000004,
+      "status": "open",
+      "placed_at": "2026-04-24T13:45:45.482079+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 23.14,
+  "daily_loss": 26.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 152,
+  "scan_count": 153,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T03:31:12.478859+00:00"
 }
