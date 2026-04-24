@@ -1,5 +1,5 @@
 {
-  "bankroll": 1301.19,
+  "bankroll": 1286.55,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2481,12 +2481,32 @@
       "placed_at": "2026-04-24T03:12:39.491838+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777001501",
+      "market_id": "2049470",
+      "market_slug": "highest-temperature-in-atlanta-on-april-24-2026-82-83f",
+      "market": "Will the highest temperature in Atlanta be between 82-83\u00b0F on April 24?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 14.64,
+      "payout_if_wins": 26.14,
+      "profit_if_wins": 11.5,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 4394.522890999996,
+      "status": "open",
+      "placed_at": "2026-04-24T03:31:41.825093+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 54.56,
   "daily_reset": "2026-04-24",
-  "scan_count": 143,
+  "scan_count": 144,
   "started": "2026-04-16T02:01:08.863467+00:00",
-  "last_summary_sent": "2026-04-23T15:30:06.263284+00:00",
+  "last_summary_sent": "2026-04-24T03:31:34.660434+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
 }

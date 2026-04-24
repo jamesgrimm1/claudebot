@@ -1,5 +1,5 @@
 {
-  "bankroll": 854.16,
+  "bankroll": 850.66,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4698,11 +4698,31 @@
       "placed_at": "2026-04-24T03:12:32.248403+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777001494",
+      "market_id": "2049470",
+      "market_slug": "highest-temperature-in-atlanta-on-april-24-2026-82-83f",
+      "market": "Will the highest temperature in Atlanta be between 82-83\u00b0F on April 24?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.5,
+      "payout_if_wins": 6.25,
+      "profit_if_wins": 2.75,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 4394.522890999996,
+      "status": "open",
+      "placed_at": "2026-04-24T03:31:34.007658+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 13.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 147,
+  "scan_count": 148,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T17:27:07.454521+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

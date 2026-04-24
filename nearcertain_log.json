@@ -1,5 +1,5 @@
 {
-  "bankroll": 1030.05,
+  "bankroll": 1014.6,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2153,10 +2153,28 @@
       "placed_at": "2026-04-24T01:48:48.951887+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424033152032968",
+      "market_id": "2056938",
+      "market": "Will the highest temperature in Seattle be 62\u00b0F or higher on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 15.45,
+      "potential_profit": 177.68,
+      "potential_payout": 193.12,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 1.353,
+      "status": "open",
+      "placed_at": "2026-04-24T03:31:52.032990+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 5.63,
   "daily_reset": "2026-04-24",
-  "scan_count": 53,
+  "scan_count": 54,
   "started": "2026-04-21T00:00:00+00:00"
 }

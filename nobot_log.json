@@ -1,5 +1,5 @@
 {
-  "bankroll": 852.97,
+  "bankroll": 849.77,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4832,11 +4832,31 @@
       "placed_at": "2026-04-24T03:12:21.659434+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777001484",
+      "market_id": "2049470",
+      "market_slug": "highest-temperature-in-atlanta-on-april-24-2026-82-83f",
+      "market": "Will the highest temperature in Atlanta be between 82-83\u00b0F on April 24?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.2,
+      "payout_if_wins": 5.71,
+      "profit_if_wins": 2.51,
+      "category": "weather",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 4394.522890999996,
+      "status": "open",
+      "placed_at": "2026-04-24T03:31:24.926960+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.8,
   "daily_reset": "2026-04-24",
-  "scan_count": 143,
+  "scan_count": 144,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-23T15:29:32.759738+00:00"
+  "last_summary_sent": "2026-04-24T03:31:12.478859+00:00"
 }
