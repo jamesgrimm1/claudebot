@@ -1,10 +1,8 @@
 name: ClaudeBot + NoBot Paper Traders
 on:
   schedule:
-    - cron: '7 * * * *'
-    - cron: '22 * * * *'
-    - cron: '37 * * * *'
-    - cron: '52 * * * *'
+    - cron: '*/15 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
     inputs:
       run_backtest:
@@ -31,7 +29,7 @@ jobs:
           python backtest_nearcertain.py
           echo "Backtest complete"
       - name: Run NoBot V1 (every hour)
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -39,7 +37,7 @@ jobs:
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nobot.py --single-scan
       - name: Run NoBot V2 (every hour)
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -54,13 +52,13 @@ jobs:
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nobot_v3.py --single-scan
       - name: Sync investor pool
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: python investor_sync.py
       - name: Run NearCertain (every hour)
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -68,12 +66,12 @@ jobs:
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nearcertain.py --single-scan
       - name: Run NearCertain Beta — Data Collector (every hour)
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python nearcertain_beta.py --single-scan
       - name: Run ClaudeBot (every hour)
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -83,7 +81,7 @@ jobs:
           VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
         run: python claudebot.py --single-scan
       - name: Build trade knowledge graph
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         run: |
           if [ -d "trade_reflections" ] && [ "$(ls -A trade_reflections 2>/dev/null)" ]; then
             echo "Building knowledge graph from $(ls trade_reflections | wc -l) reflection files..."
@@ -92,7 +90,7 @@ jobs:
             echo "No reflection files yet - skipping graph build"
           fi
       - name: Commit updated logs back to repo
-        if: github.event.schedule == '7 * * * *' || github.event_name == 'workflow_dispatch'
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "claudebot"
           git config user.email "claudebot@users.noreply.github.com"
