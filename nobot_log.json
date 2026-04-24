@@ -1,5 +1,5 @@
 {
-  "bankroll": 812.81,
+  "bankroll": 808.75,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5190,11 +5190,31 @@
       "placed_at": "2026-04-24T13:52:16.555342+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777049013",
+      "market_id": "2064714",
+      "market_slug": "will-ethereum-dip-to-2300-on-april-24",
+      "market": "Will Ethereum dip to $2,300 on April 24?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 4.06,
+      "payout_if_wins": 9.02,
+      "profit_if_wins": 4.96,
+      "category": "crypto",
+      "closes_in_days": 0.47,
+      "closes": "2026-04-25T04:00:00+00:00",
+      "volume": 7533.653389000003,
+      "status": "open",
+      "placed_at": "2026-04-24T16:43:33.022963+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 26.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 157,
+  "scan_count": 158,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T15:57:40.229259+00:00"
 }

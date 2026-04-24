@@ -1,5 +1,5 @@
 {
-  "bankroll": 817.01,
+  "bankroll": 814.44,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5056,11 +5056,31 @@
       "placed_at": "2026-04-24T13:52:31.423449+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777049027",
+      "market_id": "2064714",
+      "market_slug": "will-ethereum-dip-to-2300-on-april-24",
+      "market": "Will Ethereum dip to $2,300 on April 24?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 2.57,
+      "payout_if_wins": 5.71,
+      "profit_if_wins": 3.14,
+      "category": "crypto",
+      "closes_in_days": 0.47,
+      "closes": "2026-04-25T04:00:00+00:00",
+      "volume": 7533.653389000003,
+      "status": "open",
+      "placed_at": "2026-04-24T16:43:47.051775+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 26.82,
   "daily_reset": "2026-04-24",
-  "scan_count": 161,
+  "scan_count": 162,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T06:09:05.046288+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

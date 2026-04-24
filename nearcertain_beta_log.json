@@ -1,5 +1,5 @@
 {
-  "bankroll": 954.77,
+  "bankroll": 953.81,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -1962,10 +1962,13 @@
       "potential_payout": 4.17,
       "closes": "2026-04-24T16:00:00+00:00",
       "closes_in_days": 0.501,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:58:00.481742+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T16:44:08.780946+00:00",
+      "realized_pnl": -0.5
     },
     {
       "id": "NC20260424035800481783",
@@ -2052,10 +2055,13 @@
       "potential_payout": 1.79,
       "closes": "2026-04-24T16:00:00+00:00",
       "closes_in_days": 0.501,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:58:00.481998+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T16:44:09.735259+00:00",
+      "realized_pnl": -0.5
     },
     {
       "id": "NC20260424035800482039",
@@ -2106,10 +2112,13 @@
       "potential_payout": 1.47,
       "closes": "2026-04-24T16:00:00+00:00",
       "closes_in_days": 0.501,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:58:00.482152+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T16:44:10.373207+00:00",
+      "realized_pnl": -0.5
     },
     {
       "id": "NC20260424035800482195",
@@ -3132,10 +3141,13 @@
       "potential_payout": 3.43,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.121,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T09:05:32.706495+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T16:44:11.645320+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260424090532706574",
@@ -3375,10 +3387,13 @@
       "potential_payout": 1.45,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.054,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T10:42:33.508394+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-24T16:44:11.939710+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260424104233508462",
@@ -3994,11 +4009,47 @@
       "placed_at": "2026-04-24T15:58:52.061346+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424164421777256",
+      "market_id": "2050441",
+      "market": "LoL: Colossal Gaming vs EKO Esports (BO5) - LIT Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 0.48,
+      "potential_profit": 1.52,
+      "potential_payout": 2.0,
+      "closes": "2026-04-24T22:10:00+00:00",
+      "closes_in_days": 0.226,
+      "status": "open",
+      "placed_at": "2026-04-24T16:44:21.777274+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424164421777553",
+      "market_id": "1770305",
+      "market": "Will Middlesbrough FC win on 2026-04-25?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.48,
+      "potential_profit": 1.02,
+      "potential_payout": 1.5,
+      "closes": "2026-04-25T14:00:00+00:00",
+      "closes_in_days": 0.886,
+      "status": "open",
+      "placed_at": "2026-04-24T16:44:21.777562+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 19.09,
+  "daily_loss": 21.55,
   "daily_reset": "2026-04-24",
-  "scan_count": 12,
+  "scan_count": 13,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
