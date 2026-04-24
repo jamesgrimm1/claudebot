@@ -1,5 +1,5 @@
 {
-  "bankroll": 818.73,
+  "bankroll": 817.01,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5036,11 +5036,31 @@
       "placed_at": "2026-04-24T13:45:56.790084+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777038751",
+      "market_id": "2059415",
+      "market_slug": "spy-closes-above-710-on-april-24-2026",
+      "market": "S&P 500 (SPY) closes above $710 on April 24?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 1.72,
+      "payout_if_wins": 3.58,
+      "profit_if_wins": 1.86,
+      "category": "economics",
+      "closes_in_days": 0.26,
+      "closes": "2026-04-24T20:00:00+00:00",
+      "volume": 4793.04549,
+      "status": "open",
+      "placed_at": "2026-04-24T13:52:31.423449+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 26.82,
   "daily_reset": "2026-04-24",
-  "scan_count": 157,
+  "scan_count": 158,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T06:09:05.046288+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

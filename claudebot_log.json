@@ -1,5 +1,5 @@
 {
-  "bankroll": 1729.04,
+  "bankroll": 1642.59,
   "trades": [
     {
       "id": "T1775098669",
@@ -1050,11 +1050,43 @@
       "placed_at": "2026-04-24T10:06:17.027822+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1777038941",
+      "tier": 1,
+      "market_id": "2059447",
+      "market_slug": "amzn-close-above-255-on-april-24-2026",
+      "market": "Will Amazon (AMZN) close above $255 on April 24?",
+      "position": "NO",
+      "entry_price": 14,
+      "stake": 86.45,
+      "potential_return": 617.5,
+      "potential_profit": 531.05,
+      "confidence": 76,
+      "true_prob": 58,
+      "market_prob": 86,
+      "category": "economics",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-24T20:00:00+00:00",
+      "research_summary": "AMZN closed at $255.08 on April 23, merely $0.08 above the $255 threshold. With typical daily volatility of ~$5 (2% SD), statistical probability of closing above $255 starting from $255.08 is approximately 51-58%. Market at 86% YES on only $100 volume appears significantly overpriced. Even accounting for possible overnight gap-up, weighted probability across scenarios yields ~57% YES.",
+      "key_factors": [
+        "Yesterday close $255.08 is only $0.08 above threshold - z-score of 0.016 yields ~51% base probability",
+        "AMZN daily SD ~$5 means substantial chance of crossing below $255 intraday",
+        "Market volume only $100 - extremely thin, likely stale/unupdated odds",
+        "Even with generous 2% upward drift assumption, true YES prob stays well below 86%"
+      ],
+      "bear_case": "If AMZN gapped up 2%+ overnight to $260+ (unverifiable with available data), the 86% YES price would be approximately fair and this NO position would lose",
+      "kelly_tier": "quarter-Kelly (5.0%)",
+      "news_triggered": true,
+      "status": "open",
+      "placed_at": "2026-04-24T13:55:41.197711+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-24",
-  "scan_count": 205,
+  "scan_count": 206,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-24",
   "last_tier2_scan": "2026-04-24",

@@ -1,5 +1,5 @@
 {
-  "bankroll": 816.89,
+  "bankroll": 812.81,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5170,11 +5170,31 @@
       "placed_at": "2026-04-24T13:45:45.482079+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777038736",
+      "market_id": "2059415",
+      "market_slug": "spy-closes-above-710-on-april-24-2026",
+      "market": "S&P 500 (SPY) closes above $710 on April 24?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 4.08,
+      "payout_if_wins": 8.5,
+      "profit_if_wins": 4.42,
+      "category": "economics",
+      "closes_in_days": 0.26,
+      "closes": "2026-04-24T20:00:00+00:00",
+      "volume": 4793.04549,
+      "status": "open",
+      "placed_at": "2026-04-24T13:52:16.555342+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 26.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 153,
+  "scan_count": 154,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T03:31:12.478859+00:00"
 }
