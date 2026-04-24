@@ -1,5 +1,5 @@
 {
-  "bankroll": 1009.53,
+  "bankroll": 982.0,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2189,10 +2189,64 @@
       "placed_at": "2026-04-24T03:57:49.885350+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424050721448023",
+      "market_id": "1946704",
+      "market": "KBO: Hanwha Eagles vs. Lotte Giants",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 5.05,
+      "potential_profit": 15.15,
+      "potential_payout": 20.2,
+      "closes": "2026-04-24T09:30:00+00:00",
+      "closes_in_days": 0.182,
+      "status": "open",
+      "placed_at": "2026-04-24T05:07:21.448044+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424050721448134",
+      "market_id": "2049688",
+      "market": "Will the highest temperature in Shenzhen be 21\u00b0C on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 7.53,
+      "potential_profit": 34.3,
+      "potential_payout": 41.83,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 0.287,
+      "status": "open",
+      "placed_at": "2026-04-24T05:07:21.448144+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424050721448202",
+      "market_id": "2049341",
+      "market": "Will the lowest temperature in Hong Kong be 20\u00b0C on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 14.95,
+      "potential_profit": 171.93,
+      "potential_payout": 186.88,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 0.287,
+      "status": "open",
+      "placed_at": "2026-04-24T05:07:21.448212+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 5.63,
   "daily_reset": "2026-04-24",
-  "scan_count": 55,
+  "scan_count": 56,
   "started": "2026-04-21T00:00:00+00:00"
 }

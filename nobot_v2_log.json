@@ -1,5 +1,5 @@
 {
-  "bankroll": 850.66,
+  "bankroll": 843.58,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4718,11 +4718,51 @@
       "placed_at": "2026-04-24T03:31:34.007658+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777007223",
+      "market_id": "2007078",
+      "market_slug": "bitcoin-above-78k-on-april-24",
+      "market": "Will the price of Bitcoin be above $78,000 on April 24?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 5.3,
+      "payout_if_wins": 8.55,
+      "profit_if_wins": 3.25,
+      "category": "crypto",
+      "closes_in_days": 0.45,
+      "closes": "2026-04-24T16:00:00+00:00",
+      "volume": 64767.24087899996,
+      "status": "open",
+      "placed_at": "2026-04-24T05:07:03.132906+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777007223",
+      "market_id": "2049656",
+      "market_slug": "highest-temperature-in-beijing-on-april-24-2026-26c",
+      "market": "Will the highest temperature in Beijing be 26\u00b0C on April 24?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 1.78,
+      "payout_if_wins": 3.63,
+      "profit_if_wins": 1.85,
+      "category": "weather",
+      "closes_in_days": 0.29,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "volume": 3551.3835770000014,
+      "status": "open",
+      "placed_at": "2026-04-24T05:07:03.132947+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 13.16,
   "daily_reset": "2026-04-24",
-  "scan_count": 149,
+  "scan_count": 150,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-23T17:27:07.454521+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
