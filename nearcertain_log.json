@@ -1,5 +1,5 @@
 {
-  "bankroll": 1014.6,
+  "bankroll": 1009.53,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2171,10 +2171,28 @@
       "placed_at": "2026-04-24T03:31:52.032990+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260424035749885329",
+      "market_id": "2049889",
+      "market": "Will the highest temperature in Guangzhou be 22\u00b0C on April 24?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 5.07,
+      "potential_profit": 16.05,
+      "potential_payout": 21.12,
+      "closes": "2026-04-24T12:00:00+00:00",
+      "closes_in_days": 0.335,
+      "status": "open",
+      "placed_at": "2026-04-24T03:57:49.885350+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 5.63,
   "daily_reset": "2026-04-24",
-  "scan_count": 54,
+  "scan_count": 55,
   "started": "2026-04-21T00:00:00+00:00"
 }
