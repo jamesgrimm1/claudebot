@@ -240,7 +240,8 @@ def resolve_open_trades(state):
 
     for trade in open_trades:
         market_id = trade.get("market_id", "")
-        close_dt  = parse_utc(trade.get("closes"))
+        closes_str = trade.get("closes", "")
+        close_dt   = datetime.fromisoformat(closes_str.replace("Z", "+00:00")) if closes_str else None
 
         # Don't attempt resolution before the market's close time
         if close_dt and now < close_dt:
