@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-24T21:39:43.690033",
-  "total_trades": 29,
+  "generated": "2026-04-24T22:32:10.615611",
+  "total_trades": 30,
   "trades": [
     {
       "won": true,
@@ -183,6 +183,19 @@
       "bear": "Official weather station could record a lower reading than city-wide forecast if located in a cooler microclimate, or an unexpected cold front arrival could suppress the high, though both are very unlikely given the 2\u00b0C margin and same-day timing.",
       "news": false,
       "path": "trade_reflections/T1775876128_weather_WON.md"
+    },
+    {
+      "won": false,
+      "category": "economics",
+      "conf": 76,
+      "hold_h": 8.6,
+      "tier": "1",
+      "position": "NO",
+      "pnl": -86.45,
+      "market": "Will Amazon (AMZN) close above $255 on April 24?",
+      "bear": "If AMZN gapped up 2%+ overnight to $260+ (unverifiable with available data), the 86% YES price would be approximately fair and this NO position would lose",
+      "news": true,
+      "path": "trade_reflections/T1777038941_economics_LOST.md"
     },
     {
       "won": false,

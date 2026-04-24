@@ -1078,15 +1078,18 @@
       "bear_case": "If AMZN gapped up 2%+ overnight to $260+ (unverifiable with available data), the 86% YES price would be approximately fair and this NO position would lose",
       "kelly_tier": "quarter-Kelly (5.0%)",
       "news_triggered": true,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T13:55:41.197711+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-04-24T22:32:09.282511+00:00",
+      "realized_pnl": -86.45
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 86.45,
   "daily_reset": "2026-04-24",
-  "scan_count": 216,
+  "scan_count": 217,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-24",
   "last_tier2_scan": "2026-04-24",
