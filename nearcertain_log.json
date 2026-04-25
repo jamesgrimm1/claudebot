@@ -1,5 +1,5 @@
 {
-  "bankroll": 960.46,
+  "bankroll": 943.75,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2831,10 +2831,64 @@
       "won": true,
       "resolved_at": "2026-04-24T17:43:16.857657+00:00",
       "realized_pnl": 11.13
+    },
+    {
+      "id": "NC20260425005518289859",
+      "market_id": "2014327",
+      "market": "LoL: Dplus KIA vs DN SOOPers (BO3) - LCK Rounds 1-2",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 7.2,
+      "potential_profit": 37.8,
+      "potential_payout": 45.0,
+      "closes": "2026-04-25T16:00:00+00:00",
+      "closes_in_days": 0.628,
+      "status": "open",
+      "placed_at": "2026-04-25T00:55:18.289880+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425005518289944",
+      "market_id": "1903144",
+      "market": "FC Bayern M\u00fcnchen vs. FC Barcelona: O/U 2.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 21,
+      "entry_yes_price": 79,
+      "stake": 4.77,
+      "potential_profit": 17.94,
+      "potential_payout": 22.71,
+      "closes": "2026-04-25T16:15:00+00:00",
+      "closes_in_days": 0.639,
+      "status": "open",
+      "placed_at": "2026-04-25T00:55:18.289955+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425005518290002",
+      "market_id": "2023039",
+      "market": "Thunder vs. Suns",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 4.74,
+      "potential_profit": 16.81,
+      "potential_payout": 21.55,
+      "closes": "2026-04-25T19:30:00+00:00",
+      "closes_in_days": 0.774,
+      "status": "open",
+      "placed_at": "2026-04-25T00:55:18.290011+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 365.13,
-  "daily_reset": "2026-04-24",
-  "scan_count": 76,
+  "daily_loss": 0.0,
+  "daily_reset": "2026-04-25",
+  "scan_count": 77,
   "started": "2026-04-21T00:00:00+00:00"
 }

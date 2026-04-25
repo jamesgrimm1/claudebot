@@ -1,5 +1,5 @@
 {
-  "bankroll": 965.56,
+  "bankroll": 964.6,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -4677,10 +4677,13 @@
       "potential_payout": 3.43,
       "closes": "2026-04-24T23:20:00+00:00",
       "closes_in_days": 0.07,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T21:39:33.852119+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-25T00:55:21.563305+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260424213933852252",
@@ -4987,11 +4990,47 @@
       "placed_at": "2026-04-24T23:32:26.265506+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425005530141984",
+      "market_id": "2066733",
+      "market": "Counter-Strike: Vasco Esports vs Crashers (BO3) - BetBoom RUSH B! Summit Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 31,
+      "entry_yes_price": 69,
+      "stake": 0.48,
+      "potential_profit": 1.07,
+      "potential_payout": 1.55,
+      "closes": "2026-04-25T05:00:00+00:00",
+      "closes_in_days": 0.17,
+      "status": "open",
+      "placed_at": "2026-04-25T00:55:30.142002+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425005530142403",
+      "market_id": "2023039",
+      "market": "Thunder vs. Suns",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 0.48,
+      "potential_profit": 1.7,
+      "potential_payout": 2.18,
+      "closes": "2026-04-25T19:30:00+00:00",
+      "closes_in_days": 0.774,
+      "status": "open",
+      "placed_at": "2026-04-25T00:55:30.142413+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 40.0,
-  "daily_reset": "2026-04-24",
-  "scan_count": 21,
+  "daily_loss": 0.48,
+  "daily_reset": "2026-04-25",
+  "scan_count": 22,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
