@@ -1,5 +1,5 @@
 {
-  "bankroll": 963.93,
+  "bankroll": 962.97,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -2316,10 +2316,13 @@
       "potential_payout": 1.75,
       "closes": "2026-04-25T05:30:00+00:00",
       "closes_in_days": 1.064,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:58:00.482659+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-25T05:42:45.238348+00:00",
+      "realized_pnl": -0.49
     },
     {
       "id": "NC20260424035800482699",
@@ -5644,11 +5647,47 @@
       "placed_at": "2026-04-25T05:22:01.777112+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425054256344969",
+      "market_id": "1966151",
+      "market": "1. FSV Mainz 05 vs. FC Bayern M\u00fcnchen: Both Teams to Score",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.48,
+      "potential_profit": 0.93,
+      "potential_payout": 1.41,
+      "closes": "2026-04-25T13:30:00+00:00",
+      "closes_in_days": 0.324,
+      "status": "open",
+      "placed_at": "2026-04-25T05:42:56.344987+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425054256345444",
+      "market_id": "1777560",
+      "market": "Will Inter Miami CF win on 2026-04-25?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 30,
+      "entry_yes_price": 70,
+      "stake": 0.48,
+      "potential_profit": 1.12,
+      "potential_payout": 1.6,
+      "closes": "2026-04-25T23:30:00+00:00",
+      "closes_in_days": 0.741,
+      "status": "open",
+      "placed_at": "2026-04-25T05:42:56.345458+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 8.18,
+  "daily_loss": 8.67,
   "daily_reset": "2026-04-25",
-  "scan_count": 30,
+  "scan_count": 31,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }

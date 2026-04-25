@@ -1,5 +1,5 @@
 {
-  "bankroll": 816.53,
+  "bankroll": 813.47,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5622,11 +5622,31 @@
       "placed_at": "2026-04-25T05:11:06.337734+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777095721",
+      "market_id": "2057090",
+      "market_slug": "highest-temperature-in-singapore-on-april-25-2026-34c",
+      "market": "Will the highest temperature in Singapore be 34\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.06,
+      "payout_if_wins": 5.46,
+      "profit_if_wins": 2.4,
+      "category": "weather",
+      "closes_in_days": 0.26,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 8744.530053000004,
+      "status": "open",
+      "placed_at": "2026-04-25T05:42:01.653620+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.64,
   "daily_reset": "2026-04-25",
-  "scan_count": 175,
+  "scan_count": 176,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-25T04:27:37.210914+00:00"
 }
