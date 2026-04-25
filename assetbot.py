@@ -50,7 +50,7 @@ ASSET_REGISTRY = {
     "PLTR": ("stock",     ["palantir", "pltr"],                      "PLTR"),
     "SHOP": ("stock",     ["shopify", "shop"],                       "SHOP"),
     "AMD":  ("stock",     ["amd", "advanced micro"],                 "AMD"),
-    "COIN": ("stock",     ["coinbase", "coin"],                      "COIN"),
+    "COIN": ("stock",     ["coinbase", "(coin)"],                    "COIN"),
     "UBER": ("stock",     ["uber"],                                   "UBER"),
     "DIS":  ("stock",     ["disney", " dis "],                       "DIS"),
     "JPM":  ("stock",     ["jpmorgan", "jp morgan", "jpm"],          "JPM"),
@@ -74,12 +74,12 @@ ASSET_REGISTRY = {
     "NATGAS":("commodity",["natural gas", "nat gas"],                "NG1:NMX"),
 }
 
-# Flat ASSETS list for backward-compatible keyword matching
-ASSETS = [
+# Flat ASSETS list — sorted longest keyword first to prevent substring matches
+ASSETS = sorted([
     (kw, data[2], data[0])
     for ticker, data in ASSET_REGISTRY.items()
     for kw in data[1]
-]
+], key=lambda x: -len(x[0]))
 
 # Unique tickers for snapshot
 SNAPSHOT_TICKERS = [
