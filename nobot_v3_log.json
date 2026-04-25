@@ -1,5 +1,5 @@
 {
-  "bankroll": 1199.31,
+  "bankroll": 1181.32,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2943,11 +2943,31 @@
       "placed_at": "2026-04-25T06:15:20.256871+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777100094",
+      "market_id": "2057309",
+      "market_slug": "highest-temperature-in-helsinki-on-april-25-2026-9c",
+      "market": "Will the highest temperature in Helsinki be 9\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 17.99,
+      "payout_if_wins": 39.98,
+      "profit_if_wins": 21.99,
+      "category": "weather",
+      "closes_in_days": 0.21,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3382.7104389999977,
+      "status": "open",
+      "placed_at": "2026-04-25T06:54:54.056130+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 180,
+  "scan_count": 181,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-25T04:28:00.610079+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
