@@ -32,48 +32,59 @@ HAIKU_MODEL       = "claude-haiku-4-5-20251001"
 MOVE_PCT_PER_DAY  = 0.10
 MOVE_PCT_CAP      = 0.40
 
-# ── Asset universe ────────────────────────────────────────
-# (keyword_in_market_question, finnhub_ticker_or_binance_symbol, asset_type)
+# ── Asset registry ───────────────────────────────────────
+# ticker -> (asset_type, [question keywords], price_symbol)
+# price_symbol: Binance symbol for crypto, Finnhub ticker for stocks,
+#               Finnhub forex symbol for commodities
+ASSET_REGISTRY = {
+    # ── Stocks (20) ──────────────────────────────────────
+    "AMZN": ("stock",     ["amazon", "amzn"],                        "AMZN"),
+    "TSLA": ("stock",     ["tesla", "tsla"],                         "TSLA"),
+    "NVDA": ("stock",     ["nvidia", "nvda"],                        "NVDA"),
+    "AAPL": ("stock",     ["apple", "aapl"],                         "AAPL"),
+    "MSFT": ("stock",     ["microsoft", "msft"],                     "MSFT"),
+    "GOOGL":("stock",     ["google", "googl", "alphabet"],           "GOOGL"),
+    "META": ("stock",     ["meta", "facebook"],                      "META"),
+    "NFLX": ("stock",     ["netflix", "nflx"],                       "NFLX"),
+    "INTC": ("stock",     ["intel", "intc"],                         "INTC"),
+    "PLTR": ("stock",     ["palantir", "pltr"],                      "PLTR"),
+    "SHOP": ("stock",     ["shopify", "shop"],                       "SHOP"),
+    "AMD":  ("stock",     ["amd", "advanced micro"],                 "AMD"),
+    "COIN": ("stock",     ["coinbase", "coin"],                      "COIN"),
+    "UBER": ("stock",     ["uber"],                                   "UBER"),
+    "DIS":  ("stock",     ["disney", " dis "],                       "DIS"),
+    "JPM":  ("stock",     ["jpmorgan", "jp morgan", "jpm"],          "JPM"),
+    "SPY":  ("stock",     ["s&p 500", "spy", "s&p500"],              "SPY"),
+    "QQQ":  ("stock",     ["nasdaq", "qqq"],                         "QQQ"),
+    "DIA":  ("stock",     ["dow jones", "dow", "djia", "dia"],       "DIA"),
+    "BABA": ("stock",     ["alibaba", "baba"],                       "BABA"),
+    # ── Crypto (7) ───────────────────────────────────────
+    "BTC":  ("crypto",    ["bitcoin", "btc"],                        "BTCUSDT"),
+    "ETH":  ("crypto",    ["ethereum", "eth"],                       "ETHUSDT"),
+    "SOL":  ("crypto",    ["solana", "sol"],                         "SOLUSDT"),
+    "XRP":  ("crypto",    ["xrp", "ripple"],                         "XRPUSDT"),
+    "BNB":  ("crypto",    ["bnb", "binance coin"],                   "BNBUSDT"),
+    "DOGE": ("crypto",    ["dogecoin", "doge"],                      "DOGEUSDT"),
+    "ADA":  ("crypto",    ["cardano", "ada"],                        "ADAUSDT"),
+    # ── Commodities (5) ──────────────────────────────────
+    "WTI":  ("commodity", ["wti", "crude oil", "oil price"],         "USOIL"),
+    "BRENT":("commodity", ["brent"],                                  "UKOIL"),
+    "GOLD": ("commodity", ["gold", "xau"],                           "XAUUSD"),
+    "SILVER":("commodity",["silver", "xag"],                         "XAGUSD"),
+    "NATGAS":("commodity",["natural gas", "nat gas"],                "NG1:NMX"),
+}
+
+# Flat ASSETS list for backward-compatible keyword matching
 ASSETS = [
-    # Stocks
-    ("amazon",            "AMZN",    "stock"),
-    ("amzn",              "AMZN",    "stock"),
-    ("tesla",             "TSLA",    "stock"),
-    ("tsla",              "TSLA",    "stock"),
-    ("nvidia",            "NVDA",    "stock"),
-    ("nvda",              "NVDA",    "stock"),
-    ("apple",             "AAPL",    "stock"),
-    ("aapl",              "AAPL",    "stock"),
-    ("microsoft",         "MSFT",    "stock"),
-    ("msft",              "MSFT",    "stock"),
-    ("google",            "GOOGL",   "stock"),
-    ("googl",             "GOOGL",   "stock"),
-    ("meta",              "META",    "stock"),
-    ("netflix",           "NFLX",    "stock"),
-    ("intel",             "INTC",    "stock"),
-    ("intc",              "INTC",    "stock"),
-    ("palantir",          "PLTR",    "stock"),
-    ("shopify",           "SHOP",    "stock"),
-    ("s&p 500",           "SPY",     "stock"),
-    ("spy",               "SPY",     "stock"),
-    ("nasdaq",            "QQQ",     "stock"),
-    ("qqq",               "QQQ",     "stock"),
-    # Crypto
-    ("bitcoin",           "BTCUSDT", "crypto"),
-    ("btc",               "BTCUSDT", "crypto"),
-    ("ethereum",          "ETHUSDT", "crypto"),
-    ("eth",               "ETHUSDT", "crypto"),
-    ("solana",            "SOLUSDT", "crypto"),
-    ("sol",               "SOLUSDT", "crypto"),
-    ("xrp",               "XRPUSDT", "crypto"),
-    ("bnb",               "BNBUSDT", "crypto"),
-    # Commodities
-    ("wti",               "USOIL",   "commodity"),
-    ("crude oil",         "USOIL",   "commodity"),
-    ("brent",             "UKOIL",   "commodity"),
-    ("gold",              "XAUUSD",  "commodity"),
-    ("silver",            "XAGUSD",  "commodity"),
-    ("natural gas",       "NG1:NYMEX","commodity"),
+    (kw, data[2], data[0])
+    for ticker, data in ASSET_REGISTRY.items()
+    for kw in data[1]
+]
+
+# Unique tickers for snapshot
+SNAPSHOT_TICKERS = [
+    (ticker, data[0], data[2])
+    for ticker, data in ASSET_REGISTRY.items()
 ]
 
 
@@ -146,14 +157,10 @@ def take_price_snapshot(state):
     log("📸 Taking closing price snapshot...")
     snapshot = {"date": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
     fetched = 0
-    seen = set()
-    for keyword, ticker, asset_type in ASSETS:
-        if ticker in seen:
-            continue
-        seen.add(ticker)
-        price = get_live_price(ticker, asset_type)
+    for name, asset_type, price_symbol in SNAPSHOT_TICKERS:
+        price = get_live_price(price_symbol, asset_type)
         if price:
-            snapshot[ticker] = price
+            snapshot[price_symbol] = price
             fetched += 1
     state["price_snapshot"] = snapshot
     log(f"📸 Snapshot complete — {fetched} prices captured")
@@ -166,12 +173,12 @@ def take_price_snapshot(state):
 
 _price_cache = {}
 
-def get_reference_price(ticker, asset_type, state):
+def get_reference_price(price_symbol, asset_type, state):
     """Use snapshot price if available, otherwise fetch live."""
     snapshot = state.get("price_snapshot", {})
-    if ticker in snapshot:
-        return snapshot[ticker]
-    return get_live_price(ticker, asset_type)
+    if price_symbol in snapshot:
+        return snapshot[price_symbol]
+    return get_live_price(price_symbol, asset_type)
 
 def get_live_price(ticker, asset_type):
     if ticker in _price_cache:
@@ -260,11 +267,11 @@ def fetch_markets():
 # ─────────────────────────────────────────────────────────
 
 def match_asset(question):
-    """Return (ticker, asset_type) if question mentions a tracked asset."""
+    """Return (price_symbol, asset_type) if question mentions a tracked asset."""
     q = question.lower()
-    for keyword, ticker, asset_type in ASSETS:
+    for keyword, price_symbol, asset_type in ASSETS:
         if keyword in q:
-            return ticker, asset_type
+            return price_symbol, asset_type
     return None, None
 
 
