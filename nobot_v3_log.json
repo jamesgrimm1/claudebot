@@ -1,5 +1,5 @@
 {
-  "bankroll": 1168.03,
+  "bankroll": 1137.57,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2983,11 +2983,51 @@
       "placed_at": "2026-04-25T07:59:36.819794+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777104549",
+      "market_id": "2057109",
+      "market_slug": "highest-temperature-in-madrid-on-april-25-2026-23c",
+      "market": "Will the highest temperature in Madrid be 23\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 17.52,
+      "payout_if_wins": 38.93,
+      "profit_if_wins": 21.41,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3511.2627709999997,
+      "status": "open",
+      "placed_at": "2026-04-25T08:09:09.626234+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777104549",
+      "market_id": "2056964",
+      "market_slug": "highest-temperature-in-atlanta-on-april-25-2026-76-77f",
+      "market": "Will the highest temperature in Atlanta be between 76-77\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 12.94,
+      "payout_if_wins": 23.11,
+      "profit_if_wins": 10.17,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3389.906750999998,
+      "status": "open",
+      "placed_at": "2026-04-25T08:09:09.626270+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 182,
+  "scan_count": 183,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-25T04:28:00.610079+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
