@@ -223,7 +223,7 @@ def fetch_markets():
     try:
         r = requests.get(
             "https://gamma-api.polymarket.com/markets"
-            "?active=true&closed=false&limit=500&order=endDate&ascending=true",
+            "?active=true&closed=false&limit=500&order=volume&ascending=false",
             timeout=12
         )
         if r.status_code != 200:
