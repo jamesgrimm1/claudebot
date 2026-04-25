@@ -110,10 +110,62 @@ def save_state(state):
 
 
 # ─────────────────────────────────────────────────────────
+#  CLOSING PRICE SNAPSHOT
+# ─────────────────────────────────────────────────────────
+# US market closes 4pm EST = 9pm UTC.
+# We snapshot closing prices once daily after close.
+# If no snapshot by midnight UTC (8am Bali), force fetch.
+
+SNAPSHOT_HOUR_UTC = 21   # 9pm UTC = US market close
+FORCE_BY_HOUR_UTC = 0    # midnight UTC = 8am Bali — force fetch if missed
+
+def should_take_snapshot(state):
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
+    snapshot = state.get("price_snapshot", {})
+    snap_date = snapshot.get("date", "")
+
+    if snap_date == today:
+        return False  # already have today's snapshot
+
+    # Take snapshot if: after 9pm UTC, OR it's past midnight UTC and we missed it
+    if now.hour >= SNAPSHOT_HOUR_UTC:
+        return True
+    if now.hour < FORCE_BY_HOUR_UTC + 1 and snap_date != today:
+        # Past midnight, no snapshot yet — force it
+        return True
+    return False
+
+def take_price_snapshot(state):
+    log("📸 Taking closing price snapshot...")
+    snapshot = {"date": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+    fetched = 0
+    seen = set()
+    for keyword, ticker, asset_type in ASSETS:
+        if ticker in seen:
+            continue
+        seen.add(ticker)
+        price = get_live_price(ticker, asset_type)
+        if price:
+            snapshot[ticker] = price
+            fetched += 1
+    state["price_snapshot"] = snapshot
+    log(f"📸 Snapshot complete — {fetched} prices captured")
+    return state
+
+
+# ─────────────────────────────────────────────────────────
 #  LIVE PRICE FETCH
 # ─────────────────────────────────────────────────────────
 
 _price_cache = {}
+
+def get_reference_price(ticker, asset_type, state):
+    """Use snapshot price if available, otherwise fetch live."""
+    snapshot = state.get("price_snapshot", {})
+    if ticker in snapshot:
+        return snapshot[ticker]
+    return get_live_price(ticker, asset_type)
 
 def get_live_price(ticker, asset_type):
     if ticker in _price_cache:
@@ -482,6 +534,13 @@ def single_scan():
     state["scan_count"] = state.get("scan_count", 0) + 1
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
+    # Step 0: Closing price snapshot
+    if should_take_snapshot(state):
+        state = take_price_snapshot(state)
+    else:
+        snap_date = state.get("price_snapshot", {}).get("date", "none")
+        log(f"── Step 0: Using snapshot from {snap_date} ──────────────────")
+
     # Step 1: Resolve
     log("── Step 1: Resolve open trades ──────────────────────────")
     state = resolve_open_trades(state)
@@ -504,8 +563,8 @@ def single_scan():
         if not ticker:
             continue
 
-        # Get live price
-        price = get_live_price(ticker, asset_type)
+        # Get reference price (snapshot if available, else live)
+        price = get_reference_price(ticker, asset_type, state)
         if not price:
             continue
 
