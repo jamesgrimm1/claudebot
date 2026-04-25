@@ -1,5 +1,5 @@
 {
-  "bankroll": 954.58,
+  "bankroll": 958.83,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -2775,10 +2775,13 @@
       "potential_payout": 4.9,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 1.243,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T06:09:46.441638+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-25T22:25:27.640972+00:00",
+      "realized_pnl": 4.41
     },
     {
       "id": "NC20260424060946441677",
@@ -5196,10 +5199,13 @@
       "potential_payout": 2.18,
       "closes": "2026-04-25T19:30:00+00:00",
       "closes_in_days": 0.774,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T00:55:30.142413+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-25T22:25:28.350549+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260425012004371513",
@@ -7377,10 +7383,13 @@
       "potential_payout": 3.06,
       "closes": "2026-04-25T21:35:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T16:30:35.607435+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-25T22:25:29.035961+00:00",
+      "realized_pnl": -0.49
     },
     {
       "id": "NC20260425163035607526",
@@ -7431,10 +7440,13 @@
       "potential_payout": 2.72,
       "closes": "2026-04-25T20:05:00+00:00",
       "closes_in_days": 0.107,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T17:30:44.419735+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-25T22:25:29.446233+00:00",
+      "realized_pnl": -0.49
     },
     {
       "id": "NC20260425173044419833",
@@ -7470,10 +7482,13 @@
       "potential_payout": 1.75,
       "closes": "2026-04-25T21:35:00+00:00",
       "closes_in_days": 0.17,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T17:30:44.419986+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-25T22:25:29.587765+00:00",
+      "realized_pnl": 1.26
     },
     {
       "id": "NC20260425173044420067",
@@ -8269,11 +8284,101 @@
       "placed_at": "2026-04-25T21:27:42.788138+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425222538329114",
+      "market_id": "2033953",
+      "market": "Valorant: FURIA Esports vs KR\u00dc Esports - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 30,
+      "entry_yes_price": 70,
+      "stake": 0.48,
+      "potential_profit": 1.12,
+      "potential_payout": 1.6,
+      "closes": "2026-04-26T01:00:00+00:00",
+      "closes_in_days": 0.107,
+      "status": "open",
+      "placed_at": "2026-04-25T22:25:38.329134+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425222538329230",
+      "market_id": "1781661",
+      "market": "Will Deportivo Pereira win on 2026-04-25?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.48,
+      "potential_profit": 0.93,
+      "potential_payout": 1.41,
+      "closes": "2026-04-26T01:30:00+00:00",
+      "closes_in_days": 0.128,
+      "status": "open",
+      "placed_at": "2026-04-25T22:25:38.329242+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425222538329360",
+      "market_id": "2033954",
+      "market": "Games Total: O/U 2.5",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 28,
+      "entry_yes_price": 72,
+      "stake": 0.48,
+      "potential_profit": 1.23,
+      "potential_payout": 1.71,
+      "closes": "2026-04-26T03:00:00+00:00",
+      "closes_in_days": 0.191,
+      "status": "open",
+      "placed_at": "2026-04-25T22:25:38.329370+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425222538329767",
+      "market_id": "2064806",
+      "market": "Will the lowest temperature in Shanghai be 12\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 0.48,
+      "potential_profit": 7.52,
+      "potential_payout": 8.0,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.566,
+      "status": "open",
+      "placed_at": "2026-04-25T22:25:38.329775+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425222538330182",
+      "market_id": "2024651",
+      "market": "Will FC Porto win on 2026-04-26?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 26,
+      "entry_yes_price": 74,
+      "stake": 0.48,
+      "potential_profit": 1.37,
+      "potential_payout": 1.85,
+      "closes": "2026-04-26T17:00:00+00:00",
+      "closes_in_days": 0.774,
+      "status": "open",
+      "placed_at": "2026-04-25T22:25:38.330195+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 58.45,
+  "daily_loss": 59.91,
   "daily_reset": "2026-04-25",
-  "scan_count": 49,
+  "scan_count": 50,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
