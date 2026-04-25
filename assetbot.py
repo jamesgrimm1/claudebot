@@ -226,7 +226,9 @@ def fetch_markets():
             "?active=true&closed=false&limit=500&order=endDate&ascending=true",
             timeout=12
         )
-        r.raise_for_status()
+        if r.status_code != 200:
+            log(f"⚠️  Polymarket fetch failed: HTTP {r.status_code}")
+            return []
         raw = r.json()
     except Exception as e:
         log(f"⚠️  Polymarket fetch failed: {e}")
