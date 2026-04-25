@@ -1,5 +1,5 @@
 {
-  "bankroll": 929.66,
+  "bankroll": 911.14,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2939,10 +2939,46 @@
       "placed_at": "2026-04-25T02:08:13.601985+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425031122386563",
+      "market_id": "2057012",
+      "market": "Will the highest temperature in Wellington be 16\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 13.94,
+      "potential_profit": 218.39,
+      "potential_payout": 232.33,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.367,
+      "status": "open",
+      "placed_at": "2026-04-25T03:11:22.386581+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425031122386667",
+      "market_id": "2057203",
+      "market": "Will the highest temperature in Denver be 59\u00b0F or below on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.58,
+      "potential_profit": 14.5,
+      "potential_payout": 19.08,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.367,
+      "status": "open",
+      "placed_at": "2026-04-25T03:11:22.386683+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 79,
+  "scan_count": 80,
   "started": "2026-04-21T00:00:00+00:00"
 }
