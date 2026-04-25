@@ -1,5 +1,5 @@
 {
-  "bankroll": 802.15,
+  "bankroll": 803.82,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4729,10 +4729,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 8120.470587000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T01:48:18.749589+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-25T02:07:35.286495+00:00",
+      "realized_pnl": -3.28
     },
     {
       "id": "NB1776995298",
@@ -4884,10 +4887,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 4394.522890999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:31:24.926960+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-25T02:07:35.412429+00:00",
+      "realized_pnl": 2.51
     },
     {
       "id": "NB1777007212",
@@ -5507,11 +5513,31 @@
       "placed_at": "2026-04-25T01:19:24.054691+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777082864",
+      "market_id": "2057036",
+      "market_slug": "highest-temperature-in-munich-on-april-25-2026-21c",
+      "market": "Will the highest temperature in Munich be 21\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 4.04,
+      "payout_if_wins": 8.42,
+      "profit_if_wins": 4.38,
+      "category": "weather",
+      "closes_in_days": 0.41,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3531.392325,
+      "status": "open",
+      "placed_at": "2026-04-25T02:07:44.012187+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 13.36,
+  "daily_loss": 16.64,
   "daily_reset": "2026-04-25",
-  "scan_count": 168,
+  "scan_count": 169,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T15:57:40.229259+00:00"
 }

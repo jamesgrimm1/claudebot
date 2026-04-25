@@ -1,5 +1,5 @@
 {
-  "bankroll": 810.8,
+  "bankroll": 815.33,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4598,10 +4598,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 8120.470587000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T01:48:28.970688+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-25T02:07:46.870706+00:00",
+      "realized_pnl": -4.1
     },
     {
       "id": "NB1776995308",
@@ -4753,10 +4756,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 4394.522890999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T03:31:34.007658+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T02:07:46.953950+00:00",
+      "realized_pnl": 2.75
     },
     {
       "id": "NB1777007223",
@@ -5376,11 +5382,31 @@
       "placed_at": "2026-04-25T01:19:35.026859+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777082875",
+      "market_id": "2057036",
+      "market_slug": "highest-temperature-in-munich-on-april-25-2026-21c",
+      "market": "Will the highest temperature in Munich be 21\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 1.72,
+      "payout_if_wins": 3.58,
+      "profit_if_wins": 1.86,
+      "category": "weather",
+      "closes_in_days": 0.41,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3537.281211,
+      "status": "open",
+      "placed_at": "2026-04-25T02:07:55.104859+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 12.94,
+  "daily_loss": 17.04,
   "daily_reset": "2026-04-25",
-  "scan_count": 172,
+  "scan_count": 173,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T18:36:01.752031+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

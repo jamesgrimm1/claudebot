@@ -1,5 +1,5 @@
 {
-  "bankroll": 939.03,
+  "bankroll": 929.66,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2903,10 +2903,46 @@
       "placed_at": "2026-04-25T01:19:54.425538+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425020813601879",
+      "market_id": "2034445",
+      "market": "Will Elon Musk post 40-64 tweets from April 23 to April 25, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.7,
+      "potential_profit": 14.88,
+      "potential_payout": 19.58,
+      "closes": "2026-04-25T16:00:00+00:00",
+      "closes_in_days": 0.578,
+      "status": "open",
+      "placed_at": "2026-04-25T02:08:13.601895+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425020813601976",
+      "market_id": "2006853",
+      "market": "Stars vs. Wild: O/U 4.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 4.67,
+      "potential_profit": 14.01,
+      "potential_payout": 18.68,
+      "closes": "2026-04-25T21:30:00+00:00",
+      "closes_in_days": 0.807,
+      "status": "open",
+      "placed_at": "2026-04-25T02:08:13.601985+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 78,
+  "scan_count": 79,
   "started": "2026-04-21T00:00:00+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 1216.33,
+  "bankroll": 1198.09,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2860,11 +2860,31 @@
       "placed_at": "2026-04-25T01:19:44.024988+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777082882",
+      "market_id": "2057036",
+      "market_slug": "highest-temperature-in-munich-on-april-25-2026-21c",
+      "market": "Will the highest temperature in Munich be 21\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 18.24,
+      "payout_if_wins": 38.0,
+      "profit_if_wins": 19.76,
+      "category": "weather",
+      "closes_in_days": 0.41,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3537.281211,
+      "status": "open",
+      "placed_at": "2026-04-25T02:08:02.848432+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 168,
+  "scan_count": 169,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-24T15:58:11.837371+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
