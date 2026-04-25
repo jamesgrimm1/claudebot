@@ -1,5 +1,5 @@
 {
-  "bankroll": 862.06,
+  "bankroll": 844.93,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3065,10 +3065,64 @@
       "placed_at": "2026-04-25T04:28:19.596853+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425045401849398",
+      "market_id": "1954366",
+      "market": "Fulham FC vs. Aston Villa FC: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 6.47,
+      "potential_profit": 25.88,
+      "potential_payout": 32.35,
+      "closes": "2026-04-25T11:30:00+00:00",
+      "closes_in_days": 0.275,
+      "status": "open",
+      "placed_at": "2026-04-25T04:54:01.849414+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425045401849520",
+      "market_id": "2056711",
+      "market": "Will the lowest temperature in London be 5\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 21,
+      "entry_yes_price": 79,
+      "stake": 4.28,
+      "potential_profit": 16.1,
+      "potential_payout": 20.38,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.296,
+      "status": "open",
+      "placed_at": "2026-04-25T04:54:01.849529+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425045401849589",
+      "market_id": "2057078",
+      "market": "Will the highest temperature in Shanghai be 21\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 6.38,
+      "potential_profit": 29.06,
+      "potential_payout": 35.44,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.296,
+      "status": "open",
+      "placed_at": "2026-04-25T04:54:01.849598+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 81,
+  "scan_count": 82,
   "started": "2026-04-21T00:00:00+00:00"
 }
