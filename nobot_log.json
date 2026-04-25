@@ -1,5 +1,5 @@
 {
-  "bankroll": 817.56,
+  "bankroll": 822.21,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5587,10 +5587,13 @@
       "closes_in_days": 0.37,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 4577.018358999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T03:10:44.508268+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-25T09:41:34.054668+00:00",
+      "realized_pnl": 1.23
     },
     {
       "id": "NB1777086644",
@@ -5667,10 +5670,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 4859.013156999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T06:15:02.089665+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-25T09:41:34.278898+00:00",
+      "realized_pnl": 2.5
     },
     {
       "id": "NB1777103959",
@@ -5751,11 +5757,31 @@
       "placed_at": "2026-04-25T08:53:18.614220+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777110101",
+      "market_id": "2057109",
+      "market_slug": "highest-temperature-in-madrid-on-april-25-2026-23c",
+      "market": "Will the highest temperature in Madrid be 23\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 4.13,
+      "payout_if_wins": 8.6,
+      "profit_if_wins": 4.47,
+      "category": "weather",
+      "closes_in_days": 0.1,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 4149.025091000001,
+      "status": "open",
+      "placed_at": "2026-04-25T09:41:41.142153+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 18.79,
   "daily_reset": "2026-04-25",
-  "scan_count": 181,
+  "scan_count": 182,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-25T04:27:37.210914+00:00"
 }

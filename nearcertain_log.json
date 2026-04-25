@@ -1,5 +1,5 @@
 {
-  "bankroll": 722.96,
+  "bankroll": 706.78,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3407,10 +3407,46 @@
       "placed_at": "2026-04-25T08:53:47.810602+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425094210975863",
+      "market_id": "2057400",
+      "market": "Will the highest temperature in Karachi be 35\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 10.84,
+      "potential_profit": 97.56,
+      "potential_payout": 108.4,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.096,
+      "status": "open",
+      "placed_at": "2026-04-25T09:42:10.975884+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425094210976077",
+      "market_id": "2047520",
+      "market": "UFC Fight Night: Jafel Filho vs. Cody Durden (Flyweight, Prelims)",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 5.34,
+      "potential_profit": 28.04,
+      "potential_payout": 33.38,
+      "closes": "2026-04-26T03:59:59.999000+00:00",
+      "closes_in_days": 0.762,
+      "status": "open",
+      "placed_at": "2026-04-25T09:42:10.976093+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 91,
+  "scan_count": 92,
   "started": "2026-04-21T00:00:00+00:00"
 }
