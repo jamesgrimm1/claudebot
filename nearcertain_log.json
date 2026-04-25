@@ -1,5 +1,5 @@
 {
-  "bankroll": 795.52,
+  "bankroll": 779.67,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3263,10 +3263,46 @@
       "placed_at": "2026-04-25T06:11:02.013829+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425061531461506",
+      "market_id": "2056945",
+      "market": "Will the highest temperature in New York City be between 50-51\u00b0F on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 3.98,
+      "potential_profit": 12.6,
+      "potential_payout": 16.58,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.239,
+      "status": "open",
+      "placed_at": "2026-04-25T06:15:31.461521+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425061531461613",
+      "market_id": "2057343",
+      "market": "Will the highest temperature in Jakarta be 35\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 11.87,
+      "potential_profit": 106.83,
+      "potential_payout": 118.7,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.239,
+      "status": "open",
+      "placed_at": "2026-04-25T06:15:31.461623+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 88,
+  "scan_count": 89,
   "started": "2026-04-21T00:00:00+00:00"
 }

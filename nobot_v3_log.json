@@ -1,5 +1,5 @@
 {
-  "bankroll": 1212.96,
+  "bankroll": 1199.31,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2923,11 +2923,31 @@
       "placed_at": "2026-04-25T03:11:08.032302+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777097720",
+      "market_id": "2057186",
+      "market_slug": "highest-temperature-in-shenzhen-on-april-25-2026-26c",
+      "market": "Will the highest temperature in Shenzhen be 26\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 45,
+      "stake": 13.65,
+      "payout_if_wins": 24.82,
+      "profit_if_wins": 11.17,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 4859.013156999999,
+      "status": "open",
+      "placed_at": "2026-04-25T06:15:20.256871+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 179,
+  "scan_count": 180,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-25T04:28:00.610079+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

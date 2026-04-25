@@ -1,5 +1,5 @@
 {
-  "bankroll": 813.47,
+  "bankroll": 810.42,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5642,11 +5642,31 @@
       "placed_at": "2026-04-25T05:42:01.653620+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777097702",
+      "market_id": "2057186",
+      "market_slug": "highest-temperature-in-shenzhen-on-april-25-2026-26c",
+      "market": "Will the highest temperature in Shenzhen be 26\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 45,
+      "stake": 3.05,
+      "payout_if_wins": 5.55,
+      "profit_if_wins": 2.5,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 4859.013156999999,
+      "status": "open",
+      "placed_at": "2026-04-25T06:15:02.089665+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.64,
   "daily_reset": "2026-04-25",
-  "scan_count": 178,
+  "scan_count": 179,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-25T04:27:37.210914+00:00"
 }
