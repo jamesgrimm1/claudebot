@@ -78,8 +78,8 @@ TIERS = {
         "max_positions":  6,
         "fixed_pct":      None,
         "kelly": [
-            {"min_conf": 90, "fraction": 0.5, "max_pct": 8.0},   # was 1.0 / 15% — halved until calibration confirmed
-            {"min_conf": 75, "fraction": 0.25, "max_pct": 5.0},  # was 0.5 / 10% — halved until calibration confirmed
+            {"min_conf": 90, "fraction": 1.0, "max_pct": 15.0},
+            {"min_conf": 75, "fraction": 0.5, "max_pct": 10.0},
         ],
         "short_disc_1d":  0.65,
         "short_disc_2d":  0.80,
@@ -96,26 +96,14 @@ TIERS = {
         "max_positions":  3,
         "fixed_pct":      None,
         "kelly": [
-            {"min_conf": 90, "fraction": 0.25, "max_pct": 4.0},  # was 0.5 / 8% — halved until calibration confirmed
-            {"min_conf": 80, "fraction": 0.125, "max_pct": 2.5}, # was 0.25 / 5% — halved until calibration confirmed
+            {"min_conf": 90, "fraction": 0.5, "max_pct": 8.0},
+            {"min_conf": 80, "fraction": 0.25, "max_pct": 5.0},
         ],
         "time_discount":  0.75,
         "screener_top_n": 8,
         "screener_max_per_cat": 2,
     },
-    3: {
-        "name":           "Long-term",
-        "label":          "T3",
-        "min_hold_days":  31,
-        "max_hold_days":  180,
-        "min_confidence": 90,
-        "min_edge_pct":   25,
-        "max_positions":  4,
-        "fixed_pct":      3.0,
-        "kelly":          [],
-        "screener_top_n": 8,
-        "screener_max_per_cat": 2,
-    },
+
 }
 
 MAX_PER_CATEGORY = 1
@@ -392,11 +380,6 @@ def should_run_tier2(state):
     return state.get("last_tier2_scan", "") != today
 
 
-def should_run_tier3(state):
-    week = datetime.now(timezone.utc).strftime("%Y-W%W")
-    return state.get("last_tier3_scan", "") != week
-
-
 # ─────────────────────────────────────────────────────────
 #  NEWS MONITOR — Step 0
 # ─────────────────────────────────────────────────────────
@@ -533,7 +516,6 @@ def load_state():
         "started":            datetime.now(timezone.utc).isoformat(),
         "last_daily_summary": "",
         "last_tier2_scan":    "",
-        "last_tier3_scan":    "",
         "last_reassessment":  "",
     }
 
@@ -2234,7 +2216,7 @@ def print_portfolio(state):
     print(f"  Closed         {len(closed_t)}  ({len(won_t)}W / {len(lost_t)}L  —  {win_rate:.0f}% win rate)")
     print(f"  Total Scans    {state.get('scan_count', 0)}")
 
-    for tn in [1, 2, 3]:
+    for tn in [1, 2]:
         op = len(open_positions_for_tier(tn, state))
         mx = TIERS[tn]["max_positions"]
         print(f"  {tier_badge(tn)} T{tn} {TIERS[tn]['name']:<12} {op}/{mx} open | "
@@ -2572,13 +2554,7 @@ def single_scan():
     else:
         log("── Tier 2: Skipped (already ran today) ──────────────────")
 
-    # ── Tier 3 — once weekly ──────────────────────────────
-    if should_run_tier3(state):
-        log("── Tier 3: Long-term (31-180 days) ──────────────────────")
-        state = run_tier(3, state)
-        state["last_tier3_scan"] = now.strftime("%Y-W%W")
-    else:
-        log("── Tier 3: Skipped (already ran this week) ──────────────")
+
 
     log("── Save ──────────────────────────────────────────────────")
     save_state(state)
