@@ -1,5 +1,5 @@
 {
-  "bankroll": 706.78,
+  "bankroll": 701.48,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3443,10 +3443,28 @@
       "placed_at": "2026-04-25T09:42:10.976093+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425113121442604",
+      "market_id": "2031053",
+      "market": "LoL: Cloud9 vs Shopify Rebellion (BO3) - LCS Regular Season",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 5.3,
+      "potential_profit": 27.82,
+      "potential_payout": 33.12,
+      "closes": "2026-04-26T05:00:00+00:00",
+      "closes_in_days": 0.728,
+      "status": "open",
+      "placed_at": "2026-04-25T11:31:21.442624+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 93,
+  "scan_count": 94,
   "started": "2026-04-21T00:00:00+00:00"
 }
