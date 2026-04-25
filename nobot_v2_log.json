@@ -1,5 +1,5 @@
 {
-  "bankroll": 836.98,
+  "bankroll": 842.24,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5239,10 +5239,13 @@
       "closes_in_days": 0.46,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 8678.358387,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T00:54:57.120906+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T20:27:42.249032+00:00",
+      "realized_pnl": 3.21
     },
     {
       "id": "NB1777078497",
@@ -5514,10 +5517,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 3864.5205160000046,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T05:11:18.525209+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-25T20:27:42.684398+00:00",
+      "realized_pnl": -3.43
     },
     {
       "id": "NB1777095737",
@@ -5534,10 +5540,13 @@
       "closes_in_days": 0.26,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 8744.530053000004,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T05:42:17.305857+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-25T20:27:42.735526+00:00",
+      "realized_pnl": -5.09
     },
     {
       "id": "NB1777097712",
@@ -5577,10 +5586,13 @@
       "closes_in_days": 0.17,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 6849.509613999997,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T07:59:29.706199+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-25T20:27:42.796201+00:00",
+      "realized_pnl": -5.05
     },
     {
       "id": "NB1777103969",
@@ -5597,10 +5609,13 @@
       "closes_in_days": 0.17,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 4921.991389000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T07:59:29.706254+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T20:27:42.848467+00:00",
+      "realized_pnl": 2.16
     },
     {
       "id": "NB1777107208",
@@ -5664,12 +5679,32 @@
       "won": true,
       "resolved_at": "2026-04-25T18:35:09.332197+00:00",
       "realized_pnl": 1.87
+    },
+    {
+      "id": "NB1777148872",
+      "market_id": "2073834",
+      "market_slug": "will-bitcoin-dip-to-77k-on-april-25",
+      "market": "Will Bitcoin dip to $77,000 on April 25?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 8.72,
+      "payout_if_wins": 15.03,
+      "profit_if_wins": 6.31,
+      "category": "crypto",
+      "closes_in_days": 0.31,
+      "closes": "2026-04-26T04:00:00+00:00",
+      "volume": 43223.935217000006,
+      "status": "open",
+      "placed_at": "2026-04-25T20:27:52.502832+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 28.34,
+  "daily_loss": 41.91,
   "daily_reset": "2026-04-25",
-  "scan_count": 196,
+  "scan_count": 197,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-25T07:59:19.815268+00:00",
+  "last_summary_sent": "2026-04-25T20:27:38.583033+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
 }
