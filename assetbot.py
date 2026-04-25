@@ -1,0 +1,540 @@
+"""
+╔══════════════════════════════════════════════════════════╗
+║  ASSETBOT — Price Mismatch Scanner                       ║
+║                                                          ║
+║  Scans Polymarket for markets where the required price   ║
+║  move is implausibly large given current asset price.    ║
+║                                                          ║
+║  Entry rule: required move > min(10% × days, 40%)        ║
+║  Sizing: flat 2% of bankroll per trade                   ║
+║  No Opus — fully mechanical after Haiku parsing          ║
+║                                                          ║
+║  RUN: python assetbot.py --single-scan                   ║
+╚══════════════════════════════════════════════════════════╝
+"""
+
+import os, sys, re, json, time, requests
+from datetime import datetime, timezone, timedelta
+import anthropic
+
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+FINNHUB_API_KEY   = os.environ.get("FINNHUB_API_KEY", "")
+LOG_FILE          = "assetbot_log.json"
+PAPER_TRADING     = True
+STARTING_BANKROLL = 1000.00
+STAKE_PCT         = 0.02        # 2% of bankroll per trade
+MAX_DAYS          = 7           # only look at markets closing within 7 days
+MIN_DAYS_HOURS    = 2           # ignore markets closing in under 2 hours
+HAIKU_MODEL       = "claude-haiku-4-5-20251001"
+
+# ── Required move threshold ───────────────────────────────
+# Required move must exceed min(10% × days_remaining, 40%)
+MOVE_PCT_PER_DAY  = 0.10
+MOVE_PCT_CAP      = 0.40
+
+# ── Asset universe ────────────────────────────────────────
+# (keyword_in_market_question, finnhub_ticker_or_binance_symbol, asset_type)
+ASSETS = [
+    # Stocks
+    ("amazon",            "AMZN",    "stock"),
+    ("amzn",              "AMZN",    "stock"),
+    ("tesla",             "TSLA",    "stock"),
+    ("tsla",              "TSLA",    "stock"),
+    ("nvidia",            "NVDA",    "stock"),
+    ("nvda",              "NVDA",    "stock"),
+    ("apple",             "AAPL",    "stock"),
+    ("aapl",              "AAPL",    "stock"),
+    ("microsoft",         "MSFT",    "stock"),
+    ("msft",              "MSFT",    "stock"),
+    ("google",            "GOOGL",   "stock"),
+    ("googl",             "GOOGL",   "stock"),
+    ("meta",              "META",    "stock"),
+    ("netflix",           "NFLX",    "stock"),
+    ("intel",             "INTC",    "stock"),
+    ("intc",              "INTC",    "stock"),
+    ("palantir",          "PLTR",    "stock"),
+    ("shopify",           "SHOP",    "stock"),
+    ("s&p 500",           "SPY",     "stock"),
+    ("spy",               "SPY",     "stock"),
+    ("nasdaq",            "QQQ",     "stock"),
+    ("qqq",               "QQQ",     "stock"),
+    # Crypto
+    ("bitcoin",           "BTCUSDT", "crypto"),
+    ("btc",               "BTCUSDT", "crypto"),
+    ("ethereum",          "ETHUSDT", "crypto"),
+    ("eth",               "ETHUSDT", "crypto"),
+    ("solana",            "SOLUSDT", "crypto"),
+    ("sol",               "SOLUSDT", "crypto"),
+    ("xrp",               "XRPUSDT", "crypto"),
+    ("bnb",               "BNBUSDT", "crypto"),
+    # Commodities
+    ("wti",               "USOIL",   "commodity"),
+    ("crude oil",         "USOIL",   "commodity"),
+    ("brent",             "UKOIL",   "commodity"),
+    ("gold",              "XAUUSD",  "commodity"),
+    ("silver",            "XAGUSD",  "commodity"),
+    ("natural gas",       "NG1:NYMEX","commodity"),
+]
+
+
+# ─────────────────────────────────────────────────────────
+#  LOGGING
+# ─────────────────────────────────────────────────────────
+
+def log(msg):
+    print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}")
+
+
+# ─────────────────────────────────────────────────────────
+#  STATE
+# ─────────────────────────────────────────────────────────
+
+def load_state():
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE) as f:
+            s = json.load(f)
+        log(f"📂 Loaded — {len(s['trades'])} trades | bankroll ${s['bankroll']:.2f}")
+        return s
+    log("📂 Fresh start")
+    return {
+        "bankroll": STARTING_BANKROLL,
+        "trades":   [],
+        "scan_count": 0,
+        "started":  datetime.now(timezone.utc).isoformat(),
+    }
+
+def save_state(state):
+    with open(LOG_FILE, "w") as f:
+        json.dump(state, f, indent=2)
+    log(f"💾 Saved — bankroll ${state['bankroll']:.2f} | {len(state['trades'])} trades")
+
+
+# ─────────────────────────────────────────────────────────
+#  LIVE PRICE FETCH
+# ─────────────────────────────────────────────────────────
+
+_price_cache = {}
+
+def get_live_price(ticker, asset_type):
+    if ticker in _price_cache:
+        return _price_cache[ticker]
+
+    price = None
+    try:
+        if asset_type == "crypto":
+            r = requests.get(
+                f"https://api.binance.com/api/v3/ticker/price?symbol={ticker}",
+                timeout=6
+            )
+            if r.status_code == 200:
+                price = float(r.json()["price"])
+
+        elif asset_type in ("stock", "commodity"):
+            if not FINNHUB_API_KEY:
+                return None
+            r = requests.get(
+                "https://finnhub.io/api/v1/quote",
+                params={"symbol": ticker, "token": FINNHUB_API_KEY},
+                timeout=6
+            )
+            if r.status_code == 200:
+                d = r.json()
+                price = d.get("c") or d.get("pc")  # current or prev close
+
+    except Exception as e:
+        log(f"  ⚠️  Price fetch failed {ticker}: {e}")
+
+    if price and price > 0:
+        _price_cache[ticker] = price
+    return price
+
+
+# ─────────────────────────────────────────────────────────
+#  MARKET FETCH
+# ─────────────────────────────────────────────────────────
+
+def fetch_markets():
+    """Fetch all active Polymarket markets closing within MAX_DAYS."""
+    try:
+        r = requests.get(
+            "https://gamma-api.polymarket.com/markets"
+            "?active=true&closed=false&limit=500&order=endDate&ascending=true",
+            timeout=12
+        )
+        r.raise_for_status()
+        raw = r.json()
+    except Exception as e:
+        log(f"⚠️  Polymarket fetch failed: {e}")
+        return []
+
+    now = datetime.now(timezone.utc)
+    markets = []
+    for m in raw:
+        if not m.get("question"):
+            continue
+        end_str = m.get("endDate") or m.get("end_date") or ""
+        if not end_str:
+            continue
+        try:
+            end_dt = datetime.fromisoformat(end_str.replace("Z", "+00:00"))
+        except:
+            continue
+        days = (end_dt - now).total_seconds() / 86400
+        hours = days * 24
+        if hours < MIN_DAYS_HOURS or days > MAX_DAYS:
+            continue
+        if m.get("negRisk", False):
+            continue
+        markets.append({
+            "id":       str(m.get("id", "")),
+            "question": m["question"],
+            "closes":   end_dt.isoformat(),
+            "closes_in_days": round(days, 3),
+            "slug":     m.get("slug", ""),
+        })
+
+    log(f"📋 Fetched {len(markets)} markets in 2h-{MAX_DAYS}d window")
+    return markets
+
+
+# ─────────────────────────────────────────────────────────
+#  ASSET MATCHING
+# ─────────────────────────────────────────────────────────
+
+def match_asset(question):
+    """Return (ticker, asset_type) if question mentions a tracked asset."""
+    q = question.lower()
+    for keyword, ticker, asset_type in ASSETS:
+        if keyword in q:
+            return ticker, asset_type
+    return None, None
+
+
+# ─────────────────────────────────────────────────────────
+#  HAIKU PARSER
+# ─────────────────────────────────────────────────────────
+
+def haiku_parse_threshold(client, question, current_price, ticker):
+    """
+    Use Haiku to extract:
+      - threshold price
+      - direction: 'above' | 'below' | 'range'
+      - range_low, range_high (if direction == 'range')
+      - resolution_type: 'close' | 'intraday' | 'weekly_close' | 'weekly_low' | 'weekly_high' | 'unclear'
+      - required_move_pct: how far current price needs to move to resolve YES
+      - position: 'YES' or 'NO' (which side has the implausible move)
+    """
+    prompt = (
+        f"Extract price threshold information from this Polymarket question.\n\n"
+        f"Question: \"{question}\"\n"
+        f"Current {ticker} price: ${current_price:,.4f}\n\n"
+        f"Return ONLY valid JSON:\n"
+        f'{{"threshold": 50000, "direction": "above", '
+        f'"range_low": null, "range_high": null, '
+        f'"resolution_type": "close", '
+        f'"required_move_pct": 12.5, '
+        f'"implausible_side": "YES", '
+        f'"reasoning": "price would need to drop 12.5% to reach threshold"}}\n\n'
+        f"direction: 'above' (YES if price > threshold), 'below' (YES if price < threshold), 'range' (YES if price between range_low and range_high)\n"
+        f"resolution_type: 'close' (end of day close), 'intraday' (any touch), 'weekly_close', 'weekly_low', 'weekly_high', 'unclear'\n"
+        f"required_move_pct: percentage move needed from current price for YES to resolve (positive number)\n"
+        f"implausible_side: 'YES' if YES resolution is implausible, 'NO' if NO resolution is implausible\n"
+        f"If question is not about a specific price threshold, return {{\"threshold\": null}}"
+    )
+
+    try:
+        resp = client.messages.create(
+            model=HAIKU_MODEL,
+            max_tokens=300,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        raw = resp.content[0].text.strip().replace("```json", "").replace("```", "").strip()
+        match = re.search(r'\{[\s\S]*\}', raw)
+        if not match:
+            return None
+        return json.loads(match.group(0))
+    except Exception as e:
+        log(f"  ⚠️  Haiku parse error: {e}")
+        return None
+
+
+# ─────────────────────────────────────────────────────────
+#  MISMATCH CHECK
+# ─────────────────────────────────────────────────────────
+
+def required_move_threshold(days_remaining):
+    """min(10% × days, 40%)"""
+    return min(MOVE_PCT_PER_DAY * days_remaining, MOVE_PCT_CAP)
+
+
+def check_mismatch(parsed, days_remaining):
+    """
+    Returns True if the required move exceeds our threshold.
+    Skips intraday/weekly_low/weekly_high resolution types — too risky to parse.
+    """
+    if not parsed or parsed.get("threshold") is None:
+        return False
+
+    # Skip resolution types where closing price isn't the determiner
+    resolution = parsed.get("resolution_type", "unclear")
+    if resolution in ("intraday", "weekly_low", "weekly_high", "unclear"):
+        return False
+
+    required_pct = parsed.get("required_move_pct", 0)
+    if not required_pct or required_pct <= 0:
+        return False
+
+    threshold_pct = required_move_threshold(days_remaining) * 100
+    return required_pct > threshold_pct
+
+
+# ─────────────────────────────────────────────────────────
+#  PLACE TRADE
+# ─────────────────────────────────────────────────────────
+
+def place_trade(market, parsed, current_price, ticker, state):
+    open_ids = {t["market_id"] for t in state["trades"] if t["status"] == "open"}
+    if market["id"] in open_ids:
+        return state
+
+    stake = round(state["bankroll"] * STAKE_PCT, 2)
+    if stake < 0.50:
+        log(f"  ⏭  Stake ${stake:.2f} too small")
+        return state
+
+    # Entry price — we're betting on the implausible side
+    position = parsed.get("implausible_side", "NO")
+
+    # Estimate entry price from market odds — fetch from Gamma
+    entry_price = 50  # default if we can't fetch
+    try:
+        r = requests.get(
+            f"https://gamma-api.polymarket.com/markets/{market['id']}",
+            timeout=6
+        )
+        if r.status_code == 200:
+            mkt = r.json()
+            prices_raw = mkt.get("outcomePrices")
+            if prices_raw:
+                prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+                prices = [float(p) * 100 for p in prices]
+                if len(prices) >= 2:
+                    entry_price = round(prices[1] if position == "NO" else prices[0])
+    except:
+        pass
+
+    if entry_price <= 1:
+        log(f"  ⏭  Entry price {entry_price}¢ too low — already priced in")
+        return state
+
+    payout = round(stake * 100 / entry_price, 2)
+    profit = round(payout - stake, 2)
+
+    trade = {
+        "id":               f"AB{int(time.time())}",
+        "market_id":        market["id"],
+        "market_slug":      market.get("slug", ""),
+        "market":           market["question"],
+        "position":         position,
+        "entry_price":      entry_price,
+        "stake":            stake,
+        "payout_if_wins":   payout,
+        "profit_if_wins":   profit,
+        "ticker":           ticker,
+        "current_price":    current_price,
+        "threshold":        parsed.get("threshold"),
+        "required_move_pct": parsed.get("required_move_pct"),
+        "resolution_type":  parsed.get("resolution_type"),
+        "reasoning":        parsed.get("reasoning", ""),
+        "closes":           market["closes"],
+        "closes_in_days":   market["closes_in_days"],
+        "status":           "open",
+        "placed_at":        datetime.now(timezone.utc).isoformat(),
+        "paper":            True,
+        "model":            "assetbot-mechanical",
+    }
+
+    state["bankroll"] = round(state["bankroll"] - stake, 2)
+    state["trades"].append(trade)
+
+    log(f"  ✅ TRADE — {position} @ {entry_price}¢ | ${stake:.2f} stake | win ${payout:.2f}")
+    log(f"     {ticker} @ ${current_price:,.2f} | needs {parsed.get('required_move_pct'):.1f}% move | {market['question'][:65]}")
+    log(f"     Bankroll now ${state['bankroll']:.2f}")
+
+    return state
+
+
+# ─────────────────────────────────────────────────────────
+#  RESOLVER
+# ─────────────────────────────────────────────────────────
+
+def resolve_open_trades(state):
+    open_trades = [t for t in state["trades"] if t["status"] == "open"]
+    if not open_trades:
+        return state
+    log(f"🔍 Checking {len(open_trades)} open position(s)...")
+    now = datetime.now(timezone.utc)
+
+    for trade in open_trades:
+        market_id = trade.get("market_id", "")
+        closes_str = trade.get("closes", "")
+        close_dt = datetime.fromisoformat(closes_str.replace("Z", "+00:00")) if closes_str else None
+
+        if close_dt and now < close_dt:
+            continue
+
+        hours_past = (now - close_dt).total_seconds() / 3600 if close_dt else 0
+
+        try:
+            r = requests.get(
+                f"https://gamma-api.polymarket.com/markets/{market_id}",
+                timeout=12
+            )
+            if r.status_code != 200:
+                continue
+            mkt = r.json()
+            active = mkt.get("active", True)
+            closed_flag = mkt.get("closed", False)
+            gamma_lagging = active and not closed_flag and hours_past > 2
+
+            if active and not closed_flag and not gamma_lagging:
+                continue
+
+            prices_raw = mkt.get("outcomePrices")
+            if not prices_raw:
+                continue
+            prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+            prices = [float(p) for p in prices]
+
+            if len(prices) >= 2:
+                yes_price = prices[0]
+                no_price  = prices[1]
+                if yes_price >= 0.99 or no_price >= 0.99:
+                    won = (no_price >= 0.99) if trade["position"] == "NO" else (yes_price >= 0.99)
+                    trade["status"]      = "closed"
+                    trade["won"]         = won
+                    trade["resolved_at"] = now.isoformat()
+                    if won:
+                        payout = round(trade["stake"] * 100 / trade["entry_price"], 2)
+                        trade["realized_pnl"] = round(payout - trade["stake"], 2)
+                        state["bankroll"] = round(state["bankroll"] + payout, 2)
+                        log(f"  ✅ WON +${trade['realized_pnl']:.2f} | {trade['market'][:55]}")
+                    else:
+                        trade["realized_pnl"] = -trade["stake"]
+                        log(f"  ❌ LOST -${trade['stake']:.2f} | {trade['market'][:55]}")
+                    if gamma_lagging:
+                        log(f"  ⚡ Gamma lag override used")
+                elif hours_past > 24:
+                    log(f"  ⚠️  {hours_past:.0f}h past close, prices not snapped — manual check needed: {trade['market'][:50]}")
+        except Exception as e:
+            log(f"  ⚠️  Resolve error {market_id}: {e}")
+
+    return state
+
+
+# ─────────────────────────────────────────────────────────
+#  PORTFOLIO SUMMARY
+# ─────────────────────────────────────────────────────────
+
+def print_portfolio(state):
+    trades   = state["trades"]
+    closed   = [t for t in trades if t["status"] == "closed"]
+    open_t   = [t for t in trades if t["status"] == "open"]
+    won      = [t for t in closed if t.get("won")]
+    pnl      = sum(t.get("realized_pnl", 0) for t in closed)
+    wr       = len(won) / len(closed) * 100 if closed else 0
+    roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
+
+    print("\n" + "═" * 60)
+    print("  ASSETBOT — Price Mismatch Scanner")
+    print("═" * 60)
+    print(f"  Bankroll      ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
+    print(f"  Realized P&L  ${pnl:+.2f}")
+    print(f"  Closed        {len(closed)} ({len(won)}W/{len(closed)-len(won)}L — {wr:.0f}% WR)")
+    print(f"  Open          {len(open_t)}")
+    print(f"  Scans         {state.get('scan_count', 0)}")
+    print("═" * 60)
+    if open_t:
+        print("\n  OPEN POSITIONS:")
+        for t in open_t:
+            print(f"  {t['position']} @ {t['entry_price']}¢ | ${t['stake']:.2f} | "
+                  f"{t['ticker']} @ ${t['current_price']:,.2f} | "
+                  f"needs {t.get('required_move_pct', 0):.1f}% | {t['market'][:45]}")
+    print()
+
+
+# ─────────────────────────────────────────────────────────
+#  MAIN
+# ─────────────────────────────────────────────────────────
+
+def single_scan():
+    now = datetime.now(timezone.utc)
+    print("\n╔══════════════════════════════════════════════════════════╗")
+    print("║  ASSETBOT  ·  Price Mismatch Scanner                     ║")
+    print(f"║  {now.strftime('%Y-%m-%d %H:%M UTC')}                                  ║")
+    print("╚══════════════════════════════════════════════════════════╝\n")
+
+    if not ANTHROPIC_API_KEY:
+        print("❌  ANTHROPIC_API_KEY not set")
+        sys.exit(1)
+
+    state = load_state()
+    state["scan_count"] = state.get("scan_count", 0) + 1
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+    # Step 1: Resolve
+    log("── Step 1: Resolve open trades ──────────────────────────")
+    state = resolve_open_trades(state)
+
+    # Step 2: Fetch markets
+    log("── Step 2: Fetch markets ────────────────────────────────")
+    markets = fetch_markets()
+    if not markets:
+        save_state(state)
+        return
+
+    # Step 3: Match assets and check mispricings
+    log("── Step 3: Scan for price mismatches ────────────────────")
+    open_ids = {t["market_id"] for t in state["trades"] if t["status"] == "open"}
+    candidates = [m for m in markets if m["id"] not in open_ids]
+
+    trades_placed = 0
+    for market in candidates:
+        ticker, asset_type = match_asset(market["question"])
+        if not ticker:
+            continue
+
+        # Get live price
+        price = get_live_price(ticker, asset_type)
+        if not price:
+            continue
+
+        # Haiku parse
+        parsed = haiku_parse_threshold(client, market["question"], price, ticker)
+        if not parsed or not parsed.get("threshold"):
+            continue
+
+        # Check mismatch
+        if not check_mismatch(parsed, market["closes_in_days"]):
+            continue
+
+        log(f"  🎯 MISMATCH: {ticker} @ ${price:,.2f} | needs {parsed.get('required_move_pct', 0):.1f}% | {market['question'][:60]}")
+        log(f"     Resolution: {parsed.get('resolution_type')} | Reasoning: {parsed.get('reasoning', '')[:80]}")
+
+        state = place_trade(market, parsed, price, ticker, state)
+        trades_placed += 1
+
+    if trades_placed == 0:
+        log("  No mispricings found this scan")
+
+    # Step 4: Save
+    log("── Step 4: Save ─────────────────────────────────────────")
+    save_state(state)
+    print_portfolio(state)
+
+
+if __name__ == "__main__":
+    if "--single-scan" in sys.argv:
+        single_scan()
+    else:
+        print("Run with --single-scan")
