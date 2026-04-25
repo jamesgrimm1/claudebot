@@ -1,5 +1,5 @@
 {
-  "bankroll": 701.48,
+  "bankroll": 868.16,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3385,10 +3385,13 @@
       "potential_payout": 184.33,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 0.129,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T08:53:47.810401+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-25T12:37:44.144140+00:00",
+      "realized_pnl": 173.27
     },
     {
       "id": "NC20260425085347810585",
@@ -3461,10 +3464,46 @@
       "placed_at": "2026-04-25T11:31:21.442624+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425123752877857",
+      "market_id": "2034448",
+      "market": "Will Elon Musk post 65-89 tweets from April 23 to April 25, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 13.29,
+      "potential_profit": 119.61,
+      "potential_payout": 132.9,
+      "closes": "2026-04-25T16:00:00+00:00",
+      "closes_in_days": 0.14,
+      "status": "open",
+      "placed_at": "2026-04-25T12:37:52.877869+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425123752877957",
+      "market_id": "2006518",
+      "market": "Valorant: DetonatioN FocusMe vs VARREL (BO3) - VCT Pacific Group Omega",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 4.36,
+      "potential_profit": 15.46,
+      "potential_payout": 19.82,
+      "closes": "2026-04-25T17:30:00+00:00",
+      "closes_in_days": 0.203,
+      "status": "open",
+      "placed_at": "2026-04-25T12:37:52.877971+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 94,
+  "scan_count": 95,
   "started": "2026-04-21T00:00:00+00:00"
 }
