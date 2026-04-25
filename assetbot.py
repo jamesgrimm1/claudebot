@@ -221,15 +221,24 @@ def get_live_price(ticker, asset_type):
 def fetch_markets():
     """Fetch all active Polymarket markets closing within MAX_DAYS."""
     try:
-        r = requests.get(
-            "https://gamma-api.polymarket.com/markets"
-            "?active=true&closed=false&limit=500&order=volume&ascending=false",
-            timeout=12
-        )
-        if r.status_code != 200:
-            log(f"⚠️  Polymarket fetch failed: HTTP {r.status_code}")
+        all_markets = []
+        for offset in [0, 500, 1000]:
+            r = requests.get(
+                "https://gamma-api.polymarket.com/markets"
+                "?active=true&closed=false&limit=500"
+                f"&offset={offset}&order=volume&ascending=false",
+                timeout=12
+            )
+            if r.status_code != 200:
+                break
+            batch = r.json()
+            if not batch:
+                break
+            all_markets.extend(batch)
+        raw = all_markets
+        if not raw:
+            log("⚠️  Polymarket returned no markets")
             return []
-        raw = r.json()
     except Exception as e:
         log(f"⚠️  Polymarket fetch failed: {e}")
         return []
