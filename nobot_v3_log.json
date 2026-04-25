@@ -1,5 +1,5 @@
 {
-  "bankroll": 1137.57,
+  "bankroll": 1205.8,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2630,10 +2630,13 @@
       "closes_in_days": 0.18,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 3773.4997589999994,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T07:41:55.263720+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-25T08:53:29.597090+00:00",
+      "realized_pnl": 19.9
     },
     {
       "id": "NB1777016515",
@@ -2899,10 +2902,13 @@
       "closes_in_days": 0.37,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 5270.281453999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T03:11:08.032264+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-25T08:53:29.978680+00:00",
+      "realized_pnl": 21.1
     },
     {
       "id": "NB1777086668",
@@ -3023,11 +3029,31 @@
       "placed_at": "2026-04-25T08:09:09.626270+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777107216",
+      "market_id": "2056978",
+      "market_slug": "highest-temperature-in-miami-on-april-25-2026-84-85f",
+      "market": "Will the highest temperature in Miami be between 84-85\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 9.11,
+      "payout_if_wins": 15.18,
+      "profit_if_wins": 6.07,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3639.8865270000056,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:36.613183+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 183,
+  "scan_count": 184,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-25T04:28:00.610079+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

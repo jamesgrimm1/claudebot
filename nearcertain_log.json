@@ -1,5 +1,5 @@
 {
-  "bankroll": 745.1,
+  "bankroll": 722.96,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3353,10 +3353,64 @@
       "placed_at": "2026-04-25T07:59:48.109422+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425085347810296",
+      "market_id": "2057143",
+      "market": "Will the highest temperature in Chongqing be 31\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 7.45,
+      "potential_profit": 54.63,
+      "potential_payout": 62.08,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.129,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:47.810315+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425085347810388",
+      "market_id": "2057385",
+      "market": "Will the highest temperature in Guangzhou be 29\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 11.06,
+      "potential_profit": 173.27,
+      "potential_payout": 184.33,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.129,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:47.810401+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425085347810585",
+      "market_id": "2001699",
+      "market": "Will 25-49 ships transit the Strait of Hormuz between April 20-April 26?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 3.63,
+      "potential_profit": 12.87,
+      "potential_payout": 16.5,
+      "closes": "2026-04-26T00:00:00+00:00",
+      "closes_in_days": 0.629,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:47.810602+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 90,
+  "scan_count": 91,
   "started": "2026-04-21T00:00:00+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 812.05,
+  "bankroll": 814.5,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4940,10 +4940,13 @@
       "closes_in_days": 0.18,
       "closes": "2026-04-24T12:00:00+00:00",
       "volume": 3773.4997589999994,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T07:41:47.173745+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T08:53:21.384109+00:00",
+      "realized_pnl": 1.88
     },
     {
       "id": "NB1777016507",
@@ -5430,10 +5433,13 @@
       "closes_in_days": 0.37,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 5270.281453999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T03:10:58.376755+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T08:53:22.088401+00:00",
+      "realized_pnl": 3.02
     },
     {
       "id": "NB1777086658",
@@ -5574,11 +5580,51 @@
       "placed_at": "2026-04-25T07:59:29.706254+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777107208",
+      "market_id": "2056978",
+      "market_slug": "highest-temperature-in-miami-on-april-25-2026-84-85f",
+      "market": "Will the highest temperature in Miami be between 84-85\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 3.41,
+      "payout_if_wins": 5.68,
+      "profit_if_wins": 2.27,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3639.8865270000056,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:28.904939+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777107208",
+      "market_id": "2056964",
+      "market_slug": "highest-temperature-in-atlanta-on-april-25-2026-76-77f",
+      "market": "Will the highest temperature in Atlanta be between 76-77\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.35,
+      "payout_if_wins": 5.98,
+      "profit_if_wins": 2.63,
+      "category": "weather",
+      "closes_in_days": 0.13,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3415.9167509999984,
+      "status": "open",
+      "placed_at": "2026-04-25T08:53:28.904983+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 20.62,
   "daily_reset": "2026-04-25",
-  "scan_count": 184,
+  "scan_count": 185,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-25T07:59:19.815268+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
