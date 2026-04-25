@@ -1,5 +1,5 @@
 {
-  "bankroll": 806.03,
+  "bankroll": 822.71,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5135,10 +5135,13 @@
       "closes_in_days": 0.47,
       "closes": "2026-04-25T04:00:00+00:00",
       "volume": 7533.653389000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T16:43:47.051775+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T05:11:09.968496+00:00",
+      "realized_pnl": 3.14
     },
     {
       "id": "NB1777049500",
@@ -5155,10 +5158,13 @@
       "closes_in_days": 0.46,
       "closes": "2026-04-25T04:00:00+00:00",
       "volume": 38074.33251400001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T16:51:40.061500+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-25T05:11:10.017413+00:00",
+      "realized_pnl": 6.05
     },
     {
       "id": "NB1777052586",
@@ -5462,11 +5468,31 @@
       "placed_at": "2026-04-25T03:10:58.376848+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777093878",
+      "market_id": "2057153",
+      "market_slug": "highest-temperature-in-beijing-on-april-25-2026-28c",
+      "market": "Will the highest temperature in Beijing be 28\u00b0C on April 25?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 3.43,
+      "payout_if_wins": 5.53,
+      "profit_if_wins": 2.1,
+      "category": "weather",
+      "closes_in_days": 0.28,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3864.5205160000046,
+      "status": "open",
+      "placed_at": "2026-04-25T05:11:18.525209+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 17.04,
   "daily_reset": "2026-04-25",
-  "scan_count": 177,
+  "scan_count": 178,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T18:36:01.752031+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

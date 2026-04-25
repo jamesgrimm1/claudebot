@@ -1,5 +1,5 @@
 {
-  "bankroll": 844.93,
+  "bankroll": 836.48,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3119,10 +3119,28 @@
       "placed_at": "2026-04-25T04:54:01.849598+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425051139432829",
+      "market_id": "2057289",
+      "market": "Will the highest temperature in Busan be 24\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 15,
+      "entry_yes_price": 85,
+      "stake": 8.45,
+      "potential_profit": 47.88,
+      "potential_payout": 56.33,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.284,
+      "status": "open",
+      "placed_at": "2026-04-25T05:11:39.432847+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 83,
+  "scan_count": 84,
   "started": "2026-04-21T00:00:00+00:00"
 }

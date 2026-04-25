@@ -1,7 +1,7 @@
 {
   "bankroll": 1000.0,
   "trades": [],
-  "scan_count": 5,
+  "scan_count": 6,
   "started": "2026-04-25T02:01:03.846970+00:00",
   "price_snapshot": {
     "date": "2026-04-25",
