@@ -1,5 +1,5 @@
 {
-  "bankroll": 2252.35,
+  "bankroll": 1914.5,
   "trades": [
     {
       "id": "T1775098669",
@@ -1088,11 +1088,43 @@
       "won": false,
       "resolved_at": "2026-04-24T22:32:09.282511+00:00",
       "realized_pnl": -86.45
+    },
+    {
+      "id": "T1777134799",
+      "tier": 1,
+      "market_id": "2072232",
+      "market_slug": "will-wti-dip-to-60-by-april-27-2026",
+      "market": "Will WTI Crude Oil (WTI) hit (LOW) $60 Week of April 27 2026?",
+      "position": "NO",
+      "entry_price": 52,
+      "stake": 337.85,
+      "potential_return": 649.71,
+      "potential_profit": 311.86,
+      "confidence": 90,
+      "true_prob": 3,
+      "market_prob": 48,
+      "category": "commodities",
+      "closes_in_days": 6.2,
+      "closes": "2026-05-01T21:00:00+00:00",
+      "research_summary": "WTI currently at $106 (confirmed April 24). Hitting $60 requires a 43% decline in a single week \u2014 historically unprecedented even during the sharpest oil crashes. Hormuz disruption premium unwind could bring prices toward $65-75 over weeks/months, but not $60 in 5 trading days. Low volume ($100) suggests illiquid mispricing.",
+      "key_factors": [
+        "WTI at $106 needs impossible 43% weekly decline to hit $60",
+        "No historical precedent for single-week WTI drop of this magnitude",
+        "Even full Hormuz premium unwind would take weeks, not days",
+        "Ultra-low volume ($100) signals inefficient/illiquid market pricing"
+      ],
+      "bear_case": "Catastrophic Hormuz resolution + simultaneous demand shock + flash crash could create extreme volatility, but even this scenario unlikely to reach $60 within one week",
+      "kelly_tier": "full-Kelly (15.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-04-25T16:33:19.507765+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 240,
+  "scan_count": 241,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-25",
   "last_tier2_scan": "2026-04-25",
