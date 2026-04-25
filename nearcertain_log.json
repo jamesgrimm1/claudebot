@@ -1,5 +1,5 @@
 {
-  "bankroll": 836.48,
+  "bankroll": 819.86,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3137,10 +3137,64 @@
       "placed_at": "2026-04-25T05:11:39.432847+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425052146332641",
+      "market_id": "2057334",
+      "market": "Will the highest temperature in Kuala Lumpur be 36\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 8.36,
+      "potential_profit": 55.95,
+      "potential_payout": 64.31,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.277,
+      "status": "open",
+      "placed_at": "2026-04-25T05:21:46.332657+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425052146332720",
+      "market_id": "2057019",
+      "market": "Will the highest temperature in Lucknow be 43\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 4.14,
+      "potential_profit": 12.42,
+      "potential_payout": 16.56,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.277,
+      "status": "open",
+      "placed_at": "2026-04-25T05:21:46.332730+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425052146332805",
+      "market_id": "2057421",
+      "market": "Will the highest temperature in Manila be 36\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 4.12,
+      "potential_profit": 14.61,
+      "potential_payout": 18.73,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.277,
+      "status": "open",
+      "placed_at": "2026-04-25T05:21:46.332815+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 84,
+  "scan_count": 85,
   "started": "2026-04-21T00:00:00+00:00"
 }
