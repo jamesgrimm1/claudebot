@@ -1,5 +1,5 @@
 {
-  "bankroll": 819.86,
+  "bankroll": 815.76,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3191,10 +3191,28 @@
       "placed_at": "2026-04-25T05:21:46.332815+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425060021693159",
+      "market_id": "2057066",
+      "market": "Will the highest temperature in Hong Kong be 25\u00b0C on April 25?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 21,
+      "entry_yes_price": 79,
+      "stake": 4.1,
+      "potential_profit": 15.42,
+      "potential_payout": 19.52,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "closes_in_days": 0.25,
+      "status": "open",
+      "placed_at": "2026-04-25T06:00:21.693180+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 86,
+  "scan_count": 87,
   "started": "2026-04-21T00:00:00+00:00"
 }
