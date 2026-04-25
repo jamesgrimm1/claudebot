@@ -1,5 +1,5 @@
 {
-  "bankroll": 806.18,
+  "bankroll": 802.15,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5487,11 +5487,31 @@
       "placed_at": "2026-04-25T00:54:45.387682+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777079964",
+      "market_id": "2056945",
+      "market_slug": "highest-temperature-in-nyc-on-april-25-2026-50-51f",
+      "market": "Will the highest temperature in New York City be between 50-51\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 4.03,
+      "payout_if_wins": 8.57,
+      "profit_if_wins": 4.54,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3944.8564359999996,
+      "status": "open",
+      "placed_at": "2026-04-25T01:19:24.054691+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 13.36,
   "daily_reset": "2026-04-25",
-  "scan_count": 167,
+  "scan_count": 168,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T15:57:40.229259+00:00"
 }

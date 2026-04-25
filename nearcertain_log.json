@@ -1,5 +1,5 @@
 {
-  "bankroll": 943.75,
+  "bankroll": 939.03,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -2885,10 +2885,28 @@
       "placed_at": "2026-04-25T00:55:18.290011+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260425011954425522",
+      "market_id": "1773908",
+      "market": "CA Platense vs. CA San Lorenzo de Almagro: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 4.72,
+      "potential_profit": 14.16,
+      "potential_payout": 18.88,
+      "closes": "2026-04-25T17:00:00+00:00",
+      "closes_in_days": 0.653,
+      "status": "open",
+      "placed_at": "2026-04-25T01:19:54.425538+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 77,
+  "scan_count": 78,
   "started": "2026-04-21T00:00:00+00:00"
 }

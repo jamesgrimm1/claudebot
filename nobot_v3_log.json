@@ -1,5 +1,5 @@
 {
-  "bankroll": 1234.85,
+  "bankroll": 1216.33,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2840,11 +2840,31 @@
       "placed_at": "2026-04-25T00:55:06.716599+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777079984",
+      "market_id": "2056945",
+      "market_slug": "highest-temperature-in-nyc-on-april-25-2026-50-51f",
+      "market": "Will the highest temperature in New York City be between 50-51\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 18.52,
+      "payout_if_wins": 39.4,
+      "profit_if_wins": 20.88,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3944.8564359999996,
+      "status": "open",
+      "placed_at": "2026-04-25T01:19:44.024988+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-25",
-  "scan_count": 167,
+  "scan_count": 168,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-24T15:58:11.837371+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

@@ -1,5 +1,5 @@
 {
-  "bankroll": 812.51,
+  "bankroll": 810.8,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5356,11 +5356,31 @@
       "placed_at": "2026-04-25T00:54:57.121076+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777079975",
+      "market_id": "2056945",
+      "market_slug": "highest-temperature-in-nyc-on-april-25-2026-50-51f",
+      "market": "Will the highest temperature in New York City be between 50-51\u00b0F on April 25?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 1.71,
+      "payout_if_wins": 3.64,
+      "profit_if_wins": 1.93,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-25T12:00:00+00:00",
+      "volume": 3944.8564359999996,
+      "status": "open",
+      "placed_at": "2026-04-25T01:19:35.026859+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 12.94,
   "daily_reset": "2026-04-25",
-  "scan_count": 171,
+  "scan_count": 172,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-24T18:36:01.752031+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
