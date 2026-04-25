@@ -128,12 +128,18 @@ def should_take_snapshot(state):
     if snap_date == today:
         return False  # already have today's snapshot
 
-    # Take snapshot if: after 9pm UTC, OR it's past midnight UTC and we missed it
+    # If no snapshot ever taken, fetch immediately
+    if not snap_date:
+        return True
+
+    # Take snapshot if: after 9pm UTC (US market close)
     if now.hour >= SNAPSHOT_HOUR_UTC:
         return True
-    if now.hour < FORCE_BY_HOUR_UTC + 1 and snap_date != today:
-        # Past midnight, no snapshot yet — force it
+
+    # Past midnight UTC and still no snapshot for today — force it (8am Bali)
+    if now.hour < FORCE_BY_HOUR_UTC + 1:
         return True
+
     return False
 
 def take_price_snapshot(state):
