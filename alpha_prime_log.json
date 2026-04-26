@@ -1,5 +1,5 @@
 {
-  "bankroll": 2586.63,
+  "bankroll": 3258.63,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -9,9 +9,9 @@
       "position": "NO",
       "entry_no_price": 10,
       "entry_yes_price": 90,
-      "stake": 30.0,
-      "potential_profit": 89.37,
-      "potential_payout": 99.3,
+      "stake": 2.0,
+      "potential_profit": 18.0,
+      "potential_payout": 20.0,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.246,
       "status": "closed",
@@ -20,8 +20,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T03:29:46.099095+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260422060534289767",
@@ -31,9 +31,9 @@
       "position": "NO",
       "entry_no_price": 11,
       "entry_yes_price": 89,
-      "stake": 30.0,
-      "potential_profit": 51.94,
-      "potential_payout": 58.36,
+      "stake": 2.0,
+      "potential_profit": 16.18,
+      "potential_payout": 18.18,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.246,
       "status": "closed",
@@ -42,8 +42,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-22T19:24:17.702422+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260422060534289828",
@@ -75,9 +75,9 @@
       "position": "NO",
       "entry_no_price": 8,
       "entry_yes_price": 92,
-      "stake": 30.0,
-      "potential_profit": 106.72,
-      "potential_payout": 116.0,
+      "stake": 2.0,
+      "potential_profit": 23.0,
+      "potential_payout": 25.0,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.164,
       "status": "closed",
@@ -86,8 +86,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-22T19:24:18.007158+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260422080347022649",
@@ -97,9 +97,9 @@
       "position": "NO",
       "entry_no_price": 6,
       "entry_yes_price": 94,
-      "stake": 30.0,
-      "potential_profit": 143.19,
-      "potential_payout": 152.33,
+      "stake": 2.0,
+      "potential_profit": 31.33,
+      "potential_payout": 33.33,
       "closes": "2026-04-22T12:00:00+00:00",
       "closes_in_days": 0.164,
       "status": "closed",
@@ -108,8 +108,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T01:01:20.568406+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423061130861514",
@@ -119,9 +119,9 @@
       "position": "NO",
       "entry_no_price": 7,
       "entry_yes_price": 93,
-      "stake": 30.0,
-      "potential_profit": 147.07,
-      "potential_payout": 158.14,
+      "stake": 2.0,
+      "potential_profit": 26.57,
+      "potential_payout": 28.57,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.242,
       "status": "closed",
@@ -130,8 +130,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T20:59:42.655090+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423061130861603",
@@ -141,9 +141,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 53.31,
-      "potential_payout": 60.58,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.242,
       "status": "closed",
@@ -152,8 +152,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T19:18:13.205177+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423061130861714",
@@ -163,9 +163,9 @@
       "position": "NO",
       "entry_no_price": 14,
       "entry_yes_price": 86,
-      "stake": 30.0,
-      "potential_profit": 44.23,
-      "potential_payout": 51.43,
+      "stake": 2.0,
+      "potential_profit": 12.29,
+      "potential_payout": 14.29,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.242,
       "status": "closed",
@@ -174,8 +174,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T19:18:13.274932+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423073649788530",
@@ -185,9 +185,9 @@
       "position": "NO",
       "entry_no_price": 10,
       "entry_yes_price": 90,
-      "stake": 30.0,
-      "potential_profit": 95.22,
-      "potential_payout": 105.8,
+      "stake": 2.0,
+      "potential_profit": 18.0,
+      "potential_payout": 20.0,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
       "status": "closed",
@@ -196,8 +196,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T20:59:42.871396+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423073649788643",
@@ -207,9 +207,9 @@
       "position": "NO",
       "entry_no_price": 9,
       "entry_yes_price": 91,
-      "stake": 30.0,
-      "potential_profit": 104.65,
-      "potential_payout": 115.0,
+      "stake": 2.0,
+      "potential_profit": 20.22,
+      "potential_payout": 22.22,
       "closes": "2026-04-23T12:00:00+00:00",
       "closes_in_days": 0.183,
       "status": "closed",
@@ -218,8 +218,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-23T20:59:42.999613+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260423073649788702",
@@ -339,9 +339,9 @@
       "position": "NO",
       "entry_no_price": 8,
       "entry_yes_price": 92,
-      "stake": 30.0,
-      "potential_profit": 168.59,
-      "potential_payout": 183.25,
+      "stake": 2.0,
+      "potential_profit": 23.0,
+      "potential_payout": 25.0,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.243,
       "status": "closed",
@@ -350,8 +350,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:56.977122+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424060937814612",
@@ -361,9 +361,9 @@
       "position": "NO",
       "entry_no_price": 10,
       "entry_yes_price": 90,
-      "stake": 30.0,
-      "potential_profit": 128.61,
-      "potential_payout": 142.9,
+      "stake": 2.0,
+      "potential_profit": 18.0,
+      "potential_payout": 20.0,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.243,
       "status": "closed",
@@ -372,8 +372,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.086614+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424060937814703",
@@ -383,9 +383,9 @@
       "position": "NO",
       "entry_no_price": 11,
       "entry_yes_price": 89,
-      "stake": 30.0,
-      "potential_profit": 75.97,
-      "potential_payout": 85.36,
+      "stake": 2.0,
+      "potential_profit": 16.18,
+      "potential_payout": 18.18,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.243,
       "status": "closed",
@@ -394,8 +394,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.129647+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424060937814768",
@@ -405,9 +405,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 68.13,
-      "potential_payout": 77.42,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.243,
       "status": "closed",
@@ -416,8 +416,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.174378+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424074207590334",
@@ -449,9 +449,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 64.31,
-      "potential_payout": 73.08,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.179,
       "status": "closed",
@@ -460,8 +460,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T23:32:01.042827+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424074207590493",
@@ -471,9 +471,9 @@
       "position": "NO",
       "entry_no_price": 8,
       "entry_yes_price": 92,
-      "stake": 30.0,
-      "potential_profit": 149.73,
-      "potential_payout": 162.75,
+      "stake": 2.0,
+      "potential_profit": 23.0,
+      "potential_payout": 25.0,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.179,
       "status": "closed",
@@ -482,8 +482,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.492128+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424074207590578",
@@ -493,9 +493,9 @@
       "position": "NO",
       "entry_no_price": 6,
       "entry_yes_price": 94,
-      "stake": 30.0,
-      "potential_profit": 201.0,
-      "potential_payout": 213.83,
+      "stake": 2.0,
+      "potential_profit": 31.33,
+      "potential_payout": 33.33,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.179,
       "status": "closed",
@@ -504,8 +504,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.535492+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424074207590659",
@@ -515,9 +515,9 @@
       "position": "NO",
       "entry_no_price": 7,
       "entry_yes_price": 93,
-      "stake": 30.0,
-      "potential_profit": 167.8,
-      "potential_payout": 180.43,
+      "stake": 2.0,
+      "potential_profit": 26.57,
+      "potential_payout": 28.57,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.179,
       "status": "closed",
@@ -526,8 +526,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.601836+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424090520856155",
@@ -537,9 +537,9 @@
       "position": "NO",
       "entry_no_price": 10,
       "entry_yes_price": 90,
-      "stake": 30.0,
-      "potential_profit": 109.8,
-      "potential_payout": 122.0,
+      "stake": 2.0,
+      "potential_profit": 18.0,
+      "potential_payout": 20.0,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.121,
       "status": "closed",
@@ -548,8 +548,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.818838+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424090520856254",
@@ -559,9 +559,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 58.74,
-      "potential_payout": 66.75,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.121,
       "status": "closed",
@@ -570,8 +570,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T14:44:57.860701+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424090520856329",
@@ -581,9 +581,9 @@
       "position": "NO",
       "entry_no_price": 14,
       "entry_yes_price": 86,
-      "stake": 30.0,
-      "potential_profit": 48.71,
-      "potential_payout": 56.64,
+      "stake": 2.0,
+      "potential_profit": 12.29,
+      "potential_payout": 14.29,
       "closes": "2026-04-24T12:00:00+00:00",
       "closes_in_days": 0.121,
       "status": "closed",
@@ -592,8 +592,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-24T16:43:58.863681+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260424090520856404",
@@ -625,9 +625,9 @@
       "position": "NO",
       "entry_no_price": 14,
       "entry_yes_price": 86,
-      "stake": 30.0,
-      "potential_profit": 50.13,
-      "potential_payout": 58.29,
+      "stake": 2.0,
+      "potential_profit": 12.29,
+      "potential_payout": 14.29,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 0.242,
       "status": "closed",
@@ -636,8 +636,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-25T14:38:26.419843+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260425061102013820",
@@ -647,9 +647,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 58.96,
-      "potential_payout": 67.0,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 0.242,
       "status": "closed",
@@ -658,8 +658,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-25T14:38:26.503289+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260425061531461613",
@@ -691,9 +691,9 @@
       "position": "NO",
       "entry_no_price": 7,
       "entry_yes_price": 93,
-      "stake": 30.0,
-      "potential_profit": 150.79,
-      "potential_payout": 162.14,
+      "stake": 2.0,
+      "potential_profit": 26.57,
+      "potential_payout": 28.57,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 0.167,
       "status": "closed",
@@ -702,8 +702,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-25T14:38:26.952101+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260425085347810296",
@@ -713,9 +713,9 @@
       "position": "NO",
       "entry_no_price": 12,
       "entry_yes_price": 88,
-      "stake": 30.0,
-      "potential_profit": 54.63,
-      "potential_payout": 62.08,
+      "stake": 2.0,
+      "potential_profit": 14.67,
+      "potential_payout": 16.67,
       "closes": "2026-04-25T12:00:00+00:00",
       "closes_in_days": 0.129,
       "status": "closed",
@@ -724,8 +724,8 @@
       "model": "alpha-prime",
       "won": false,
       "resolved_at": "2026-04-25T14:38:27.010498+00:00",
-      "realized_pnl": -30.0,
-      "pattern": "A"
+      "realized_pnl": -2.0,
+      "pattern": "F"
     },
     {
       "id": "NC20260425085347810388",
@@ -820,8 +820,21 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 3,
+  "scan_count": 1,
   "started": "2026-04-21T00:00:00+00:00",
-  "note": "Alpha-Prime \u2014 seeded from NearCertain alpha log, qualifying trades only, stakes recalibrated",
-  "last_watchlist_update": "2026-W16"
+  "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
+  "last_watchlist_update": "2026-W16",
+  "recalibration_summary": {
+    "date": "2026-04-26",
+    "changes": [
+      "Pattern A removed from spec",
+      "Non-watchlist weather exact-temp NO trades downgraded to Pattern F micro-probe ($2 stake)",
+      "Watchlist (Jakarta/Karachi/Guangzhou) trades unchanged at $40 stake",
+      "Watchlist expansion criterion loosened: 2 wins in 14 days adds a city; 0/4 in 14 days removes"
+    ],
+    "pattern_a_trades_converted": 24,
+    "savings_vs_original": 672.0,
+    "original_bankroll": 2586.63,
+    "recalibrated_bankroll": 3258.63
+  }
 }
