@@ -1,5 +1,5 @@
 {
-  "bankroll": 812.0,
+  "bankroll": 795.82,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -4277,10 +4277,46 @@
       "placed_at": "2026-04-26T09:43:44.304392+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426103635358755",
+      "market_id": "2023246",
+      "market": "LoL: Ultra Prime vs LGD Gaming (BO3) - LPL Group Nirvana",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 4.06,
+      "potential_profit": 14.39,
+      "potential_payout": 18.45,
+      "closes": "2026-04-26T15:00:00+00:00",
+      "closes_in_days": 0.183,
+      "status": "open",
+      "placed_at": "2026-04-26T10:36:35.358775+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426103635358911",
+      "market_id": "2074360",
+      "market": "Will the highest temperature in Dallas be 88\u00b0F or higher on April 27?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 12.12,
+      "potential_profit": 189.88,
+      "potential_payout": 202.0,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "closes_in_days": 1.058,
+      "status": "open",
+      "placed_at": "2026-04-26T10:36:35.358924+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 44.85,
   "daily_reset": "2026-04-26",
-  "scan_count": 117,
+  "scan_count": 118,
   "started": "2026-04-21T00:00:00+00:00"
 }
