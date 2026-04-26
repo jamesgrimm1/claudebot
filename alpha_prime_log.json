@@ -1,5 +1,5 @@
 {
-  "bankroll": 3412.48,
+  "bankroll": 3367.7,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -819,11 +819,35 @@
       "won": true,
       "resolved_at": "2026-04-26T09:43:45.108182+00:00",
       "realized_pnl": 113.85
+    },
+    {
+      "id": "AP1777224660561",
+      "market_id": "1966084",
+      "market_slug": "fl1-olm-ogc-2026-04-26-total-1pt5",
+      "market": "Olympique de Marseille vs. OGC Nice: O/U 1.5",
+      "pattern": "B",
+      "triggered_by": "soccer_ou no=17 cid=0.051",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 17,
+      "entry_yes_price": 83,
+      "stake": 44.78,
+      "payout_if_wins": 263.41,
+      "profit_if_wins": 218.63,
+      "volume_at_entry": 895.618462,
+      "closes_in_days": 0.051,
+      "closes": "2026-04-26T18:45:00+00:00",
+      "bankroll_at_entry": 3412.48,
+      "bankroll_fraction": 0.0131,
+      "status": "open",
+      "placed_at": "2026-04-26T17:31:00.561244+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 14,
+  "scan_count": 15,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W16",
