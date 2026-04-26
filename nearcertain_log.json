@@ -1,5 +1,5 @@
 {
-  "bankroll": 795.82,
+  "bankroll": 838.85,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3679,10 +3679,13 @@
       "potential_payout": 80.21,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.438,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:29:38.189558+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T12:39:46.771546+00:00",
+      "realized_pnl": -11.23
     },
     {
       "id": "NC20260426012938189641",
@@ -3715,10 +3718,13 @@
       "potential_payout": 41.05,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.438,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:29:38.189730+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T12:39:46.993682+00:00",
+      "realized_pnl": -8.21
     },
     {
       "id": "NC20260426012938189785",
@@ -3751,10 +3757,13 @@
       "potential_payout": 267.5,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.438,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:29:38.189864+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T12:39:47.232683+00:00",
+      "realized_pnl": -16.05
     },
     {
       "id": "NC20260426012938189927",
@@ -3895,10 +3904,13 @@
       "potential_payout": 22.95,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.302,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T04:45:24.858958+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-26T12:39:48.173179+00:00",
+      "realized_pnl": 17.9
     },
     {
       "id": "NC20260426044524859018",
@@ -3949,10 +3961,13 @@
       "potential_payout": 20.71,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.295,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T04:55:34.180230+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T12:39:48.372103+00:00",
+      "realized_pnl": -4.97
     },
     {
       "id": "NC20260426050405094670",
@@ -4165,10 +4180,13 @@
       "potential_payout": 32.85,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.175,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T07:48:02.178728+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-26T12:39:50.526452+00:00",
+      "realized_pnl": 26.28
     },
     {
       "id": "NC20260426074802178828",
@@ -4313,10 +4331,28 @@
       "placed_at": "2026-04-26T10:36:35.358924+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426123959229616",
+      "market_id": "2074723",
+      "market": "Will the highest temperature in Panama City be 32\u00b0C or higher on April 27?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 12.77,
+      "potential_profit": 114.93,
+      "potential_payout": 127.7,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "closes_in_days": 0.972,
+      "status": "open",
+      "placed_at": "2026-04-26T12:39:59.229631+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 44.85,
+  "daily_loss": 85.31,
   "daily_reset": "2026-04-26",
-  "scan_count": 119,
+  "scan_count": 120,
   "started": "2026-04-21T00:00:00+00:00"
 }
