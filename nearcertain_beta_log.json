@@ -1,5 +1,5 @@
 {
-  "bankroll": 968.83,
+  "bankroll": 967.87,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -4476,10 +4476,13 @@
       "potential_payout": 1.71,
       "closes": "2026-04-25T00:00:00+00:00",
       "closes_in_days": 0.225,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T18:36:42.435729+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T05:12:01.687172+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260424194343770356",
@@ -9016,11 +9019,47 @@
       "placed_at": "2026-04-26T05:04:16.900897+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426051213495982",
+      "market_id": "2065046",
+      "market": "Will the highest temperature in Singapore be 32\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.48,
+      "potential_profit": 2.52,
+      "potential_payout": 3.0,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.283,
+      "status": "open",
+      "placed_at": "2026-04-26T05:12:13.496010+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426051213496268",
+      "market_id": "2064975",
+      "market": "Will the highest temperature in Lucknow be 42\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 35,
+      "entry_yes_price": 65,
+      "stake": 0.48,
+      "potential_profit": 0.89,
+      "potential_payout": 1.37,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.283,
+      "status": "open",
+      "placed_at": "2026-04-26T05:12:13.496284+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 14.92,
+  "daily_loss": 15.4,
   "daily_reset": "2026-04-26",
-  "scan_count": 56,
+  "scan_count": 57,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }

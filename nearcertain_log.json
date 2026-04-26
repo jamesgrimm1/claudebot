@@ -1,5 +1,5 @@
 {
-  "bankroll": 973.22,
+  "bankroll": 965.92,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3965,10 +3965,28 @@
       "placed_at": "2026-04-26T05:04:05.094694+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426051159008477",
+      "market_id": "2065046",
+      "market": "Will the highest temperature in Singapore be 32\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 7.3,
+      "potential_profit": 38.33,
+      "potential_payout": 45.62,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.283,
+      "status": "open",
+      "placed_at": "2026-04-26T05:11:59.008499+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 22.2,
   "daily_reset": "2026-04-26",
-  "scan_count": 111,
+  "scan_count": 112,
   "started": "2026-04-21T00:00:00+00:00"
 }
