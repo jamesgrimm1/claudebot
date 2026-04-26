@@ -1,5 +1,5 @@
 {
-  "bankroll": 875.65,
+  "bankroll": 862.56,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3577,10 +3577,13 @@
       "potential_payout": 33.12,
       "closes": "2026-04-26T05:00:00+00:00",
       "closes_in_days": 0.728,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T11:31:21.442624+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T07:47:50.495580+00:00",
+      "realized_pnl": -5.3
     },
     {
       "id": "NC20260425123752877857",
@@ -4148,10 +4151,46 @@
       "placed_at": "2026-04-26T06:54:44.306992+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426074802178712",
+      "market_id": "2065342",
+      "market": "Will the highest temperature in Guangzhou be 31\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 6.57,
+      "potential_profit": 26.28,
+      "potential_payout": 32.85,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.175,
+      "status": "open",
+      "placed_at": "2026-04-26T07:48:02.178728+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426074802178828",
+      "market_id": "2064749",
+      "market": "Will the lowest temperature in New York City be between 42-43\u00b0F on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 6.52,
+      "potential_profit": 26.08,
+      "potential_payout": 32.6,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.175,
+      "status": "open",
+      "placed_at": "2026-04-26T07:48:02.178844+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 39.55,
+  "daily_loss": 44.85,
   "daily_reset": "2026-04-26",
-  "scan_count": 114,
+  "scan_count": 115,
   "started": "2026-04-21T00:00:00+00:00"
 }
