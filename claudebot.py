@@ -2182,8 +2182,8 @@ def place_paper_trade(rec, markets, state, tier_num, news_triggered=False):
         log(f"  ⛔ Volume ${market_volume:.0f} < $1,000 minimum — skip")
         return state
     if market_volume < MIN_VOL_LARGE and stake > state["bankroll"] * STAKE_PCT_CAP:
-        log(f"  ⛔ Volume ${market_volume:.0f} < $5,000 and stake "
-            f"${stake:.2f} ({stake/state["bankroll"]*100:.1f}%) > 5% — skip")
+        _pct = round(stake / state["bankroll"] * 100, 1)
+        log(f"  ⛔ Volume ${market_volume:.0f} < $5,000 and stake ${stake:.2f} ({_pct}%) > 5% — skip")
         return state
 
     if stake < 1.00:
