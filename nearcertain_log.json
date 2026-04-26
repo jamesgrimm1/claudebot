@@ -1,5 +1,5 @@
 {
-  "bankroll": 907.06,
+  "bankroll": 875.65,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -4094,10 +4094,64 @@
       "placed_at": "2026-04-26T06:07:39.214305+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426065444306637",
+      "market_id": "2065244",
+      "market": "Will the highest temperature in Busan be 23\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 13.61,
+      "potential_profit": 122.49,
+      "potential_payout": 136.1,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.212,
+      "status": "open",
+      "placed_at": "2026-04-26T06:54:44.306659+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426065444306788",
+      "market_id": "2065145",
+      "market": "Will the highest temperature in Shenzhen be 28\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 13.4,
+      "potential_profit": 209.93,
+      "potential_payout": 223.33,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.212,
+      "status": "open",
+      "placed_at": "2026-04-26T06:54:44.306802+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426065444306973",
+      "market_id": "2033982",
+      "market": "Valorant: MIBR vs Cloud9 (BO3) - VCT Americas Stage 1 Group Alpha",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.4,
+      "potential_profit": 13.93,
+      "potential_payout": 18.33,
+      "closes": "2026-04-27T06:00:00+00:00",
+      "closes_in_days": 0.962,
+      "status": "open",
+      "placed_at": "2026-04-26T06:54:44.306992+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 39.55,
   "daily_reset": "2026-04-26",
-  "scan_count": 113,
+  "scan_count": 114,
   "started": "2026-04-21T00:00:00+00:00"
 }
