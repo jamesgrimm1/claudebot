@@ -1,5 +1,5 @@
 {
-  "bankroll": 790.71,
+  "bankroll": 789.05,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6154,11 +6154,31 @@
       "placed_at": "2026-04-26T06:54:24.588644+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777191084",
+      "market_id": "2065068",
+      "market_slug": "highest-temperature-in-madrid-on-april-26-2026-26c",
+      "market": "Will the highest temperature in Madrid be 26\u00b0C on April 26?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 1.66,
+      "payout_if_wins": 3.61,
+      "profit_if_wins": 1.95,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "volume": 3259.522367000001,
+      "status": "open",
+      "placed_at": "2026-04-26T08:11:24.799908+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 12.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 209,
+  "scan_count": 210,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-25T20:27:38.583033+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

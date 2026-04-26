@@ -1,5 +1,5 @@
 {
-  "bankroll": 862.56,
+  "bankroll": 843.25,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -4187,10 +4187,46 @@
       "placed_at": "2026-04-26T07:48:02.178844+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426081148401251",
+      "market_id": "2065330",
+      "market": "Will the highest temperature in Cape Town be 17\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 12.94,
+      "potential_profit": 148.81,
+      "potential_payout": 161.75,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.159,
+      "status": "open",
+      "placed_at": "2026-04-26T08:11:48.401276+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426081148401438",
+      "market_id": "2064976",
+      "market": "Will the highest temperature in Lucknow be 43\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 19,
+      "entry_yes_price": 81,
+      "stake": 6.37,
+      "potential_profit": 27.16,
+      "potential_payout": 33.53,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.159,
+      "status": "open",
+      "placed_at": "2026-04-26T08:11:48.401455+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 44.85,
   "daily_reset": "2026-04-26",
-  "scan_count": 115,
+  "scan_count": 116,
   "started": "2026-04-21T00:00:00+00:00"
 }

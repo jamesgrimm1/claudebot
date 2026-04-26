@@ -1,5 +1,5 @@
 {
-  "bankroll": 782.89,
+  "bankroll": 778.98,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6285,11 +6285,31 @@
       "placed_at": "2026-04-26T06:54:14.250886+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777191073",
+      "market_id": "2065068",
+      "market_slug": "highest-temperature-in-madrid-on-april-26-2026-26c",
+      "market": "Will the highest temperature in Madrid be 26\u00b0C on April 26?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 3.91,
+      "payout_if_wins": 8.5,
+      "profit_if_wins": 4.59,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "volume": 3259.522367000001,
+      "status": "open",
+      "placed_at": "2026-04-26T08:11:13.026419+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 12.16,
   "daily_reset": "2026-04-26",
-  "scan_count": 205,
+  "scan_count": 206,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-26T04:44:41.205990+00:00"
 }

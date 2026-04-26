@@ -820,7 +820,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 5,
+  "scan_count": 6,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W16",
