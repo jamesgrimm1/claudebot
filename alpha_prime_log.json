@@ -1,5 +1,5 @@
 {
-  "bankroll": 3367.7,
+  "bankroll": 3318.87,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -843,11 +843,35 @@
       "placed_at": "2026-04-26T17:31:00.561244+00:00",
       "paper": true,
       "model": "alpha-prime"
+    },
+    {
+      "id": "AP1777228582538",
+      "market_id": "2031688",
+      "market_slug": "por-avs-spo-2026-04-26-total-1pt5",
+      "market": "AVS Futebol vs. Sporting CP: O/U 1.5",
+      "pattern": "B",
+      "triggered_by": "soccer_ou no=10 cid=0.037",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 48.83,
+      "payout_if_wins": 488.3,
+      "profit_if_wins": 439.47,
+      "volume_at_entry": 976.6440249999999,
+      "closes_in_days": 0.037,
+      "closes": "2026-04-26T19:30:00+00:00",
+      "bankroll_at_entry": 3367.7,
+      "bankroll_fraction": 0.0145,
+      "status": "open",
+      "placed_at": "2026-04-26T18:36:22.538123+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 15,
+  "scan_count": 16,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W16",
