@@ -2049,6 +2049,23 @@ def opus_analyze_long(markets, state):
 #  RECOMMENDATION VALIDATION
 # ─────────────────────────────────────────────────────────
 
+
+# ─────────────────────────────────────────────────────────
+#  UTTERANCE MARKET FILTER
+# ─────────────────────────────────────────────────────────
+
+import re as _re
+
+_UTTERANCE_PAT = _re.compile(
+    r"will\s+\w+.*?(?:say|post|tweet|mention).*?['\"]",
+    _re.IGNORECASE
+)
+
+def is_utterance_market(question):
+    """Quoted-phrase utterance markets are adversarially priced."""
+    return bool(_UTTERANCE_PAT.search(question))
+
+
 def _validate_recs(recs, markets, state, tier_num):
     tcfg  = TIERS[tier_num]
     valid = []
@@ -2070,6 +2087,9 @@ def _validate_recs(recs, markets, state, tier_num):
             continue
         if not category_slots_available(cat, state, tier_num):
             log(f"  ⏭  '{cat}' full (T{tier_num}) — {r.get('market','')[:50]}")
+            continue
+        if is_utterance_market(r.get("market", "")):
+            log(f"  ⛔ Utterance market blocked — {r.get('market','')[:65]}")
             continue
         valid.append(r)
 
@@ -2143,6 +2163,28 @@ def place_paper_trade(rec, markets, state, tier_num, news_triggered=False):
         log(f"  📐 Kelly [{tcfg['label']}]: {rec['position']} | win={kw}% | market={km}%")
         stake      = kelly_size(kw, km, state["bankroll"], tier_num, cid, conf)
         tier_label = get_tier_name(conf, tier_num)
+
+        # Fix 1: Calibration adjustment — 80-89% P(win) band has 43% actual WR
+        # Halve stake in this band until calibration improves to 60%+ WR
+        if 80 <= kw < 90:
+            original_stake = stake
+            stake = round(stake * 0.5, 2)
+            log(f"  ⚠️  Calibration adj: P(win)={kw}% in broken band — "
+                f"stake halved ${original_stake:.2f} → ${stake:.2f}")
+            tier_label += " [cal-halved]"
+
+    # Fix 2: Volume filter — prevent large stakes in thin markets
+    market_volume = mkt.get("volume", 0) if mkt else 0
+    MIN_VOL_ABS   = 1000   # never trade below this volume
+    MIN_VOL_LARGE = 5000   # markets below this cap stake at 5% bankroll
+    STAKE_PCT_CAP = 0.05
+    if market_volume < MIN_VOL_ABS:
+        log(f"  ⛔ Volume ${market_volume:.0f} < $1,000 minimum — skip")
+        return state
+    if market_volume < MIN_VOL_LARGE and stake > state["bankroll"] * STAKE_PCT_CAP:
+        log(f"  ⛔ Volume ${market_volume:.0f} < $5,000 and stake "
+            f"${stake:.2f} ({stake/state["bankroll"]*100:.1f}%) > 5% — skip")
+        return state
 
     if stake < 1.00:
         log(f"  ⏭  Stake ${stake:.2f} too small")
