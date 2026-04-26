@@ -1,5 +1,5 @@
 {
-  "bankroll": 993.01,
+  "bankroll": 988.04,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3929,10 +3929,28 @@
       "placed_at": "2026-04-26T04:45:24.859102+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426045534180215",
+      "market_id": "2065358",
+      "market": "Will the highest temperature in Karachi be 37\u00b0C or higher on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.97,
+      "potential_profit": 15.74,
+      "potential_payout": 20.71,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.295,
+      "status": "open",
+      "placed_at": "2026-04-26T04:55:34.180230+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 22.2,
   "daily_reset": "2026-04-26",
-  "scan_count": 109,
+  "scan_count": 110,
   "started": "2026-04-21T00:00:00+00:00"
 }
