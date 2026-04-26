@@ -1,5 +1,5 @@
 {
-  "bankroll": 792.22,
+  "bankroll": 792.76,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5838,10 +5838,13 @@
       "closes_in_days": 0.31,
       "closes": "2026-04-26T04:00:00+00:00",
       "volume": 43223.935217000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T20:27:37.968099+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-26T06:06:47.213202+00:00",
+      "realized_pnl": 2.32
     },
     {
       "id": "NB1777166937",
@@ -6182,11 +6185,51 @@
       "placed_at": "2026-04-26T05:11:15.200510+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777183617",
+      "market_id": "2023750",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-26",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 26?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 2.99,
+      "payout_if_wins": 5.54,
+      "profit_if_wins": 2.55,
+      "category": "crypto",
+      "closes_in_days": 0.41,
+      "closes": "2026-04-26T16:00:00+00:00",
+      "volume": 50790.27852900001,
+      "status": "open",
+      "placed_at": "2026-04-26T06:06:57.984836+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777183617",
+      "market_id": "2064901",
+      "market_slug": "highest-temperature-in-nyc-on-april-26-2026-56-57f",
+      "market": "Will the highest temperature in New York City be between 56-57\u00b0F on April 26?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 1.99,
+      "payout_if_wins": 3.32,
+      "profit_if_wins": 1.33,
+      "category": "weather",
+      "closes_in_days": 0.25,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "volume": 3986.5835520000037,
+      "status": "open",
+      "placed_at": "2026-04-26T06:06:57.984880+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 12.16,
   "daily_reset": "2026-04-26",
-  "scan_count": 202,
+  "scan_count": 203,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-26T04:44:41.205990+00:00"
 }
