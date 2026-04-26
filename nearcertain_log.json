@@ -1,5 +1,5 @@
 {
-  "bankroll": 838.85,
+  "bankroll": 834.66,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -4349,10 +4349,28 @@
       "placed_at": "2026-04-26T12:39:59.229631+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426135922256229",
+      "market_id": "2074503",
+      "market": "Will the highest temperature in Milan be 26\u00b0C or higher on April 27?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.19,
+      "potential_profit": 13.27,
+      "potential_payout": 17.46,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "closes_in_days": 0.917,
+      "status": "open",
+      "placed_at": "2026-04-26T13:59:22.256247+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 85.31,
   "daily_reset": "2026-04-26",
-  "scan_count": 120,
+  "scan_count": 121,
   "started": "2026-04-21T00:00:00+00:00"
 }
