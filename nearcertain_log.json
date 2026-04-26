@@ -1,5 +1,5 @@
 {
-  "bankroll": 1012.47,
+  "bankroll": 984.85,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3097,10 +3097,13 @@
       "potential_payout": 18.33,
       "closes": "2026-04-26T00:00:00+00:00",
       "closes_in_days": 0.814,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T04:28:19.596780+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T03:31:02.079320+00:00",
+      "realized_pnl": -4.4
     },
     {
       "id": "NC20260425042819596840",
@@ -3797,10 +3800,64 @@
       "placed_at": "2026-04-26T01:29:38.190090+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426033111134041",
+      "market_id": "2064969",
+      "market": "Will the highest temperature in Wellington be 17\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 9,
+      "entry_yes_price": 91,
+      "stake": 15.19,
+      "potential_profit": 153.59,
+      "potential_payout": 168.78,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.353,
+      "status": "open",
+      "placed_at": "2026-04-26T03:31:11.134055+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426033111134191",
+      "market_id": "2065365",
+      "market": "Will the highest temperature in Manila be 36\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.99,
+      "potential_profit": 15.8,
+      "potential_payout": 20.79,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.353,
+      "status": "open",
+      "placed_at": "2026-04-26T03:31:11.134201+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426033111134330",
+      "market_id": "2042689",
+      "market": "LoL: Karmine Corp vs Fnatic (BO3) - LEC Regular Season",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 7.44,
+      "potential_profit": 33.89,
+      "potential_payout": 41.33,
+      "closes": "2026-04-27T00:00:00+00:00",
+      "closes_in_days": 0.853,
+      "status": "open",
+      "placed_at": "2026-04-26T03:31:11.134343+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 17.8,
+  "daily_loss": 22.2,
   "daily_reset": "2026-04-26",
-  "scan_count": 107,
+  "scan_count": 108,
   "started": "2026-04-21T00:00:00+00:00"
 }
