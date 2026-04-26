@@ -1,5 +1,5 @@
 {
-  "bankroll": 807.25,
+  "bankroll": 801.2,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6082,11 +6082,51 @@
       "placed_at": "2026-04-26T03:30:40.265939+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777178695",
+      "market_id": "2065046",
+      "market_slug": "highest-temperature-in-singapore-on-april-26-2026-32c",
+      "market": "Will the highest temperature in Singapore be 32\u00b0C on April 26?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 4.04,
+      "payout_if_wins": 8.78,
+      "profit_if_wins": 4.74,
+      "category": "weather",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "volume": 7386.973641999996,
+      "status": "open",
+      "placed_at": "2026-04-26T04:44:55.950004+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777178695",
+      "market_id": "2065147",
+      "market_slug": "highest-temperature-in-shenzhen-on-april-26-2026-30c",
+      "market": "Will the highest temperature in Shenzhen be 30\u00b0C on April 26?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.01,
+      "payout_if_wins": 3.24,
+      "profit_if_wins": 1.23,
+      "category": "weather",
+      "closes_in_days": 0.3,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "volume": 4090.9832890000016,
+      "status": "open",
+      "placed_at": "2026-04-26T04:44:55.950038+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 12.16,
   "daily_reset": "2026-04-26",
-  "scan_count": 198,
+  "scan_count": 199,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-25T16:29:39.252745+00:00"
+  "last_summary_sent": "2026-04-26T04:44:41.205990+00:00"
 }

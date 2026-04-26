@@ -1,5 +1,5 @@
 {
-  "bankroll": 984.85,
+  "bankroll": 993.01,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3556,10 +3556,13 @@
       "potential_payout": 33.38,
       "closes": "2026-04-26T03:59:59.999000+00:00",
       "closes_in_days": 0.762,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T09:42:10.976093+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-26T04:45:17.434259+00:00",
+      "realized_pnl": 28.04
     },
     {
       "id": "NC20260425113121442604",
@@ -3854,10 +3857,82 @@
       "placed_at": "2026-04-26T03:31:11.134343+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426044524858857",
+      "market_id": "2065034",
+      "market": "Will the highest temperature in Shanghai be 23\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 7.64,
+      "potential_profit": 40.11,
+      "potential_payout": 47.75,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.302,
+      "status": "open",
+      "placed_at": "2026-04-26T04:45:24.858871+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426044524858950",
+      "market_id": "2065090",
+      "market": "Will the highest temperature in Taipei be 29\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 5.05,
+      "potential_profit": 17.9,
+      "potential_payout": 22.95,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.302,
+      "status": "open",
+      "placed_at": "2026-04-26T04:45:24.858958+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426044524859018",
+      "market_id": "2065026",
+      "market": "Will the highest temperature in Hong Kong be 28\u00b0C on April 26?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 5.03,
+      "potential_profit": 17.83,
+      "potential_payout": 22.86,
+      "closes": "2026-04-26T12:00:00+00:00",
+      "closes_in_days": 0.302,
+      "status": "open",
+      "placed_at": "2026-04-26T04:45:24.859025+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426044524859089",
+      "market_id": "1981010",
+      "market": "Will \"Michael\" Opening Weekend Box Office be between 95m and 100m?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 19,
+      "entry_yes_price": 81,
+      "stake": 7.5,
+      "potential_profit": 31.97,
+      "potential_payout": 39.47,
+      "closes": "2026-04-27T00:00:00+00:00",
+      "closes_in_days": 0.802,
+      "status": "open",
+      "placed_at": "2026-04-26T04:45:24.859102+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 22.2,
   "daily_reset": "2026-04-26",
-  "scan_count": 108,
+  "scan_count": 109,
   "started": "2026-04-21T00:00:00+00:00"
 }

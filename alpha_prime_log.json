@@ -1,5 +1,5 @@
 {
-  "bankroll": 2626.63,
+  "bankroll": 2586.63,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -792,11 +792,36 @@
       "resolved_at": "2026-04-25T18:35:26.661048+00:00",
       "realized_pnl": -1.0,
       "pattern": "E"
+    },
+    {
+      "id": "AP1777178726108",
+      "market_id": "2026898",
+      "market_slug": "lol-t1a-foxy-2026-04-26-game2",
+      "market": "LoL: T1 Academy vs BNK FearX Youth - Game 2 Winner",
+      "pattern": "C",
+      "triggered_by": "esports:lol no=26 cid=0.135",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 26,
+      "entry_yes_price": 74,
+      "stake": 40.0,
+      "payout_if_wins": 153.85,
+      "profit_if_wins": 113.85,
+      "volume_at_entry": 8953.57653,
+      "closes_in_days": 0.135,
+      "closes": "2026-04-26T08:00:00+00:00",
+      "bankroll_at_entry": 2626.63,
+      "bankroll_fraction": 0.0152,
+      "status": "open",
+      "placed_at": "2026-04-26T04:45:26.108411+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-26",
-  "scan_count": 0,
+  "scan_count": 1,
   "started": "2026-04-21T00:00:00+00:00",
-  "note": "Alpha-Prime \u2014 seeded from NearCertain alpha log, qualifying trades only, stakes recalibrated"
+  "note": "Alpha-Prime \u2014 seeded from NearCertain alpha log, qualifying trades only, stakes recalibrated",
+  "last_watchlist_update": "2026-W16"
 }
