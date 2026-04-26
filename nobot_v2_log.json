@@ -6261,7 +6261,7 @@
   ],
   "daily_loss": 42.63,
   "daily_reset": "2026-04-26",
-  "scan_count": 224,
+  "scan_count": 225,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-26T22:26:42.272412+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
