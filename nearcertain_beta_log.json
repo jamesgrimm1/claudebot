@@ -1,5 +1,5 @@
 {
-  "bankroll": 948.44,
+  "bankroll": 949.12,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -7704,10 +7704,13 @@
       "potential_payout": 6.0,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.77,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T17:30:44.421039+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:52.565415+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260425173044421132",
@@ -7950,10 +7953,13 @@
       "potential_payout": 6.0,
       "closes": "2026-04-26T12:00:00+00:00",
       "closes_in_days": 0.725,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T18:35:50.608859+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:52.897258+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260425183550608943",
@@ -9813,10 +9819,13 @@
       "potential_payout": 2.18,
       "closes": "2026-04-26T21:00:00+00:00",
       "closes_in_days": 0.47,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T09:43:55.557973+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-26T21:28:54.417125+00:00",
+      "realized_pnl": 1.7
     },
     {
       "id": "NC20260426094355558364",
@@ -10356,10 +10365,13 @@
       "potential_payout": 1.85,
       "closes": "2026-04-26T20:30:00+00:00",
       "closes_in_days": 0.271,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T13:59:45.632765+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-26T21:28:54.891094+00:00",
+      "realized_pnl": 1.37
     },
     {
       "id": "NC20260426144218133285",
@@ -10635,10 +10647,13 @@
       "potential_payout": 2.4,
       "closes": "2026-04-26T21:05:00+00:00",
       "closes_in_days": 0.23,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T15:34:37.778718+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:55.351775+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426153437778851",
@@ -10653,10 +10668,13 @@
       "potential_payout": 1.85,
       "closes": "2026-04-26T21:05:00+00:00",
       "closes_in_days": 0.23,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T15:34:37.778862+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:55.553114+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426153437778975",
@@ -10725,10 +10743,13 @@
       "potential_payout": 2.0,
       "closes": "2026-04-26T21:05:00+00:00",
       "closes_in_days": 0.19,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T16:31:05.775838+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:56.345638+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426163105776104",
@@ -10869,10 +10890,13 @@
       "potential_payout": 1.55,
       "closes": "2026-04-26T21:00:00+00:00",
       "closes_in_days": 0.145,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T17:31:14.718686+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:56.421694+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426173114718888",
@@ -11013,10 +11037,13 @@
       "potential_payout": 2.4,
       "closes": "2026-04-26T19:00:00+00:00",
       "closes_in_days": 0.016,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T18:36:35.985060+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-26T21:28:56.482617+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426183635985264",
@@ -11413,11 +11440,137 @@
       "placed_at": "2026-04-26T20:28:10.628410+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905927088",
+      "market_id": "1833395",
+      "market": "Will Club Universitario de Deportes win on 2026-04-26?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.48,
+      "potential_profit": 1.02,
+      "potential_payout": 1.5,
+      "closes": "2026-04-26T23:00:00+00:00",
+      "closes_in_days": 0.063,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.927106+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905927272",
+      "market_id": "2079396",
+      "market": "Los Angeles Angels vs. Kansas City Royals: O/U 8.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 0.48,
+      "potential_profit": 1.52,
+      "potential_payout": 2.0,
+      "closes": "2026-04-26T23:20:00+00:00",
+      "closes_in_days": 0.077,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.927292+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905927415",
+      "market_id": "2079395",
+      "market": "Spread: Los Angeles Angels (-1.5)",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.48,
+      "potential_profit": 3.52,
+      "potential_payout": 4.0,
+      "closes": "2026-04-26T23:20:00+00:00",
+      "closes_in_days": 0.077,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.927436+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905927642",
+      "market_id": "2080769",
+      "market": "Counter-Strike: Legacy vs 9z (BO5) - BetBoom RUSH B! Summit Playoffs",
+      "category": "conflict",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.48,
+      "potential_profit": 1.02,
+      "potential_payout": 1.5,
+      "closes": "2026-04-27T01:00:00+00:00",
+      "closes_in_days": 0.147,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.927657+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905927787",
+      "market_id": "2080772",
+      "market": "Counter-Strike: Legacy vs 9z - Map 3 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 23,
+      "entry_yes_price": 77,
+      "stake": 0.48,
+      "potential_profit": 1.61,
+      "potential_payout": 2.09,
+      "closes": "2026-04-27T01:00:00+00:00",
+      "closes_in_days": 0.147,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.927803+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905928592",
+      "market_id": "2082531",
+      "market": "Will the highest temperature in Milan be 22\u00b0C or higher on April 28?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 25,
+      "entry_yes_price": 75,
+      "stake": 0.48,
+      "potential_profit": 1.44,
+      "potential_payout": 1.92,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "closes_in_days": 1.605,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.928604+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260426212905928725",
+      "market_id": "2082674",
+      "market": "Will the highest temperature in San Francisco be 66\u00b0F or higher on April 28?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 26,
+      "entry_yes_price": 74,
+      "stake": 0.47,
+      "potential_profit": 1.34,
+      "potential_payout": 1.81,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "closes_in_days": 1.605,
+      "status": "open",
+      "placed_at": "2026-04-26T21:29:05.928738+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 51.98,
+  "daily_loss": 55.34,
   "daily_reset": "2026-04-26",
-  "scan_count": 73,
+  "scan_count": 74,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
