@@ -3,11 +3,15 @@
 ║  ALPHA-PRIME — Focused NearCertain Variant               ║
 ║                                                          ║
 ║  Five mechanical patterns, no LLM reasoning layer.       ║
-║  Pattern A: Weather exact-temp NO (YES 86-95, <6h)       ║
 ║  Pattern B: Soccer O/U NO (YES 81-95, <6h)               ║
 ║  Pattern C: Esports CS/Dota/LoL NO (<6h)                 ║
-║  Pattern D: Watchlist city boost on Pattern A            ║
+║  Pattern D: Watchlist weather exact-temp NO (full stake) ║
 ║  Pattern E: Bracket markets (micro-stake, data only)     ║
+║  Pattern F: Non-watchlist weather (micro-probe $2)       ║
+║                                                          ║
+║  RECALIBRATED 2026-04-26: Pattern A removed.             ║
+║  Non-watchlist weather → Pattern F micro-probe.          ║
+║  Reason: 0/24 WR on non-watchlist after first 5 days.    ║
 ║                                                          ║
 ║  RUN: python alpha_prime.py --single-scan                ║
 ╚══════════════════════════════════════════════════════════╝
@@ -26,11 +30,11 @@ DAILY_LOSS_PCT    = 0.40   # halve stakes if same-day loss > 40% of starting
 
 # ── Pattern stake config ──────────────────────────────────
 PATTERNS = {
-    "A": {"pct": 0.030, "cap": 50.0, "label": "Weather Exact-Temp"},
     "B": {"pct": 0.030, "cap": 50.0, "label": "Soccer O/U"},
     "C": {"pct": 0.025, "cap": 40.0, "label": "Esports CS/Dota/LoL"},
-    "D": {"pct": 0.040, "cap": 50.0, "label": "Watchlist City Boost"},
+    "D": {"pct": 0.040, "cap": 50.0, "label": "Watchlist Weather Exact-Temp"},
     "E": {"pct": 0.001, "cap":  2.0, "label": "Bracket Markets (micro)"},
+    "F": {"pct": 0.002, "cap":  2.0, "label": "Non-Watchlist Weather (probe)"},
 }
 
 MIN_STAKE = 1.00
@@ -215,7 +219,9 @@ def classify_market(market_dict, state):
     if cid > 1.0 and cat not in []:  # Pattern E allows up to 1d, A/B/C require <0.25
         pass  # check individually per pattern below
 
-    # ── Pattern D/A: Weather exact-temp ─────────────────
+    # ── Pattern D/F: Weather exact-temp ─────────────────
+    # D = watchlist city (full stake $40 cap)
+    # F = non-watchlist (micro-probe $2 — discovers new exploitable cities cheaply)
     if cat == "weather":
         if 5 <= no_price <= 14 and cid < 0.25:
             if not is_directional_weather(q) and "between" not in m:
@@ -224,7 +230,8 @@ def classify_market(market_dict, state):
                     for city in watchlist:
                         if city in m:
                             return "D", f"watchlist:{city} no={no_price} cid={cid:.3f}"
-                    return "A", f"weather_exact no={no_price} cid={cid:.3f}"
+                    # Non-watchlist gets a $2 probe — cheap exploration to find new cities
+                    return "F", f"weather_probe no={no_price} cid={cid:.3f}"
                 else:
                     return None, f"excl:vol<500 ({volume:.0f})"
         return None, f"no_match:weather no={no_price} cid={cid:.3f}"
@@ -472,22 +479,40 @@ def place_trade(market, pattern, reason, state):
 # ─────────────────────────────────────────────────────────
 
 def update_watchlist(state):
-    """Weekly watchlist update based on recent Pattern A/D performance."""
+    """
+    Weekly watchlist update based on recent Pattern D/F performance.
+    
+    RECALIBRATED 2026-04-26:
+    - Add city to watchlist after 2 wins in 14 days (was 3 wins in 30d)
+    - Remove city from watchlist after 0/4 in 14 days (was 0/4 in 30d)
+    - Looser to expand discovery faster from Pattern F probe data
+    """
     from collections import defaultdict
     now = datetime.now(timezone.utc)
-    cutoff = now - timedelta(days=30)
+    cutoff = now - timedelta(days=14)  # was 30
 
     closed = [
         t for t in state["trades"]
         if t["status"] == "closed"
-        and t.get("pattern") in ("A", "D")
+        and t.get("pattern") in ("D", "F")  # was ("A", "D")
         and datetime.fromisoformat(t.get("resolved_at", now.isoformat()).replace("Z","+00:00")) > cutoff
+    ]
+
+    # Expanded city list — more candidates to discover
+    KNOWN_CITIES = [
+        "jakarta","karachi","guangzhou","singapore","mumbai","delhi","bangkok",
+        "manila","seoul","tokyo","london","paris","madrid","berlin","sydney",
+        "dubai","istanbul","cairo","nairobi","shanghai","beijing","chongqing",
+        "chengdu","wuhan","kuala lumpur","taipei","hong kong","busan","shenzhen",
+        "lucknow","lahore","dhaka","surabaya","medan","bangalore","hyderabad",
+        "chennai","kolkata","ho chi minh","hanoi","yangon","colombo",
+        "lima","bogota","caracas","quito","san jose","panama","kingston"
     ]
 
     city_stats = defaultdict(lambda: {"w": 0, "l": 0})
     for t in closed:
         q = t["market"].lower()
-        for city in ["jakarta","karachi","guangzhou","singapore","mumbai","delhi","bangkok","manila","seoul","tokyo","london","paris","madrid","berlin","sydney","dubai","istanbul","cairo","nairobi"]:
+        for city in KNOWN_CITIES:
             if city in q:
                 if t.get("won"):
                     city_stats[city]["w"] += 1
@@ -500,12 +525,14 @@ def update_watchlist(state):
 
     for city, s in city_stats.items():
         total = s["w"] + s["l"]
-        if city not in current and s["w"] >= 3:
+        # Loosened: 2 wins (was 3) in 14d (was 30d) adds a city
+        if city not in current and s["w"] >= 2:
             current.add(city)
-            changes.append(f"ADD {city} ({s['w']}W/{s['l']}L in 30d)")
+            changes.append(f"ADD {city} ({s['w']}W/{s['l']}L in 14d)")
+        # Loosened: 0/4 in 14d (was 30d) removes
         elif city in current and total >= 4 and s["w"] == 0:
             current.discard(city)
-            changes.append(f"REMOVE {city} (0W/{total}L in 30d)")
+            changes.append(f"REMOVE {city} (0W/{total}L in 14d)")
 
     if changes:
         log(f"  🗺️  Watchlist updated: {', '.join(changes)}")
