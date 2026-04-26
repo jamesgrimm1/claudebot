@@ -30,7 +30,7 @@ HAIKU_MODEL       = "claude-haiku-4-5-20251001"
 # ── Required move threshold ───────────────────────────────
 # Required move must exceed min(10% × days_remaining, 40%)
 MOVE_PCT_PER_DAY  = 0.10
-MOVE_PCT_CAP      = 0.40
+MOVE_PCT_CAP      = 0.30
 
 # ── Asset registry ───────────────────────────────────────
 # ticker -> (asset_type, [question keywords], price_symbol)
