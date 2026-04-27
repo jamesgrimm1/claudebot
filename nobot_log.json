@@ -1,5 +1,5 @@
 {
-  "bankroll": 849.18,
+  "bankroll": 846.0,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6802,11 +6802,31 @@
       "placed_at": "2026-04-27T17:59:33.891081+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777326297",
+      "market_id": "1907902",
+      "market_slug": "will-king-charles-say-ukraine-during-the-joint-meeting-of-congress",
+      "market": "Will King Charles say \"Ukraine\" during the joint meeting of Congress?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 3.18,
+      "payout_if_wins": 5.48,
+      "profit_if_wins": 2.3,
+      "category": "weather",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-28T00:00:00+00:00",
+      "volume": 3399.774804,
+      "status": "open",
+      "placed_at": "2026-04-27T21:44:57.468252+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 21.51,
   "daily_reset": "2026-04-27",
-  "scan_count": 233,
+  "scan_count": 234,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T20:50:44.762762+00:00"
 }

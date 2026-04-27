@@ -1,5 +1,5 @@
 {
-  "bankroll": 3230.36,
+  "bankroll": 3190.36,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -927,11 +927,35 @@
       "won": false,
       "resolved_at": "2026-04-27T19:23:55.974355+00:00",
       "realized_pnl": -48.51
+    },
+    {
+      "id": "AP1777326329039",
+      "market_id": "2092103",
+      "market_slug": "cs2-gls1-mibra-2026-04-27",
+      "market": "Counter-Strike: Galorys vs MIBR Academy (BO3) - ESL Challenger League South America Cup #4 Playoffs",
+      "pattern": "C",
+      "triggered_by": "esports:cs no=14 cid=0.218",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 40.0,
+      "payout_if_wins": 285.71,
+      "profit_if_wins": 245.71,
+      "volume_at_entry": 9606.935512000002,
+      "closes_in_days": 0.218,
+      "closes": "2026-04-28T03:00:00+00:00",
+      "bankroll_at_entry": 3230.36,
+      "bankroll_fraction": 0.0124,
+      "status": "open",
+      "placed_at": "2026-04-27T21:45:29.039566+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 88.51,
   "daily_reset": "2026-04-27",
-  "scan_count": 33,
+  "scan_count": 34,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W17",
