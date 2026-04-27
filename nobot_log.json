@@ -1,5 +1,5 @@
 {
-  "bankroll": 843.41,
+  "bankroll": 846.79,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4916,10 +4916,13 @@
       "closes_in_days": 0.45,
       "closes": "2026-04-24T16:00:00+00:00",
       "volume": 64767.24087899996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T05:06:52.233291+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T01:26:03.865874+00:00",
+      "realized_pnl": 1.3
     },
     {
       "id": "NB1777007212",
@@ -5916,10 +5919,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 4490.257266999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:28:57.782725+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T01:26:04.174032+00:00",
+      "realized_pnl": 1.29
     },
     {
       "id": "NB1777166937",
@@ -6005,10 +6011,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 3520.697588000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:28:57.782831+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T01:26:04.246712+00:00",
+      "realized_pnl": 4.15
     },
     {
       "id": "NB1777174240",
@@ -6094,10 +6103,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 3410.2202890000044,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T03:30:40.265906+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-27T01:26:04.386280+00:00",
+      "realized_pnl": -4.07
     },
     {
       "id": "NB1777174240",
@@ -6114,10 +6126,13 @@
       "closes_in_days": 0.35,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 3408.0450000000023,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T03:30:40.265939+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-27T01:26:04.514539+00:00",
+      "realized_pnl": -3.04
     },
     {
       "id": "NB1777178695",
@@ -6361,10 +6376,13 @@
       "closes_in_days": 0.16,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 3259.522367000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T08:11:13.026419+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-27T01:26:04.723696+00:00",
+      "realized_pnl": -3.91
     },
     {
       "id": "NB1777207168",
@@ -6388,11 +6406,111 @@
       "won": false,
       "resolved_at": "2026-04-26T19:38:51.284363+00:00",
       "realized_pnl": -3.01
+    },
+    {
+      "id": "NB1777253172",
+      "market_id": "2074267",
+      "market_slug": "highest-temperature-in-london-on-april-27-2026-20c",
+      "market": "Will the highest temperature in London be 20\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.15,
+      "payout_if_wins": 3.47,
+      "profit_if_wins": 1.32,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 5830.712569999998,
+      "status": "open",
+      "placed_at": "2026-04-27T01:26:12.217899+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777253172",
+      "market_id": "2074477",
+      "market_slug": "highest-temperature-in-shanghai-on-april-27-2026-27c",
+      "market": "Will the highest temperature in Shanghai be 27\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.14,
+      "payout_if_wins": 3.45,
+      "profit_if_wins": 1.31,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 5624.735858,
+      "status": "open",
+      "placed_at": "2026-04-27T01:26:12.217939+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777253172",
+      "market_id": "2074268",
+      "market_slug": "highest-temperature-in-london-on-april-27-2026-21c",
+      "market": "Will the highest temperature in London be 21\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 3.2,
+      "payout_if_wins": 5.52,
+      "profit_if_wins": 2.32,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 5586.1322089999985,
+      "status": "open",
+      "placed_at": "2026-04-27T01:26:12.217965+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777253172",
+      "market_id": "2074553",
+      "market_slug": "highest-temperature-in-beijing-on-april-27-2026-22c",
+      "market": "Will the highest temperature in Beijing be 22\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.13,
+      "payout_if_wins": 3.55,
+      "profit_if_wins": 1.42,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 3930.4893759999964,
+      "status": "open",
+      "placed_at": "2026-04-27T01:26:12.217988+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777253172",
+      "market_id": "2074489",
+      "market_slug": "highest-temperature-in-singapore-on-april-27-2026-32c",
+      "market": "Will the highest temperature in Singapore be 32\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.12,
+      "payout_if_wins": 3.53,
+      "profit_if_wins": 1.41,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 3472.353963000001,
+      "status": "open",
+      "placed_at": "2026-04-27T01:26:12.218009+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 46.77,
-  "daily_reset": "2026-04-26",
-  "scan_count": 221,
+  "daily_loss": 11.02,
+  "daily_reset": "2026-04-27",
+  "scan_count": 222,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-26T17:30:24.719532+00:00"
 }
