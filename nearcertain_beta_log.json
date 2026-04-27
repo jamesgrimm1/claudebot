@@ -1,5 +1,5 @@
 {
-  "bankroll": 953.44,
+  "bankroll": 953.07,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -13290,10 +13290,13 @@
       "potential_payout": 4.0,
       "closes": "2026-04-27T17:30:00+00:00",
       "closes_in_days": 0.106,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T14:56:59.077548+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T20:51:30.864809+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427145659077673",
@@ -13308,10 +13311,13 @@
       "potential_payout": 1.55,
       "closes": "2026-04-27T18:30:00+00:00",
       "closes_in_days": 0.148,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T14:56:59.077688+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-27T20:51:30.940754+00:00",
+      "realized_pnl": 1.07
     },
     {
       "id": "NC20260427145659077868",
@@ -13326,10 +13332,13 @@
       "potential_payout": 3.0,
       "closes": "2026-04-27T20:00:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T14:56:59.077884+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T20:51:31.081164+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427150433504710",
@@ -13365,10 +13374,13 @@
       "potential_payout": 2.4,
       "closes": "2026-04-27T18:30:00+00:00",
       "closes_in_days": 0.143,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T15:04:33.505023+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T20:51:31.216476+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427150433505439",
@@ -13440,10 +13452,13 @@
       "potential_payout": 2.53,
       "closes": "2026-04-27T19:00:00+00:00",
       "closes_in_days": 0.109,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T16:23:22.259574+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T20:51:31.361856+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427162322259827",
@@ -14056,11 +14071,83 @@
       "placed_at": "2026-04-27T19:24:09.078117+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427205139813073",
+      "market_id": "2067971",
+      "market": "Valorant: M80 vs Azure Dragon Gaming - Map 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 17,
+      "entry_yes_price": 83,
+      "stake": 0.48,
+      "potential_profit": 2.34,
+      "potential_payout": 2.82,
+      "closes": "2026-04-28T00:00:00+00:00",
+      "closes_in_days": 0.131,
+      "status": "open",
+      "placed_at": "2026-04-27T20:51:39.813092+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427205139813671",
+      "market_id": "2082267",
+      "market": "Will the lowest temperature in Hong Kong be 24\u00b0C on April 28?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 5,
+      "entry_yes_price": 95,
+      "stake": 0.48,
+      "potential_profit": 9.12,
+      "potential_payout": 9.6,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "closes_in_days": 0.631,
+      "status": "open",
+      "placed_at": "2026-04-27T20:51:39.813687+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427205139813835",
+      "market_id": "2082751",
+      "market": "Will the highest temperature in Panama City be 32\u00b0C or higher on April 28?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 0.48,
+      "potential_profit": 7.52,
+      "potential_payout": 8.0,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "closes_in_days": 0.631,
+      "status": "open",
+      "placed_at": "2026-04-27T20:51:39.813858+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427205139814497",
+      "market_id": "2096455",
+      "market": "LoL: Team Vitality vs Solary (BO3) - Esports World Cup EMEA Qualifier Playoffs",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.48,
+      "potential_profit": 3.52,
+      "potential_payout": 4.0,
+      "closes": "2026-04-29T00:00:00+00:00",
+      "closes_in_days": 1.131,
+      "status": "open",
+      "placed_at": "2026-04-27T20:51:39.814511+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 30.79,
+  "daily_loss": 32.71,
   "daily_reset": "2026-04-27",
-  "scan_count": 87,
+  "scan_count": 88,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
