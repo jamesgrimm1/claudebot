@@ -300,22 +300,31 @@ def haiku_parse_threshold(client, question, current_price, ticker):
       - required_move_pct: how far current price needs to move to resolve YES
       - position: 'YES' or 'NO' (which side has the implausible move)
     """
+    # First do a quick sanity check before calling Haiku
+    # If we can determine from the question structure whether YES is plausible, skip Haiku
+    q_lower = question.lower()
+
     prompt = (
-        f"Extract price threshold information from this Polymarket question.\n\n"
-        f"Question: \"{question}\"\n"
-        f"Current {ticker} price: ${current_price:,.4f}\n\n"
-        f"Return ONLY valid JSON:\n"
-        f'{{"threshold": 50000, "direction": "above", '
-        f'"range_low": null, "range_high": null, '
-        f'"resolution_type": "close", '
-        f'"required_move_pct": 12.5, '
-        f'"implausible_side": "YES", '
-        f'"reasoning": "price would need to drop 12.5% to reach threshold"}}\n\n'
-        f"direction: 'above' (YES if price > threshold), 'below' (YES if price < threshold), 'range' (YES if price between range_low and range_high)\n"
-        f"resolution_type: 'close' (end of day close), 'intraday' (any touch), 'weekly_close', 'weekly_low', 'weekly_high', 'unclear'\n"
-        f"required_move_pct: percentage move needed from current price for YES to resolve (positive number)\n"
-        f"implausible_side: 'YES' if YES resolution is implausible, 'NO' if NO resolution is implausible\n"
-        f"If question is not about a specific price threshold, return {{\"threshold\": null}}"
+        f"You are analyzing a Polymarket prediction market question.\n"
+        f"Current {ticker} price: ${current_price:,.2f}\n"
+        f"Question: \"{question}\"\n\n"
+        f"Extract ONLY if this is a price threshold market (stock/crypto/commodity hitting a price level).\n"
+        f"Return ONLY valid JSON with these fields:\n"
+        f"  threshold: the price level in the question (number)\n"
+        f"  direction: \'above\' (YES if price ends above threshold) or \'below\' (YES if price ends below threshold)\n"
+        f"  resolution_type: \'close\' (daily close price) or \'intraday\' (any touch) or \'weekly_close\' or \'unclear\'\n"
+        f"  yes_requires_move_pct: how many % the current price must MOVE for YES to resolve "
+        f"(if current price already past threshold, this is 0 or negative)\n"
+        f"  yes_is_implausible: true ONLY if YES resolution requires a move > 10% AND current price "
+        f"has NOT already crossed the threshold\n"
+        f"  reasoning: one sentence explanation\n\n"
+        f"CRITICAL EXAMPLES:\n"
+        f"  Current BTC=$94000, question \'above $60000\': YES already true, yes_is_implausible=false\n"
+        f"  Current BTC=$94000, question \'above $130000\': needs 38% rise, yes_is_implausible=true\n"
+        f"  Current META=$675, question \'above $640\': YES already true (675>640), yes_is_implausible=false\n"
+        f"  Current WTI=$93, question \'above $50\': YES already true, yes_is_implausible=false\n"
+        f"  Current WTI=$93, question \'above $140\': needs 50% rise, yes_is_implausible=true\n\n"
+        f"If not a price threshold market, return {{\"threshold\": null}}"
     )
 
     try:
@@ -345,18 +354,24 @@ def required_move_threshold(days_remaining):
 
 def check_mismatch(parsed, days_remaining):
     """
-    Returns True if the required move exceeds our threshold.
-    Skips intraday/weekly_low/weekly_high resolution types — too risky to parse.
+    Returns True ONLY if YES resolution is genuinely implausible:
+    - Current price has NOT already crossed the threshold
+    - Required move exceeds min(10% x days, 30%)
+    - Resolution type is a closing price (not intraday touch)
     """
     if not parsed or parsed.get("threshold") is None:
         return False
 
-    # Skip resolution types where closing price isn't the determiner
+    # Must explicitly flag as implausible
+    if not parsed.get("yes_is_implausible", False):
+        return False
+
+    # Skip resolution types we cant reliably assess
     resolution = parsed.get("resolution_type", "unclear")
     if resolution in ("intraday", "weekly_low", "weekly_high", "unclear"):
         return False
 
-    required_pct = parsed.get("required_move_pct", 0)
+    required_pct = parsed.get("yes_requires_move_pct", 0)
     if not required_pct or required_pct <= 0:
         return False
 
@@ -378,8 +393,8 @@ def place_trade(market, parsed, current_price, ticker, state):
         log(f"  ⏭  Stake ${stake:.2f} too small")
         return state
 
-    # Entry price — we're betting on the implausible side
-    position = parsed.get("implausible_side", "NO")
+    # We always bet NO — YES is the implausible side by definition
+    position = "NO"
 
     # Estimate entry price from market odds — fetch from Gamma
     entry_price = 50  # default if we can't fetch
@@ -419,7 +434,7 @@ def place_trade(market, parsed, current_price, ticker, state):
         "ticker":           ticker,
         "current_price":    current_price,
         "threshold":        parsed.get("threshold"),
-        "required_move_pct": parsed.get("required_move_pct"),
+        "required_move_pct": parsed.get("yes_requires_move_pct"),
         "resolution_type":  parsed.get("resolution_type"),
         "reasoning":        parsed.get("reasoning", ""),
         "closes":           market["closes"],
@@ -601,7 +616,7 @@ def single_scan():
         if not check_mismatch(parsed, market["closes_in_days"]):
             continue
 
-        log(f"  🎯 MISMATCH: {ticker} @ ${price:,.2f} | needs {parsed.get('required_move_pct', 0):.1f}% | {market['question'][:60]}")
+        log(f"  🎯 MISMATCH: {ticker} @ ${price:,.2f} | needs {parsed.get('yes_requires_move_pct', 0):.1f}% move for YES | {market['question'][:55]}")
         log(f"     Resolution: {parsed.get('resolution_type')} | Reasoning: {parsed.get('reasoning', '')[:80]}")
 
         state = place_trade(market, parsed, price, ticker, state)
