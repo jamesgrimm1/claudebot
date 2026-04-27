@@ -1,5 +1,5 @@
 {
-  "bankroll": 1316.33,
+  "bankroll": 1313.08,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3130,10 +3130,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 6705.6164770000005,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:29:23.453518+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-27T03:43:40.241002+00:00",
+      "realized_pnl": 6.87
     },
     {
       "id": "NB1777166963",
@@ -3510,11 +3513,31 @@
       "placed_at": "2026-04-27T01:26:32.316040+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777261430",
+      "market_id": "2074576",
+      "market_slug": "highest-temperature-in-chengdu-on-april-27-2026-25c",
+      "market": "Will the highest temperature in Chengdu be 25\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 51,
+      "entry_yes_price": 49,
+      "stake": 20.0,
+      "payout_if_wins": 39.22,
+      "profit_if_wins": 19.22,
+      "category": "weather",
+      "closes_in_days": 0.34,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 3897.0508280000017,
+      "status": "open",
+      "placed_at": "2026-04-27T03:43:50.874338+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 34.36,
   "daily_reset": "2026-04-27",
-  "scan_count": 261,
+  "scan_count": 262,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-26T16:58:15.693390+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
