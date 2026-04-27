@@ -1,5 +1,5 @@
 {
-  "bankroll": 830.44,
+  "bankroll": 827.33,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6744,11 +6744,31 @@
       "placed_at": "2026-04-27T14:42:35.316017+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777306940",
+      "market_id": "2091271",
+      "market_slug": "will-bitcoin-dip-to-76k-on-april-27",
+      "market": "Will Bitcoin dip to $76,000 on April 27?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 3.11,
+      "payout_if_wins": 5.46,
+      "profit_if_wins": 2.35,
+      "category": "crypto",
+      "closes_in_days": 0.48,
+      "closes": "2026-04-28T04:00:00+00:00",
+      "volume": 44133.391429999996,
+      "status": "open",
+      "placed_at": "2026-04-27T16:22:20.829001+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 17.26,
   "daily_reset": "2026-04-27",
-  "scan_count": 229,
+  "scan_count": 230,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T07:33:55.094228+00:00"
 }

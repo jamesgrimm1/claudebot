@@ -1,5 +1,5 @@
 {
-  "bankroll": 833.51,
+  "bankroll": 824.97,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6613,11 +6613,31 @@
       "placed_at": "2026-04-27T14:42:46.815447+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777306958",
+      "market_id": "2091271",
+      "market_slug": "will-bitcoin-dip-to-76k-on-april-27",
+      "market": "Will Bitcoin dip to $76,000 on April 27?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 8.54,
+      "payout_if_wins": 14.98,
+      "profit_if_wins": 6.44,
+      "category": "crypto",
+      "closes_in_days": 0.48,
+      "closes": "2026-04-28T04:00:00+00:00",
+      "volume": 44133.391429999996,
+      "status": "open",
+      "placed_at": "2026-04-27T16:22:38.835202+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 12.7,
   "daily_reset": "2026-04-27",
-  "scan_count": 233,
+  "scan_count": 234,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T12:15:23.294709+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
