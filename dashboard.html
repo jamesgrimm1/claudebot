@@ -505,6 +505,7 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     <div class="nav-tab" onclick="setBot('nb2',this)">NoBot V2</div>
     <div class="nav-tab" onclick="setBot('nb3',this)">NoBot V3</div>
     <div class="nav-tab" onclick="setBot('nc',this)">NearCertain</div>
+    <div class="nav-tab" onclick="setBot('ap',this)">Alpha-Prime</div>
     <div class="nav-tab" onclick="setBot('proj',this)">Projections</div>
   </div>
   <div class="header-right">
@@ -842,9 +843,75 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     </div>
   </div>
 
+  <!-- ── Alpha-Prime view ── -->
+  <div id="view-ap" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">Alpha-Prime — Focused NearCertain Variant</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Patterns B/C/D/E/F · Mechanical filters · Watchlist auto-expansion · No LLM layer</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="ap-bank">—</div>
+        <div class="hc-sub" id="ap-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&L</div>
+        <div class="hc-value" id="ap-pnl">—</div>
+        <div class="hc-sub" id="ap-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="ap-wr">—</div>
+        <div class="hc-sub" id="ap-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="ap-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="ap-open">—</div>
+        <div class="hc-sub" id="ap-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Potential Profit</div>
+        <div class="hc-value gold" id="ap-potential">—</div>
+        <div class="hc-sub">if all open positions win</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P&L history (closed trades)</span>
+          <span class="pill" id="ap-trend">—</span>
+        </div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ap-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Performance by pattern</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ap-pattern-chart"></canvas></div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">Open positions</span>
+        <span class="pill pill-gold" id="ap-open-count">0</span>
+      </div>
+      <div id="ap-open-table"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Recent closed trades</span>
+        <span class="pill pill-gray" id="ap-trade-count">0 closed</span>
+      </div>
+      <div id="ap-trade-table"></div>
+    </div>
+  </div>
+
   <!-- ── Projections view ── -->
   <div id="view-proj" style="display:none">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px">
       <div class="hero-card accent-gold">
         <div class="hc-label">ClaudeBot — Live WR</div>
         <div class="hc-value gold" id="proj-cb-wr">—</div>
@@ -869,6 +936,11 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
         <div class="hc-label">NearCertain — Live WR</div>
         <div class="hc-value gold" id="proj-nc-wr">—</div>
         <div class="hc-sub" id="proj-nc-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Alpha-Prime — Live WR</div>
+        <div class="hc-value gold" id="proj-ap-wr">—</div>
+        <div class="hc-sub" id="proj-ap-sub">—</div>
       </div>
     </div>
     <div class="card" style="margin-bottom:16px">
@@ -906,8 +978,15 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
       </div>
       <div id="proj-nc-table"></div>
     </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">Alpha-Prime — Focused NearCertain — 12 month projections</span>
+        <span class="pill pill-gold" id="proj-ap-badge">—</span>
+      </div>
+      <div id="proj-ap-table"></div>
+    </div>
     <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);padding:0 4px 24px;line-height:1.8">
-      Projections compound daily using live avg win/loss and trades/day from each bot's resolved trade history · Liquidity ceiling at $18,981 (NoBot V1/V2) / $25,000 (NoBot V3 weather) / $50,000 (ClaudeBot / NearCertain) · Live WR highlighted · Paper trade estimates only
+      Projections compound daily using live avg win/loss and trades/day from each bot's resolved trade history · Liquidity ceiling at $18,981 (NoBot V1/V2) / $25,000 (NoBot V3 weather) / $50,000 (ClaudeBot / NearCertain / Alpha-Prime) · Live WR highlighted · Paper trade estimates only
     </div>
   </div>
 
@@ -918,6 +997,7 @@ var NB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobo
 var NB2_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
 var NB3_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
 var NC_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
+var AP_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/alpha_prime_log.json';
 var START   = 1000;
 var cbChart = null, cbCatChart = null, nbChart = null, nbBracketChart = null, nb2Chart = null, nb2BracketChart = null, nb3Chart = null, nb3BracketChart = null;
 
@@ -952,6 +1032,7 @@ function setBot(bot, el) {
   document.getElementById('view-nb2').style.display  = bot === 'nb2'  ? 'block' : 'none';
   document.getElementById('view-nb3').style.display  = bot === 'nb3'  ? 'block' : 'none';
   document.getElementById('view-nc').style.display   = bot === 'nc'   ? 'block' : 'none';
+  document.getElementById('view-ap').style.display   = bot === 'ap'   ? 'block' : 'none';
   document.getElementById('view-proj').style.display = bot === 'proj' ? 'block' : 'none';
 }
 
@@ -1451,6 +1532,130 @@ function renderNC(d) {
     });
   }
 }
+function renderAP(d) {
+  if (!d) return;
+  var START_AP = 1000;
+  var trades  = d.trades || [];
+  var closed  = trades.filter(function(t){ return t.status === 'closed'; });
+  var open    = trades.filter(function(t){ return t.status === 'open'; });
+  var won     = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0);
+  var deployed = open.reduce(function(s,t){ return s + (t.stake||0); }, 0);
+  var potential = open.reduce(function(s,t){ return s + (t.potential_profit||0); }, 0);
+  var wr = closed.length ? won.length / closed.length : 0;
+  var roi = (d.bankroll - START_AP) / START_AP * 100;
+
+  document.getElementById('ap-bank').textContent    = '$' + d.bankroll.toFixed(2);
+  document.getElementById('ap-roi').textContent     = '$' + d.bankroll.toFixed(2) + ' current · ' + (d.scan_count||0) + ' scans';
+  document.getElementById('ap-pnl').textContent     = (realized >= 0 ? '+' : '') + '$' + realized.toFixed(2);
+  document.getElementById('ap-pnl-sub').textContent = roi.toFixed(1) + '% ROI · ' + closed.length + ' resolved';
+  document.getElementById('ap-wr').textContent      = closed.length ? Math.round(wr * 100) + '%' : '—';
+  document.getElementById('ap-rec').textContent     = won.length + 'W / ' + (closed.length - won.length) + 'L';
+  document.getElementById('ap-wrf').style.width     = Math.round(wr * 100) + '%';
+  document.getElementById('ap-open').textContent    = open.length;
+  document.getElementById('ap-dep').textContent     = '$' + deployed.toFixed(2) + ' deployed';
+  document.getElementById('ap-potential').textContent = '+$' + potential.toFixed(2);
+  document.getElementById('ap-open-count').textContent = open.length + ' open';
+  document.getElementById('ap-trade-count').textContent = closed.length + ' closed';
+
+  // Open positions table
+  var opEl = document.getElementById('ap-open-table');
+  if (!open.length) {
+    opEl.innerHTML = '<div class="empty">No open positions</div>';
+  } else {
+    var sorted = open.slice().sort(function(a,b){ return (a.closes_in_days||0) - (b.closes_in_days||0); });
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>NO@</th><th>Stake</th><th>If win</th><th>Closes</th></tr></thead><tbody>' +
+      sorted.map(function(t){
+        var pot = t.potential_profit || 0;
+        return '<tr>' +
+          '<td>' + (t.market||'').substring(0,55) + '</td>' +
+          '<td><span class="pill pill-gold">' + (t.pattern||'?') + '</span></td>' +
+          '<td class="mono">' + t.entry_no_price + '¢</td>' +
+          '<td class="mono">$' + (t.stake||0).toFixed(2) + '</td>' +
+          '<td class="mono" style="color:var(--gold)">+$' + pot.toFixed(2) + '</td>' +
+          '<td class="mono">' + (t.closes_in_days||0).toFixed(1) + 'd</td>' +
+          '</tr>';
+      }).join('') + '</tbody></table>';
+  }
+
+  // Closed trades table
+  var clEl = document.getElementById('ap-trade-table');
+  if (!closed.length) {
+    clEl.innerHTML = '<div class="empty">No resolved trades yet</div>';
+  } else {
+    var recent = closed.slice().reverse().slice(0,20);
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>NO@</th><th>Stake</th><th>P&L</th><th>Result</th></tr></thead><tbody>' +
+      recent.map(function(t){
+        var pnl = t.realized_pnl || 0;
+        var col = t.won ? 'color:var(--gold)' : 'color:#666';
+        return '<tr>' +
+          '<td>' + (t.market||'').substring(0,55) + '</td>' +
+          '<td><span class="pill pill-gold">' + (t.pattern||'?') + '</span></td>' +
+          '<td class="mono">' + t.entry_no_price + '¢</td>' +
+          '<td class="mono">$' + (t.stake||0).toFixed(2) + '</td>' +
+          '<td class="mono" style="' + col + '">' + (pnl>=0?'+':'') + '$' + pnl.toFixed(2) + '</td>' +
+          '<td>' + (t.won ? '✅' : '❌') + '</td>' +
+          '</tr>';
+      }).join('') + '</tbody></table>';
+  }
+
+  // P&L chart
+  if (closed.length) {
+    var cumPnl = 0;
+    var labels = []; var data = [];
+    closed.forEach(function(t, i){
+      cumPnl += (t.realized_pnl||0);
+      labels.push(i+1);
+      data.push(parseFloat(cumPnl.toFixed(2)));
+    });
+    var isUp = data[data.length-1] >= 0;
+    var ctx = document.getElementById('ap-chart').getContext('2d');
+    if (window.apChartInst) window.apChartInst.destroy();
+    window.apChartInst = new Chart(ctx, {
+      type: 'line',
+      data: { labels: labels, datasets: [{
+        data: data, borderColor: isUp ? '#c9922a' : '#888',
+        borderWidth: 2, pointRadius: 0, fill: false, tension: 0.3
+      }]},
+      options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{ x:{display:false}, y:{grid:{color:'rgba(255,255,255,0.05)'}} } }
+    });
+  }
+
+  // Pattern performance chart
+  var patStats = {};
+  closed.forEach(function(t){
+    var p = t.pattern || '?';
+    if (!patStats[p]) patStats[p] = {n:0, w:0, pnl:0};
+    patStats[p].n++;
+    if (t.won) patStats[p].w++;
+    patStats[p].pnl += (t.realized_pnl||0);
+  });
+  var patKeys = Object.keys(patStats).sort();
+  if (patKeys.length) {
+    var pLabels = []; var pPnL = []; var pCol = [];
+    patKeys.forEach(function(k){
+      pLabels.push(k + ' (' + patStats[k].n + ')');
+      pPnL.push(parseFloat(patStats[k].pnl.toFixed(2)));
+      pCol.push(patStats[k].pnl >= 0 ? '#c9922a' : '#888');
+    });
+    var ctx2 = document.getElementById('ap-pattern-chart').getContext('2d');
+    if (window.apPatternInst) window.apPatternInst.destroy();
+    window.apPatternInst = new Chart(ctx2, {
+      type: 'bar',
+      data: { labels: pLabels, datasets: [{
+        label: 'P&L ($)', data: pPnL,
+        backgroundColor: pCol, borderRadius: 4
+      }]},
+      options: { responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{ y:{ticks:{callback:function(v){ return '$'+v; }},
+          grid:{color:'rgba(255,255,255,0.05)'}},
+          x:{grid:{display:false}} } }
+    });
+  }
+}
+
 function compound(start, wr, aw, al, dt, days, ceiling) {
   var b = parseFloat(start);
   for (var i = 0; i < days; i++) {
@@ -1539,6 +1744,84 @@ function ncProjTable(closed, ceiling, startBankroll) {
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 
+function apProjTable(closed, ceiling, startBankroll) {
+  if (!closed || !closed.length) {
+    document.getElementById('proj-ap-table').innerHTML = '<div class="empty">No resolved trades yet</div>';
+    return;
+  }
+  var won  = closed.filter(function(t){ return t.won; });
+  var lost = closed.filter(function(t){ return !t.won; });
+  if (!won.length || !lost.length) return;
+
+  var liveWr  = won.length / closed.length;
+  var avgWin  = won.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / won.length;
+  var avgLoss = Math.abs(lost.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0) / lost.length);
+
+  var dates      = closed.map(function(t){ return new Date(t.resolved_at||t.placed_at); });
+  var minDate    = new Date(Math.min.apply(null, dates));
+  var daysSince  = Math.max(1, (Date.now() - minDate) / 86400000);
+  var tradesPerDay = closed.length / daysSince;
+
+  var liveWrPct = Math.round(liveWr * 100);
+  document.getElementById('proj-ap-wr').textContent = liveWrPct + '%';
+  document.getElementById('proj-ap-sub').textContent =
+    won.length + 'W / ' + lost.length + 'L · ' +
+    tradesPerDay.toFixed(1) + ' trades/day · ' +
+    'avg win $' + avgWin.toFixed(2) + ' / avg loss $' + avgLoss.toFixed(2);
+
+  document.getElementById('proj-ap-badge').textContent =
+    'Live ' + liveWrPct + '% WR · ' + tradesPerDay.toFixed(1) + ' trades/day';
+
+  // Low-WR / high-payout strategy: use NC-style 5-30% bands
+  var baseBands = [5, 10, 15, 20, 25, 30];
+  var liveWrRounded = Math.round(liveWr * 100);
+  var scenarios = [];
+  var liveInserted = false;
+  for (var si = 0; si < baseBands.length; si++) {
+    if (!liveInserted && liveWrRounded > (baseBands[si-1]||0) && liveWrRounded < baseBands[si]) {
+      scenarios.push(liveWrRounded);
+      liveInserted = true;
+    }
+    scenarios.push(baseBands[si]);
+    if (!liveInserted && liveWrRounded === baseBands[si]) {
+      liveInserted = true;
+    }
+  }
+  if (!liveInserted && liveWrRounded > baseBands[baseBands.length-1]) {
+    scenarios.push(liveWrRounded);
+  }
+  var months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  var sb     = startBankroll || 1000;
+
+  var hdrs = months.map(function(m){ return '<th>' + m + 'mo</th>'; }).join('');
+  var rows = scenarios.map(function(wrPct) {
+    var wr     = wrPct / 100;
+    var isLive = (wrPct === liveWrRounded);
+    var rowStyle  = isLive ? ' style="background:rgba(201,146,42,0.06)"' : '';
+    var labelStyle = isLive ? ' style="color:var(--gold);font-weight:600"' : '';
+    var vals = months.map(function(m) {
+      var v = compound(sb, wr, avgWin, avgLoss, tradesPerDay, m * 30, ceiling);
+      var isProfit = v >= sb;
+      var style = isLive
+        ? 'color:var(--gold)'
+        : (isProfit ? 'color:var(--text)' : 'color:#666666');
+      return '<td class="mono" style="' + style + '">$' + Math.round(v).toLocaleString() + '</td>';
+    });
+    var ev = (wr * avgWin - (1 - wr) * avgLoss) * tradesPerDay;
+    var evStyle = ev >= 0 ? 'color:var(--green)' : 'color:var(--red)';
+    return '<tr' + rowStyle + '>' +
+      '<td class="mono"' + labelStyle + '>' + wrPct + '%' + (isLive ? ' ◀' : '') + '</td>' +
+      '<td class="mono" style="' + evStyle + '">$' + ev.toFixed(2) + '/day</td>' +
+      vals.join('') +
+      '</tr>';
+  }).join('');
+
+  document.getElementById('proj-ap-table').innerHTML =
+    '<table><thead><tr>' +
+      '<th>WR scenario</th><th>Daily EV</th>' + hdrs +
+    '</tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
 function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBankroll) {
   if (!closed || !closed.length) {
     document.getElementById(pfxTable).innerHTML = '<div class="empty">No resolved trades yet</div>';
@@ -1611,7 +1894,7 @@ function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, startBank
     '</tr></thead><tbody>' + rows + '</tbody></table>';
 }
 
-function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData) {
+function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData, apData) {
   var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
   var nbClosed  = nbData  ? (nbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
   var nb2Closed = nb2Data ? (nb2Data.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
@@ -1631,10 +1914,19 @@ function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData) {
   var ncStart  = ncData  ? ncData.bankroll  : 1000;
   ncProjTable(ncClosed, 50000, ncStart);
 
+  var apClosed = apData  ? (apData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var apStart  = apData  ? apData.bankroll  : 1000;
+  apProjTable(apClosed, 50000, apStart);
+
   if (!ncData) {
     document.getElementById('proj-nc-wr').textContent  = '—';
     document.getElementById('proj-nc-sub').textContent = 'Push nearcertain_log.json to enable';
     document.getElementById('proj-nc-table').innerHTML = '<div class="empty">NearCertain log not in repo yet</div>';
+  }
+  if (!apData) {
+    document.getElementById('proj-ap-wr').textContent  = '—';
+    document.getElementById('proj-ap-sub').textContent = 'Push alpha_prime_log.json to enable';
+    document.getElementById('proj-ap-table').innerHTML = '<div class="empty">Alpha-Prime log not in repo yet</div>';
   }
   if (!nb2Data) {
     document.getElementById('proj-nb2-wr').textContent = '—';
@@ -1675,13 +1967,18 @@ function loadData() {
     fetch(NC_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
     new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
   ]);
+  var apFetch = Promise.race([
+    fetch(AP_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
 
   Promise.all([
     fetch(CB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('ClaudeBot HTTP ' + r.status); return r.json(); }),
     fetch(NB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('NoBot HTTP ' + r.status); return r.json(); }),
     nb2Fetch,
     nb3Fetch,
-    ncFetch
+    ncFetch,
+    apFetch
   ]).then(function(results) {
     renderCB(results[0]);
     renderNB(results[1]);
@@ -1712,7 +2009,17 @@ function loadData() {
       document.getElementById('nc-potential').textContent = '—';
       document.getElementById('nc-open-table').innerHTML  = '<div class="empty">Push nearcertain_log.json to the repo to enable tracking</div>';
     }
-    renderProjections(results[0], results[1], results[2], results[3], results[4]);
+    if (results[5]) {
+      renderAP(results[5]);
+    } else {
+      document.getElementById('ap-bank').textContent     = 'Not live yet';
+      document.getElementById('ap-pnl').textContent      = '—';
+      document.getElementById('ap-wr').textContent       = '—';
+      document.getElementById('ap-open').textContent     = '—';
+      document.getElementById('ap-potential').textContent = '—';
+      document.getElementById('ap-open-table').innerHTML  = '<div class="empty">Push alpha_prime_log.json to the repo to enable tracking</div>';
+    }
+    renderProjections(results[0], results[1], results[2], results[3], results[4], results[5]);
 
     var now = new Date();
     dot.className    = 'status-dot';
