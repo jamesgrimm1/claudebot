@@ -1,5 +1,5 @@
 {
-  "bankroll": 819.79,
+  "bankroll": 955.84,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -4462,10 +4462,13 @@
       "potential_payout": 153.0,
       "closes": "2026-04-27T12:00:00+00:00",
       "closes_in_days": 0.44,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T01:26:43.888632+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-27T12:15:48.985657+00:00",
+      "realized_pnl": 137.7
     },
     {
       "id": "NC20260427012643888698",
@@ -4844,10 +4847,46 @@
       "placed_at": "2026-04-27T10:05:33.865224+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427121602314925",
+      "market_id": "1977565",
+      "market": "Manchester United FC vs. Brentford FC: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 7.3,
+      "potential_profit": 33.26,
+      "potential_payout": 40.56,
+      "closes": "2026-04-27T19:00:00+00:00",
+      "closes_in_days": 0.281,
+      "status": "open",
+      "placed_at": "2026-04-27T12:16:02.314944+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427121602315022",
+      "market_id": "2093123",
+      "market": "Valorant: DNSTY vs Ramboot Club (BO3) - VCL Spain: Rising Phase 2 Playoffs",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 9.65,
+      "potential_profit": 64.58,
+      "potential_payout": 74.23,
+      "closes": "2026-04-27T21:00:00+00:00",
+      "closes_in_days": 0.364,
+      "status": "open",
+      "placed_at": "2026-04-27T12:16:02.315031+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 7.44,
   "daily_reset": "2026-04-27",
-  "scan_count": 135,
+  "scan_count": 136,
   "started": "2026-04-21T00:00:00+00:00"
 }
