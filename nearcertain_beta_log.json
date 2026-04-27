@@ -1,5 +1,5 @@
 {
-  "bankroll": 958.03,
+  "bankroll": 956.59,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -12300,10 +12300,13 @@
       "potential_payout": 8.17,
       "closes": "2026-04-27T12:00:00+00:00",
       "closes_in_days": 0.292,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:52.071867+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T14:56:49.839331+00:00",
+      "realized_pnl": -0.49
     },
     {
       "id": "NC20260427045952072082",
@@ -12768,10 +12771,13 @@
       "potential_payout": 2.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "closes_in_days": 0.079,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T10:05:45.161861+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T14:56:50.081374+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427100545161989",
@@ -13195,11 +13201,65 @@
       "placed_at": "2026-04-27T14:43:22.162327+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427145659077531",
+      "market_id": "2092863",
+      "market": "Counter-Strike: Imperial Academy vs LPH Gaming (BO3) - European Pro League Regular Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.48,
+      "potential_profit": 3.52,
+      "potential_payout": 4.0,
+      "closes": "2026-04-27T17:30:00+00:00",
+      "closes_in_days": 0.106,
+      "status": "open",
+      "placed_at": "2026-04-27T14:56:59.077548+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427145659077673",
+      "market_id": "2083963",
+      "market": "Valorant: Be\u015fikta\u015f Esports vs FUT Academy - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 31,
+      "entry_yes_price": 69,
+      "stake": 0.48,
+      "potential_profit": 1.07,
+      "potential_payout": 1.55,
+      "closes": "2026-04-27T18:30:00+00:00",
+      "closes_in_days": 0.148,
+      "status": "open",
+      "placed_at": "2026-04-27T14:56:59.077688+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427145659077868",
+      "market_id": "2096093",
+      "market": "Counter-Strike: Nemiga vs Walczaki (BO3) - NODWIN Clutch Series Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.48,
+      "potential_profit": 2.52,
+      "potential_payout": 3.0,
+      "closes": "2026-04-27T20:00:00+00:00",
+      "closes_in_days": 0.211,
+      "status": "open",
+      "placed_at": "2026-04-27T14:56:59.077884+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 21.17,
+  "daily_loss": 22.14,
   "daily_reset": "2026-04-27",
-  "scan_count": 82,
+  "scan_count": 83,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
