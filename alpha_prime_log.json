@@ -1,5 +1,5 @@
 {
-  "bankroll": 3278.87,
+  "bankroll": 3230.36,
   "trades": [
     {
       "id": "NC20260422060534289593",
@@ -900,11 +900,35 @@
       "won": false,
       "resolved_at": "2026-04-27T04:59:37.528363+00:00",
       "realized_pnl": -40.0
+    },
+    {
+      "id": "AP1777300987526",
+      "market_id": "1808439",
+      "market_slug": "den-kob-vbk-2026-04-27-total-1pt5",
+      "market": "FC K\u00f8benhavn vs. Vejle BK: O/U 1.5",
+      "pattern": "B",
+      "triggered_by": "soccer_ou no=14 cid=0.095",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 48.51,
+      "payout_if_wins": 346.5,
+      "profit_if_wins": 297.99,
+      "volume_at_entry": 970.1437319999999,
+      "closes_in_days": 0.095,
+      "closes": "2026-04-27T17:00:00+00:00",
+      "bankroll_at_entry": 3278.87,
+      "bankroll_fraction": 0.0148,
+      "status": "open",
+      "placed_at": "2026-04-27T14:43:07.526198+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 40.0,
   "daily_reset": "2026-04-27",
-  "scan_count": 26,
+  "scan_count": 27,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W17",

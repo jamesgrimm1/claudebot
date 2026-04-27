@@ -1,5 +1,5 @@
 {
-  "bankroll": 840.49,
+  "bankroll": 833.51,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6573,11 +6573,51 @@
       "placed_at": "2026-04-27T12:15:36.604900+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777300966",
+      "market_id": "2067189",
+      "market_slug": "nvda-close-above-210-on-april-27-2026",
+      "market": "Will NVIDIA (NVDA) close above $210 on April 27?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 5.23,
+      "payout_if_wins": 8.44,
+      "profit_if_wins": 3.21,
+      "category": "other",
+      "closes_in_days": 0.22,
+      "closes": "2026-04-27T20:00:00+00:00",
+      "volume": 7746.001829999999,
+      "status": "open",
+      "placed_at": "2026-04-27T14:42:46.815403+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777300966",
+      "market_id": "2067139",
+      "market_slug": "wti-closes-above-96-on-april-27-2026",
+      "market": "WTI Crude Oil (WTI) closes above $96 on April 27?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 1.75,
+      "payout_if_wins": 3.65,
+      "profit_if_wins": 1.9,
+      "category": "other",
+      "closes_in_days": 0.26,
+      "closes": "2026-04-27T21:00:00+00:00",
+      "volume": 4321.5609239999985,
+      "status": "open",
+      "placed_at": "2026-04-27T14:42:46.815447+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 12.7,
   "daily_reset": "2026-04-27",
-  "scan_count": 230,
+  "scan_count": 231,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T12:15:23.294709+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
