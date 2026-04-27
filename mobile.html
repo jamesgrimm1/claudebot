@@ -7,264 +7,394 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
 <title>Prescient</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap');
-
 :root {
---gold:#C9922A; --gold-dim:rgba(201,146,42,0.10); --gold-glow:rgba(201,146,42,0.20);
---bg:#080808; --s1:#111; --s2:#181818; --s3:#1f1f1f;
---border:rgba(255,255,255,0.06); --border2:rgba(255,255,255,0.10);
---text:#f0ede8; --muted:#4a4a4a; --muted2:#666;
---green:#2ecc71; --red:#e74c3c;
---green-dim:rgba(46,204,113,0.10); --red-dim:rgba(231,76,60,0.10);
---blue:#3d9be9; --blue-dim:rgba(61,155,233,0.10);
---purple:#9b6dff; --purple-dim:rgba(155,109,255,0.10);
+  --bg:     #080808;
+  --bg2:    #0c0c0c;
+  --bg3:    #111111;
+  --bg4:    #161616;
+  --border: rgba(255,255,255,0.055);
+  --border2:rgba(255,255,255,0.1);
+  --text:   #f0f0f0;
+  --text2:  #b0b0b0;
+  --text3:  #888888;
+  --gold:   #C9922A;
+  --gold2:  #e0aa45;
+  --gold-d: rgba(201,146,42,0.1);
+  --gold-d2:rgba(201,146,42,0.18);
+  --green:  #C9922A;
+  --green-d:rgba(201,146,42,0.1);
+  --red:    #999999;
+  --red-d:  rgba(153,153,153,0.1);
+  --pos:    #C9922A;
+  --neg:    #999999;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color:transparent; }
 
 html, body {
-font-family: 'DM Mono', monospace;
-background: var(--bg);
-color: var(--text);
-min-height: 100vh;
--webkit-font-smoothing: antialiased;
-overscroll-behavior: none;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 13px;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+body {
+  padding-top: max(env(safe-area-inset-top), 0px);
+  padding-bottom: calc(max(env(safe-area-inset-bottom), 0px) + 60px);
 }
 
-body {
-padding-top: max(env(safe-area-inset-top), 0px);
-padding-bottom: calc(max(env(safe-area-inset-bottom), 0px) + 80px);
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+.mono { font-family: 'DM Mono', monospace; }
 
 .header {
-display: flex; align-items: center; justify-content: space-between;
-padding: 18px 16px 16px;
-position: sticky; top: 0;
-background: rgba(8,8,8,0.92);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-z-index: 20;
-border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px;
+  position: sticky; top: 0;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 20;
+  border-bottom: 1px solid var(--border);
 }
-
 .wordmark {
-font-family: 'DM Serif Display', serif;
-font-size: 22px;
-letter-spacing: -0.5px;
-color: var(--text);
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; letter-spacing: -0.3px;
+  color: var(--text);
 }
-.wordmark em { color: var(--gold); font-style: normal; }
-
-.header-right { display:flex; align-items:center; gap:10px; }
-
-.ts {
-font-size: 9px; color: var(--muted2);
-letter-spacing: 0.3px; text-align:right; line-height:1.6;
+.wordmark .dot { color: var(--gold); }
+.header-right { display: flex; align-items: center; gap: 10px; }
+.status-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text2);
+  letter-spacing: 0.5px; text-align: right; line-height: 1.4;
 }
-
 .refresh-btn {
-width: 32px; height: 32px; border-radius: 50%;
-background: var(--s2); border: 1px solid var(--border2);
-color: var(--muted2); font-size: 16px; cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-transition: color .2s, border-color .2s;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--bg3); border: 1px solid var(--border2);
+  color: var(--text2); font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s, border-color 0.2s;
 }
 .refresh-btn:active { color: var(--gold); border-color: var(--gold); }
 @keyframes spin { to { transform: rotate(360deg); } }
 .refresh-btn.spinning { animation: spin 0.7s linear infinite; }
 
 .loading-state {
-display: flex; flex-direction: column; align-items: center;
-justify-content: center; padding: 100px 0; gap: 14px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 100px 0; gap: 14px;
 }
 .loading-ring {
-width: 32px; height: 32px; border-radius: 50%;
-border: 2px solid var(--s3); border-top-color: var(--gold);
-animation: spin 0.8s linear infinite;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--bg4); border-top-color: var(--gold);
+  animation: spin 0.8s linear infinite;
 }
-.loading-text { font-size: 9px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; }
-
+.loading-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; color: var(--text3); text-transform: uppercase;
+}
 .error-state {
-display: none; padding: 80px 24px; text-align: center;
-font-size: 11px; color: var(--red); line-height: 1.8;
+  display: none; padding: 80px 24px; text-align: center;
+  font-size: 12px; color: var(--text2); line-height: 1.8;
 }
 
 #content { display: none; }
 
 .tab-bar {
-display: flex; gap: 0;
-padding: 12px 16px 0;
-overflow-x: auto;
-scrollbar-width: none;
-border-bottom: 1px solid var(--border);
-position: sticky; top: 55px; z-index: 15;
-background: rgba(8,8,8,0.92);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
+  display: flex; gap: 0;
+  padding: 10px 12px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 56px; z-index: 15;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .tab-bar::-webkit-scrollbar { display: none; }
 .tab {
-font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
-color: var(--muted2); padding: 8px 14px 9px;
-border-bottom: 2px solid transparent; white-space: nowrap;
-cursor: pointer; transition: color .2s, border-color .2s;
-flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text2);
+  padding: 10px 14px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
 }
 .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 
 .bot-view { display: none; }
 .bot-view.active { display: block; }
 
-.section { padding: 18px 16px 0; }
-
-.bot-header { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.bot-header-strip {
+  padding: 14px 16px 6px;
+  display: flex; align-items: center; gap: 8px;
+}
 .live-dot {
-width:6px; height:6px; background:var(--green); border-radius:50%;
-flex-shrink:0;
-box-shadow: 0 0 6px var(--green);
-animation: pulse 2.5s ease-in-out infinite;
+  width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--gold);
+  animation: pulse 2.5s ease-in-out infinite;
 }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-
 .bot-label {
-font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-color: var(--gold); font-weight: 500;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); font-weight: 500;
 }
-.bot-scancount { font-size: 9px; color: var(--muted); margin-left: auto; }
+.bot-tagline {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text3);
+  margin-left: auto;
+}
 
-.stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.stats-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 6px 16px 12px;
+}
 .stat {
-background: var(--s1);
-border: 1px solid var(--border);
-border-radius: 14px;
-padding: 14px 15px;
-position: relative; overflow: hidden;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  position: relative; overflow: hidden;
 }
 .stat::before {
-content:''; position:absolute; top:0; right:0;
-width:40px; height:40px;
-background: radial-gradient(circle at top right, var(--gold-dim), transparent 70%);
+  content:''; position: absolute; top:0; right:0;
+  width: 50px; height: 50px;
+  background: radial-gradient(circle at top right, var(--gold-d), transparent 70%);
 }
 .stat-label {
-font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
-color: var(--muted); margin-bottom: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 6px;
 }
-.stat-val { font-family:'DM Serif Display',serif; font-size:24px; line-height:1; letter-spacing:-0.5px; }
-.stat-sub { font-size:9px; color:var(--muted2); margin-top:5px; }
-.stat-bar { height:2px; background:var(--s3); border-radius:2px; margin-top:10px; overflow:hidden; }
-.stat-bar-fill { height:100%; border-radius:2px; transition:width 1.2s cubic-bezier(.25,.46,.45,.94); }
-
-.pos { color: var(--green); }
-.neg { color: var(--red); }
-.gld { color: var(--gold); }
-
-.summary-row {
-display: flex; gap: 8px; padding: 0 16px 14px;
+.stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; line-height: 1.1; letter-spacing: -0.3px;
+  color: var(--text);
 }
-.summary-pill {
-flex:1; background:var(--s1); border:1px solid var(--border);
-border-radius:10px; padding:10px 12px;
-font-size:9px; color:var(--muted2); text-align:center; letter-spacing:0.5px;
+.stat-val.gold  { color: var(--gold); }
+.stat-val.green { color: var(--gold); }
+.stat-val.red   { color: var(--red); }
+.stat-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text2); margin-top: 5px;
 }
-.summary-pill strong { display:block; font-size:14px; color:var(--text); font-family:'DM Serif Display',serif; margin-bottom:2px; }
+.stat-bar {
+  height: 2px; background: var(--bg4); border-radius: 2px;
+  margin-top: 8px; overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%; border-radius: 2px;
+  background: var(--gold);
+  transition: width 1.2s cubic-bezier(.25,.46,.45,.94);
+}
+.stat-full { grid-column: 1 / -1; }
 
-.trades-header {
-font-size:8px; letter-spacing:2.5px; text-transform:uppercase;
-color:var(--muted); padding:16px 16px 8px;
+.section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text2);
+  padding: 14px 16px 8px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.section-title .pill-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; padding: 3px 8px;
+  background: var(--gold-d); color: var(--gold);
+  border-radius: 6px; letter-spacing: 0.5px;
 }
 
-.trade-list { padding: 0 16px; display:flex; flex-direction:column; gap:7px; }
-
+.trade-list { padding: 0 16px; display: flex; flex-direction: column; gap: 8px; }
 .trade-card {
-background: var(--s1); border:1px solid var(--border);
-border-radius:13px; padding:12px 13px;
-display:flex; align-items:flex-start; gap:10px;
-position: relative; overflow:hidden;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 13px;
+  display: flex; align-items: flex-start; gap: 10px;
+  position: relative; overflow: hidden;
 }
 .trade-card::after {
-content:''; position:absolute; left:0; top:0; bottom:0;
-width:3px; border-radius:3px 0 0 3px;
+  content:''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; border-radius: 3px 0 0 3px;
 }
-.trade-card.side-yes::after { background:var(--green); }
-.trade-card.side-no::after  { background:var(--red); }
-.trade-card.side-nc::after  { background:var(--purple); }
+.trade-card.side-yes::after { background: var(--gold); }
+.trade-card.side-no::after  { background: var(--text3); }
+.trade-card.side-nc::after  { background: var(--gold); }
+.trade-card.side-ap::after  { background: var(--gold2); }
 
-.trade-badges { display:flex; flex-direction:column; gap:4px; flex-shrink:0; }
+.trade-badges { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
 .badge {
-font-size:8px; font-weight:500; letter-spacing:0.5px;
-padding:2px 7px; border-radius:5px; white-space:nowrap; text-transform:uppercase;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; font-weight: 500; letter-spacing: 0.5px;
+  padding: 3px 7px; border-radius: 5px;
+  white-space: nowrap; text-transform: uppercase;
 }
-.b-yes  { background:var(--green-dim);  color:var(--green);  }
-.b-no   { background:var(--red-dim);    color:var(--red);    }
-.b-nc   { background:var(--purple-dim); color:var(--purple); }
-.b-t1   { background:var(--blue-dim);   color:var(--blue);   }
-.b-t2   { background:var(--gold-dim);   color:var(--gold);   }
-.b-t3   { background:var(--purple-dim); color:var(--purple); }
-.b-cat  { background:var(--s3);         color:var(--muted2); }
+.b-yes { background: var(--gold-d); color: var(--gold); }
+.b-no  { background: rgba(255,255,255,0.06); color: var(--text2); }
+.b-t1  { background: var(--gold-d); color: var(--gold); }
+.b-t2  { background: var(--gold-d2); color: var(--gold2); }
+.b-t3  { background: var(--gold-d); color: var(--gold); }
+.b-cat { background: rgba(255,255,255,0.04); color: var(--text2); }
+.b-pat { background: var(--gold-d); color: var(--gold); }
 
-.trade-body { flex:1; min-width:0; }
+.trade-body { flex: 1; min-width: 0; }
 .trade-name {
-font-family:'DM Serif Display',serif;
-font-size:12px; line-height:1.35;
-overflow:hidden; display:-webkit-box;
--webkit-line-clamp:2; -webkit-box-orient:vertical;
-margin-bottom:4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; line-height: 1.35;
+  color: var(--text);
+  overflow: hidden; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  margin-bottom: 4px;
 }
-.trade-meta { font-size:9px; color:var(--muted2); }
+.trade-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text2);
+}
+.trade-right { text-align: right; flex-shrink: 0; }
+.trade-stake {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px; color: var(--text); line-height: 1.1;
+}
+.trade-upside {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--gold); margin-top: 3px;
+}
+.trade-win-amt {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--gold); margin-top: 2px;
+}
 
-.trade-right { text-align:right; flex-shrink:0; }
-.trade-stake { font-family:'DM Serif Display',serif; font-size:15px; }
-.trade-upside { font-size:9px; color:var(--green); margin-top:2px; }
-.trade-win-amt { font-size:9px; color:var(--purple); margin-top:2px; }
+.empty-msg {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; color: var(--text2); padding: 14px 0; text-align: center;
+}
 
-.empty-msg { font-size:10px; color:var(--muted); padding:6px 0; }
+.closed-list { padding: 0 16px; display: flex; flex-direction: column; gap: 6px; }
+.closed-row {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.closed-name {
+  flex: 1; min-width: 0;
+  font-size: 11px; color: var(--text);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.closed-pnl {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  flex-shrink: 0;
+}
+.closed-pnl.pos { color: var(--gold); }
+.closed-pnl.neg { color: var(--text2); }
+.closed-result { font-size: 14px; flex-shrink: 0; }
 
 .proj-card {
-  background: var(--s1); border: 1px solid var(--border);
-  border-radius: 14px; margin: 0 16px 12px; overflow: hidden;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; margin: 0 16px 12px; overflow: hidden;
 }
 .proj-card-header {
-  padding: 12px 14px 10px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
 }
 .proj-card-title {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
 }
 .proj-card-wr {
-  font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--gold);
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--gold);
 }
 .proj-card-sub {
-  font-size: 8px; color: var(--muted2); padding: 0 14px 8px; margin-top: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text2);
+  padding: 8px 14px 10px;
+  line-height: 1.5;
 }
-.proj-table { width: 100%; border-collapse: collapse; font-size: 9px; }
+.proj-table { width: 100%; border-collapse: collapse; }
 .proj-table th {
-  background: var(--bg); color: var(--muted); padding: 6px 10px;
-  text-align: left; font-weight: 400; font-size: 8px;
-  letter-spacing: 0.5px; border-bottom: 1px solid var(--border);
+  background: var(--bg2); color: var(--text2);
+  padding: 6px 8px;
+  text-align: left; font-weight: 400;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
 }
-.proj-table td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.proj-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.proj-table td.muted { color: var(--text2); }
 .proj-table tr:last-child td { border-bottom: none; }
 .proj-table tr.live-row { background: rgba(201,146,42,0.06); }
-.proj-table tr.live-row td:first-child { color: var(--gold); font-weight: 500; }
+.proj-table tr.live-row td:first-child { color: var(--gold); font-weight: 600; }
+.proj-table .ev-pos { color: var(--gold); }
+.proj-table .ev-neg { color: var(--text2); }
+
+.proj-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
 .proj-footer {
-  font-size: 8px; color: var(--muted); padding: 16px;
-  line-height: 1.8; letter-spacing: 0.3px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; color: var(--text2);
+  padding: 16px;
+  line-height: 1.7; letter-spacing: 0.2px;
 }
-.section-divider {
-margin: 22px 0 0;
-border: none; border-top:1px solid var(--border);
+
+.proj-hero-strip {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px; padding: 14px 16px 4px;
+}
+.proj-hero {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 12px;
+  position: relative; overflow: hidden;
+}
+.proj-hero::before {
+  content:''; position: absolute; top:0; right:0;
+  width: 30px; height: 30px;
+  background: radial-gradient(circle at top right, var(--gold-d), transparent 70%);
+}
+.proj-hero-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.proj-hero-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--gold); line-height: 1.1;
+}
+.proj-hero-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px; color: var(--text2); margin-top: 3px;
+  line-height: 1.3;
+  overflow: hidden; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="wordmark">presc<em>i</em>ent</div>
+  <div class="wordmark">Prescient<span class="dot">.</span></div>
   <div class="header-right">
-    <div class="ts" id="ts">—</div>
-    <button class="refresh-btn" id="refresh-btn" onclick="load()">&#x21BB;</button>
+    <div class="status-pill" id="ts">—</div>
+    <button class="refresh-btn" id="refresh-btn" onclick="load()">↻</button>
   </div>
 </div>
 
@@ -277,342 +407,384 @@ border: none; border-top:1px solid var(--border);
 <div id="content">
 
   <div class="tab-bar" id="tabs">
-    <div class="tab active" data-view="cb" onclick="switchTab(this)">ClaudeBot</div>
-    <div class="tab" data-view="nb" onclick="switchTab(this)">NoBot V1</div>
-    <div class="tab" data-view="nb2" onclick="switchTab(this)">NoBot V2</div>
-    <div class="tab" data-view="nb3" onclick="switchTab(this)">NoBot V3</div>
-    <div class="tab" data-view="nc" onclick="switchTab(this)">NearCertain</div>
-    <div class="tab" data-view="proj" onclick="switchTab(this)">Projections</div>
+    <div class="tab active" data-view="cb"  onclick="switchTab(this)">ClaudeBot</div>
+    <div class="tab"        data-view="nb"  onclick="switchTab(this)">NoBot V1</div>
+    <div class="tab"        data-view="nb2" onclick="switchTab(this)">NoBot V2</div>
+    <div class="tab"        data-view="nb3" onclick="switchTab(this)">NoBot V3</div>
+    <div class="tab"        data-view="nc"  onclick="switchTab(this)">NearCertain</div>
+    <div class="tab"        data-view="ap"  onclick="switchTab(this)">Alpha-Prime</div>
+    <div class="tab"        data-view="proj" onclick="switchTab(this)">Projections</div>
   </div>
 
   <!-- ClaudeBot -->
   <div class="bot-view active" id="view-cb">
-    <div class="section">
-      <div class="bot-header">
-        <div class="live-dot"></div>
-        <div class="bot-label">ClaudeBot</div>
-        <div class="bot-scancount" id="cb-scans">—</div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Bankroll</div>
-          <div class="stat-val gld" id="cb-bank">—</div>
-          <div class="stat-sub" id="cb-roi">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Realized P&amp;L</div>
-          <div class="stat-val" id="cb-pnl">—</div>
-          <div class="stat-sub" id="cb-rec">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-val" id="cb-wr">—</div>
-          <div class="stat-bar"><div class="stat-bar-fill" id="cb-wrf" style="width:0"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Open</div>
-          <div class="stat-val" id="cb-open">—</div>
-          <div class="stat-sub" id="cb-dep">—</div>
-        </div>
-      </div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div>
+      <div class="bot-label">ClaudeBot</div>
+      <div class="bot-tagline" id="cb-scans">—</div>
     </div>
-    <div class="trades-header">Open Positions</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="cb-bank">—</div><div class="stat-sub" id="cb-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="cb-pnl">—</div><div class="stat-sub" id="cb-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="cb-wr">—</div><div class="stat-sub" id="cb-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="cb-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="cb-open">—</div><div class="stat-sub" id="cb-dep">—</div></div>
+    </div>
+    <div class="section-title">Open Positions <span class="pill-count" id="cb-open-count">0</span></div>
     <div class="trade-list" id="cb-list"></div>
+    <div class="section-title">Recent Closed <span class="pill-count" id="cb-closed-count">0</span></div>
+    <div class="closed-list" id="cb-closed-list"></div>
   </div>
 
   <!-- NoBot V1 -->
   <div class="bot-view" id="view-nb">
-    <div class="section">
-      <div class="bot-header">
-        <div class="live-dot"></div>
-        <div class="bot-label">NoBot V1</div>
-        <div class="bot-scancount" id="nb-scans">—</div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Bankroll</div>
-          <div class="stat-val gld" id="nb-bank">—</div>
-          <div class="stat-sub" id="nb-roi">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Realized P&amp;L</div>
-          <div class="stat-val" id="nb-pnl">—</div>
-          <div class="stat-sub" id="nb-rec">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-val" id="nb-wr">—</div>
-          <div class="stat-bar"><div class="stat-bar-fill" id="nb-wrf" style="width:0"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Open</div>
-          <div class="stat-val" id="nb-open">—</div>
-          <div class="stat-sub" id="nb-dep">—</div>
-        </div>
-      </div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">NoBot V1</div><div class="bot-tagline" id="nb-scans">—</div>
     </div>
-    <div class="trades-header">Largest Open Positions</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="nb-bank">—</div><div class="stat-sub" id="nb-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="nb-pnl">—</div><div class="stat-sub" id="nb-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="nb-wr">—</div><div class="stat-sub" id="nb-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="nb-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="nb-open">—</div><div class="stat-sub" id="nb-dep">—</div></div>
+    </div>
+    <div class="section-title">Largest Open <span class="pill-count" id="nb-open-count">0</span></div>
     <div class="trade-list" id="nb-list"></div>
   </div>
 
   <!-- NoBot V2 -->
   <div class="bot-view" id="view-nb2">
-    <div class="section">
-      <div class="bot-header">
-        <div class="live-dot"></div>
-        <div class="bot-label">NoBot V2</div>
-        <div class="bot-scancount" id="nb2-scans">—</div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Bankroll</div>
-          <div class="stat-val gld" id="nb2-bank">—</div>
-          <div class="stat-sub" id="nb2-roi">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Realized P&amp;L</div>
-          <div class="stat-val" id="nb2-pnl">—</div>
-          <div class="stat-sub" id="nb2-rec">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-val" id="nb2-wr">—</div>
-          <div class="stat-bar"><div class="stat-bar-fill" id="nb2-wrf" style="width:0"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Open</div>
-          <div class="stat-val" id="nb2-open">—</div>
-          <div class="stat-sub" id="nb2-dep">—</div>
-        </div>
-      </div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">NoBot V2</div><div class="bot-tagline" id="nb2-scans">—</div>
     </div>
-    <div class="trades-header">Largest Open Positions</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="nb2-bank">—</div><div class="stat-sub" id="nb2-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="nb2-pnl">—</div><div class="stat-sub" id="nb2-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="nb2-wr">—</div><div class="stat-sub" id="nb2-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="nb2-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="nb2-open">—</div><div class="stat-sub" id="nb2-dep">—</div></div>
+    </div>
+    <div class="section-title">Largest Open <span class="pill-count" id="nb2-open-count">0</span></div>
     <div class="trade-list" id="nb2-list"></div>
   </div>
 
   <!-- NoBot V3 -->
   <div class="bot-view" id="view-nb3">
-    <div class="section">
-      <div class="bot-header">
-        <div class="live-dot"></div>
-        <div class="bot-label">NoBot V3 — Weather</div>
-        <div class="bot-scancount" id="nb3-scans">—</div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Bankroll</div>
-          <div class="stat-val gld" id="nb3-bank">—</div>
-          <div class="stat-sub" id="nb3-roi">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Realized P&amp;L</div>
-          <div class="stat-val" id="nb3-pnl">—</div>
-          <div class="stat-sub" id="nb3-rec">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-val" id="nb3-wr">—</div>
-          <div class="stat-bar"><div class="stat-bar-fill" id="nb3-wrf" style="width:0"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Open</div>
-          <div class="stat-val" id="nb3-open">—</div>
-          <div class="stat-sub" id="nb3-dep">—</div>
-        </div>
-      </div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">NoBot V3 — Weather</div><div class="bot-tagline" id="nb3-scans">—</div>
     </div>
-    <div class="trades-header">Largest Open Positions</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="nb3-bank">—</div><div class="stat-sub" id="nb3-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="nb3-pnl">—</div><div class="stat-sub" id="nb3-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="nb3-wr">—</div><div class="stat-sub" id="nb3-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="nb3-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="nb3-open">—</div><div class="stat-sub" id="nb3-dep">—</div></div>
+    </div>
+    <div class="section-title">Largest Open <span class="pill-count" id="nb3-open-count">0</span></div>
     <div class="trade-list" id="nb3-list"></div>
   </div>
 
   <!-- NearCertain -->
   <div class="bot-view" id="view-nc">
-    <div class="section">
-      <div class="bot-header">
-        <div class="live-dot"></div>
-        <div class="bot-label">NearCertain</div>
-        <div class="bot-scancount" id="nc-scans">—</div>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-label">Bankroll</div>
-          <div class="stat-val gld" id="nc-bank">—</div>
-          <div class="stat-sub" id="nc-roi">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Realized P&amp;L</div>
-          <div class="stat-val" id="nc-pnl">—</div>
-          <div class="stat-sub" id="nc-rec">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Win Rate</div>
-          <div class="stat-val" id="nc-wr">—</div>
-          <div class="stat-bar"><div class="stat-bar-fill" id="nc-wrf" style="width:0"></div></div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Open</div>
-          <div class="stat-val" id="nc-open">—</div>
-          <div class="stat-sub" id="nc-dep">—</div>
-        </div>
-      </div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">NearCertain</div><div class="bot-tagline">Sell NO @ YES 65¢+</div>
     </div>
-    <div class="summary-row" id="nc-summary-row" style="display:none">
-      <div class="summary-pill">
-        <strong id="nc-potential">—</strong>
-        Potential profit
-      </div>
-      <div class="summary-pill">
-        <strong id="nc-best-roi">—</strong>
-        Best trade ROI
-      </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="nc-bank">—</div><div class="stat-sub" id="nc-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="nc-pnl">—</div><div class="stat-sub" id="nc-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="nc-wr">—</div><div class="stat-sub" id="nc-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="nc-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="nc-open">—</div><div class="stat-sub" id="nc-dep">—</div></div>
+      <div class="stat stat-full"><div class="stat-label">Potential Profit if all open win</div><div class="stat-val gold" id="nc-potential">—</div></div>
     </div>
-    <div class="trades-header">Open Positions</div>
+    <div class="section-title">Open Positions <span class="pill-count" id="nc-open-count">0</span></div>
     <div class="trade-list" id="nc-list"></div>
+    <div class="section-title">Recent Closed <span class="pill-count" id="nc-closed-count">0</span></div>
+    <div class="closed-list" id="nc-closed-list"></div>
+  </div>
+
+  <!-- Alpha-Prime -->
+  <div class="bot-view" id="view-ap">
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">Alpha-Prime</div><div class="bot-tagline">Focused NearCertain</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-label">Bankroll</div><div class="stat-val gold" id="ap-bank">—</div><div class="stat-sub" id="ap-roi">—</div></div>
+      <div class="stat"><div class="stat-label">Realized P&L</div><div class="stat-val" id="ap-pnl">—</div><div class="stat-sub" id="ap-pnl-sub">—</div></div>
+      <div class="stat"><div class="stat-label">Win Rate</div><div class="stat-val" id="ap-wr">—</div><div class="stat-sub" id="ap-rec">—</div><div class="stat-bar"><div class="stat-bar-fill" id="ap-wrf" style="width:0"></div></div></div>
+      <div class="stat"><div class="stat-label">Open Positions</div><div class="stat-val gold" id="ap-open">—</div><div class="stat-sub" id="ap-dep">—</div></div>
+      <div class="stat stat-full"><div class="stat-label">Potential Profit if all open win</div><div class="stat-val gold" id="ap-potential">—</div></div>
+    </div>
+    <div class="section-title">Open Positions <span class="pill-count" id="ap-open-count">0</span></div>
+    <div class="trade-list" id="ap-list"></div>
+    <div class="section-title">Recent Closed <span class="pill-count" id="ap-closed-count">0</span></div>
+    <div class="closed-list" id="ap-closed-list"></div>
   </div>
 
   <!-- Projections -->
   <div class="bot-view" id="view-proj">
-    <div style="padding:16px 0 0">
-      <div style="font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding:0 16px 12px">12 Month Projections</div>
-
-      <!-- ClaudeBot -->
-      <div class="proj-card">
-        <div class="proj-card-header">
-          <div class="proj-card-title">ClaudeBot</div>
-          <div class="proj-card-wr" id="m-proj-cb-wr">—</div>
-        </div>
-        <div class="proj-card-sub" id="m-proj-cb-sub">—</div>
-        <div id="m-proj-cb-table"></div>
-      </div>
-
-      <!-- NoBot V3 -->
-      <div class="proj-card">
-        <div class="proj-card-header">
-          <div class="proj-card-title">NoBot V3</div>
-          <div class="proj-card-wr" id="m-proj-nb3-wr">—</div>
-        </div>
-        <div class="proj-card-sub" id="m-proj-nb3-sub">—</div>
-        <div id="m-proj-nb3-table"></div>
-      </div>
-
-      <!-- NearCertain -->
-      <div class="proj-card">
-        <div class="proj-card-header">
-          <div class="proj-card-title">NearCertain</div>
-          <div class="proj-card-wr" id="m-proj-nc-wr">—</div>
-        </div>
-        <div class="proj-card-sub" id="m-proj-nc-sub">—</div>
-        <div id="m-proj-nc-table"></div>
-      </div>
-
-      <div class="proj-footer">Projections compound monthly using live avg win/loss &amp; trades/day &middot; Paper trade estimates only</div>
+    <div class="bot-header-strip">
+      <div class="live-dot"></div><div class="bot-label">12-Month Projections</div><div class="bot-tagline">Live WR · paper estimates</div>
+    </div>
+    <div class="proj-hero-strip">
+      <div class="proj-hero"><div class="proj-hero-label">ClaudeBot WR</div><div class="proj-hero-val" id="proj-cb-wr">—</div><div class="proj-hero-sub" id="proj-cb-sub">—</div></div>
+      <div class="proj-hero"><div class="proj-hero-label">NoBot V1 WR</div><div class="proj-hero-val" id="proj-nb-wr">—</div><div class="proj-hero-sub" id="proj-nb-sub">—</div></div>
+      <div class="proj-hero"><div class="proj-hero-label">NoBot V2 WR</div><div class="proj-hero-val" id="proj-nb2-wr">—</div><div class="proj-hero-sub" id="proj-nb2-sub">—</div></div>
+    </div>
+    <div class="proj-hero-strip">
+      <div class="proj-hero"><div class="proj-hero-label">NoBot V3 WR</div><div class="proj-hero-val" id="proj-nb3-wr">—</div><div class="proj-hero-sub" id="proj-nb3-sub">—</div></div>
+      <div class="proj-hero"><div class="proj-hero-label">NearCertain WR</div><div class="proj-hero-val" id="proj-nc-wr">—</div><div class="proj-hero-sub" id="proj-nc-sub">—</div></div>
+      <div class="proj-hero"><div class="proj-hero-label">Alpha-Prime WR</div><div class="proj-hero-val" id="proj-ap-wr">—</div><div class="proj-hero-sub" id="proj-ap-sub">—</div></div>
+    </div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">ClaudeBot</div><div class="proj-card-wr" id="proj-cb-badge">—</div></div><div class="proj-table-wrap"><div id="proj-cb-table"></div></div></div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">NoBot V1</div><div class="proj-card-wr" id="proj-nb-badge">—</div></div><div class="proj-table-wrap"><div id="proj-nb-table"></div></div></div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">NoBot V2</div><div class="proj-card-wr" id="proj-nb2-badge">—</div></div><div class="proj-table-wrap"><div id="proj-nb2-table"></div></div></div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">NoBot V3 — Weather</div><div class="proj-card-wr" id="proj-nb3-badge">—</div></div><div class="proj-table-wrap"><div id="proj-nb3-table"></div></div></div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">NearCertain</div><div class="proj-card-wr" id="proj-nc-badge">—</div></div><div class="proj-table-wrap"><div id="proj-nc-table"></div></div></div>
+    <div class="proj-card"><div class="proj-card-header"><div class="proj-card-title">Alpha-Prime</div><div class="proj-card-wr" id="proj-ap-badge">—</div></div><div class="proj-table-wrap"><div id="proj-ap-table"></div></div></div>
+    <div class="proj-footer">
+      Compounded daily using live avg win/loss and trades/day · Liquidity ceiling $19k (V1/V2) · $25k (V3) · $50k (CB / NC / AP) · Paper estimates only
     </div>
   </div>
 
 </div>
 
 <script>
-var CB  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
-var NB  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_log.json';
-var NB2 = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
-var NB3 = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
-var NC  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
-var START = 1000;
+var CB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
+var NB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_log.json';
+var NB2_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
+var NB3_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
+var NC_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
+var AP_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/alpha_prime_log.json';
+var START   = 1000;
 
 function fmt(n)  { return (n >= 0 ? '+$' : '-$') + Math.abs(n).toFixed(2); }
 function fmtK(n) { var a=Math.abs(n); return (n>=0?'+$':'-$') + (a>=1000?(a/1000).toFixed(1)+'k':a.toFixed(2)); }
 function pct(n)  { return (n>=0?'+':'')+n.toFixed(1)+'%'; }
-function dLeft(c){ if(!c)return'?'; var d=(new Date(c)-Date.now())/86400000; return d<=0?'closing':d.toFixed(1)+'d'; }
-function wrCol(w){ return w>=65?'var(--green)':w>=50?'var(--gold)':'var(--red)'; }
-function wrCls(w){ return w>=65?'pos':w>=50?'gld':'neg'; }
-
-function setStats(pfx, d) {
-  var trades=d.trades||[], closed=trades.filter(function(t){return t.status==='closed'}), open=trades.filter(function(t){return t.status==='open'}), won=closed.filter(function(t){return t.won});
-  var realized=closed.reduce(function(s,t){return s+(t.realized_pnl||0)},0);
-  var wr=closed.length?Math.round(won.length/closed.length*100):0;
-  var roi=(d.bankroll-START)/START*100;
-  var dep=open.reduce(function(s,t){return s+(t.stake||0)},0);
-
-  document.getElementById(pfx+'-scans').textContent = (d.scan_count||0)+' scans';
-  document.getElementById(pfx+'-bank').textContent  = '$'+d.bankroll.toFixed(2);
-  document.getElementById(pfx+'-roi').textContent   = pct(roi)+' ROI';
-  var pe=document.getElementById(pfx+'-pnl'); pe.textContent=fmtK(realized); pe.className='stat-val '+(realized>=0?'pos':'neg');
-  document.getElementById(pfx+'-rec').textContent   = won.length+'W / '+(closed.length-won.length)+'L';
-  var we=document.getElementById(pfx+'-wr'); we.textContent=wr+'%'; we.className='stat-val '+wrCls(wr);
-  document.getElementById(pfx+'-wrf').style.cssText = 'width:'+wr+'%;background:'+wrCol(wr);
-  document.getElementById(pfx+'-open').textContent  = open.length;
-  document.getElementById(pfx+'-dep').textContent   = '$'+dep.toFixed(2)+' deployed';
-
-  return { open:open, closed:closed, won:won, wr:wr };
-}
-
-function renderCB(d) {
-  var s = setStats('cb', d);
-  var list=document.getElementById('cb-list'); list.innerHTML='';
-  if(!s.open.length){ list.innerHTML='<div class="empty-msg">No open positions</div>'; return; }
-  s.open.forEach(function(t){
-    var tier=t.tier||1, pos=t.position==='YES';
-    var upside=t.stake&&t.potential_return?Math.round((t.potential_return/t.stake-1)*100):0;
-    list.innerHTML+='<div class="trade-card side-'+(pos?'yes':'no')+'">'+
-      '<div class="trade-badges"><span class="badge b-t'+tier+'">T'+tier+'</span><span class="badge '+(pos?'b-yes':'b-no')+'">'+t.position+'</span></div>'+
-      '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
-      '<div class="trade-meta">'+(t.category||'?')+' &middot; '+dLeft(t.closes)+'</div></div>'+
-      '<div class="trade-right"><div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
-      '<div class="trade-upside">'+upside+'% ROI</div></div></div>';
-  });
-}
-
-function renderNBGeneric(pfx, d) {
-  var s = setStats(pfx, d);
-  var list=document.getElementById(pfx+'-list'); list.innerHTML='';
-  var top=s.open.slice().sort(function(a,b){return(b.stake||0)-(a.stake||0)}).slice(0,8);
-  if(!top.length){ list.innerHTML='<div class="empty-msg">No open positions</div>'; return; }
-  top.forEach(function(t){
-    var upside=t.stake&&t.payout_if_wins?Math.round((t.payout_if_wins/t.stake-1)*100):0;
-    list.innerHTML+='<div class="trade-card side-no">'+
-      '<div class="trade-badges"><span class="badge b-no">NO@'+(t.entry_no_price||'?')+'c</span></div>'+
-      '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
-      '<div class="trade-meta">'+dLeft(t.closes)+'</div></div>'+
-      '<div class="trade-right"><div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
-      '<div class="trade-upside">+'+upside+'%</div></div></div>';
-  });
-}
-
-function renderNC(d) {
-  var s = setStats('nc', d);
-  var potential=s.open.reduce(function(a,t){return a+(t.potential_profit||0)},0);
-  var bestRoi=s.open.length?Math.max.apply(null,s.open.map(function(t){return t.entry_no_price?Math.round((100/t.entry_no_price-1)*100):0})):0;
-
-  if(s.open.length){
-    document.getElementById('nc-summary-row').style.display='flex';
-    document.getElementById('nc-potential').textContent='+$'+potential.toFixed(2);
-    document.getElementById('nc-best-roi').textContent=bestRoi+'%';
-  }
-
-  var list=document.getElementById('nc-list'); list.innerHTML='';
-  if(!s.open.length){ list.innerHTML='<div class="empty-msg">No open positions</div>'; return; }
-  var sorted=s.open.slice().sort(function(a,b){return(a.closes_in_days||99)-(b.closes_in_days||99)});
-  sorted.forEach(function(t){
-    var pot=t.potential_profit||0;
-    var roi=t.entry_no_price?Math.round((100/t.entry_no_price-1)*100):0;
-    list.innerHTML+='<div class="trade-card side-nc">'+
-      '<div class="trade-badges">'+
-        '<span class="badge b-nc">NO@'+t.entry_no_price+'c</span>'+
-        '<span class="badge b-cat">'+(t.category||'?')+'</span>'+
-      '</div>'+
-      '<div class="trade-body"><div class="trade-name">'+t.market+'</div>'+
-      '<div class="trade-meta">closes '+dLeft(t.closes)+'</div></div>'+
-      '<div class="trade-right"><div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
-      '<div class="trade-win-amt">+$'+pot.toFixed(2)+' if win</div>'+
-      '<div class="trade-upside">'+roi+'% ROI</div></div></div>';
-  });
-}
+function dLeft(c){ if(!c)return'?'; var d=(new Date(c)-Date.now())/86400000; return d<=0?'closed':d.toFixed(1)+'d'; }
+function wrCol(w){ return w >= 50 ? 'var(--gold)' : 'var(--text2)'; }
 
 function switchTab(el) {
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
   document.querySelectorAll('.bot-view').forEach(function(v){ v.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('view-'+el.dataset.view).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function setStats(pfx, d) {
+  var trades = d.trades||[];
+  var closed = trades.filter(function(t){ return t.status==='closed'; });
+  var open   = trades.filter(function(t){ return t.status==='open'; });
+  var won    = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s+(t.realized_pnl||0); }, 0);
+  var wr  = closed.length ? Math.round(won.length/closed.length*100) : 0;
+  var roi = (d.bankroll - START) / START * 100;
+  var dep = open.reduce(function(s,t){ return s+(t.stake||0); }, 0);
+  var realizedRoi = realized / START * 100;
+
+  document.getElementById(pfx+'-scans').textContent = (d.scan_count||0)+' scans';
+  document.getElementById(pfx+'-bank').textContent  = '$'+d.bankroll.toFixed(2);
+  document.getElementById(pfx+'-roi').textContent   = pct(roi)+' ROI';
+
+  var pe = document.getElementById(pfx+'-pnl');
+  pe.textContent = fmtK(realized);
+  pe.className   = 'stat-val ' + (realized>=0 ? 'green' : 'red');
+  if (document.getElementById(pfx+'-pnl-sub')) {
+    document.getElementById(pfx+'-pnl-sub').textContent = pct(realizedRoi)+' · '+won.length+'W / '+(closed.length-won.length)+'L';
+  }
+
+  var we = document.getElementById(pfx+'-wr');
+  we.textContent = closed.length ? wr+'%' : '—';
+  we.className   = 'stat-val ' + (wr>=50 ? 'gold' : '');
+  if (document.getElementById(pfx+'-rec')) {
+    document.getElementById(pfx+'-rec').textContent = closed.length+' closed';
+  }
+  document.getElementById(pfx+'-wrf').style.cssText = 'width:'+wr+'%;background:'+wrCol(wr);
+  document.getElementById(pfx+'-open').textContent = open.length;
+  document.getElementById(pfx+'-dep').textContent  = '$'+dep.toFixed(2)+' deployed';
+
+  return { open:open, closed:closed, won:won, wr:wr };
+}
+
+function renderCB(d) {
+  var s = setStats('cb', d);
+
+  document.getElementById('cb-open-count').textContent = s.open.length+' open';
+  var list = document.getElementById('cb-list');
+  list.innerHTML = '';
+  if (!s.open.length) {
+    list.innerHTML = '<div class="empty-msg">No open positions</div>';
+  } else {
+    s.open.forEach(function(t){
+      var tier = t.tier || 1;
+      var pos  = t.position === 'YES';
+      var upside = t.stake && t.potential_return ? Math.round((t.potential_return/t.stake-1)*100) : 0;
+      list.innerHTML +=
+        '<div class="trade-card side-'+(pos?'yes':'no')+'">'+
+          '<div class="trade-badges">'+
+            '<span class="badge b-t'+tier+'">T'+tier+'</span>'+
+            '<span class="badge '+(pos?'b-yes':'b-no')+'">'+t.position+'</span>'+
+          '</div>'+
+          '<div class="trade-body">'+
+            '<div class="trade-name">'+t.market+'</div>'+
+            '<div class="trade-meta">'+(t.category||'?')+' · '+dLeft(t.closes)+'</div>'+
+          '</div>'+
+          '<div class="trade-right">'+
+            '<div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
+            '<div class="trade-upside">+'+upside+'%</div>'+
+          '</div>'+
+        '</div>';
+    });
+  }
+
+  document.getElementById('cb-closed-count').textContent = s.closed.length+' closed';
+  var clist = document.getElementById('cb-closed-list');
+  clist.innerHTML = '';
+  var recent = s.closed.slice().reverse().slice(0, 8);
+  if (!recent.length) {
+    clist.innerHTML = '<div class="empty-msg">No closed trades yet</div>';
+  } else {
+    recent.forEach(function(t){
+      var pnl = t.realized_pnl||0;
+      clist.innerHTML +=
+        '<div class="closed-row">'+
+          '<div class="closed-name">'+t.market+'</div>'+
+          '<div class="closed-pnl '+(pnl>=0?'pos':'neg')+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</div>'+
+          '<div class="closed-result">'+(t.won?'✅':'❌')+'</div>'+
+        '</div>';
+    });
+  }
+}
+
+function renderNBGeneric(pfx, d) {
+  var s = setStats(pfx, d);
+  document.getElementById(pfx+'-open-count').textContent = s.open.length+' open';
+  var list = document.getElementById(pfx+'-list');
+  list.innerHTML = '';
+  var top = s.open.slice().sort(function(a,b){ return (b.stake||0)-(a.stake||0); }).slice(0, 8);
+  if (!top.length) {
+    list.innerHTML = '<div class="empty-msg">No open positions</div>';
+  } else {
+    top.forEach(function(t){
+      var upside = t.stake && t.payout_if_wins ? Math.round((t.payout_if_wins/t.stake-1)*100) : 0;
+      list.innerHTML +=
+        '<div class="trade-card side-no">'+
+          '<div class="trade-badges">'+
+            '<span class="badge b-no">NO@'+(t.entry_no_price||'?')+'¢</span>'+
+          '</div>'+
+          '<div class="trade-body">'+
+            '<div class="trade-name">'+t.market+'</div>'+
+            '<div class="trade-meta">'+dLeft(t.closes)+'</div>'+
+          '</div>'+
+          '<div class="trade-right">'+
+            '<div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
+            '<div class="trade-upside">+'+upside+'%</div>'+
+          '</div>'+
+        '</div>';
+    });
+  }
+}
+
+function renderNC(d) {
+  var s = setStats('nc', d);
+  var potential = s.open.reduce(function(a,t){ return a+(t.potential_profit||0); }, 0);
+  document.getElementById('nc-potential').textContent = '+$'+potential.toFixed(2);
+
+  document.getElementById('nc-open-count').textContent = s.open.length+' open';
+  var list = document.getElementById('nc-list');
+  list.innerHTML = '';
+  if (!s.open.length) {
+    list.innerHTML = '<div class="empty-msg">No open positions</div>';
+  } else {
+    var sorted = s.open.slice().sort(function(a,b){ return (a.closes_in_days||99)-(b.closes_in_days||99); }).slice(0, 12);
+    sorted.forEach(function(t){
+      var pot = t.potential_profit || 0;
+      var roi = t.entry_no_price ? Math.round((100/t.entry_no_price-1)*100) : 0;
+      list.innerHTML +=
+        '<div class="trade-card side-nc">'+
+          '<div class="trade-badges">'+
+            '<span class="badge b-yes">NO@'+t.entry_no_price+'¢</span>'+
+            '<span class="badge b-cat">'+(t.category||'?')+'</span>'+
+          '</div>'+
+          '<div class="trade-body">'+
+            '<div class="trade-name">'+t.market+'</div>'+
+            '<div class="trade-meta">closes '+dLeft(t.closes)+'</div>'+
+          '</div>'+
+          '<div class="trade-right">'+
+            '<div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
+            '<div class="trade-win-amt">+$'+pot.toFixed(2)+'</div>'+
+            '<div class="trade-upside">'+roi+'% ROI</div>'+
+          '</div>'+
+        '</div>';
+    });
+  }
+
+  document.getElementById('nc-closed-count').textContent = s.closed.length+' closed';
+  var clist = document.getElementById('nc-closed-list');
+  clist.innerHTML = '';
+  var recent = s.closed.slice().reverse().slice(0, 8);
+  if (!recent.length) {
+    clist.innerHTML = '<div class="empty-msg">No closed trades yet</div>';
+  } else {
+    recent.forEach(function(t){
+      var pnl = t.realized_pnl||0;
+      clist.innerHTML +=
+        '<div class="closed-row">'+
+          '<div class="closed-name">'+t.market+'</div>'+
+          '<div class="closed-pnl '+(pnl>=0?'pos':'neg')+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</div>'+
+          '<div class="closed-result">'+(t.won?'✅':'❌')+'</div>'+
+        '</div>';
+    });
+  }
+}
+
+function renderAP(d) {
+  var s = setStats('ap', d);
+  var potential = s.open.reduce(function(a,t){ return a+(t.potential_profit||0); }, 0);
+  document.getElementById('ap-potential').textContent = '+$'+potential.toFixed(2);
+
+  document.getElementById('ap-open-count').textContent = s.open.length+' open';
+  var list = document.getElementById('ap-list');
+  list.innerHTML = '';
+  if (!s.open.length) {
+    list.innerHTML = '<div class="empty-msg">No open positions</div>';
+  } else {
+    var sorted = s.open.slice().sort(function(a,b){ return (a.closes_in_days||99)-(b.closes_in_days||99); }).slice(0, 12);
+    sorted.forEach(function(t){
+      var pot = t.potential_profit || 0;
+      var roi = t.entry_no_price ? Math.round((100/t.entry_no_price-1)*100) : 0;
+      list.innerHTML +=
+        '<div class="trade-card side-ap">'+
+          '<div class="trade-badges">'+
+            '<span class="badge b-pat">'+(t.pattern||'?')+'</span>'+
+            '<span class="badge b-yes">NO@'+t.entry_no_price+'¢</span>'+
+          '</div>'+
+          '<div class="trade-body">'+
+            '<div class="trade-name">'+t.market+'</div>'+
+            '<div class="trade-meta">closes '+dLeft(t.closes)+'</div>'+
+          '</div>'+
+          '<div class="trade-right">'+
+            '<div class="trade-stake">$'+t.stake.toFixed(2)+'</div>'+
+            '<div class="trade-win-amt">+$'+pot.toFixed(2)+'</div>'+
+            '<div class="trade-upside">'+roi+'% ROI</div>'+
+          '</div>'+
+        '</div>';
+    });
+  }
+
+  document.getElementById('ap-closed-count').textContent = s.closed.length+' closed';
+  var clist = document.getElementById('ap-closed-list');
+  clist.innerHTML = '';
+  var recent = s.closed.slice().reverse().slice(0, 8);
+  if (!recent.length) {
+    clist.innerHTML = '<div class="empty-msg">No closed trades yet</div>';
+  } else {
+    recent.forEach(function(t){
+      var pnl = t.realized_pnl||0;
+      clist.innerHTML +=
+        '<div class="closed-row">'+
+          '<div class="closed-name">'+t.market+'</div>'+
+          '<div class="closed-pnl '+(pnl>=0?'pos':'neg')+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</div>'+
+          '<div class="closed-result">'+(t.won?'✅':'❌')+'</div>'+
+        '</div>';
+    });
+  }
 }
 
 function compound(start, wr, aw, al, dt, days, ceiling) {
@@ -624,122 +796,196 @@ function compound(start, wr, aw, al, dt, days, ceiling) {
   return b;
 }
 
-function mProjTable(tableId, wrId, subId, closed, ceiling, scenarios, startBankroll) {
-  if(!closed||!closed.length){
-    document.getElementById(tableId).innerHTML='<div style="padding:10px 14px;font-size:9px;color:var(--muted)">No data yet</div>';
+function buildProjScenarios(liveWrPct, baseBands) {
+  var scenarios = [];
+  var liveInserted = false;
+  for (var i = 0; i < baseBands.length; i++) {
+    if (!liveInserted && liveWrPct > (baseBands[i-1]||0) && liveWrPct < baseBands[i]) {
+      scenarios.push(liveWrPct);
+      liveInserted = true;
+    }
+    scenarios.push(baseBands[i]);
+    if (!liveInserted && liveWrPct === baseBands[i]) liveInserted = true;
+  }
+  if (!liveInserted && liveWrPct > baseBands[baseBands.length-1]) scenarios.push(liveWrPct);
+  return scenarios;
+}
+
+function projTable(pfxBadge, pfxTable, pfxWr, pfxSub, closed, ceiling, baseBands, startBankroll) {
+  if (!closed || !closed.length) {
+    document.getElementById(pfxTable).innerHTML = '<div class="empty-msg">No resolved trades yet</div>';
     return;
   }
-  var won=closed.filter(function(t){return t.won;});
-  var lost=closed.filter(function(t){return !t.won;});
-  if(!won.length||!lost.length) return;
+  var won  = closed.filter(function(t){ return t.won; });
+  var lost = closed.filter(function(t){ return !t.won; });
+  if (!won.length || !lost.length) return;
 
-  var liveWr=won.length/closed.length;
-  var avgWin=won.reduce(function(s,t){return s+(t.realized_pnl||0);},0)/won.length;
-  var avgLoss=Math.abs(lost.reduce(function(s,t){return s+(t.realized_pnl||0);},0)/lost.length);
-  var dates=closed.map(function(t){return new Date(t.resolved_at||t.placed_at);});
-  var minDate=new Date(Math.min.apply(null,dates));
-  var daysSince=Math.max(1,(Date.now()-minDate)/86400000);
-  var tpd=closed.length/daysSince;
+  var liveWr   = won.length / closed.length;
+  var avgWin   = won.reduce(function(s,t){ return s+(t.realized_pnl||0); }, 0) / won.length;
+  var avgLoss  = Math.abs(lost.reduce(function(s,t){ return s+(t.realized_pnl||0); }, 0) / lost.length);
 
-  document.getElementById(wrId).textContent=Math.round(liveWr*100)+'%';
-  document.getElementById(subId).textContent=
-    won.length+'W / '+lost.length+'L · '+tpd.toFixed(1)+' trades/day · avg win $'+avgWin.toFixed(2);
+  var dates    = closed.map(function(t){ return new Date(t.resolved_at||t.placed_at); });
+  var minDate  = new Date(Math.min.apply(null, dates));
+  var daysSince = Math.max(1, (Date.now() - minDate) / 86400000);
+  var tradesPerDay = closed.length / daysSince;
+  var liveWrPct = Math.round(liveWr * 100);
+  var sb = startBankroll || START;
 
-  var sb = startBankroll || 1000;
+  document.getElementById(pfxWr).textContent = liveWrPct + '%';
+  document.getElementById(pfxSub).textContent =
+    won.length + 'W/' + lost.length + 'L · ' + tradesPerDay.toFixed(1) + '/day · avg win $' + avgWin.toFixed(2);
+  document.getElementById(pfxBadge).textContent = liveWrPct + '%';
 
-  var months=[3,6,9,12];
-  var rows=scenarios.map(function(wrPct){
-    var wr=wrPct/100;
-    var isLive=(wrPct===liveWrRounded);
-    var ev=(wr*avgWin-(1-wr)*avgLoss)*tpd;
-    var vals=months.map(function(m){
-      var v=compound(sb,wr,avgWin,avgLoss,tpd,m*30,ceiling);
-      var col=isLive?'color:var(--gold)':v>=sb?'color:var(--text)':'color:var(--muted)';
-      return '<td style="'+col+'">$'+Math.round(v).toLocaleString()+'</td>';
+  var scenarios = buildProjScenarios(liveWrPct, baseBands);
+  var months = [3, 6, 9, 12];
+
+  var hdrs = months.map(function(m){ return '<th>'+m+'mo</th>'; }).join('');
+  var rows = scenarios.map(function(wrPct) {
+    var wr = wrPct / 100;
+    var isLive = (wrPct === liveWrPct);
+    var ev = (wr * avgWin - (1 - wr) * avgLoss) * tradesPerDay;
+    var evCls = ev >= 0 ? 'ev-pos' : 'ev-neg';
+    var vals = months.map(function(m) {
+      var v = compound(sb, wr, avgWin, avgLoss, tradesPerDay, m * 30, ceiling);
+      var isProfit = v >= sb;
+      var cls = isLive ? '' : (isProfit ? '' : 'muted');
+      return '<td class="'+cls+'">$'+Math.round(v).toLocaleString()+'</td>';
     });
-    var evCol=ev>=0?'color:var(--green)':'color:var(--red)';
-    return '<tr'+(isLive?' class="live-row"':'')+'>'+
-      '<td>'+(isLive?'<span style="color:var(--gold)">':'')+ wrPct+'%'+(isLive?' &#9664;</span>':'')+'</td>'+
-      '<td style="'+evCol+'">$'+ev.toFixed(2)+'</td>'+
+    var rowCls = isLive ? 'live-row' : '';
+    return '<tr class="'+rowCls+'">'+
+      '<td>'+wrPct+'%'+(isLive?' ◀':'')+'</td>'+
+      '<td class="'+evCls+'">$'+ev.toFixed(2)+'</td>'+
       vals.join('')+
       '</tr>';
   }).join('');
 
-  document.getElementById(tableId).innerHTML=
+  document.getElementById(pfxTable).innerHTML =
     '<table class="proj-table"><thead><tr>'+
-    '<th>WR</th><th>EV/day</th><th>3mo</th><th>6mo</th><th>9mo</th><th>12mo</th>'+
+    '<th>WR</th><th>EV/day</th>'+hdrs+
     '</tr></thead><tbody>'+rows+'</tbody></table>';
 }
 
-function renderProjectionsMobile(cbData, nb3Data, ncData) {
-  var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){return t.status==='closed';}) : [];
-  var nb3Closed = nb3Data ? (nb3Data.trades||[]).filter(function(t){return t.status==='closed';}) : [];
-  var ncClosed  = ncData  ? (ncData.trades||[]).filter(function(t){return t.status==='closed';}) : [];
+function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData, apData) {
+  var cbClosed  = cbData  ? (cbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var nbClosed  = nbData  ? (nbData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var nb2Closed = nb2Data ? (nb2Data.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var nb3Closed = nb3Data ? (nb3Data.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var ncClosed  = ncData  ? (ncData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
+  var apClosed  = apData  ? (apData.trades||[]).filter(function(t){ return t.status==='closed'; }) : [];
 
-  var cbBank  = cbData  ? cbData.bankroll  : 1000;
-  var nb3Bank = nb3Data ? nb3Data.bankroll : 1000;
-  var ncBank  = ncData  ? ncData.bankroll  : 1000;
-  mProjTable('m-proj-cb-table',  'm-proj-cb-wr',  'm-proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85], cbBank);
-  mProjTable('m-proj-nb3-table', 'm-proj-nb3-wr', 'm-proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85], nb3Bank);
-  // Build NC scenarios dynamically with live WR inserted
-  var ncWon = ncClosed.filter(function(t){return t.won;});
-  var ncLiveWr = ncClosed.length ? ncWon.length/ncClosed.length : 0;
-  var ncLiveWrPct = Math.round(ncLiveWr*100);
-  var ncBands = [5,10,15,20,25,30];
-  var ncScenarios = [];
-  var ncInserted = false;
-  for (var ni=0; ni<ncBands.length; ni++) {
-    if (!ncInserted && ncLiveWrPct > (ncBands[ni-1]||0) && ncLiveWrPct < ncBands[ni]) {
-      ncScenarios.push(ncLiveWrPct); ncInserted=true;
-    }
-    ncScenarios.push(ncBands[ni]);
-    if (!ncInserted && ncLiveWrPct===ncBands[ni]) { ncInserted=true; }
+  var cbStart  = cbData  ? cbData.bankroll  : START;
+  var nbStart  = nbData  ? nbData.bankroll  : START;
+  var nb2Start = nb2Data ? nb2Data.bankroll : START;
+  var nb3Start = nb3Data ? nb3Data.bankroll : START;
+  var ncStart  = ncData  ? ncData.bankroll  : START;
+  var apStart  = apData  ? apData.bankroll  : START;
+
+  projTable('proj-cb-badge',  'proj-cb-table',  'proj-cb-wr',  'proj-cb-sub',  cbClosed,  50000, [55,60,65,70,75,80,85], cbStart);
+  projTable('proj-nb-badge',  'proj-nb-table',  'proj-nb-wr',  'proj-nb-sub',  nbClosed,  18981, [55,60,65,70,75,80,85], nbStart);
+  projTable('proj-nb2-badge', 'proj-nb2-table', 'proj-nb2-wr', 'proj-nb2-sub', nb2Closed, 18981, [55,60,65,70,75,80,85], nb2Start);
+  projTable('proj-nb3-badge', 'proj-nb3-table', 'proj-nb3-wr', 'proj-nb3-sub', nb3Closed, 25000, [55,60,65,70,75,80,85], nb3Start);
+  projTable('proj-nc-badge',  'proj-nc-table',  'proj-nc-wr',  'proj-nc-sub',  ncClosed,  50000, [5,10,15,20,25,30], ncStart);
+  projTable('proj-ap-badge',  'proj-ap-table',  'proj-ap-wr',  'proj-ap-sub',  apClosed,  50000, [5,10,15,20,25,30], apStart);
+
+  if (!ncData) {
+    document.getElementById('proj-nc-wr').textContent  = '—';
+    document.getElementById('proj-nc-sub').textContent = 'log not in repo';
+    document.getElementById('proj-nc-table').innerHTML = '<div class="empty-msg">NearCertain log not pushed yet</div>';
   }
-  if (!ncInserted && ncLiveWrPct>ncBands[ncBands.length-1]) { ncScenarios.push(ncLiveWrPct); }
-  mProjTable('m-proj-nc-table',  'm-proj-nc-wr',  'm-proj-nc-sub',  ncClosed,  50000, ncScenarios, ncBank);
+  if (!apData) {
+    document.getElementById('proj-ap-wr').textContent  = '—';
+    document.getElementById('proj-ap-sub').textContent = 'log not in repo';
+    document.getElementById('proj-ap-table').innerHTML = '<div class="empty-msg">Alpha-Prime log not pushed yet</div>';
+  }
+  if (!nb2Data) {
+    document.getElementById('proj-nb2-wr').textContent = '—';
+    document.getElementById('proj-nb2-sub').textContent = 'log not in repo';
+    document.getElementById('proj-nb2-table').innerHTML = '<div class="empty-msg">NoBot V2 log not pushed yet</div>';
+  }
+  if (!nb3Data) {
+    document.getElementById('proj-nb3-wr').textContent = '—';
+    document.getElementById('proj-nb3-sub').textContent = 'log not in repo';
+    document.getElementById('proj-nb3-table').innerHTML = '<div class="empty-msg">NoBot V3 log not pushed yet</div>';
+  }
 }
 
 function load() {
-  var btn=document.getElementById('refresh-btn');
+  var btn = document.getElementById('refresh-btn');
   btn.classList.add('spinning');
-  document.getElementById('loading').style.display='flex';
-  document.getElementById('content').style.display='none';
-  document.getElementById('err').style.display='none';
+  document.getElementById('loading').style.display = 'flex';
+  document.getElementById('content').style.display = 'none';
+  document.getElementById('err').style.display = 'none';
 
-  var bust='?_='+Date.now();
-  var optional=function(url){ return Promise.race([
-    fetch(url+bust).then(function(r){ return r.ok?r.json():null; }).catch(function(){return null;}),
-    new Promise(function(res){ setTimeout(function(){res(null);},5000); })
-  ]); };
+  var bust = '?_=' + Date.now();
+  var optional = function(url){
+    return Promise.race([
+      fetch(url + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+      new Promise(function(res){ setTimeout(function(){ res(null); }, 5000); })
+    ]);
+  };
 
   Promise.all([
-    fetch(CB+bust).then(function(r){ if(!r.ok)throw new Error('CB '+r.status); return r.json(); }),
-    fetch(NB+bust).then(function(r){ if(!r.ok)throw new Error('NB '+r.status); return r.json(); }),
-    optional(NB2),
-    optional(NB3),
-    optional(NC)
-  ]).then(function(res){
+    fetch(CB_URL + bust).then(function(r){ if(!r.ok) throw new Error('CB '+r.status); return r.json(); }),
+    fetch(NB_URL + bust).then(function(r){ if(!r.ok) throw new Error('NB '+r.status); return r.json(); }),
+    optional(NB2_URL),
+    optional(NB3_URL),
+    optional(NC_URL),
+    optional(AP_URL)
+  ]).then(function(res) {
     renderCB(res[0]);
     renderNBGeneric('nb', res[1]);
-    if(res[2]) renderNBGeneric('nb2', res[2]);
-    else { document.getElementById('nb2-bank').textContent='Not live'; document.getElementById('nb2-pnl').textContent='—'; document.getElementById('nb2-wr').textContent='—'; document.getElementById('nb2-open').textContent='—'; }
-    if(res[3]) renderNBGeneric('nb3', res[3]);
-    else { document.getElementById('nb3-bank').textContent='Not live'; document.getElementById('nb3-pnl').textContent='—'; document.getElementById('nb3-wr').textContent='—'; document.getElementById('nb3-open').textContent='—'; }
-    if(res[4]) renderNC(res[4]);
-    else { document.getElementById('nc-bank').textContent='Not live'; document.getElementById('nc-pnl').textContent='—'; document.getElementById('nc-wr').textContent='—'; document.getElementById('nc-open').textContent='—'; }
-    renderProjectionsMobile(res[0], res[3], res[4]);
 
-    var now=new Date();
-    document.getElementById('ts').innerHTML=
-      now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+ '<br>'+
+    if (res[2]) renderNBGeneric('nb2', res[2]);
+    else {
+      document.getElementById('nb2-bank').textContent = 'Not live';
+      document.getElementById('nb2-pnl').textContent  = '—';
+      document.getElementById('nb2-wr').textContent   = '—';
+      document.getElementById('nb2-open').textContent = '—';
+      document.getElementById('nb2-list').innerHTML   = '<div class="empty-msg">Push nobot_v2_log.json to enable</div>';
+    }
+
+    if (res[3]) renderNBGeneric('nb3', res[3]);
+    else {
+      document.getElementById('nb3-bank').textContent = 'Not live';
+      document.getElementById('nb3-pnl').textContent  = '—';
+      document.getElementById('nb3-wr').textContent   = '—';
+      document.getElementById('nb3-open').textContent = '—';
+      document.getElementById('nb3-list').innerHTML   = '<div class="empty-msg">Push nobot_v3_log.json to enable</div>';
+    }
+
+    if (res[4]) renderNC(res[4]);
+    else {
+      document.getElementById('nc-bank').textContent = 'Not live';
+      document.getElementById('nc-pnl').textContent  = '—';
+      document.getElementById('nc-wr').textContent   = '—';
+      document.getElementById('nc-open').textContent = '—';
+      document.getElementById('nc-potential').textContent = '—';
+      document.getElementById('nc-list').innerHTML   = '<div class="empty-msg">Push nearcertain_log.json to enable</div>';
+    }
+
+    if (res[5]) renderAP(res[5]);
+    else {
+      document.getElementById('ap-bank').textContent = 'Not live';
+      document.getElementById('ap-pnl').textContent  = '—';
+      document.getElementById('ap-wr').textContent   = '—';
+      document.getElementById('ap-open').textContent = '—';
+      document.getElementById('ap-potential').textContent = '—';
+      document.getElementById('ap-list').innerHTML   = '<div class="empty-msg">Push alpha_prime_log.json to enable</div>';
+    }
+
+    renderProjections(res[0], res[1], res[2], res[3], res[4], res[5]);
+
+    var now = new Date();
+    document.getElementById('ts').innerHTML =
+      now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) + '<br>' +
       now.toLocaleDateString([],{day:'numeric',month:'short'});
-    document.getElementById('loading').style.display='none';
-    document.getElementById('content').style.display='block';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
     btn.classList.remove('spinning');
-  }).catch(function(e){
-    document.getElementById('loading').style.display='none';
-    document.getElementById('err').style.display='block';
-    document.getElementById('err').textContent='Load failed\n'+e.message;
+  }).catch(function(e) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('err').textContent = 'Load failed: '+e.message;
     btn.classList.remove('spinning');
   });
 }
