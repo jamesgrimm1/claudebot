@@ -1,5 +1,5 @@
 {
-  "bankroll": 956.59,
+  "bankroll": 954.67,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -12405,10 +12405,13 @@
       "potential_payout": 2.4,
       "closes": "2026-04-27T15:00:00+00:00",
       "closes_in_days": 0.417,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:52.072778+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T15:04:24.339476+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427045952072943",
@@ -12891,10 +12894,13 @@
       "potential_payout": 1.66,
       "closes": "2026-04-27T15:00:00+00:00",
       "closes_in_days": 0.204,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T10:05:45.162900+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-27T15:04:24.795615+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427100545163050",
@@ -13255,11 +13261,83 @@
       "placed_at": "2026-04-27T14:56:59.077884+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427150433504710",
+      "market_id": "2034458",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 27?",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 30,
+      "entry_yes_price": 70,
+      "stake": 0.48,
+      "potential_profit": 1.12,
+      "potential_payout": 1.6,
+      "closes": "2026-04-27T16:00:00+00:00",
+      "closes_in_days": 0.039,
+      "status": "open",
+      "placed_at": "2026-04-27T15:04:33.504726+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427150433505011",
+      "market_id": "2083962",
+      "market": "Valorant: Be\u015fikta\u015f Esports vs FUT Academy - Map 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 0.48,
+      "potential_profit": 1.92,
+      "potential_payout": 2.4,
+      "closes": "2026-04-27T18:30:00+00:00",
+      "closes_in_days": 0.143,
+      "status": "open",
+      "placed_at": "2026-04-27T15:04:33.505023+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427150433505439",
+      "market_id": "2067961",
+      "market": "Valorant: UCAM Esports Club vs NOVO Esports - Map 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 28,
+      "entry_yes_price": 72,
+      "stake": 0.48,
+      "potential_profit": 1.23,
+      "potential_payout": 1.71,
+      "closes": "2026-04-27T22:00:00+00:00",
+      "closes_in_days": 0.289,
+      "status": "open",
+      "placed_at": "2026-04-27T15:04:33.505458+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260427150433505982",
+      "market_id": "2091340",
+      "market": "Will Ethereum dip to $2,300 on April 27?",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.48,
+      "potential_profit": 0.93,
+      "potential_payout": 1.41,
+      "closes": "2026-04-28T04:00:00+00:00",
+      "closes_in_days": 0.539,
+      "status": "open",
+      "placed_at": "2026-04-27T15:04:33.506001+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 22.14,
+  "daily_loss": 23.1,
   "daily_reset": "2026-04-27",
-  "scan_count": 83,
+  "scan_count": 84,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
