@@ -987,10 +987,13 @@
       "bear_case": "Broad crypto selloff from tariff/regulatory news could push XRP away. 2-7 day hold duration has 43% historical WR. Momentum reversal risk.",
       "kelly_tier": "quarter-Kelly (5.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T14:02:11.324245+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-04-27T07:35:35.247226+00:00",
+      "realized_pnl": -75.25
     },
     {
       "id": "T1776877932",
@@ -1122,9 +1125,9 @@
       "model": "claude-opus-4-6"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 75.25,
   "daily_reset": "2026-04-27",
-  "scan_count": 273,
+  "scan_count": 274,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-26",
   "last_tier2_scan": "2026-04-27",

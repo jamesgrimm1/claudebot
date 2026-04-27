@@ -1,5 +1,5 @@
 {
-  "bankroll": 833.51,
+  "bankroll": 832.86,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5422,10 +5422,13 @@
       "closes_in_days": 0.46,
       "closes": "2026-04-25T12:00:00+00:00",
       "volume": 6309.620086000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T00:54:45.387571+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T07:33:59.019713+00:00",
+      "realized_pnl": 4.66
     },
     {
       "id": "NB1777078485",
@@ -5879,10 +5882,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 7649.428231000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T01:28:57.782647+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-27T07:33:59.150263+00:00",
+      "realized_pnl": -4.25
     },
     {
       "id": "NB1777166937",
@@ -6290,10 +6296,13 @@
       "closes_in_days": 0.25,
       "closes": "2026-04-26T12:00:00+00:00",
       "volume": 3986.5835520000037,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T06:06:57.984880+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-27T07:33:59.197960+00:00",
+      "realized_pnl": -1.99
     },
     {
       "id": "NB1777186454",
@@ -6609,11 +6618,71 @@
       "placed_at": "2026-04-27T04:59:03.331858+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777275248",
+      "market_id": "2034462",
+      "market_slug": "will-the-price-of-bitcoin-be-between-78000-80000-on-april-27",
+      "market": "Will the price of Bitcoin be between $78,000 and $80,000 on April 27?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.11,
+      "payout_if_wins": 3.4,
+      "profit_if_wins": 1.29,
+      "category": "crypto",
+      "closes_in_days": 0.35,
+      "closes": "2026-04-27T16:00:00+00:00",
+      "volume": 31410.643731999986,
+      "status": "open",
+      "placed_at": "2026-04-27T07:34:08.025231+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777275248",
+      "market_id": "2074434",
+      "market_slug": "highest-temperature-in-munich-on-april-27-2026-19c",
+      "market": "Will the highest temperature in Munich be 19\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 4.2,
+      "payout_if_wins": 8.94,
+      "profit_if_wins": 4.74,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 6335.023590999999,
+      "status": "open",
+      "placed_at": "2026-04-27T07:34:08.025273+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777275248",
+      "market_id": "2074435",
+      "market_slug": "highest-temperature-in-munich-on-april-27-2026-20c",
+      "market": "Will the highest temperature in Munich be 20\u00b0C on April 27?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 43,
+      "stake": 3.13,
+      "payout_if_wins": 5.49,
+      "profit_if_wins": 2.36,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-04-27T12:00:00+00:00",
+      "volume": 3708.9170269999995,
+      "status": "open",
+      "placed_at": "2026-04-27T07:34:08.025302+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 11.02,
+  "daily_loss": 17.26,
   "daily_reset": "2026-04-27",
-  "scan_count": 223,
+  "scan_count": 224,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-26T17:30:24.719532+00:00"
+  "last_summary_sent": "2026-04-27T07:33:55.094228+00:00"
 }

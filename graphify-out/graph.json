@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-27T05:04:46.786169",
-  "total_trades": 31,
+  "generated": "2026-04-27T07:39:29.121718",
+  "total_trades": 32,
   "trades": [
     {
       "won": true,
@@ -14,6 +14,19 @@
       "bear": "Major unexpected positive catalyst (ETF approval, massive institutional buy) could spike SOL, though 41%+ in 48 hours to a specific range remains highly improbable",
       "news": false,
       "path": "trade_reflections/T1776591714_crypto_WON.md"
+    },
+    {
+      "won": false,
+      "category": "crypto",
+      "conf": 77,
+      "hold_h": 113.6,
+      "tier": "1",
+      "position": "YES",
+      "pnl": -75.25,
+      "market": "Will XRP reach $1.50 April 20-26?",
+      "bear": "Broad crypto selloff from tariff/regulatory news could push XRP away. 2-7 day hold duration has 43% historical WR. Momentum reversal risk.",
+      "news": false,
+      "path": "trade_reflections/T1776866531_crypto_LOST.md"
     },
     {
       "won": true,

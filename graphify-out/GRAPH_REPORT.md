@@ -1,18 +1,18 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-27 05:04 UTC · 31 resolved trades*
+*Generated 2026-04-27 07:39 UTC · 32 resolved trades*
 
 ---
 
 ## Overall Performance
-- **Win rate:** 58.1% (18W / 13L)
-- **Total P&L:** $+1781.61
+- **Win rate:** 56.2% (18W / 14L)
+- **Total P&L:** $+1706.36
 - **Avg win:** $148.13
-- **Avg loss:** $-68.06
+- **Avg loss:** $-68.57
 
 ## Win Rate by Category
 
 - **weather**: 67% WR (6W/3L) · P&L $+256.39
-- **crypto**: 67% WR (4W/2L) · P&L $+463.96
+- **crypto**: 57% WR (4W/3L) · P&L $+388.71
 - **other**: 75% WR (3W/1L) · P&L $+454.46
 - **economics**: 25% WR (1W/3L) · P&L $+78.75 ⚠️
 - **politics**: 50% WR (2W/2L) · P&L $-180.37
@@ -23,7 +23,7 @@
 
 ## Calibration — Confidence vs Actual Win Rate
 
-- **75-79% conf**: 67% actual WR (12 trades) — -10pt gap ⚠️ OVERCONFIDENT
+- **75-79% conf**: 62% actual WR (13 trades) — -15pt gap ⚠️ OVERCONFIDENT
 - **80-84% conf**: 50% actual WR (12 trades) — -32pt gap ⚠️ OVERCONFIDENT
 - **85-89% conf**: 67% actual WR (3 trades) — -20pt gap ⚠️ OVERCONFIDENT
 - **90-94% conf**: 50% actual WR (2 trades) — -42pt gap ⚠️ OVERCONFIDENT
@@ -34,11 +34,11 @@
 - **6–12 hours**: 50% WR (2 trades)
 - **12–24 hours**: 100% WR (4 trades) ⭐ SWEET SPOT
 - **1–2 days**: 80% WR (10 trades) ⭐ SWEET SPOT
-- **2–7 days**: 56% WR (9 trades)
+- **2–7 days**: 50% WR (10 trades)
 
 ## YES vs NO Performance
 
-- **YES**: 54% WR (13 trades) · P&L $+621.17
+- **YES**: 50% WR (14 trades) · P&L $+545.92
 - **NO**: 61% WR (18 trades) · P&L $+1160.44
 
 ## News-Triggered Trades

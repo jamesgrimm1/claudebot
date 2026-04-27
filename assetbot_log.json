@@ -1,7 +1,31 @@
 {
-  "bankroll": 1000.0,
-  "trades": [],
-  "scan_count": 46,
+  "bankroll": 980.0,
+  "trades": [
+    {
+      "id": "AB1777275322",
+      "market_id": "2067167",
+      "market_slug": "meta-close-above-640-on-april-27-2026",
+      "market": "Will Meta (META) close above $640 on April 27?",
+      "position": "NO",
+      "entry_price": 4,
+      "stake": 20.0,
+      "payout_if_wins": 500.0,
+      "profit_if_wins": 480.0,
+      "ticker": "META",
+      "current_price": 675.03,
+      "threshold": 640,
+      "required_move_pct": 5.19,
+      "resolution_type": "close",
+      "reasoning": "price would need to drop 5.19% from current $675.03 to reach threshold of $640",
+      "closes": "2026-04-27T20:00:00+00:00",
+      "closes_in_days": 0.517,
+      "status": "open",
+      "placed_at": "2026-04-27T07:35:22.579778+00:00",
+      "paper": true,
+      "model": "assetbot-mechanical"
+    }
+  ],
+  "scan_count": 47,
   "started": "2026-04-25T06:06:58.016198+00:00",
   "price_snapshot": {
     "date": "2026-04-26",
