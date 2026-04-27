@@ -1,5 +1,5 @@
 {
-  "bankroll": 827.33,
+  "bankroll": 836.59,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6434,10 +6434,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 5830.712569999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T01:26:12.217899+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T17:59:24.318812+00:00",
+      "realized_pnl": 1.32
     },
     {
       "id": "NB1777253172",
@@ -6660,10 +6663,13 @@
       "closes_in_days": 0.18,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 6335.023590999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T07:34:08.025273+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-27T17:59:25.039734+00:00",
+      "realized_pnl": 4.74
     },
     {
       "id": "NB1777275248",
@@ -6764,11 +6770,31 @@
       "placed_at": "2026-04-27T16:22:20.829001+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777312773",
+      "market_id": "2067120",
+      "market_slug": "spy-closes-above-715-on-april-27-2026",
+      "market": "S&P 500 (SPY) closes above $715 on April 27?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 3.15,
+      "payout_if_wins": 5.83,
+      "profit_if_wins": 2.68,
+      "category": "economics",
+      "closes_in_days": 0.08,
+      "closes": "2026-04-27T20:00:00+00:00",
+      "volume": 3854.992859000001,
+      "status": "open",
+      "placed_at": "2026-04-27T17:59:33.891081+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 17.26,
   "daily_reset": "2026-04-27",
-  "scan_count": 230,
+  "scan_count": 231,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T07:33:55.094228+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 824.97,
+  "bankroll": 836.66,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6303,10 +6303,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 5830.712569999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T01:26:22.496853+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-27T17:59:37.505257+00:00",
+      "realized_pnl": 3.3
     },
     {
       "id": "NB1777253182",
@@ -6529,10 +6532,13 @@
       "closes_in_days": 0.18,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 6335.023590999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T07:34:18.333109+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-27T17:59:37.928812+00:00",
+      "realized_pnl": 2.97
     },
     {
       "id": "NB1777275258",
@@ -6633,11 +6639,31 @@
       "placed_at": "2026-04-27T16:22:38.835202+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777312787",
+      "market_id": "2067120",
+      "market_slug": "spy-closes-above-715-on-april-27-2026",
+      "market": "S&P 500 (SPY) closes above $715 on April 27?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 2.6,
+      "payout_if_wins": 4.81,
+      "profit_if_wins": 2.21,
+      "category": "economics",
+      "closes_in_days": 0.08,
+      "closes": "2026-04-27T20:00:00+00:00",
+      "volume": 3854.992859000001,
+      "status": "open",
+      "placed_at": "2026-04-27T17:59:47.674474+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 12.7,
   "daily_reset": "2026-04-27",
-  "scan_count": 234,
+  "scan_count": 235,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T12:15:23.294709+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
