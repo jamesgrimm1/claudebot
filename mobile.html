@@ -578,7 +578,9 @@ function setStats(pfx, d) {
   var dep = open.reduce(function(s,t){ return s+(t.stake||0); }, 0);
   var realizedRoi = realized / START * 100;
 
-  document.getElementById(pfx+'-scans').textContent = (d.scan_count||0)+' scans';
+  if (document.getElementById(pfx+'-scans')) {
+    document.getElementById(pfx+'-scans').textContent = (d.scan_count||0)+' scans';
+  }
   document.getElementById(pfx+'-bank').textContent  = '$'+d.bankroll.toFixed(2);
   document.getElementById(pfx+'-roi').textContent   = pct(roi)+' ROI';
 
