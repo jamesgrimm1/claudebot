@@ -1,5 +1,5 @@
 {
-  "bankroll": 697.01,
+  "bankroll": 694.12,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1724,10 +1724,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 413360.72366699966,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T10:33:14.224204+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-28T15:15:23.550184+00:00",
+      "realized_pnl": -3.78
     },
     {
       "id": "NB1776508394",
@@ -7177,10 +7180,13 @@
       "closes_in_days": 0.09,
       "closes": "2026-04-28T13:00:00+00:00",
       "volume": 3564.7340339999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T10:53:30.237600+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-28T15:15:25.425760+00:00",
+      "realized_pnl": -1.68
     },
     {
       "id": "NB1777378821",
@@ -7861,12 +7867,32 @@
       "placed_at": "2026-04-28T12:20:21.169389+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777389336",
+      "market_id": "2095410",
+      "market_slug": "wti-closes-above-100-on-april-28-2026",
+      "market": "WTI Crude Oil (WTI) closes above $100 on April 28?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.89,
+      "payout_if_wins": 4.82,
+      "profit_if_wins": 1.93,
+      "category": "other",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-28T21:00:00+00:00",
+      "volume": 3231.227951,
+      "status": "open",
+      "placed_at": "2026-04-28T15:15:36.104574+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 20.06,
+  "daily_loss": 25.52,
   "daily_reset": "2026-04-28",
-  "scan_count": 245,
+  "scan_count": 246,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-28T01:49:44.053176+00:00",
+  "last_summary_sent": "2026-04-28T15:15:21.362405+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
 }
