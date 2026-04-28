@@ -1,5 +1,5 @@
 {
-  "bankroll": 806.38,
+  "bankroll": 799.74,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6490,10 +6490,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3008.239458000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:13.725149+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-28T08:04:55.355668+00:00",
+      "realized_pnl": -2.61
     },
     {
       "id": "NB1777265953",
@@ -6510,10 +6513,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3003.0215329999987,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:13.725176+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-28T08:04:55.427824+00:00",
+      "realized_pnl": -2.67
     },
     {
       "id": "NB1777275258",
@@ -7115,11 +7121,51 @@
       "placed_at": "2026-04-28T05:22:15.426857+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777363506",
+      "market_id": "2095329",
+      "market_slug": "spy-closes-above-715-on-april-28-2026",
+      "market": "S&P 500 (SPY) closes above $715 on April 28?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.31,
+      "payout_if_wins": 5.91,
+      "profit_if_wins": 2.6,
+      "category": "economics",
+      "closes_in_days": 0.5,
+      "closes": "2026-04-28T20:00:00+00:00",
+      "volume": 4507.531448,
+      "status": "open",
+      "placed_at": "2026-04-28T08:05:06.748066+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777363506",
+      "market_id": "2082539",
+      "market_slug": "highest-temperature-in-madrid-on-april-28-2026-26c",
+      "market": "Will the highest temperature in Madrid be 26\u00b0C on April 28?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 3.33,
+      "payout_if_wins": 5.55,
+      "profit_if_wins": 2.22,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "volume": 3152.010509000001,
+      "status": "open",
+      "placed_at": "2026-04-28T08:05:06.748111+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 14.78,
+  "daily_loss": 20.06,
   "daily_reset": "2026-04-28",
-  "scan_count": 242,
+  "scan_count": 243,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T01:49:44.053176+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

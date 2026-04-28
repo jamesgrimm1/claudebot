@@ -1,5 +1,5 @@
 {
-  "bankroll": 1186.84,
+  "bankroll": 1177.94,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3642,10 +3642,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3008.239458000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:23.192816+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-28T08:05:07.460145+00:00",
+      "realized_pnl": -14.28
     },
     {
       "id": "NB1777265963",
@@ -3662,10 +3665,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3003.0215329999987,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:23.192838+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-28T08:05:07.582537+00:00",
+      "realized_pnl": -18.82
     },
     {
       "id": "NB1777270697",
@@ -4052,11 +4058,31 @@
       "placed_at": "2026-04-28T05:22:24.911954+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777363518",
+      "market_id": "2082539",
+      "market_slug": "highest-temperature-in-madrid-on-april-28-2026-26c",
+      "market": "Will the highest temperature in Madrid be 26\u00b0C on April 28?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 8.9,
+      "payout_if_wins": 14.83,
+      "profit_if_wins": 5.93,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "volume": 3152.010509000001,
+      "status": "open",
+      "placed_at": "2026-04-28T08:05:18.057125+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 9.59,
+  "daily_loss": 42.69,
   "daily_reset": "2026-04-28",
-  "scan_count": 292,
+  "scan_count": 293,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-28T05:22:16.042602+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

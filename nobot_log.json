@@ -1,5 +1,5 @@
 {
-  "bankroll": 793.04,
+  "bankroll": 788.09,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6621,10 +6621,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3008.239458000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:03.331832+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-28T08:04:34.698864+00:00",
+      "realized_pnl": -3.15
     },
     {
       "id": "NB1777265943",
@@ -6641,10 +6644,13 @@
       "closes_in_days": 0.29,
       "closes": "2026-04-27T12:00:00+00:00",
       "volume": 3003.0215329999987,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T04:59:03.331858+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-28T08:04:34.794800+00:00",
+      "realized_pnl": -4.19
     },
     {
       "id": "NB1777275248",
@@ -7246,11 +7252,51 @@
       "placed_at": "2026-04-28T05:22:04.329941+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777363488",
+      "market_id": "2095329",
+      "market_slug": "spy-closes-above-715-on-april-28-2026",
+      "market": "S&P 500 (SPY) closes above $715 on April 28?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 2.97,
+      "payout_if_wins": 5.3,
+      "profit_if_wins": 2.33,
+      "category": "economics",
+      "closes_in_days": 0.5,
+      "closes": "2026-04-28T20:00:00+00:00",
+      "volume": 4507.531448,
+      "status": "open",
+      "placed_at": "2026-04-28T08:04:48.658335+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777363488",
+      "market_id": "2082539",
+      "market_slug": "highest-temperature-in-madrid-on-april-28-2026-26c",
+      "market": "Will the highest temperature in Madrid be 26\u00b0C on April 28?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 1.98,
+      "payout_if_wins": 3.19,
+      "profit_if_wins": 1.21,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "volume": 3122.010509000001,
+      "status": "open",
+      "placed_at": "2026-04-28T08:04:48.658378+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 11.59,
+  "daily_loss": 18.93,
   "daily_reset": "2026-04-28",
-  "scan_count": 238,
+  "scan_count": 239,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-27T20:50:44.762762+00:00"
 }
