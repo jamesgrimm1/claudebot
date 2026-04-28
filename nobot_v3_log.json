@@ -1,5 +1,5 @@
 {
-  "bankroll": 1176.52,
+  "bankroll": 1150.18,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4009,12 +4009,52 @@
       "placed_at": "2026-04-28T05:00:52.532944+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777353744",
+      "market_id": "2082663",
+      "market_slug": "highest-temperature-in-los-angeles-on-april-28-2026-70forhigher",
+      "market": "Will the highest temperature in Los Angeles be 70\u00b0F or higher on April 28?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 8.82,
+      "payout_if_wins": 14.23,
+      "profit_if_wins": 5.41,
+      "category": "weather",
+      "closes_in_days": 0.28,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "volume": 6586.599979,
+      "status": "open",
+      "placed_at": "2026-04-28T05:22:24.911908+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777353744",
+      "market_id": "2082714",
+      "market_slug": "highest-temperature-in-busan-on-april-28-2026-23c",
+      "market": "Will the highest temperature in Busan be 23\u00b0C on April 28?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 17.52,
+      "payout_if_wins": 36.5,
+      "profit_if_wins": 18.98,
+      "category": "weather",
+      "closes_in_days": 0.28,
+      "closes": "2026-04-28T12:00:00+00:00",
+      "volume": 3418.0682739999997,
+      "status": "open",
+      "placed_at": "2026-04-28T05:22:24.911954+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 9.59,
   "daily_reset": "2026-04-28",
-  "scan_count": 290,
+  "scan_count": 291,
   "started": "2026-04-16T02:01:08.863467+00:00",
-  "last_summary_sent": "2026-04-27T17:09:11.325634+00:00",
+  "last_summary_sent": "2026-04-28T05:22:16.042602+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
 }

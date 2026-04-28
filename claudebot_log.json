@@ -1,5 +1,5 @@
 {
-  "bankroll": 1914.5,
+  "bankroll": 2057.48,
   "trades": [
     {
       "id": "T1775098669",
@@ -1021,10 +1021,13 @@
       "bear_case": "Diplomacy can shift rapidly \u2014 both sides have incentives to avoid war, Trump extended ceasefire showing US engagement interest, and surprise back-channel breakthroughs are possible in geopolitics",
       "kelly_tier": "quarter-Kelly (5.0%)",
       "news_triggered": true,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-22T17:12:12.967802+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-28T05:23:39.923893+00:00",
+      "realized_pnl": 71.49
     },
     {
       "id": "T1777025177",
@@ -1127,7 +1130,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-28",
-  "scan_count": 287,
+  "scan_count": 288,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-26",
   "last_tier2_scan": "2026-04-28",

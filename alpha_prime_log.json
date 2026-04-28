@@ -947,15 +947,18 @@
       "closes": "2026-04-28T03:00:00+00:00",
       "bankroll_at_entry": 3230.36,
       "bankroll_fraction": 0.0124,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T21:45:29.039566+00:00",
       "paper": true,
-      "model": "alpha-prime"
+      "model": "alpha-prime",
+      "won": false,
+      "resolved_at": "2026-04-28T05:22:38.627367+00:00",
+      "realized_pnl": -40.0
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 40.0,
   "daily_reset": "2026-04-28",
-  "scan_count": 37,
+  "scan_count": 38,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "RECALIBRATED 2026-04-26: Pattern A (non-watchlist weather exact-temp) converted to Pattern F micro-probe at $2 stake. All 24 non-watchlist trades retroactively re-staked. Watchlist Pattern D and other patterns unchanged. This represents what the log would look like if the recalibrated rules had been in effect from Day 1.",
   "last_watchlist_update": "2026-W17",
