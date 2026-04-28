@@ -1,5 +1,5 @@
 {
-  "bankroll": 799.74,
+  "bankroll": 798.06,
   "trades": [
     {
       "id": "NB1776304868",
@@ -7161,11 +7161,31 @@
       "placed_at": "2026-04-28T08:05:06.748111+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777373610",
+      "market_id": "2003522",
+      "market_slug": "spgi-quarterly-earnings-nongaap-eps-04-28-2026-4pt82",
+      "market": "Will S&P Global (SPGI) beat quarterly earnings?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 1.68,
+      "payout_if_wins": 3.57,
+      "profit_if_wins": 1.89,
+      "category": "economics",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-28T13:00:00+00:00",
+      "volume": 3564.7340339999996,
+      "status": "open",
+      "placed_at": "2026-04-28T10:53:30.237600+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 20.06,
   "daily_reset": "2026-04-28",
-  "scan_count": 243,
+  "scan_count": 244,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T01:49:44.053176+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

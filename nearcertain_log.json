@@ -1,5 +1,5 @@
 {
-  "bankroll": 724.31,
+  "bankroll": 697.48,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -5525,10 +5525,64 @@
       "placed_at": "2026-04-28T08:05:34.968340+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428105348757298",
+      "market_id": "2095555",
+      "market": "Will Google (GOOGL) close above $335 on April 28?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 5,
+      "entry_yes_price": 95,
+      "stake": 10.86,
+      "potential_profit": 206.34,
+      "potential_payout": 217.2,
+      "closes": "2026-04-28T20:00:00+00:00",
+      "closes_in_days": 0.379,
+      "status": "open",
+      "placed_at": "2026-04-28T10:53:48.757317+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428105348757594",
+      "market_id": "1707220",
+      "market": "Will SpaceX have exactly 12 launches in April?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 5.35,
+      "potential_profit": 28.09,
+      "potential_payout": 33.44,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "closes_in_days": 1.546,
+      "status": "open",
+      "placed_at": "2026-04-28T10:53:48.757610+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428105348757706",
+      "market_id": "1723674",
+      "market": "Will the DHS shutdown end after April 30, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 9,
+      "entry_yes_price": 91,
+      "stake": 10.62,
+      "potential_profit": 107.38,
+      "potential_payout": 118.0,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "closes_in_days": 1.546,
+      "status": "open",
+      "placed_at": "2026-04-28T10:53:48.757717+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 7.2,
   "daily_reset": "2026-04-28",
-  "scan_count": 149,
+  "scan_count": 150,
   "started": "2026-04-21T00:00:00+00:00"
 }
