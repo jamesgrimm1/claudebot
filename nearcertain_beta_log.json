@@ -1,5 +1,5 @@
 {
-  "bankroll": 915.7,
+  "bankroll": 918.05,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -11451,10 +11451,13 @@
       "potential_payout": 2.18,
       "closes": "2026-04-28T00:00:00+00:00",
       "closes_in_days": 1.181,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T19:39:46.656558+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T17:29:40.835959+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426193946656645",
@@ -11922,10 +11925,13 @@
       "potential_payout": 4.0,
       "closes": "2026-04-28T12:00:00+00:00",
       "closes_in_days": 1.564,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T22:27:16.930420+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T17:29:41.270513+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426222716930558",
@@ -12066,10 +12072,13 @@
       "potential_payout": 9.6,
       "closes": "2026-04-28T12:00:00+00:00",
       "closes_in_days": 1.521,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-26T23:29:49.498077+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T17:29:41.306862+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260426232949498337",
@@ -13683,10 +13692,13 @@
       "potential_payout": 2.29,
       "closes": "2026-04-28T16:00:00+00:00",
       "closes_in_days": 0.984,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T16:23:22.261754+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-28T17:29:43.540774+00:00",
+      "realized_pnl": 1.81
     },
     {
       "id": "NC20260427180024323216",
@@ -14259,10 +14271,13 @@
       "potential_payout": 8.0,
       "closes": "2026-04-28T12:00:00+00:00",
       "closes_in_days": 0.631,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T20:51:39.813858+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T17:29:44.086945+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427205139814497",
@@ -15432,10 +15447,13 @@
       "potential_payout": 1.47,
       "closes": "2026-04-28T12:00:00+00:00",
       "closes_in_days": 0.163,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T08:05:52.243428+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T17:29:45.488117+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260428080552243595",
@@ -15915,10 +15933,13 @@
       "potential_payout": 1.44,
       "closes": "2026-04-28T16:00:00+00:00",
       "closes_in_days": 0.213,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T10:53:59.968117+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-28T17:29:47.135421+00:00",
+      "realized_pnl": 0.98
     },
     {
       "id": "NC20260428105359968377",
@@ -16495,11 +16516,65 @@
       "placed_at": "2026-04-28T15:16:16.412653+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428172954814261",
+      "market_id": "2095412",
+      "market": "WTI Crude Oil (WTI) closes above $99 on April 28?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 30,
+      "entry_yes_price": 70,
+      "stake": 0.46,
+      "potential_profit": 1.07,
+      "potential_payout": 1.53,
+      "closes": "2026-04-28T21:00:00+00:00",
+      "closes_in_days": 0.146,
+      "status": "open",
+      "placed_at": "2026-04-28T17:29:54.814283+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428172954814501",
+      "market_id": "2096459",
+      "market": "Game Handicap: VIT (-1.5) vs Solary (+1.5)",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 28,
+      "entry_yes_price": 72,
+      "stake": 0.46,
+      "potential_profit": 1.18,
+      "potential_payout": 1.64,
+      "closes": "2026-04-28T22:50:00+00:00",
+      "closes_in_days": 0.222,
+      "status": "open",
+      "placed_at": "2026-04-28T17:29:54.814517+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260428172954814677",
+      "market_id": "2101618",
+      "market": "Valorant: HGE Esports vs NOVO Esports (BO3) - VCL Spain: Rising Phase 2 Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 33,
+      "entry_yes_price": 67,
+      "stake": 0.46,
+      "potential_profit": 0.93,
+      "potential_payout": 1.39,
+      "closes": "2026-04-28T23:00:00+00:00",
+      "closes_in_days": 0.229,
+      "status": "open",
+      "placed_at": "2026-04-28T17:29:54.814692+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 19.51,
+  "daily_loss": 21.9,
   "daily_reset": "2026-04-28",
-  "scan_count": 97,
+  "scan_count": 98,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
