@@ -1,5 +1,5 @@
 {
-  "bankroll": 737.89,
+  "bankroll": 884.09,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -3517,10 +3517,13 @@
       "potential_payout": 16.5,
       "closes": "2026-04-26T00:00:00+00:00",
       "closes_in_days": 0.629,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T08:53:47.810602+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T19:18:39.395050+00:00",
+      "realized_pnl": -3.63
     },
     {
       "id": "NC20260425094210975863",
@@ -4561,10 +4564,13 @@
       "potential_payout": 146.2,
       "closes": "2026-04-28T00:00:00+00:00",
       "closes_in_days": 0.94,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T01:26:43.888902+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-28T19:18:39.817773+00:00",
+      "realized_pnl": 131.58
     },
     {
       "id": "NC20260427012643888955",
@@ -4621,10 +4627,13 @@
       "potential_payout": 78.58,
       "closes": "2026-04-28T16:00:00+00:00",
       "closes_in_days": 1.607,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T01:26:43.889077+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T19:18:39.896520+00:00",
+      "realized_pnl": -9.43
     },
     {
       "id": "NC20260427012643889127",
@@ -5515,10 +5524,13 @@
       "potential_payout": 17.18,
       "closes": "2026-04-28T16:00:00+00:00",
       "closes_in_days": 0.33,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T08:05:34.967881+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-28T19:18:40.692156+00:00",
+      "realized_pnl": -3.78
     },
     {
       "id": "NC20260428080534968118",
@@ -5719,8 +5731,8 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 159.19,
+  "daily_loss": 176.03,
   "daily_reset": "2026-04-28",
-  "scan_count": 153,
+  "scan_count": 154,
   "started": "2026-04-21T00:00:00+00:00"
 }
