@@ -1,5 +1,5 @@
 {
-  "bankroll": 782.05,
+  "bankroll": 823.36,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6954,10 +6954,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 5232.605921,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:49:43.324013+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:45.052794+00:00",
+      "realized_pnl": 1.39
     },
     {
       "id": "NB1777340983",
@@ -7183,10 +7186,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 5258.207580999947,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:04.329834+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:45.447512+00:00",
+      "realized_pnl": 1.24
     },
     {
       "id": "NB1777353724",
@@ -7246,10 +7252,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 3433.434444000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:04.329916+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:45.650529+00:00",
+      "realized_pnl": 2.26
     },
     {
       "id": "NB1777353724",
@@ -7501,10 +7510,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 466986.38638299936,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:19:58.519128+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:46.168948+00:00",
+      "realized_pnl": 3.79
     },
     {
       "id": "NB1777378798",
@@ -7590,10 +7602,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 330511.56653000007,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:19:58.519249+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:46.338753+00:00",
+      "realized_pnl": 3.71
     },
     {
       "id": "NB1777378798",
@@ -7725,10 +7740,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 87695.31808699999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:19:58.519417+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:46.386700+00:00",
+      "realized_pnl": 3.6
     },
     {
       "id": "NB1777378798",
@@ -7768,10 +7786,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 75001.85066599998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:19:58.519472+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-28T20:57:46.542246+00:00",
+      "realized_pnl": 3.56
     },
     {
       "id": "NB1777378798",
@@ -7857,10 +7878,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-28T16:00:00+00:00",
       "volume": 36797.93368399998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:19:58.519579+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-28T20:57:46.609880+00:00",
+      "realized_pnl": -3.49
     },
     {
       "id": "NB1777378798",
@@ -7946,9 +7970,9 @@
       "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 50.42,
+  "daily_loss": 53.91,
   "daily_reset": "2026-04-28",
-  "scan_count": 244,
+  "scan_count": 245,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T10:53:06.802308+00:00"
 }

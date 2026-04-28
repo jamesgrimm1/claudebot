@@ -1,5 +1,5 @@
 {
-  "bankroll": 1666.56,
+  "bankroll": 1829.06,
   "trades": [
     {
       "id": "T1775098669",
@@ -1055,10 +1055,13 @@
       "bear_case": "Event cancellation/postponement due to U.S.-U.K. tensions; resolution criteria technicality; extremely terse speech avoiding both words; market closes same day as speech creating timing risk",
       "kelly_tier": "quarter-Kelly (5.0%)",
       "news_triggered": true,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-24T10:06:17.027822+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-04-28T20:59:30.902490+00:00",
+      "realized_pnl": 71.5
     },
     {
       "id": "T1777038941",
@@ -1194,7 +1197,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-28",
-  "scan_count": 294,
+  "scan_count": 295,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-26",
   "last_tier2_scan": "2026-04-28",
