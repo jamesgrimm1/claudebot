@@ -1,5 +1,5 @@
 # Trade Knowledge Graph — Prescient
-*Generated 2026-04-27 23:45 UTC · 32 resolved trades*
+*Generated 2026-04-28 01:55 UTC · 32 resolved trades*
 
 ---
 
@@ -13,13 +13,13 @@
 
 - **weather**: 67% WR (6W/3L) · P&L $+256.39
 - **crypto**: 57% WR (4W/3L) · P&L $+388.71
-- **politics**: 50% WR (2W/2L) · P&L $-180.37
-- **economics**: 25% WR (1W/3L) · P&L $+78.75 ⚠️
 - **other**: 75% WR (3W/1L) · P&L $+454.46
-- **commodities**: 0% WR (0W/1L) · P&L $-70.00 ⚠️
-- **entertainment**: 100% WR (1W/0L) · P&L $+634.26 ⭐
+- **economics**: 25% WR (1W/3L) · P&L $+78.75 ⚠️
+- **politics**: 50% WR (2W/2L) · P&L $-180.37
 - **health**: 0% WR (0W/1L) · P&L $+0.00 ⚠️
+- **commodities**: 0% WR (0W/1L) · P&L $-70.00 ⚠️
 - **stocks**: 100% WR (1W/0L) · P&L $+144.16 ⭐
+- **entertainment**: 100% WR (1W/0L) · P&L $+634.26 ⭐
 
 ## Calibration — Confidence vs Actual Win Rate
 
