@@ -1,21 +1,13 @@
 """
 ╔══════════════════════════════════════════════════════════╗
-║  ALPHA-PRIME — Focused NearCertain Variant (V2 REBUILD)  ║
+║  ALPHA-PRIME — Focused NearCertain Variant               ║
 ║                                                          ║
-║  Three core mechanical patterns, no LLM reasoning layer. ║
-║  Pattern A: Weather exact-temp NO 20-25¢ at 6-24h hold   ║
-║  Pattern B: Sports O/U NO 5-30¢ at <6h hold              ║
-║  Pattern G: Crypto NO 20-25¢ at 12-24h hold              ║
+║  Five mechanical patterns, no LLM reasoning layer.       ║
+║  Pattern A: Weather exact-temp NO (YES 86-95, <6h)       ║
+║  Pattern B: Soccer O/U NO (YES 81-95, <6h)               ║
+║  Pattern C: Esports CS/Dota/LoL NO (<6h)                 ║
+║  Pattern D: Watchlist city boost on Pattern A            ║
 ║  Pattern E: Bracket markets (micro-stake, data only)     ║
-║                                                          ║
-║  REBUILT 2026-04-28 from beta audit:                     ║
-║  - Old killer pattern (NO 5-14, <6h) is dead             ║
-║  - New pattern: NO 20-25¢ AT LONGER HOLDS (6-24h)        ║
-║  - Crypto unblocked: was -44% historic, now +348% in     ║
-║    last 7d (n=3, micro-stake until n>=20)                ║
-║  - Removed: Pattern C esports (small sample, mixed),     ║
-║    Pattern D watchlist (geographic exploit closed),      ║
-║    Pattern F probe (no longer needed)                    ║
 ║                                                          ║
 ║  RUN: python alpha_prime.py --single-scan                ║
 ╚══════════════════════════════════════════════════════════╝
@@ -25,8 +17,33 @@ import os, sys, re, json, time, requests
 from datetime import datetime, timezone, timedelta
 
 LOG_FILE          = "alpha_prime_log.json"
+AP_CONFIG_FILE    = "alpha_prime_config.json"
 PAPER_TRADING     = True
 STARTING_BANKROLL = 1000.00
+
+
+# ─────────────────────────────────────────────────────────
+#  SELF-AUDIT CONFIG LOADER
+# ─────────────────────────────────────────────────────────
+# Opus updates alpha_prime_config.json every 3 days via self_audit.py
+# We load it here and override pattern parameters accordingly
+
+def load_audit_config():
+    """Load Opus-generated config from self_audit.py, fall back to defaults."""
+    if not os.path.exists(AP_CONFIG_FILE):
+        return {}
+    try:
+        with open(AP_CONFIG_FILE) as f:
+            cfg = json.load(f)
+        print(f"[CONFIG] Loaded audit config from {AP_CONFIG_FILE} "
+              f"(updated: {cfg.get('last_updated','?')})")
+        print(f"[CONFIG] Notes: {cfg.get('audit_notes','')}")
+        return cfg
+    except Exception as e:
+        print(f"[CONFIG] Failed to load audit config: {e} — using defaults")
+        return {}
+
+_AUDIT_CFG = load_audit_config()
 
 # ── Circuit breakers ──────────────────────────────────────
 EQUITY_STOP_PCT   = 0.70   # halve stakes if bankroll < 70% of starting
@@ -34,14 +51,18 @@ DAILY_LOSS_PCT    = 0.40   # halve stakes if same-day loss > 40% of starting
 
 # ── Pattern stake config ──────────────────────────────────
 PATTERNS = {
-    "A": {"pct": 0.030, "cap": 50.0, "label": "Weather NO 20-25 at 6-24h"},
-    "B": {"pct": 0.030, "cap": 50.0, "label": "Sports O/U NO 5-30 at <6h"},
-    "G": {"pct": 0.005, "cap": 10.0, "label": "Crypto NO 20-25 at 12-24h (probe)"},
+    "A": {"pct": 0.030, "cap": 50.0, "label": "Weather Exact-Temp"},
+    "B": {"pct": 0.030, "cap": 50.0, "label": "Soccer O/U"},
+    "C": {"pct": 0.025, "cap": 40.0, "label": "Esports CS/Dota/LoL"},
+    "D": {"pct": 0.040, "cap": 50.0, "label": "Watchlist City Boost"},
     "E": {"pct": 0.001, "cap":  2.0, "label": "Bracket Markets (micro)"},
 }
 
 MIN_STAKE = 1.00
 VOL_CAP   = 0.05   # max 5% of market volume
+
+# ── Watchlist (Pattern D) ─────────────────────────────────
+WATCHLIST_CITIES = {"jakarta", "karachi", "guangzhou"}
 
 # ── Hard exclusions ────────────────────────────────────────
 DIRECTIONAL_KW = [
@@ -50,6 +71,49 @@ DIRECTIONAL_KW = [
 ]
 VALORANT_KW    = ["valorant"]
 CONFLICT_KW    = ["israel","yemen","russia","ukraine","iran","hormuz","hamas","hezbollah"]
+
+# Override from audit config if available
+if _AUDIT_CFG.get("blocked_categories"):
+    _AUDIT_BLOCKED = set(_AUDIT_CFG["blocked_categories"])
+else:
+    _AUDIT_BLOCKED = set()
+
+if _AUDIT_CFG.get("watchlist_cities"):
+    WATCHLIST_CITIES = set(_AUDIT_CFG["watchlist_cities"])
+
+if _AUDIT_CFG.get("yes_price_min"):
+    _AP_YES_MIN = _AUDIT_CFG["yes_price_min"]
+    _AP_YES_MAX = _AUDIT_CFG.get("yes_price_max", 95)
+else:
+    _AP_YES_MIN = 86
+    _AP_YES_MAX = 95
+
+if _AUDIT_CFG.get("max_closes_in_days"):
+    _AP_MAX_CID = _AUDIT_CFG["max_closes_in_days"]
+else:
+    _AP_MAX_CID = 0.25
+
+if _AUDIT_CFG.get("soccer_ou_enabled") is False:
+    _AP_SOCCER = False
+else:
+    _AP_SOCCER = True
+    _AP_SOCCER_YES_MIN = _AUDIT_CFG.get("soccer_yes_min", 81)
+    _AP_SOCCER_YES_MAX = _AUDIT_CFG.get("soccer_yes_max", 95)
+
+if _AUDIT_CFG.get("esports_enabled") is False:
+    _AP_ESPORTS = False
+else:
+    _AP_ESPORTS = True
+
+if _AUDIT_CFG.get("esports_games"):
+    # Rebuild ESPORTS_GAMES from audit config
+    _ap_eg = _AUDIT_CFG["esports_games"]
+    ESPORTS_GAMES = {
+        "cs":   ["counter-strike","cs2","csgo"," cs:","(cs "] if any("counter" in g or "cs" in g for g in _ap_eg) else [],
+        "dota": ["dota 2","dota2"] if any("dota" in g for g in _ap_eg) else [],
+        "lol":  ["league of legends","lol:","(lol"] if any("league" in g or "lol" in g for g in _ap_eg) else [],
+    }
+    ESPORTS_GAMES = {k: v for k, v in ESPORTS_GAMES.items() if v}
 
 # ── Soccer league detection ───────────────────────────────
 SOCCER_KW      = ["o/u","over/under"]
@@ -99,7 +163,7 @@ def load_state():
         log(f"📂 Loaded — {len(s['trades'])} trades | bankroll ${s['bankroll']:.2f} | "
             f"{len(won)}W/{len(closed)-len(won)}L")
         return s
-    log("📂 Fresh start — V2 rebuild")
+    log("📂 Fresh start")
     return {
         "bankroll":    STARTING_BANKROLL,
         "trades":      [],
@@ -107,7 +171,8 @@ def load_state():
         "daily_reset": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
         "scan_count":  0,
         "started":     datetime.now(timezone.utc).isoformat(),
-        "version":     "V2-2026-04-28",
+        "watchlist":   list(WATCHLIST_CITIES),
+        "watchlist_log": [],
     }
 
 def save_state(state):
@@ -184,16 +249,13 @@ def is_bracket_market(market):
         return False
     return any(v in m for v in BRACKET_VERBS)
 
+def get_watchlist(state):
+    return set(state.get("watchlist", list(WATCHLIST_CITIES)))
+
 def classify_market(market_dict, state):
     """
     Returns (pattern_letter, reason) or (None, reason) if excluded.
     Hard exclusions override everything.
-    
-    REBUILT 2026-04-28: New pattern targets after audit found old patterns
-    (NO 5-14 at <6h) had compressed to 0% WR. Wins migrated to:
-    - Higher NO bands (20-25)
-    - Longer holds (6-24h instead of <6h)
-    - EXCEPT for sports O/U which still works at <6h
     """
     q          = market_dict["question"]
     m          = q.lower()
@@ -203,55 +265,61 @@ def classify_market(market_dict, state):
     cid        = market_dict.get("closes_in_days", 99)
     volume     = market_dict.get("volume", 0)
 
-    # ── Hard exclusions (always) ────────────────────────
+    # ── Hard exclusions (from audit config) ─────────────
     if yes_price >= 95:
         return None, "excl:YES>=95 (0/10 in data)"
     if no_price >= 35:
-        return None, "excl:NO>=35 (deathzone)"
+        return None, "excl:NO>=35"
+    if cat == "crypto":
+        return None, "excl:crypto"
+    if _AUDIT_BLOCKED and cat in _AUDIT_BLOCKED:
+        return None, f"excl:audit_blocked:{cat}"
     if any(k in m for k in VALORANT_KW):
         return None, "excl:valorant (0/6 in data)"
     if any(k in m for k in CONFLICT_KW):
-        return None, "excl:conflict (-17% EV)"
+        return None, "excl:conflict"
     if cat == "weather" and is_directional_weather(q):
         return None, "excl:directional_weather (-62% EV)"
     if cat == "weather" and "between" in m:
         return None, "excl:range_weather"
+    if cid > 1.0 and cat not in []:  # Pattern E allows up to 1d, A/B/C require <0.25
+        pass  # check individually per pattern below
 
-    # ── Pattern A: Weather NO 20-25¢ at 6-24h hold ──────
-    # Beta audit: n=6 in this cell, 50% WR, +120% EV avg
-    # The "killer pattern" lives here now after April 21 regime change
+    # ── Pattern D/A: Weather exact-temp ─────────────────
     if cat == "weather":
-        if 20 <= no_price <= 25 and 0.25 <= cid <= 1.0:
-            if volume >= 500:
-                return "A", f"weather_2025 no={no_price} cid={cid:.3f}"
-            return None, f"excl:vol<500 ({volume:.0f})"
+        _yes_max_a = 100 - 5  # NO 5-14 means YES 86-95
+        _yes_min_a = 100 - 14
+        if 5 <= no_price <= 14 and cid < _AP_MAX_CID:
+            if not is_directional_weather(q) and "between" not in m:
+                if volume >= 500:
+                    watchlist = get_watchlist(state)
+                    for city in watchlist:
+                        if city in m:
+                            return "D", f"watchlist:{city} no={no_price} cid={cid:.3f}"
+                    return "A", f"weather_exact no={no_price} cid={cid:.3f}"
+                else:
+                    return None, f"excl:vol<500 ({volume:.0f})"
         return None, f"no_match:weather no={no_price} cid={cid:.3f}"
 
-    # ── Pattern B: Sports O/U NO 5-30¢ at <6h ───────────
-    # Beta audit: n=10 in this cell, 60% WR, +220% EV avg
-    # Sports O/U at <6h hold is the only sports pattern that's still working
-    if cat == "sports":
-        if any(k in m for k in SOCCER_KW):  # O/U or over/under in question
-            if 5 <= no_price <= 30 and cid < 0.25:
+    # ── Pattern B: Soccer O/U ────────────────────────────
+    if any(k in m for k in SOCCER_KW):
+        if 5 <= no_price <= 19 and cid < 0.25:
+            if is_soccer_market(q):
                 if volume >= 500:
-                    return "B", f"sports_ou no={no_price} cid={cid:.3f}"
+                    return "B", f"soccer_ou no={no_price} cid={cid:.3f}"
                 return None, f"excl:vol<500 ({volume:.0f})"
-            return None, f"no_match:sports_ou no={no_price} cid={cid:.3f}"
-        return None, f"excl:sports_non_ou (-100% EV in audit)"
+        return None, f"no_match:soccer no={no_price} cid={cid:.3f}"
 
-    # ── Pattern G: Crypto NO 20-25¢ at 12-24h ───────────
-    # Beta audit: n=3, 100% WR, +348% EV (small sample, micro-stake until validated)
-    # Was historically -44% EV but migrated to positive after April 21
-    # Promotion criteria: n>=20 with WR>=30% → upgrade to Pattern A sizing
-    if cat == "crypto":
-        if 20 <= no_price <= 25 and 0.50 <= cid <= 1.0:
+    # ── Pattern C: Esports ───────────────────────────────
+    game = get_esports_game(q)
+    if game:
+        if 5 <= no_price <= 30 and cid < 0.25:
             if volume >= 500:
-                return "G", f"crypto_2025 no={no_price} cid={cid:.3f}"
+                return "C", f"esports:{game} no={no_price} cid={cid:.3f}"
             return None, f"excl:vol<500 ({volume:.0f})"
-        return None, f"no_match:crypto no={no_price} cid={cid:.3f}"
+        return None, f"no_match:esports no={no_price} cid={cid:.3f}"
 
     # ── Pattern E: Bracket markets ───────────────────────
-    # Unchanged — micro-stake data collection
     if is_bracket_market(q):
         if 5 <= no_price <= 19 and cid < 1.0:
             if volume >= 200:
@@ -476,13 +544,47 @@ def place_trade(market, pattern, reason, state):
 # ─────────────────────────────────────────────────────────
 
 def update_watchlist(state):
-    """
-    DEPRECATED 2026-04-28: watchlist mechanic removed in V2 rebuild.
-    The geographic exploit (Jakarta/Karachi/Guangzhou) closed when the
-    underlying pricing inefficiency compressed in late April.
-    
-    Kept as no-op for backwards compatibility — main loop still calls it.
-    """
+    """Weekly watchlist update based on recent Pattern A/D performance."""
+    from collections import defaultdict
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=30)
+
+    closed = [
+        t for t in state["trades"]
+        if t["status"] == "closed"
+        and t.get("pattern") in ("A", "D")
+        and datetime.fromisoformat(t.get("resolved_at", now.isoformat()).replace("Z","+00:00")) > cutoff
+    ]
+
+    city_stats = defaultdict(lambda: {"w": 0, "l": 0})
+    for t in closed:
+        q = t["market"].lower()
+        for city in ["jakarta","karachi","guangzhou","singapore","mumbai","delhi","bangkok","manila","seoul","tokyo","london","paris","madrid","berlin","sydney","dubai","istanbul","cairo","nairobi"]:
+            if city in q:
+                if t.get("won"):
+                    city_stats[city]["w"] += 1
+                else:
+                    city_stats[city]["l"] += 1
+                break
+
+    current = set(state.get("watchlist", list(WATCHLIST_CITIES)))
+    changes = []
+
+    for city, s in city_stats.items():
+        total = s["w"] + s["l"]
+        if city not in current and s["w"] >= 3:
+            current.add(city)
+            changes.append(f"ADD {city} ({s['w']}W/{s['l']}L in 30d)")
+        elif city in current and total >= 4 and s["w"] == 0:
+            current.discard(city)
+            changes.append(f"REMOVE {city} (0W/{total}L in 30d)")
+
+    if changes:
+        log(f"  🗺️  Watchlist updated: {', '.join(changes)}")
+        state["watchlist"] = list(current)
+        state["watchlist_log"] = state.get("watchlist_log", []) + [
+            {"date": now.strftime("%Y-%m-%d"), "changes": changes}
+        ]
     return state
 
 
@@ -507,7 +609,7 @@ def print_portfolio(state):
     print(f"  Closed        {len(closed)} ({len(won)}W/{len(closed)-len(won)}L — {wr:.0f}% WR)")
     print(f"  Open          {len(open_t)}")
     print(f"  Scans         {state.get('scan_count', 0)}")
-    print(f"  Version       {state.get('version', '?')}")
+    print(f"  Watchlist     {', '.join(state.get('watchlist', []))}")
 
     from collections import defaultdict
     by_pat = defaultdict(lambda: {"w": 0, "l": 0, "pnl": 0})
