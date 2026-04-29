@@ -1,5 +1,5 @@
 {
-  "bankroll": 1197.3,
+  "bankroll": 1188.0,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3803,10 +3803,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 5661.149663000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:23:27.319640+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-29T06:17:05.174774+00:00",
+      "realized_pnl": 11.91
     },
     {
       "id": "NB1777339407",
@@ -4317,12 +4320,72 @@
       "placed_at": "2026-04-29T05:18:40.474035+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777443430",
+      "market_id": "2091796",
+      "market_slug": "highest-temperature-in-chengdu-on-april-29-2026-23c",
+      "market": "Will the highest temperature in Chengdu be 23\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 13.77,
+      "payout_if_wins": 25.5,
+      "profit_if_wins": 11.73,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 6517.663356999999,
+      "status": "open",
+      "placed_at": "2026-04-29T06:17:10.438685+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777443430",
+      "market_id": "2091637",
+      "market_slug": "highest-temperature-in-lucknow-on-april-29-2026-37corbelow",
+      "market": "Will the highest temperature in Lucknow be 37\u00b0C or below on April 29?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 13.62,
+      "payout_if_wins": 23.89,
+      "profit_if_wins": 10.27,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 5637.0321189999995,
+      "status": "open",
+      "placed_at": "2026-04-29T06:17:10.438743+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777443430",
+      "market_id": "2091845",
+      "market_slug": "highest-temperature-in-houston-on-april-29-2026-88forhigher",
+      "market": "Will the highest temperature in Houston be 88\u00b0F or higher on April 29?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 8.98,
+      "payout_if_wins": 14.48,
+      "profit_if_wins": 5.5,
+      "category": "weather",
+      "closes_in_days": 0.24,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3908.1290940000017,
+      "status": "open",
+      "placed_at": "2026-04-29T06:17:10.438777+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 39.27,
   "daily_reset": "2026-04-29",
-  "scan_count": 315,
+  "scan_count": 316,
   "started": "2026-04-16T02:01:08.863467+00:00",
-  "last_summary_sent": "2026-04-28T17:29:16.121685+00:00",
+  "last_summary_sent": "2026-04-29T06:17:03.960757+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
 }
