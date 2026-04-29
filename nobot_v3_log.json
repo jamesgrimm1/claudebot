@@ -1,5 +1,5 @@
 {
-  "bankroll": 1188.0,
+  "bankroll": 1175.98,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3981,10 +3981,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 3246.0826340000003,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:23:27.319798+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-29T07:16:40.300012+00:00",
+      "realized_pnl": 5.66
     },
     {
       "id": "NB1777352452",
@@ -4380,11 +4383,51 @@
       "placed_at": "2026-04-29T06:17:10.438777+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777447012",
+      "market_id": "2091783",
+      "market_slug": "highest-temperature-in-wuhan-on-april-29-2026-19c",
+      "market": "Will the highest temperature in Wuhan be 19\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 13.53,
+      "payout_if_wins": 23.33,
+      "profit_if_wins": 9.8,
+      "category": "weather",
+      "closes_in_days": 0.2,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3535.936227000001,
+      "status": "open",
+      "placed_at": "2026-04-29T07:16:52.178919+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777447012",
+      "market_id": "2091729",
+      "market_slug": "highest-temperature-in-madrid-on-april-29-2026-19c",
+      "market": "Will the highest temperature in Madrid be 19\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 13.38,
+      "payout_if_wins": 23.07,
+      "profit_if_wins": 9.69,
+      "category": "weather",
+      "closes_in_days": 0.2,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3405.2836720000014,
+      "status": "open",
+      "placed_at": "2026-04-29T07:16:52.178959+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 39.27,
   "daily_reset": "2026-04-29",
-  "scan_count": 319,
+  "scan_count": 320,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-29T06:17:03.960757+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
