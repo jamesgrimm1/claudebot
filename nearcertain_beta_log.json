@@ -1,5 +1,5 @@
 {
-  "bankroll": 937.44,
+  "bankroll": 941.51,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -14811,10 +14811,13 @@
       "potential_payout": 1.57,
       "closes": "2026-04-29T19:00:00+00:00",
       "closes_in_days": 1.804,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T23:42:28.717265+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:21.244105+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260427234228717425",
@@ -14922,10 +14925,13 @@
       "potential_payout": 5.88,
       "closes": "2026-04-29T21:00:00+00:00",
       "closes_in_days": 1.798,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:50:32.905569+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:22.256379+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260428015032905744",
@@ -14976,10 +14982,13 @@
       "potential_payout": 1.62,
       "closes": "2026-04-29T21:00:00+00:00",
       "closes_in_days": 1.798,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:50:32.906089+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-29T21:51:22.705219+00:00",
+      "realized_pnl": 1.15
     },
     {
       "id": "NC20260428052251163655",
@@ -15843,10 +15852,13 @@
       "potential_payout": 3.83,
       "closes": "2026-04-29T19:15:00+00:00",
       "closes_in_days": 1.465,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T08:05:52.246597+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-29T21:51:22.773256+00:00",
+      "realized_pnl": 3.37
     },
     {
       "id": "NC20260428080552247481",
@@ -16518,10 +16530,13 @@
       "potential_payout": 9.2,
       "closes": "2026-04-29T19:00:00+00:00",
       "closes_in_days": 1.155,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T15:16:16.409154+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:23.323913+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260428151616409761",
@@ -16875,10 +16890,13 @@
       "potential_payout": 4.7,
       "closes": "2026-04-29T21:00:00+00:00",
       "closes_in_days": 1.07,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T19:19:13.570090+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:23.713379+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260428205833256993",
@@ -17226,10 +17244,13 @@
       "potential_payout": 1.77,
       "closes": "2026-04-29T21:00:00+00:00",
       "closes_in_days": 0.926,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T22:46:03.850972+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:23.859893+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260428224603851701",
@@ -18003,10 +18024,13 @@
       "potential_payout": 3.29,
       "closes": "2026-04-29T21:00:00+00:00",
       "closes_in_days": 0.613,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T06:17:28.838291+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:24.425251+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260429063421295775",
@@ -18741,10 +18765,13 @@
       "potential_payout": 1.53,
       "closes": "2026-04-29T19:00:00+00:00",
       "closes_in_days": 0.283,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T12:13:06.966123+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:24.748119+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260429121306966368",
@@ -18759,10 +18786,13 @@
       "potential_payout": 1.44,
       "closes": "2026-04-29T19:15:00+00:00",
       "closes_in_days": 0.293,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T12:13:06.966378+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-04-29T21:51:24.787801+00:00",
+      "realized_pnl": 0.98
     },
     {
       "id": "NC20260429121306967478",
@@ -18837,10 +18867,13 @@
       "potential_payout": 1.68,
       "closes": "2026-04-29T19:00:00+00:00",
       "closes_in_days": 0.144,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T15:33:21.066149+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T21:51:24.828002+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260429153321066608",
@@ -19564,11 +19597,119 @@
       "placed_at": "2026-04-29T20:51:43.298880+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129746827",
+      "market_id": "2103555",
+      "market": "Counter-Strike: Imperial vs Fake do Biru - Map 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.47,
+      "potential_profit": 2.47,
+      "potential_payout": 2.94,
+      "closes": "2026-04-30T01:00:00+00:00",
+      "closes_in_days": 0.131,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.746847+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129747180",
+      "market_id": "1929855",
+      "market": "Counter-Strike: FURIA vs GamerLegion - Map 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.47,
+      "potential_profit": 0.91,
+      "potential_payout": 1.38,
+      "closes": "2026-04-30T02:30:00+00:00",
+      "closes_in_days": 0.193,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.747201+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129747435",
+      "market_id": "2113591",
+      "market": "Counter-Strike: ShindeN vs MIBR Academy (BO3) - ESL Challenger League South America Cup #4 Playoffs",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.47,
+      "potential_profit": 3.45,
+      "potential_payout": 3.92,
+      "closes": "2026-04-30T03:00:00+00:00",
+      "closes_in_days": 0.214,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.747455+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129748015",
+      "market_id": "2075620",
+      "market": "LoL: Nongshim Esports Academy vs HANJIN BRION Challengers (BO3) - LCK Challengers League Rounds 1-2",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 0.47,
+      "potential_profit": 2.14,
+      "potential_payout": 2.61,
+      "closes": "2026-04-30T11:00:00+00:00",
+      "closes_in_days": 0.548,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.748034+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129748373",
+      "market_id": "2084089",
+      "market": "LoL: Gen.G vs Kiwoom DRX - Game 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 0.47,
+      "potential_profit": 3.15,
+      "potential_payout": 3.62,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "closes_in_days": 0.589,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.748389+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429215129749386",
+      "market_id": "2084116",
+      "market": "Game Handicap: DK (-1.5) vs BNK FEARX (+1.5)",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.47,
+      "potential_profit": 0.91,
+      "potential_payout": 1.38,
+      "closes": "2026-04-30T16:00:00+00:00",
+      "closes_in_days": 0.756,
+      "status": "open",
+      "placed_at": "2026-04-29T21:51:29.749406+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 33.68,
+  "daily_loss": 37.4,
   "daily_reset": "2026-04-29",
-  "scan_count": 125,
+  "scan_count": 126,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
