@@ -1,5 +1,5 @@
 {
-  "bankroll": 873.12,
+  "bankroll": 887.46,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8128,10 +8128,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3747.0607779999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:51.469636+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T20:51:08.676508+00:00",
+      "realized_pnl": -1.82
     },
     {
       "id": "NB1777427571",
@@ -8191,10 +8194,13 @@
       "closes_in_days": 0.34,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 4538.2303459999985,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T03:57:26.272924+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T20:51:08.792118+00:00",
+      "realized_pnl": 2.18
     },
     {
       "id": "NB1777435046",
@@ -8234,10 +8240,13 @@
       "closes_in_days": 0.45,
       "closes": "2026-04-29T16:00:00+00:00",
       "volume": 6149.060823000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T05:18:31.820481+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T20:51:08.834057+00:00",
+      "realized_pnl": 3.27
     },
     {
       "id": "NB1777439911",
@@ -8274,10 +8283,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3854.0866799999994,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T05:18:31.820558+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T20:51:08.938681+00:00",
+      "realized_pnl": -1.78
     },
     {
       "id": "NB1777443423",
@@ -8294,10 +8306,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 6517.663356999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T06:17:03.286711+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T20:51:08.997159+00:00",
+      "realized_pnl": -4.0
     },
     {
       "id": "NB1777443423",
@@ -8532,10 +8547,13 @@
       "closes_in_days": 0.25,
       "closes": "2026-04-29T16:00:00+00:00",
       "volume": 7762.107728999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T10:03:35.825793+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T20:51:09.259540+00:00",
+      "realized_pnl": -2.62
     },
     {
       "id": "NB1777464671",
@@ -8618,9 +8636,9 @@
       "model": "nobot-v2"
     }
   ],
-  "daily_loss": 19.03,
+  "daily_loss": 29.25,
   "daily_reset": "2026-04-29",
-  "scan_count": 273,
+  "scan_count": 274,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T17:16:33.548608+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
