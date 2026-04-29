@@ -1,5 +1,5 @@
 {
-  "bankroll": 817.45,
+  "bankroll": 815.41,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8416,11 +8416,31 @@
       "placed_at": "2026-04-29T08:25:39.883007+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777452264",
+      "market_id": "2091599",
+      "market_slug": "highest-temperature-in-miami-on-april-29-2026-84-85f",
+      "market": "Will the highest temperature in Miami be between 84-85\u00b0F on April 29?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.04,
+      "payout_if_wins": 3.29,
+      "profit_if_wins": 1.25,
+      "category": "weather",
+      "closes_in_days": 0.14,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3553.647788,
+      "status": "open",
+      "placed_at": "2026-04-29T08:44:24.295068+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 13.29,
   "daily_reset": "2026-04-29",
-  "scan_count": 258,
+  "scan_count": 259,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T23:43:51.785966+00:00"
 }

@@ -2,13 +2,12 @@
   "blocked_categories": [
     "politics",
     "economics",
-    "crypto",
     "conflict",
     "geopolitics"
   ],
   "weather_exact_only": true,
-  "yes_price_min": 86,
-  "yes_price_max": 95,
+  "yes_price_min": 90,
+  "yes_price_max": 94,
   "max_closes_in_days": 0.25,
   "min_volume": 500,
   "watchlist_cities": [
@@ -17,8 +16,8 @@
     "guangzhou"
   ],
   "soccer_ou_enabled": true,
-  "soccer_yes_min": 81,
-  "soccer_yes_max": 95,
+  "soccer_yes_min": 90,
+  "soccer_yes_max": 94,
   "esports_enabled": true,
   "esports_games": [
     "counter-strike",
@@ -28,6 +27,6 @@
   "esports_yes_min": 70,
   "esports_yes_max": 95,
   "pattern_e_enabled": true,
-  "last_updated": "2026-04-29",
-  "audit_notes": "Initial default config \u2014 self_audit.py will update this every 3 days based on NearCertain performance"
+  "last_updated": "2026-05-02",
+  "audit_notes": "Tightened yes_price to 90-94 band which shows strong P&L (+440.64 main, +314.40 beta) vs losing bands 80-89c. Kept economics blocked (9-11% WR, large losses both bots). Removed crypto from blocked list (33% WR, 42 trades, +$4.96 in beta - above threshold). Weather exact-temp profitable (+88.78 main, +196.79 beta) while directional losing in beta (-60.70), keeping weather_exact_only=true. Kept <6h window as beta shows +$291.35 there. Sports has 270 trades at 18% WR but only -$25.29 loss with tiny stakes - not blocking per rules."
 }
