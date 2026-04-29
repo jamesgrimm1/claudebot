@@ -1,5 +1,5 @@
 {
-  "bankroll": 831.61,
+  "bankroll": 828.99,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8483,11 +8483,31 @@
       "placed_at": "2026-04-29T09:43:07.492619+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777457015",
+      "market_id": "2053495",
+      "market_slug": "will-the-price-of-xrp-be-between-1pt30-1pt40-on-april-29",
+      "market": "Will the price of XRP be between $1.30 and $1.40 on April 29?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 2.62,
+      "payout_if_wins": 5.35,
+      "profit_if_wins": 2.73,
+      "category": "other",
+      "closes_in_days": 0.25,
+      "closes": "2026-04-29T16:00:00+00:00",
+      "volume": 7762.107728999999,
+      "status": "open",
+      "placed_at": "2026-04-29T10:03:35.825793+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 11.33,
   "daily_reset": "2026-04-29",
-  "scan_count": 264,
+  "scan_count": 265,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T03:57:12.368522+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

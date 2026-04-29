@@ -1,5 +1,5 @@
 {
-  "bankroll": 818.78,
+  "bankroll": 814.69,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8439,11 +8439,31 @@
       "placed_at": "2026-04-29T08:44:24.295068+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777456991",
+      "market_id": "2053495",
+      "market_slug": "will-the-price-of-xrp-be-between-1pt30-1pt40-on-april-29",
+      "market": "Will the price of XRP be between $1.30 and $1.40 on April 29?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 4.09,
+      "payout_if_wins": 8.35,
+      "profit_if_wins": 4.26,
+      "category": "other",
+      "closes_in_days": 0.25,
+      "closes": "2026-04-29T16:00:00+00:00",
+      "volume": 7762.107728999999,
+      "status": "open",
+      "placed_at": "2026-04-29T10:03:11.284674+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 13.29,
   "daily_reset": "2026-04-29",
-  "scan_count": 260,
+  "scan_count": 261,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T23:43:51.785966+00:00"
 }
