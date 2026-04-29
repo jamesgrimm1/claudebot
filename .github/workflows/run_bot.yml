@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '*/15 * * * *'
     - cron: '0 * * * *'
+    - cron: '0 1 */2 * *'    # every 2 days at 1am UTC (opus_reflect)
+    - cron: '0 2 */3 * *'    # every 3 days at 2am UTC (self_audit)
   workflow_dispatch:
     inputs:
       run_backtest:
@@ -65,18 +67,6 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nearcertain.py --single-scan
-      - name: Run Opus Reflect — ClaudeBot Self-Reflection (every 2 days)
-        if: github.event.schedule == '0 1 */2 * *' || github.event_name == 'workflow_dispatch'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python opus_reflect.py
-
-      - name: Run Self-Audit — NearCertain → AlphaPrime (every 3 days)
-        if: github.event.schedule == '0 2 */3 * *' || github.event_name == 'workflow_dispatch'
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python self_audit.py
-
       - name: Run Alpha-Prime — Focused NearCertain (every hour)
         if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
@@ -93,13 +83,6 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
         run: python assetbot.py --single-scan
-      - name: Run ClaudeBot Live — Real Money (every hour)
-        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
-        env:
-          POLYGON_WALLET_ADDRESS: ${{ secrets.POLYGON_WALLET_ADDRESS }}
-          POLYGON_PRIVATE_KEY: ${{ secrets.POLYGON_PRIVATE_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python claudebot_live.py --single-scan
       - name: Run ClaudeBot (every hour)
         if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
@@ -110,6 +93,28 @@ jobs:
           FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
           VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
         run: python claudebot.py --single-scan
+      - name: Run ClaudeBot V2 — Aggressive Companion (every hour)
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          VISUAL_CROSSING_API_KEY: ${{ secrets.VISUAL_CROSSING_API_KEY }}
+        run: python claudebot_v2.py --single-scan
+      - name: Run Opus Reflect — ClaudeBot Self-Reflection (every 2 days)
+        if: github.event.schedule == '0 1 */2 * *' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python opus_reflect.py
+
+      - name: Run Self-Audit — NearCertain → AlphaPrime (every 3 days)
+        if: github.event.schedule == '0 2 */3 * *' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python self_audit.py
+
       - name: Build trade knowledge graph
         if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         run: |
@@ -124,8 +129,9 @@ jobs:
         run: |
           git config user.name "claudebot"
           git config user.email "claudebot@users.noreply.github.com"
-          git add claudebot_log.json nobot_log.json nobot_v2_log.json nobot_v3_log.json nearcertain_log.json nearcertain_beta_log.json assetbot_log.json alpha_prime_log.json claudebot_live_log.json investor_data.json investor.html alpha_prime_config.json graphify-out/GRAPH_REPORT.md self_audit_state.json || true
-          git add trade_reflections/ graphify-out/ 2>/dev/null || true
+          git add claudebot_log.json claudebot_v2_log.json nobot_log.json nobot_v2_log.json nobot_v3_log.json nearcertain_log.json nearcertain_beta_log.json assetbot_log.json alpha_prime_log.json investor.html
+          git add alpha_prime_config.json self_audit_state.json 2>/dev/null || true
+          git add trade_reflections/ trade_reflections_v2/ graphify-out/ 2>/dev/null || true
           git add backtest_nearcertain_*.html 2>/dev/null || true
           git diff --staged --quiet || git commit -m "bot: update logs + reflections [$(date '+%Y-%m-%d %H:%M')]"
           git push
