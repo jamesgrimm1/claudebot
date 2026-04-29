@@ -2243,14 +2243,14 @@ def print_portfolio(state):
     roi      = (state["bankroll"] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
     print("\n" + "═" * 65)
-    print("  CLAUDEBOT v13  ·  Three-Tier + News Monitor")
+    print("  CLAUDEBOT V2  ·  T1-only Aggressive + News Monitor")
     print("═" * 65)
     print(f"  Bankroll       ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
     print(f"  Realized P&L   ${realized:+.2f}")
     print(f"  Closed         {len(closed_t)}  ({len(won_t)}W / {len(lost_t)}L  —  {win_rate:.0f}% win rate)")
     print(f"  Total Scans    {state.get('scan_count', 0)}")
 
-    for tn in [1, 2]:
+    for tn in TIERS:
         op = len(open_positions_for_tier(tn, state))
         mx = TIERS[tn]["max_positions"]
         print(f"  {tier_badge(tn)} T{tn} {TIERS[tn]['name']:<12} {op}/{mx} open | "
