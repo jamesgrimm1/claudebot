@@ -1,5 +1,5 @@
 {
-  "bankroll": 814.69,
+  "bankroll": 826.99,
   "trades": [
     {
       "id": "NB1776304868",
@@ -7199,10 +7199,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 6586.599979,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:04.329806+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T12:10:10.376820+00:00",
+      "realized_pnl": 1.24
     },
     {
       "id": "NB1777353724",
@@ -8032,10 +8035,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 4691.547396999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:38.216573+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-29T12:10:10.941697+00:00",
+      "realized_pnl": -3.19
     },
     {
       "id": "NB1777427558",
@@ -8275,10 +8281,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5637.0321189999995,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T06:16:53.582431+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T12:10:12.148140+00:00",
+      "realized_pnl": 2.35
     },
     {
       "id": "NB1777443413",
@@ -8295,10 +8304,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 4344.980541000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T06:16:53.582460+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T12:10:12.279094+00:00",
+      "realized_pnl": 2.44
     },
     {
       "id": "NB1777443413",
@@ -8335,10 +8347,13 @@
       "closes_in_days": 0.2,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3535.936227000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T07:16:29.172398+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T12:10:12.625923+00:00",
+      "realized_pnl": 2.24
     },
     {
       "id": "NB1777446989",
@@ -8459,11 +8474,51 @@
       "placed_at": "2026-04-29T10:03:11.284674+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777464632",
+      "market_id": "1795540",
+      "market_slug": "will-elon-musks-net-worth-be-between-640b-and-650b-on-april-30",
+      "market": "Will Elon Musk\u2019s net worth be between $640b and $650b on April 30?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.13,
+      "payout_if_wins": 5.59,
+      "profit_if_wins": 2.46,
+      "category": "other",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 9596.985354000004,
+      "status": "open",
+      "placed_at": "2026-04-29T12:10:32.062447+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777464632",
+      "market_id": "1696085",
+      "market_slug": "will-president-trump-sign-4-pieces-of-legislation-into-law-in-april",
+      "market": "Will President Trump sign 4 pieces of legislation into law in April?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 4.16,
+      "payout_if_wins": 9.04,
+      "profit_if_wins": 4.88,
+      "category": "politics",
+      "closes_in_days": 0.49,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 8109.7359549999965,
+      "status": "open",
+      "placed_at": "2026-04-29T12:10:32.062487+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 13.29,
+  "daily_loss": 16.48,
   "daily_reset": "2026-04-29",
-  "scan_count": 261,
+  "scan_count": 262,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-04-28T23:43:51.785966+00:00"
+  "last_summary_sent": "2026-04-29T12:09:55.127197+00:00"
 }

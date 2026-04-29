@@ -1,5 +1,5 @@
 {
-  "bankroll": 1205.67,
+  "bankroll": 1243.23,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4079,10 +4079,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 6586.599979,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:24.911908+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-29T12:11:12.348032+00:00",
+      "realized_pnl": 5.41
     },
     {
       "id": "NB1777353744",
@@ -4205,10 +4208,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 4567.62766,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T00:11:31.233419+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-04-29T12:11:12.694705+00:00",
+      "realized_pnl": -9.04
     },
     {
       "id": "NB1777421491",
@@ -4408,10 +4414,13 @@
       "closes_in_days": 0.2,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3535.936227000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T07:16:52.178919+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-29T12:11:13.487149+00:00",
+      "realized_pnl": 9.8
     },
     {
       "id": "NB1777447012",
@@ -4474,9 +4483,9 @@
       "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 48.89,
+  "daily_loss": 57.93,
   "daily_reset": "2026-04-29",
-  "scan_count": 328,
+  "scan_count": 329,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-29T06:17:03.960757+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
