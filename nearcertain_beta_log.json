@@ -14283,10 +14283,13 @@
       "potential_payout": 2.0,
       "closes": "2026-04-29T13:00:00+00:00",
       "closes_in_days": 1.733,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-27T19:24:09.078117+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T13:13:15.776752+00:00",
+      "realized_pnl": -0.48
     },
     {
       "id": "NC20260427205139813073",
@@ -18267,10 +18270,13 @@
       "potential_payout": 2.88,
       "closes": "2026-04-29T13:00:00+00:00",
       "closes_in_days": 0.136,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T09:43:59.181335+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T13:13:22.142217+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260429094359181609",
@@ -18597,9 +18603,9 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 11.28,
+  "daily_loss": 12.22,
   "daily_reset": "2026-04-29",
-  "scan_count": 117,
+  "scan_count": 118,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }

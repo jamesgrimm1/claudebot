@@ -1,5 +1,5 @@
 {
-  "bankroll": 826.99,
+  "bankroll": 823.89,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8514,11 +8514,31 @@
       "placed_at": "2026-04-29T12:10:32.062487+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777468300",
+      "market_id": "1819595",
+      "market_slug": "will-the-10-year-treasury-hit-4pt45-high-in-april",
+      "market": "Will the 10-year Treasury hit 4.45% (HIGH) in April?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 3.1,
+      "payout_if_wins": 5.74,
+      "profit_if_wins": 2.64,
+      "category": "other",
+      "closes_in_days": 0.45,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 3880.347203,
+      "status": "open",
+      "placed_at": "2026-04-29T13:11:40.371418+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 16.48,
   "daily_reset": "2026-04-29",
-  "scan_count": 262,
+  "scan_count": 263,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T12:09:55.127197+00:00"
 }
