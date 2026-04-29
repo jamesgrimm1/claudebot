@@ -18,7 +18,7 @@ ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 REFLECTIONS_DIR    = "trade_reflections_v2"
 GRAPH_REPORT_FILE  = "graphify-out/GRAPH_REPORT.md"
 CLAUDEBOT_LOG      = "claudebot_log.json"
-OPUS_MODEL         = "claude-opus-4-5-20251001"
+OPUS_MODEL         = "claude-opus-4-5"
 MAX_REFLECTIONS    = 60   # cap to avoid token overload
 
 
