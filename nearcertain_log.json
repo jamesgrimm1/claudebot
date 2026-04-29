@@ -1,5 +1,5 @@
 {
-  "bankroll": 768.98,
+  "bankroll": 765.14,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -6140,10 +6140,28 @@
       "placed_at": "2026-04-29T06:23:55.894947+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429063407772942",
+      "market_id": "2091536",
+      "market": "Will the highest temperature in Seoul be 18\u00b0C on April 29?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 3.84,
+      "potential_profit": 12.16,
+      "potential_payout": 16.0,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "closes_in_days": 0.226,
+      "status": "open",
+      "placed_at": "2026-04-29T06:34:07.772961+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-04-29",
-  "scan_count": 163,
+  "scan_count": 164,
   "started": "2026-04-21T00:00:00+00:00"
 }
