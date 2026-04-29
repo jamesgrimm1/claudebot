@@ -1,13 +1,13 @@
 “””
 ╔══════════════════════════════════════════════════════════╗
-║  ASSETBOT — Price Mismatch Scanner                       ║
+║  ASSETBOT – Price Mismatch Scanner                       ║
 ║                                                          ║
 ║  Scans Polymarket for markets where the required price   ║
 ║  move is implausibly large given current asset price.    ║
 ║                                                          ║
 ║  Entry rule: required move > min(10% × days, 40%)        ║
 ║  Sizing: flat 2% of bankroll per trade                   ║
-║  No Opus — fully mechanical after Haiku parsing          ║
+║  No Opus – fully mechanical after Haiku parsing          ║
 ║                                                          ║
 ║  RUN: python assetbot.py –single-scan                   ║
 ╚══════════════════════════════════════════════════════════╝
@@ -80,7 +80,7 @@ ASSET_REGISTRY = {
 “NATGAS”:(“commodity”,[“natural gas”, “nat gas”],                “NG1:NMX”),
 }
 
-# Flat ASSETS list — sorted longest keyword first to prevent substring matches
+# Flat ASSETS list – sorted longest keyword first to prevent substring matches
 
 ASSETS = sorted([
 (kw, data[2], data[0])
@@ -114,7 +114,7 @@ def load_state():
 if os.path.exists(LOG_FILE):
 with open(LOG_FILE) as f:
 s = json.load(f)
-log(f”📂 Loaded — {len(s[‘trades’])} trades | bankroll ${s[‘bankroll’]:.2f}”)
+log(f”📂 Loaded – {len(s[‘trades’])} trades | bankroll ${s[‘bankroll’]:.2f}”)
 return s
 log(“📂 Fresh start”)
 return {
@@ -127,7 +127,7 @@ return {
 def save_state(state):
 with open(LOG_FILE, “w”) as f:
 json.dump(state, f, indent=2)
-log(f”💾 Saved — bankroll ${state[‘bankroll’]:.2f} | {len(state[‘trades’])} trades”)
+log(f”💾 Saved – bankroll ${state[‘bankroll’]:.2f} | {len(state[‘trades’])} trades”)
 
 # ─────────────────────────────────────────────────────────
 
@@ -142,7 +142,7 @@ log(f”💾 Saved — bankroll ${state[‘bankroll’]:.2f} | {len(state[‘tra
 # If no snapshot by midnight UTC (8am Bali), force fetch.
 
 SNAPSHOT_HOUR_UTC = 21   # 9pm UTC = US market close
-FORCE_BY_HOUR_UTC = 0    # midnight UTC = 8am Bali — force fetch if missed
+FORCE_BY_HOUR_UTC = 0    # midnight UTC = 8am Bali – force fetch if missed
 
 def should_take_snapshot(state):
 now = datetime.now(timezone.utc)
@@ -162,7 +162,7 @@ if not snap_date:
 if now.hour >= SNAPSHOT_HOUR_UTC:
     return True
 
-# Past midnight UTC and still no snapshot for today — force it (8am Bali)
+# Past midnight UTC and still no snapshot for today -- force it (8am Bali)
 if now.hour < FORCE_BY_HOUR_UTC + 1:
     return True
 
@@ -179,7 +179,7 @@ if price:
 snapshot[price_symbol] = price
 fetched += 1
 state[“price_snapshot”] = snapshot
-log(f”📸 Snapshot complete — {fetched} prices captured”)
+log(f”📸 Snapshot complete – {fetched} prices captured”)
 return state
 
 # ─────────────────────────────────────────────────────────
@@ -213,7 +213,7 @@ if price is None or price <= 0:
 return False
 floor = _PRICE_FLOORS.get(price_symbol)
 if floor and price < floor * 0.3:
-log(f”  ⚠️  Price sanity fail: {price_symbol} @ ${price:.2f} (floor ${floor}) — skipping”)
+log(f”  ⚠️  Price sanity fail: {price_symbol} @ ${price:.2f} (floor ${floor}) – skipping”)
 return False
 return True
 
@@ -443,10 +443,10 @@ if stake < 0.50:
     log(f"  ⏭  Stake ${stake:.2f} too small")
     return state
 
-# We always bet NO — YES is the implausible side by definition
+# We always bet NO -- YES is the implausible side by definition
 position = "NO"
 
-# Estimate entry price from market odds — fetch from Gamma
+# Estimate entry price from market odds -- fetch from Gamma
 entry_price = 50  # default if we can't fetch
 try:
     r = requests.get(
@@ -465,10 +465,10 @@ except:
     pass
 
 if entry_price <= 1:
-    log(f"  ⏭  Entry price {entry_price}¢ too low — already priced in")
+    log(f"  ⏭  Entry price {entry_price}¢ too low -- already priced in")
     return state
 if entry_price >= 99:
-    log(f"  ⏭  Entry price {entry_price}¢ too high — NO already near certain")
+    log(f"  ⏭  Entry price {entry_price}¢ too high -- NO already near certain")
     return state
 
 payout = round(stake * 100 / entry_price, 2)
@@ -501,7 +501,7 @@ trade = {
 state["bankroll"] = round(state["bankroll"] - stake, 2)
 state["trades"].append(trade)
 
-log(f"  ✅ TRADE — {position} @ {entry_price}¢ | ${stake:.2f} stake | win ${payout:.2f}")
+log(f"  ✅ TRADE -- {position} @ {entry_price}¢ | ${stake:.2f} stake | win ${payout:.2f}")
 log(f"     {ticker} @ ${current_price:,.2f} | needs {parsed.get('yes_requires_move_pct', 0):.1f}% move | {market['question'][:65]}")
 log(f"     Bankroll now ${state['bankroll']:.2f}")
 
@@ -572,7 +572,7 @@ for trade in open_trades:
                 if gamma_lagging:
                     log(f"  ⚡ Gamma lag override used")
             elif hours_past > 24:
-                log(f"  ⚠️  {hours_past:.0f}h past close, prices not snapped — manual check needed: {trade['market'][:50]}")
+                log(f"  ⚠️  {hours_past:.0f}h past close, prices not snapped -- manual check needed: {trade['market'][:50]}")
     except Exception as e:
         log(f"  ⚠️  Resolve error {market_id}: {e}")
 
@@ -596,11 +596,11 @@ roi      = (state[“bankroll”] - STARTING_BANKROLL) / STARTING_BANKROLL * 100
 
 ```
 print("\n" + "═" * 60)
-print("  ASSETBOT — Price Mismatch Scanner")
+print("  ASSETBOT -- Price Mismatch Scanner")
 print("═" * 60)
 print(f"  Bankroll      ${state['bankroll']:.2f}  ({roi:+.1f}% ROI)")
 print(f"  Realized P&L  ${pnl:+.2f}")
-print(f"  Closed        {len(closed)} ({len(won)}W/{len(closed)-len(won)}L — {wr:.0f}% WR)")
+print(f"  Closed        {len(closed)} ({len(won)}W/{len(closed)-len(won)}L -- {wr:.0f}% WR)")
 print(f"  Open          {len(open_t)}")
 print(f"  Scans         {state.get('scan_count', 0)}")
 print("═" * 60)
