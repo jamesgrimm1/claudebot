@@ -1,0 +1,10 @@
+{
+  "bankroll": 1000.0,
+  "trades": [],
+  "daily_loss": 0.0,
+  "daily_reset": "2026-04-29",
+  "scan_count": 0,
+  "started": "2026-04-29T15:03:12.099702+00:00",
+  "version": "v3",
+  "notes": "V3: 500 market pull + newest pass, sports near-resolution enabled, tech/culture categories added"
+}
