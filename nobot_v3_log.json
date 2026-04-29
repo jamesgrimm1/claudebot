@@ -1,5 +1,5 @@
 {
-  "bankroll": 1175.98,
+  "bankroll": 1190.71,
   "trades": [
     {
       "id": "NB1776304868",
@@ -3826,10 +3826,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 4880.857177999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:23:27.319661+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-29T08:26:00.221191+00:00",
+      "realized_pnl": 13.29
     },
     {
       "id": "NB1777339407",
@@ -4426,11 +4429,31 @@
       "placed_at": "2026-04-29T07:16:52.178959+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777451171",
+      "market_id": "2091867",
+      "market_slug": "highest-temperature-in-san-francisco-on-april-29-2026-68forhigher",
+      "market": "Will the highest temperature in San Francisco be 68\u00b0F or higher on April 29?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 13.55,
+      "payout_if_wins": 23.77,
+      "profit_if_wins": 10.22,
+      "category": "weather",
+      "closes_in_days": 0.15,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 4772.323679000001,
+      "status": "open",
+      "placed_at": "2026-04-29T08:26:11.048613+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 48.89,
   "daily_reset": "2026-04-29",
-  "scan_count": 322,
+  "scan_count": 323,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-29T06:17:03.960757+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
