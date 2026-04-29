@@ -1,5 +1,5 @@
 {
-  "bankroll": 950.62,
+  "bankroll": 926.85,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -51,11 +51,35 @@
       "placed_at": "2026-04-29T15:54:03.896770+00:00",
       "paper": true,
       "model": "alpha-prime"
+    },
+    {
+      "id": "AP1777489668806",
+      "market_id": "1929843",
+      "market_slug": "cs2-navi-faze-2026-04-29-game2",
+      "market": "Counter-Strike: Natus Vincere vs FaZe - Map 2 Winner",
+      "pattern": "C",
+      "triggered_by": "esports:cs no=24 cid=0.203",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 23.77,
+      "payout_if_wins": 99.04,
+      "profit_if_wins": 75.27,
+      "volume_at_entry": 968.298337,
+      "closes_in_days": 0.203,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "bankroll_at_entry": 950.62,
+      "bankroll_fraction": 0.025,
+      "status": "open",
+      "placed_at": "2026-04-29T19:07:48.806635+00:00",
+      "paper": true,
+      "model": "alpha-prime"
     }
   ],
   "daily_loss": 25.0,
   "daily_reset": "2026-04-29",
-  "scan_count": 14,
+  "scan_count": 15,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",

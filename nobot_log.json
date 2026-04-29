@@ -1,5 +1,5 @@
 {
-  "bankroll": 832.62,
+  "bankroll": 835.17,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1379,10 +1379,13 @@
       "closes": "2026-05-01T03:59:59.999000+00:00",
       "volume": 3860.450666,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T17:41:47.648406+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-29T19:07:13.559371+00:00",
+      "realized_pnl": -4.02
     },
     {
       "id": "NB1776451506",
@@ -8181,10 +8184,13 @@
       "closes_in_days": 0.34,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3328.361819000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T03:57:11.743044+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T19:07:15.479900+00:00",
+      "realized_pnl": 1.27
     },
     {
       "id": "NB1777439901",
@@ -8416,10 +8422,13 @@
       "closes_in_days": 0.16,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5075.3151400000015,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:06:53.930191+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T19:07:15.892425+00:00",
+      "realized_pnl": 1.36
     },
     {
       "id": "NB1777451139",
@@ -8540,11 +8549,31 @@
       "placed_at": "2026-04-29T13:11:40.371418+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777489642",
+      "market_id": "1695982",
+      "market_slug": "will-trump-talk-to-mohammed-bin-salman-in-april",
+      "market": "Will Trump talk to Mohammed bin Salman in April?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 4.2,
+      "payout_if_wins": 8.4,
+      "profit_if_wins": 4.2,
+      "category": "politics",
+      "closes_in_days": 0.2,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 54267.18085899992,
+      "status": "open",
+      "placed_at": "2026-04-29T19:07:22.157374+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 16.48,
+  "daily_loss": 20.5,
   "daily_reset": "2026-04-29",
-  "scan_count": 268,
+  "scan_count": 269,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T12:09:55.127197+00:00"
 }

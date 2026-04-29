@@ -1,5 +1,5 @@
 {
-  "bankroll": 862.89,
+  "bankroll": 873.12,
   "trades": [
     {
       "id": "NB1776304868",
@@ -1331,10 +1331,13 @@
       "closes": "2026-05-01T03:59:59.999000+00:00",
       "volume": 3860.450666,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T17:41:47.648406+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T19:07:23.836323+00:00",
+      "realized_pnl": -1.88
     },
     {
       "id": "NB1776451506",
@@ -8208,10 +8211,13 @@
       "closes_in_days": 0.34,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3328.361819000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T03:57:26.272969+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T19:07:25.891737+00:00",
+      "realized_pnl": 2.18
     },
     {
       "id": "NB1777439911",
@@ -8443,10 +8449,13 @@
       "closes_in_days": 0.16,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5075.3151400000015,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:07:06.447111+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T19:07:26.111652+00:00",
+      "realized_pnl": 3.47
     },
     {
       "id": "NB1777451159",
@@ -8587,11 +8596,31 @@
       "placed_at": "2026-04-29T12:11:11.670186+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777489652",
+      "market_id": "1695982",
+      "market_slug": "will-trump-talk-to-mohammed-bin-salman-in-april",
+      "market": "Will Trump talk to Mohammed bin Salman in April?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 4.18,
+      "payout_if_wins": 8.36,
+      "profit_if_wins": 4.18,
+      "category": "politics",
+      "closes_in_days": 0.2,
+      "closes": "2026-04-30T00:00:00+00:00",
+      "volume": 54267.18085899992,
+      "status": "open",
+      "placed_at": "2026-04-29T19:07:32.965667+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 17.15,
+  "daily_loss": 19.03,
   "daily_reset": "2026-04-29",
-  "scan_count": 272,
+  "scan_count": 273,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T17:16:33.548608+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
