@@ -1,5 +1,5 @@
 {
-  "bankroll": 818.75,
+  "bankroll": 814.66,
   "trades": [
     {
       "id": "NB1776304868",
@@ -7058,10 +7058,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 3910.6004210000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:49:43.324128+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-29T08:06:44.146269+00:00",
+      "realized_pnl": -2.04
     },
     {
       "id": "NB1777340983",
@@ -8350,11 +8353,51 @@
       "placed_at": "2026-04-29T07:16:29.172445+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777450013",
+      "market_id": "2091728",
+      "market_slug": "highest-temperature-in-madrid-on-april-29-2026-18c",
+      "market": "Will the highest temperature in Madrid be 18\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.05,
+      "payout_if_wins": 3.42,
+      "profit_if_wins": 1.37,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 5959.901475999998,
+      "status": "open",
+      "placed_at": "2026-04-29T08:06:53.930146+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777450013",
+      "market_id": "2091501",
+      "market_slug": "highest-temperature-in-paris-on-april-29-2026-23c",
+      "market": "Will the highest temperature in Paris be 23\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.04,
+      "payout_if_wins": 3.4,
+      "profit_if_wins": 1.36,
+      "category": "weather",
+      "closes_in_days": 0.16,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 5075.3151400000015,
+      "status": "open",
+      "placed_at": "2026-04-29T08:06:53.930191+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 11.25,
+  "daily_loss": 13.29,
   "daily_reset": "2026-04-29",
-  "scan_count": 256,
+  "scan_count": 257,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T23:43:51.785966+00:00"
 }
