@@ -180,24 +180,9 @@ def get_reference_price(price_symbol, asset_type, state):
         return snapshot[price_symbol]
     return get_live_price(price_symbol, asset_type)
 
-# Known approximate price floors for sanity checking
-_PRICE_FLOORS = {
-    "NFLX": 500,   # Netflix trades $500+
-    "AMZN": 150,   # Amazon
-    "MSFT": 200,   # Microsoft
-    "GOOGL": 100,  # Google
-    "BTCUSDT": 30000,  # BTC
-}
-
 def validate_price(price_symbol, price):
-    """Return False if price looks obviously wrong."""
-    if price is None or price <= 0:
-        return False
-    floor = _PRICE_FLOORS.get(price_symbol)
-    if floor and price < floor * 0.3:
-        log(f"  ⚠️  Price sanity fail: {price_symbol} @ ${price:.2f} (floor ${floor}) -- skipping")
-        return False
-    return True
+    """Return False if price is zero or negative."""
+    return price is not None and price > 0
 
 def get_live_price(ticker, asset_type):
     if ticker in _price_cache:
