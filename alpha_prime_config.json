@@ -1,0 +1,33 @@
+{
+  "blocked_categories": [
+    "politics",
+    "economics",
+    "crypto",
+    "conflict",
+    "geopolitics"
+  ],
+  "weather_exact_only": true,
+  "yes_price_min": 86,
+  "yes_price_max": 95,
+  "max_closes_in_days": 0.25,
+  "min_volume": 500,
+  "watchlist_cities": [
+    "jakarta",
+    "karachi",
+    "guangzhou"
+  ],
+  "soccer_ou_enabled": true,
+  "soccer_yes_min": 81,
+  "soccer_yes_max": 95,
+  "esports_enabled": true,
+  "esports_games": [
+    "counter-strike",
+    "dota 2",
+    "league of legends"
+  ],
+  "esports_yes_min": 70,
+  "esports_yes_max": 95,
+  "pattern_e_enabled": true,
+  "last_updated": "2026-04-29",
+  "audit_notes": "Initial default config \u2014 self_audit.py will update this every 3 days based on NearCertain performance"
+}
