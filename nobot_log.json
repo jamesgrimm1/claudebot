@@ -1,5 +1,5 @@
 {
-  "bankroll": 827.98,
+  "bankroll": 827.41,
   "trades": [
     {
       "id": "NB1776304868",
@@ -6877,10 +6877,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-28T12:00:00+00:00",
       "volume": 9963.35460900001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T01:49:43.323880+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-29T05:18:14.957666+00:00",
+      "realized_pnl": 4.58
     },
     {
       "id": "NB1777340983",
@@ -8158,11 +8161,71 @@
       "placed_at": "2026-04-29T03:57:11.743044+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777439901",
+      "market_id": "2053496",
+      "market_slug": "will-the-price-of-xrp-be-between-1pt40-1pt50-on-april-29",
+      "market": "Will the price of XRP be between $1.40 and $1.50 on April 29?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.09,
+      "payout_if_wins": 3.37,
+      "profit_if_wins": 1.28,
+      "category": "other",
+      "closes_in_days": 0.45,
+      "closes": "2026-04-29T16:00:00+00:00",
+      "volume": 6149.060823000001,
+      "status": "open",
+      "placed_at": "2026-04-29T05:18:21.839379+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777439901",
+      "market_id": "2091572",
+      "market_slug": "highest-temperature-in-dallas-on-april-29-2026-74-75f",
+      "market": "Will the highest temperature in Dallas be between 74-75\u00b0F on April 29?",
+      "position": "NO",
+      "entry_no_price": 53,
+      "entry_yes_price": 47,
+      "stake": 3.13,
+      "payout_if_wins": 5.91,
+      "profit_if_wins": 2.78,
+      "category": "weather",
+      "closes_in_days": 0.28,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 5866.272961999996,
+      "status": "open",
+      "placed_at": "2026-04-29T05:18:21.839423+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777439901",
+      "market_id": "2091773",
+      "market_slug": "highest-temperature-in-beijing-on-april-29-2026-25c",
+      "market": "Will the highest temperature in Beijing be 25\u00b0C on April 29?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 55,
+      "stake": 4.16,
+      "payout_if_wins": 9.04,
+      "profit_if_wins": 4.88,
+      "category": "weather",
+      "closes_in_days": 0.28,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3854.0866799999994,
+      "status": "open",
+      "placed_at": "2026-04-29T05:18:21.839452+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 8.24,
   "daily_reset": "2026-04-29",
-  "scan_count": 250,
+  "scan_count": 251,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-28T23:43:51.785966+00:00"
 }
