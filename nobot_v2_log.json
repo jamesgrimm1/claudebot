@@ -1,5 +1,5 @@
 {
-  "bankroll": 848.18,
+  "bankroll": 856.91,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8016,10 +8016,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-29T00:00:00+00:00",
       "volume": 3070.0778729999997,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:20:21.169389+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-29T15:30:52.088560+00:00",
+      "realized_pnl": -2.22
     },
     {
       "id": "NB1777389336",
@@ -8414,10 +8417,13 @@
       "closes_in_days": 0.16,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5959.901475999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:07:06.447064+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T15:30:53.012926+00:00",
+      "realized_pnl": 3.49
     },
     {
       "id": "NB1777450026",
@@ -8580,9 +8586,9 @@
       "model": "nobot-v2"
     }
   ],
-  "daily_loss": 14.93,
+  "daily_loss": 17.15,
   "daily_reset": "2026-04-29",
-  "scan_count": 269,
+  "scan_count": 270,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T03:57:12.368522+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
