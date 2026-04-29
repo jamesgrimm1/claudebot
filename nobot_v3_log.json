@@ -1,5 +1,5 @@
 {
-  "bankroll": 1190.71,
+  "bankroll": 1181.78,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4449,11 +4449,31 @@
       "placed_at": "2026-04-29T08:26:11.048613+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777455799",
+      "market_id": "2091855",
+      "market_slug": "highest-temperature-in-los-angeles-on-april-29-2026-68-69f",
+      "market": "Will the highest temperature in Los Angeles be between 68-69\u00b0F on April 29?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 8.93,
+      "payout_if_wins": 14.4,
+      "profit_if_wins": 5.47,
+      "category": "weather",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3292.5036339999997,
+      "status": "open",
+      "placed_at": "2026-04-29T09:43:19.079221+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 48.89,
   "daily_reset": "2026-04-29",
-  "scan_count": 325,
+  "scan_count": 326,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-29T06:17:03.960757+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

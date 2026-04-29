@@ -1,5 +1,5 @@
 {
-  "bankroll": 748.01,
+  "bankroll": 733.11,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -12,10 +12,13 @@
       "stake": 15.0,
       "closes": "2026-04-28T00:00:00+00:00",
       "closes_in_days": 6.521,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-21T11:29:16.998455+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-29T09:43:21.669656+00:00",
+      "realized_pnl": -15.0
     },
     {
       "id": "NC20260421140421283024",
@@ -6194,10 +6197,46 @@
       "placed_at": "2026-04-29T07:17:05.149503+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429094339682943",
+      "market_id": "2091872",
+      "market": "Will the highest temperature in Moscow be 3\u00b0C on April 29?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 3.74,
+      "potential_profit": 11.84,
+      "potential_payout": 15.58,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "closes_in_days": 0.095,
+      "status": "open",
+      "placed_at": "2026-04-29T09:43:39.682967+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260429094339683070",
+      "market_id": "2091312",
+      "market": "Will the lowest temperature in Paris be 13\u00b0C on April 29?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 7,
+      "entry_yes_price": 93,
+      "stake": 11.16,
+      "potential_profit": 148.27,
+      "potential_payout": 159.43,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "closes_in_days": 0.095,
+      "status": "open",
+      "placed_at": "2026-04-29T09:43:39.683081+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 15.0,
   "daily_reset": "2026-04-29",
-  "scan_count": 169,
+  "scan_count": 170,
   "started": "2026-04-21T00:00:00+00:00"
 }

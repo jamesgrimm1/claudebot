@@ -1,5 +1,5 @@
 {
-  "bankroll": 829.29,
+  "bankroll": 831.61,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8136,10 +8136,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3511.623489999998,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:51.469663+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-29T09:42:47.726390+00:00",
+      "realized_pnl": 2.2
     },
     {
       "id": "NB1777427571",
@@ -8460,11 +8463,31 @@
       "placed_at": "2026-04-29T08:44:40.397971+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777455787",
+      "market_id": "2091855",
+      "market_slug": "highest-temperature-in-los-angeles-on-april-29-2026-68-69f",
+      "market": "Will the highest temperature in Los Angeles be between 68-69\u00b0F on April 29?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 3.47,
+      "payout_if_wins": 5.6,
+      "profit_if_wins": 2.13,
+      "category": "weather",
+      "closes_in_days": 0.1,
+      "closes": "2026-04-29T12:00:00+00:00",
+      "volume": 3292.5036339999997,
+      "status": "open",
+      "placed_at": "2026-04-29T09:43:07.492619+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 11.33,
   "daily_reset": "2026-04-29",
-  "scan_count": 263,
+  "scan_count": 264,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-29T03:57:12.368522+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
