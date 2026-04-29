@@ -15,7 +15,7 @@ import os, sys, json, glob, anthropic
 from datetime import datetime, timezone
 
 ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
-REFLECTIONS_DIR    = "trade_reflections_v2"
+REFLECTIONS_DIRS   = ["trade_reflections_v2", "trade_reflections_v3"]
 GRAPH_REPORT_FILE  = "graphify-out/GRAPH_REPORT.md"
 CLAUDEBOT_LOG      = "claudebot_log.json"
 OPUS_MODEL         = "claude-opus-4-5"
@@ -41,19 +41,20 @@ def should_reflect(state):
 
 
 def load_reflections():
-    """Load recent trade reflection markdown files."""
-    if not os.path.exists(REFLECTIONS_DIR):
-        return []
-    files = sorted(glob.glob(f"{REFLECTIONS_DIR}/*.md"), key=os.path.getmtime, reverse=True)
-    files = files[:MAX_REFLECTIONS]
+    """Load recent trade reflection markdown files from all bot versions."""
+    all_files = []
+    for d in REFLECTIONS_DIRS:
+        if os.path.exists(d):
+            all_files.extend(glob.glob(f"{d}/*.md"))
+    all_files = sorted(all_files, key=os.path.getmtime, reverse=True)[:MAX_REFLECTIONS]
     reflections = []
-    for f in files:
+    for f in all_files:
         try:
             with open(f) as fh:
                 reflections.append(fh.read())
         except:
             pass
-    log(f"  Loaded {len(reflections)} reflection files")
+    log(f"  Loaded {len(reflections)} reflection files ({len(REFLECTIONS_DIRS)} dirs)")
     return reflections
 
 
@@ -197,37 +198,48 @@ def main():
 
     # Load state to check timing and get stats
     state = {}
+    # Merge stats across all claudebot versions
+    state = {"trades": [], "bankroll": 0}
+    for logfile in ["claudebot_log.json", "claudebot_v2_log.json", "claudebot_v3_log.json"]:
+        if os.path.exists(logfile):
+            with open(logfile) as f:
+                s = json.load(f)
+            state["trades"].extend(s.get("trades", []))
+            state["bankroll"] += s.get("bankroll", 0)
+    # Use v1 log for timestamp tracking
     if os.path.exists(CLAUDEBOT_LOG):
         with open(CLAUDEBOT_LOG) as f:
-            state = json.load(f)
+            state_main = json.load(f)
+    else:
+        state_main = state
 
-    if not should_reflect(state):
-        log("⏭  Reflection not due yet (< 48h since last) — skipping")
+    if not should_reflect(state_main):
+        log("⏭  Reflection not due yet (< 48h since last) -- skipping")
         return
 
-    log("── Step 1: Load trade reflections ───────────────────────")
+    log("-- Step 1: Load trade reflections")
     reflections = load_reflections()
 
     if len(reflections) < 3:
-        log(f"⏭  Only {len(reflections)} reflections — need at least 3 to analyze")
+        log(f"⏭  Only {len(reflections)} reflections -- need at least 3 to analyze")
         return
 
-    log("── Step 2: Compute performance stats ────────────────────")
+    log("-- Step 2: Compute performance stats")
     stats = load_recent_stats(state)
     log(f"  Stats:\n{stats}")
 
-    log("── Step 3: Opus reflection analysis ─────────────────────")
+    log("-- Step 3: Opus reflection analysis")
     client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
     report = run_opus_reflection(reflections, stats, client)
 
-    log("── Step 4: Write graph report ────────────────────────────")
+    log("-- Step 4: Write graph report")
     write_graph_report(report)
 
     # Update last_reflection timestamp in state
-    state["last_reflection_utc"] = now.isoformat()
+    state_main["last_reflection_utc"] = now.isoformat()
     if os.path.exists(CLAUDEBOT_LOG):
         with open(CLAUDEBOT_LOG, "w") as f:
-            json.dump(state, f, indent=2)
+            json.dump(state_main, f, indent=2)
         log("  📅 Updated last_reflection_utc in state")
 
     log("\n✅ Reflection complete. Graph report will be injected into next scan.")
