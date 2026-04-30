@@ -1,5 +1,5 @@
 {
-  "bankroll": 898.13,
+  "bankroll": 888.81,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8836,11 +8836,31 @@
       "placed_at": "2026-04-30T08:01:46.154240+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777543358",
+      "market_id": "2060901",
+      "market_slug": "will-the-price-of-bitcoin-be-between-74000-76000-on-april-30",
+      "market": "Will the price of Bitcoin be between $74,000 and $76,000 on April 30?",
+      "position": "NO",
+      "entry_no_price": 61,
+      "entry_yes_price": 39,
+      "stake": 9.32,
+      "payout_if_wins": 15.28,
+      "profit_if_wins": 5.96,
+      "category": "crypto",
+      "closes_in_days": 0.25,
+      "closes": "2026-04-30T16:00:00+00:00",
+      "volume": 40060.33488700001,
+      "status": "open",
+      "placed_at": "2026-04-30T10:02:38.770299+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 20.79,
   "daily_reset": "2026-04-30",
-  "scan_count": 281,
+  "scan_count": 282,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T05:22:03.171544+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
