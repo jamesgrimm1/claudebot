@@ -1,5 +1,5 @@
 {
-  "bankroll": 1224.99,
+  "bankroll": 1255.86,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4148,10 +4148,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 7907.526697000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T00:11:31.233335+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-30T05:00:08.201584+00:00",
+      "realized_pnl": 10.58
     },
     {
       "id": "NB1777421491",
@@ -4191,10 +4194,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 6024.822718000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T00:11:31.233397+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": true,
+      "resolved_at": "2026-04-30T05:00:08.355230+00:00",
+      "realized_pnl": 21.54
     },
     {
       "id": "NB1777421491",
@@ -4579,11 +4585,51 @@
       "placed_at": "2026-04-30T01:25:13.314765+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777525216",
+      "market_id": "2102353",
+      "market_slug": "highest-temperature-in-taipei-on-april-30-2026-21c",
+      "market": "Will the highest temperature in Taipei be 21\u00b0C on April 30?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 19.34,
+      "payout_if_wins": 42.04,
+      "profit_if_wins": 22.7,
+      "category": "weather",
+      "closes_in_days": 0.29,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "volume": 7046.785736000007,
+      "status": "open",
+      "placed_at": "2026-04-30T05:00:16.231810+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777525216",
+      "market_id": "2102162",
+      "market_slug": "highest-temperature-in-nyc-on-april-30-2026-60-61f",
+      "market": "Will the highest temperature in New York City be between 60-61\u00b0F on April 30?",
+      "position": "NO",
+      "entry_no_price": 54,
+      "entry_yes_price": 46,
+      "stake": 14.29,
+      "payout_if_wins": 26.46,
+      "profit_if_wins": 12.17,
+      "category": "weather",
+      "closes_in_days": 0.29,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "volume": 3385.6787139999983,
+      "status": "open",
+      "placed_at": "2026-04-30T05:00:16.231869+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 17.94,
   "daily_reset": "2026-04-30",
-  "scan_count": 350,
+  "scan_count": 351,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-29T18:50:17.952674+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
