@@ -1,5 +1,5 @@
 {
-  "bankroll": 922.37,
+  "bankroll": 963.42,
   "trades": [
     {
       "id": "AB1777514011",
@@ -19,10 +19,13 @@
       "reasoning": "AAPL must rise 11.08% from $270.17 to $300, exceeding the 10% implausibility threshold for a market where the price has not yet crossed the threshold.",
       "closes": "2026-04-30T20:00:00+00:00",
       "closes_in_days": 0.755,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T01:53:31.645167+00:00",
       "paper": true,
-      "model": "assetbot-mechanical"
+      "model": "assetbot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-30T22:41:32.544767+00:00",
+      "realized_pnl": 0.83
     },
     {
       "id": "AB1777526638",
@@ -65,10 +68,13 @@
       "reasoning": "TSLA must rise 15.32% from $372.80 to $430 by end of April, which exceeds the 10% plausibility threshold for a move without prior threshold crossing.",
       "closes": "2026-04-30T20:00:00+00:00",
       "closes_in_days": 0.498,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T08:03:27.497689+00:00",
       "paper": true,
-      "model": "assetbot-mechanical"
+      "model": "assetbot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-30T22:41:32.544767+00:00",
+      "realized_pnl": 1.01
     },
     {
       "id": "AB1777553244",
@@ -94,7 +100,7 @@
       "model": "assetbot-mechanical"
     }
   ],
-  "scan_count": 56,
+  "scan_count": 57,
   "started": "2026-04-27T14:51:44.970255+00:00",
   "price_snapshot": {
     "date": "2026-04-30",
