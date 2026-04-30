@@ -34,6 +34,7 @@ import sys
 import re
 import requests
 from datetime import datetime, timezone, timedelta
+from ap_signal import signal_to_alpha_prime
 import anthropic
 
 try:
@@ -602,6 +603,10 @@ def place_trade(market, state):
     log(f"  🔵 NO @ {no_price}¢ (YES was {market['yes']}¢) | ${stake:.2f} stake | "
         f"+${trade['potential_profit']:.2f} if win | "
         f"{market['category']} | {market['question'][:50]}")
+
+    # Signal to AlphaPrime if this trade matches AP criteria
+    trade_with_volume = {**trade, "volume": market.get("volume", 0)}
+    signal_to_alpha_prime(trade_with_volume, source_bot="nearcertain_beta")
 
 # ─────────────────────────────────────────────────────────
 #  PORTFOLIO DISPLAY
