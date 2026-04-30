@@ -501,11 +501,15 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
   </div>
   <div class="header-center">
     <div class="nav-tab active" onclick="setBot('cb',this)">ClaudeBot</div>
+    <div class="nav-tab" onclick="setBot('cb2',this)">ClaudeBot V2</div>
+    <div class="nav-tab" onclick="setBot('cb3',this)">ClaudeBot V3</div>
     <div class="nav-tab" onclick="setBot('nb',this)">NoBot V1</div>
     <div class="nav-tab" onclick="setBot('nb2',this)">NoBot V2</div>
     <div class="nav-tab" onclick="setBot('nb3',this)">NoBot V3</div>
     <div class="nav-tab" onclick="setBot('nc',this)">NearCertain</div>
+    <div class="nav-tab" onclick="setBot('ncb',this)">NC Beta</div>
     <div class="nav-tab" onclick="setBot('ap',this)">Alpha-Prime</div>
+    <div class="nav-tab" onclick="setBot('ab',this)">AssetBot</div>
     <div class="nav-tab" onclick="setBot('proj',this)">Projections</div>
   </div>
   <div class="header-right">
@@ -843,11 +847,174 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
     </div>
   </div>
 
+
+  <!-- ── ClaudeBot V2 view ── -->
+  <div id="view-cb2" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">ClaudeBot V2 — Aggressive Companion</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Higher Kelly · Full tier system · Shared reflections with V1</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="cb2-bank">—</div>
+        <div class="hc-sub" id="cb2-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&amp;L</div>
+        <div class="hc-value" id="cb2-pnl">—</div>
+        <div class="hc-sub" id="cb2-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="cb2-wr">—</div>
+        <div class="hc-sub" id="cb2-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="cb2-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="cb2-open">—</div>
+        <div class="hc-sub" id="cb2-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Potential Profit</div>
+        <div class="hc-value gold" id="cb2-potential">—</div>
+        <div class="hc-sub">if all open win</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><span class="card-title">P&amp;L history (closed trades)</span><span class="pill" id="cb2-trend">—</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="cb2-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Performance by category</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="cb2-cat-chart"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header"><span class="card-title">Open positions</span><span class="pill pill-gold" id="cb2-open-count">0</span></div>
+      <div id="cb2-open-table"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Recent closed trades</span><span class="pill pill-gray" id="cb2-trade-count">0 closed</span></div>
+      <div id="cb2-trade-table"></div>
+    </div>
+  </div>
+
+  <!-- ── ClaudeBot V3 view ── -->
+  <div id="view-cb3" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">ClaudeBot V3 — Data Collector</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">500 markets + newest pass · Sports near-resolution · Tech &amp; culture categories</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="cb3-bank">—</div>
+        <div class="hc-sub" id="cb3-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&amp;L</div>
+        <div class="hc-value" id="cb3-pnl">—</div>
+        <div class="hc-sub" id="cb3-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="cb3-wr">—</div>
+        <div class="hc-sub" id="cb3-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="cb3-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="cb3-open">—</div>
+        <div class="hc-sub" id="cb3-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Potential Profit</div>
+        <div class="hc-value gold" id="cb3-potential">—</div>
+        <div class="hc-sub">if all open win</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><span class="card-title">P&amp;L history (closed trades)</span><span class="pill" id="cb3-trend">—</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="cb3-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Performance by category</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="cb3-cat-chart"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header"><span class="card-title">Open positions</span><span class="pill pill-gold" id="cb3-open-count">0</span></div>
+      <div id="cb3-open-table"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Recent closed trades</span><span class="pill pill-gray" id="cb3-trade-count">0 closed</span></div>
+      <div id="cb3-trade-table"></div>
+    </div>
+  </div>
+
+  <!-- ── NearCertain Beta view ── -->
+  <div id="view-ncb" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">NearCertain Beta — Broad Data Collector</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">YES 65–95c · All categories · $0.50 micro stakes · Signals Alpha-Prime</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="ncb-bank">—</div>
+        <div class="hc-sub" id="ncb-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&amp;L</div>
+        <div class="hc-value" id="ncb-pnl">—</div>
+        <div class="hc-sub" id="ncb-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="ncb-wr">—</div>
+        <div class="hc-sub" id="ncb-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="ncb-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="ncb-open">—</div>
+        <div class="hc-sub" id="ncb-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">AP Signals Sent</div>
+        <div class="hc-value gold" id="ncb-ap-signals">—</div>
+        <div class="hc-sub">trades forwarded to Alpha-Prime</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><span class="card-title">P&amp;L history (closed trades)</span><span class="pill" id="ncb-trend">—</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ncb-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Win rate by category</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ncb-cat-chart"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header"><span class="card-title">Open positions</span><span class="pill pill-gold" id="ncb-open-count">0</span></div>
+      <div id="ncb-open-table"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-title">Recent closed trades</span><span class="pill pill-gray" id="ncb-trade-count">0 closed</span></div>
+      <div id="ncb-trade-table"></div>
+    </div>
+  </div>
+
   <!-- ── Alpha-Prime view ── -->
   <div id="view-ap" style="display:none">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
       <span class="pill pill-gold">Alpha-Prime — Focused NearCertain Variant</span>
-      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Patterns B/C/D/E/F · Mechanical filters · Watchlist auto-expansion · No LLM layer</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Signal-driven · Receives trades from NearCertain + Beta · Daily Opus audit · Resolution-only scan</span>
     </div>
     <div class="hero-strip">
       <div class="hero-card accent-gold">
@@ -906,6 +1073,67 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
         <span class="pill pill-gray" id="ap-trade-count">0 closed</span>
       </div>
       <div id="ap-trade-table"></div>
+    </div>
+  </div>
+
+
+  <!-- ── AssetBot view ── -->
+  <div id="view-ab" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+      <span class="pill pill-gold">AssetBot — Price Mismatch Scanner</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2)">Mechanical NO · 32 tracked assets · Finnhub prices vs Polymarket YES · No LLM</span>
+    </div>
+    <div class="hero-strip">
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Bankroll</div>
+        <div class="hc-value gold" id="ab-bank">—</div>
+        <div class="hc-sub" id="ab-roi">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Realized P&amp;L</div>
+        <div class="hc-value" id="ab-pnl">—</div>
+        <div class="hc-sub" id="ab-pnl-sub">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Win Rate</div>
+        <div class="hc-value gold" id="ab-wr">—</div>
+        <div class="hc-sub" id="ab-rec">—</div>
+        <div class="wr-bar-bg"><div class="wr-bar-fill" id="ab-wrf" style="width:0"></div></div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Open Positions</div>
+        <div class="hc-value gold" id="ab-open">—</div>
+        <div class="hc-sub" id="ab-dep">—</div>
+      </div>
+      <div class="hero-card accent-gold">
+        <div class="hc-label">Scans Run</div>
+        <div class="hc-value gold" id="ab-scans">—</div>
+        <div class="hc-sub">hourly price checks</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><span class="card-title">P&amp;L history (closed trades)</span><span class="pill" id="ab-trend">—</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ab-chart"></canvas></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Trades by asset</span></div>
+        <div class="card-body"><div class="chart-wrap"><canvas id="ab-asset-chart"></canvas></div></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <span class="card-title">Open positions</span>
+        <span class="pill pill-gold" id="ab-open-count">0</span>
+      </div>
+      <div id="ab-open-table"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Recent closed trades</span>
+        <span class="pill pill-gray" id="ab-trade-count">0 closed</span>
+      </div>
+      <div id="ab-trade-table"></div>
     </div>
   </div>
 
@@ -992,12 +1220,17 @@ tbody td.mono   { font-family: 'DM Mono', monospace; font-size: 11px; }
 
 </div>
 <script>
-var CB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/claudebot_log.json';
-var NB_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_log.json';
-var NB2_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v2_log.json';
-var NB3_URL = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nobot_v3_log.json';
-var NC_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/nearcertain_log.json';
-var AP_URL  = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/alpha_prime_log.json';
+var BASE    = 'https://raw.githubusercontent.com/jamesgrimm1/claudebot/main/';
+var CB_URL  = BASE + 'claudebot_log.json';
+var CB2_URL = BASE + 'claudebot_v2_log.json';
+var CB3_URL = BASE + 'claudebot_v3_log.json';
+var NB_URL  = BASE + 'nobot_log.json';
+var NB2_URL = BASE + 'nobot_v2_log.json';
+var NB3_URL = BASE + 'nobot_v3_log.json';
+var NC_URL  = BASE + 'nearcertain_log.json';
+var NCB_URL = BASE + 'nearcertain_beta_log.json';
+var AP_URL  = BASE + 'alpha_prime_log.json';
+var AB_URL  = BASE + 'assetbot_log.json';
 var START   = 1000;
 var cbChart = null, cbCatChart = null, nbChart = null, nbBracketChart = null, nb2Chart = null, nb2BracketChart = null, nb3Chart = null, nb3BracketChart = null;
 
@@ -1028,11 +1261,15 @@ function setBot(bot, el) {
   document.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('view-cb').style.display   = bot === 'cb'   ? 'block' : 'none';
+  document.getElementById('view-cb2').style.display  = bot === 'cb2'  ? 'block' : 'none';
+  document.getElementById('view-cb3').style.display  = bot === 'cb3'  ? 'block' : 'none';
   document.getElementById('view-nb').style.display   = bot === 'nb'   ? 'block' : 'none';
   document.getElementById('view-nb2').style.display  = bot === 'nb2'  ? 'block' : 'none';
   document.getElementById('view-nb3').style.display  = bot === 'nb3'  ? 'block' : 'none';
   document.getElementById('view-nc').style.display   = bot === 'nc'   ? 'block' : 'none';
+  document.getElementById('view-ncb').style.display  = bot === 'ncb'  ? 'block' : 'none';
   document.getElementById('view-ap').style.display   = bot === 'ap'   ? 'block' : 'none';
+  document.getElementById('view-ab').style.display   = bot === 'ab'   ? 'block' : 'none';
   document.getElementById('view-proj').style.display = bot === 'proj' ? 'block' : 'none';
 }
 
@@ -1564,12 +1801,13 @@ function renderAP(d) {
     opEl.innerHTML = '<div class="empty">No open positions</div>';
   } else {
     var sorted = open.slice().sort(function(a,b){ return (a.closes_in_days||0) - (b.closes_in_days||0); });
-    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>NO@</th><th>Stake</th><th>If win</th><th>Closes</th></tr></thead><tbody>' +
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>Source</th><th>NO@</th><th>Stake</th><th>If win</th><th>Closes</th></tr></thead><tbody>' +
       sorted.map(function(t){
         var pot = t.potential_profit || 0;
         return '<tr>' +
           '<td>' + (t.market||'').substring(0,55) + '</td>' +
           '<td><span class="pill pill-gold">' + (t.pattern||'?') + '</span></td>' +
+          '<td style="font-size:10px;color:var(--text2)">' + (t.source_bot||'nc').replace('nearcertain_','nc') + '</td>' +
           '<td class="mono">' + t.entry_no_price + '¢</td>' +
           '<td class="mono">$' + (t.stake||0).toFixed(2) + '</td>' +
           '<td class="mono" style="color:var(--gold)">+$' + pot.toFixed(2) + '</td>' +
@@ -1584,17 +1822,18 @@ function renderAP(d) {
     clEl.innerHTML = '<div class="empty">No resolved trades yet</div>';
   } else {
     var recent = closed.slice().reverse().slice(0,20);
-    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>NO@</th><th>Stake</th><th>P&L</th><th>Result</th></tr></thead><tbody>' +
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Pat</th><th>Source</th><th>NO@</th><th>Stake</th><th>P&L</th><th>Result</th></tr></thead><tbody>' +
       recent.map(function(t){
         var pnl = t.realized_pnl || 0;
         var col = t.won ? 'color:var(--gold)' : 'color:#666';
         return '<tr>' +
           '<td>' + (t.market||'').substring(0,55) + '</td>' +
           '<td><span class="pill pill-gold">' + (t.pattern||'?') + '</span></td>' +
+          '<td style="font-size:10px;color:var(--text2)">' + (t.source_bot||'nc').replace('nearcertain_','nc') + '</td>' +
           '<td class="mono">' + t.entry_no_price + '¢</td>' +
           '<td class="mono">$' + (t.stake||0).toFixed(2) + '</td>' +
           '<td class="mono" style="' + col + '">' + (pnl>=0?'+':'') + '$' + pnl.toFixed(2) + '</td>' +
-          '<td>' + (t.won ? '✅' : '❌') + '</td>' +
+          '<td>' + (t.won ? 'W' : 'L') + '</td>' +
           '</tr>';
       }).join('') + '</tbody></table>';
   }
@@ -1941,6 +2180,316 @@ function renderProjections(cbData, nbData, nb2Data, nb3Data, ncData, apData) {
 }
 
 // ── Load data ─────────────────────────────────────────────
+
+// ── Generic bot renderer (reusable for CB2, CB3, NCB) ─────────────────────
+function renderGenericBot(d, prefix, startBankroll, label) {
+  if (!d) return;
+  var trades   = d.trades || [];
+  var closed   = trades.filter(function(t){ return t.status === 'closed'; });
+  var open     = trades.filter(function(t){ return t.status === 'open'; });
+  var won      = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0);
+  var deployed = open.reduce(function(s,t){ return s + (t.stake||0); }, 0);
+  var potential = open.reduce(function(s,t){ return s + (t.potential_profit||0); }, 0);
+  var wr  = closed.length ? won.length / closed.length : 0;
+  var roi = (d.bankroll - startBankroll) / startBankroll * 100;
+
+  document.getElementById(prefix+'-bank').textContent     = '$' + d.bankroll.toFixed(2);
+  document.getElementById(prefix+'-roi').textContent      = (roi>=0?'+':'')+roi.toFixed(1)+'% ROI · '+(d.scan_count||0)+' scans';
+  document.getElementById(prefix+'-pnl').textContent      = (realized>=0?'+':'')+' $'+realized.toFixed(2);
+  document.getElementById(prefix+'-pnl-sub').textContent  = closed.length+' resolved trades';
+  document.getElementById(prefix+'-wr').textContent       = closed.length ? Math.round(wr*100)+'%' : '—';
+  document.getElementById(prefix+'-rec').textContent      = won.length+'W / '+(closed.length-won.length)+'L';
+  document.getElementById(prefix+'-wrf').style.width      = Math.round(wr*100)+'%';
+  document.getElementById(prefix+'-open').textContent     = open.length;
+  document.getElementById(prefix+'-dep').textContent      = '$'+deployed.toFixed(2)+' deployed';
+  document.getElementById(prefix+'-potential').textContent = '+$'+potential.toFixed(2);
+  document.getElementById(prefix+'-open-count').textContent = open.length+' open';
+  document.getElementById(prefix+'-trade-count').textContent = closed.length+' closed';
+
+  // Open table
+  var opEl = document.getElementById(prefix+'-open-table');
+  if (!open.length) {
+    opEl.innerHTML = '<div class="empty">No open positions</div>';
+  } else {
+    var sorted = open.slice().sort(function(a,b){ return (a.closes_in_days||0)-(b.closes_in_days||0); });
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Tier</th><th>YES@</th><th>Stake</th><th>If win</th><th>Closes</th></tr></thead><tbody>' +
+      sorted.map(function(t){
+        return '<tr>' +
+          '<td>'+(t.market||'').substring(0,55)+'</td>' +
+          '<td><span class="pill pill-gold">T'+(t.tier||'?')+'</span></td>' +
+          '<td class="mono">'+(t.entry_yes_price||t.yes||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono" style="color:var(--gold)">+$'+(t.potential_profit||0).toFixed(2)+'</td>' +
+          '<td class="mono">'+(t.closes_in_days||0).toFixed(1)+'d</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+
+  // Closed table
+  var clEl = document.getElementById(prefix+'-trade-table');
+  if (!closed.length) {
+    clEl.innerHTML = '<div class="empty">No resolved trades yet</div>';
+  } else {
+    var recent = closed.slice().reverse().slice(0,20);
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Tier</th><th>YES@</th><th>Stake</th><th>P&L</th><th>Result</th></tr></thead><tbody>' +
+      recent.map(function(t){
+        var pnl = t.realized_pnl||0;
+        var col = t.won ? 'color:var(--gold)' : 'color:#666';
+        return '<tr>' +
+          '<td>'+(t.market||'').substring(0,55)+'</td>' +
+          '<td><span class="pill pill-gold">T'+(t.tier||'?')+'</span></td>' +
+          '<td class="mono">'+(t.entry_yes_price||t.yes||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono" style="'+col+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</td>' +
+          '<td>'+(t.won?'W':'L')+'</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+
+  // Category chart
+  var cats = {};
+  closed.forEach(function(t){
+    var c = t.category||'other';
+    if (!cats[c]) cats[c] = {w:0,l:0};
+    t.won ? cats[c].w++ : cats[c].l++;
+  });
+  var catLabels = Object.keys(cats);
+  var catWR = catLabels.map(function(c){ var v=cats[c]; return v.w/(v.w+v.l)*100; });
+  var catCtx = document.getElementById(prefix+'-cat-chart').getContext('2d');
+  if (window[prefix+'CatChart']) window[prefix+'CatChart'].destroy();
+  window[prefix+'CatChart'] = new Chart(catCtx, {
+    type:'bar',
+    data:{ labels:catLabels, datasets:[{label:'Win Rate %', data:catWR,
+      backgroundColor:'rgba(201,146,42,0.5)', borderColor:'#C9922A', borderWidth:1}]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ y:{ min:0,max:100, grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#666',callback:function(v){return v+'%';}}},
+               x:{ grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#666'}}}}
+  });
+
+  // P&L chart
+  if (closed.length) {
+    var cumPnl = 0; var labels=[]; var data=[];
+    closed.forEach(function(t,i){ cumPnl+=(t.realized_pnl||0); labels.push(i+1); data.push(parseFloat(cumPnl.toFixed(2))); });
+    var isUp = data[data.length-1] >= 0;
+    var pCtx = document.getElementById(prefix+'-chart').getContext('2d');
+    if (window[prefix+'ChartInst']) window[prefix+'ChartInst'].destroy();
+    window[prefix+'ChartInst'] = new Chart(pCtx, {
+      type:'line',
+      data:{ labels:labels, datasets:[{data:data, borderColor: isUp?'#C9922A':'#666',
+        backgroundColor: isUp?'rgba(201,146,42,0.08)':'rgba(100,100,100,0.08)',
+        borderWidth:2, pointRadius:0, fill:true, tension:0.3}]},
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{ y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#666',callback:function(v){return '$'+v;}}},
+                 x:{display:false}}}
+    });
+    var trend = data[data.length-1];
+    document.getElementById(prefix+'-trend').textContent = (trend>=0?'+':'')+'$'+trend.toFixed(2);
+    document.getElementById(prefix+'-trend').className = 'pill '+(trend>=0?'pill-gold':'pill-gray');
+  }
+}
+
+function renderCB2(d) { renderGenericBot(d, 'cb2', 1000, 'ClaudeBot V2'); }
+function renderCB3(d) { renderGenericBot(d, 'cb3', 1000, 'ClaudeBot V3'); }
+
+// ── NearCertain Beta renderer ─────────────────────────────────────────────
+function renderNCB(d) {
+  if (!d) return;
+  var trades   = d.trades || [];
+  var closed   = trades.filter(function(t){ return t.status === 'closed'; });
+  var open     = trades.filter(function(t){ return t.status === 'open'; });
+  var won      = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0);
+  var deployed = open.reduce(function(s,t){ return s + (t.stake||0); }, 0);
+  var wr       = closed.length ? won.length / closed.length : 0;
+  var roi      = (d.bankroll - 1000) / 1000 * 100;
+
+  document.getElementById('ncb-bank').textContent     = '$' + d.bankroll.toFixed(2);
+  document.getElementById('ncb-roi').textContent      = (roi>=0?'+':'')+roi.toFixed(1)+'% ROI · '+(d.scan_count||0)+' scans';
+  document.getElementById('ncb-pnl').textContent      = (realized>=0?'+':'')+' $'+realized.toFixed(2);
+  document.getElementById('ncb-pnl-sub').textContent  = closed.length+' resolved trades';
+  document.getElementById('ncb-wr').textContent       = closed.length ? Math.round(wr*100)+'%' : '—';
+  document.getElementById('ncb-rec').textContent      = won.length+'W / '+(closed.length-won.length)+'L';
+  document.getElementById('ncb-wrf').style.width      = Math.round(wr*100)+'%';
+  document.getElementById('ncb-open').textContent     = open.length;
+  document.getElementById('ncb-dep').textContent      = '$'+deployed.toFixed(2)+' deployed';
+  document.getElementById('ncb-open-count').textContent = open.length+' open';
+  document.getElementById('ncb-trade-count').textContent = closed.length+' closed';
+
+  // Count how many NCB trades appear in AP log (approximate via source_bot field)
+  // We just show total closed as a proxy — AP log has source_bot field
+  document.getElementById('ncb-ap-signals').textContent = '—';
+
+  // Category WR chart
+  var cats = {};
+  closed.forEach(function(t){
+    var c = t.category||'other';
+    if (!cats[c]) cats[c] = {w:0,l:0,pnl:0};
+    t.won ? cats[c].w++ : cats[c].l++;
+    cats[c].pnl += (t.realized_pnl||0);
+  });
+  var catLabels = Object.keys(cats).sort(function(a,b){ return cats[b].pnl - cats[a].pnl; });
+  var catWR     = catLabels.map(function(c){ var v=cats[c]; return v.w/(v.w+v.l)*100; });
+  var catCtx    = document.getElementById('ncb-cat-chart').getContext('2d');
+  if (window.ncbCatChart) window.ncbCatChart.destroy();
+  window.ncbCatChart = new Chart(catCtx, {
+    type:'bar',
+    data:{ labels:catLabels, datasets:[{label:'Win Rate %', data:catWR,
+      backgroundColor:'rgba(201,146,42,0.5)', borderColor:'#C9922A', borderWidth:1}]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ y:{ min:0,max:100, grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#666',callback:function(v){return v+'%';}}},
+               x:{ grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#666',font:{size:10}}}}}
+  });
+
+  // P&L chart
+  if (closed.length) {
+    var cumPnl=0; var labs=[]; var dat=[];
+    closed.forEach(function(t,i){ cumPnl+=(t.realized_pnl||0); labs.push(i+1); dat.push(parseFloat(cumPnl.toFixed(2))); });
+    var isUp = dat[dat.length-1] >= 0;
+    var pCtx = document.getElementById('ncb-chart').getContext('2d');
+    if (window.ncbChartInst) window.ncbChartInst.destroy();
+    window.ncbChartInst = new Chart(pCtx, {
+      type:'line',
+      data:{ labels:labs, datasets:[{data:dat, borderColor:isUp?'#C9922A':'#666',
+        backgroundColor:isUp?'rgba(201,146,42,0.08)':'rgba(100,100,100,0.08)',
+        borderWidth:2, pointRadius:0, fill:true, tension:0.3}]},
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{ y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#666',callback:function(v){return '$'+v;}}},
+                 x:{display:false}}}
+    });
+    var trend = dat[dat.length-1];
+    document.getElementById('ncb-trend').textContent = (trend>=0?'+':'')+'$'+trend.toFixed(2);
+    document.getElementById('ncb-trend').className = 'pill '+(trend>=0?'pill-gold':'pill-gray');
+  }
+
+  // Open table
+  var opEl = document.getElementById('ncb-open-table');
+  if (!open.length) { opEl.innerHTML = '<div class="empty">No open positions</div>'; }
+  else {
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Cat</th><th>NO@</th><th>Stake</th><th>Closes</th></tr></thead><tbody>' +
+      open.slice().sort(function(a,b){ return (a.closes_in_days||0)-(b.closes_in_days||0); }).map(function(t){
+        return '<tr><td>'+(t.market||'').substring(0,55)+'</td>' +
+          '<td style="font-size:10px">'+(t.category||'—')+'</td>' +
+          '<td class="mono">'+(t.entry_no_price||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono">'+(t.closes_in_days||0).toFixed(1)+'d</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+
+  // Closed table
+  var clEl = document.getElementById('ncb-trade-table');
+  if (!closed.length) { clEl.innerHTML = '<div class="empty">No resolved trades yet</div>'; }
+  else {
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Cat</th><th>NO@</th><th>Stake</th><th>P&L</th><th>R</th></tr></thead><tbody>' +
+      closed.slice().reverse().slice(0,20).map(function(t){
+        var pnl=t.realized_pnl||0; var col=t.won?'color:var(--gold)':'color:#666';
+        return '<tr><td>'+(t.market||'').substring(0,50)+'</td>' +
+          '<td style="font-size:10px">'+(t.category||'—')+'</td>' +
+          '<td class="mono">'+(t.entry_no_price||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono" style="'+col+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</td>' +
+          '<td>'+(t.won?'W':'L')+'</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+}
+
+// ── AssetBot renderer ─────────────────────────────────────────────────────
+function renderAB(d) {
+  if (!d) return;
+  var trades   = d.trades || [];
+  var closed   = trades.filter(function(t){ return t.status === 'closed'; });
+  var open     = trades.filter(function(t){ return t.status === 'open'; });
+  var won      = closed.filter(function(t){ return t.won; });
+  var realized = closed.reduce(function(s,t){ return s + (t.realized_pnl||0); }, 0);
+  var deployed = open.reduce(function(s,t){ return s + (t.stake||0); }, 0);
+  var wr       = closed.length ? won.length / closed.length : 0;
+  var roi      = (d.bankroll - 1000) / 1000 * 100;
+
+  document.getElementById('ab-bank').textContent      = '$' + d.bankroll.toFixed(2);
+  document.getElementById('ab-roi').textContent       = (roi>=0?'+':'')+roi.toFixed(1)+'% ROI';
+  document.getElementById('ab-pnl').textContent       = (realized>=0?'+':'')+' $'+realized.toFixed(2);
+  document.getElementById('ab-pnl-sub').textContent   = closed.length+' resolved trades';
+  document.getElementById('ab-wr').textContent        = closed.length ? Math.round(wr*100)+'%' : '—';
+  document.getElementById('ab-rec').textContent       = won.length+'W / '+(closed.length-won.length)+'L';
+  document.getElementById('ab-wrf').style.width       = Math.round(wr*100)+'%';
+  document.getElementById('ab-open').textContent      = open.length;
+  document.getElementById('ab-dep').textContent       = '$'+deployed.toFixed(2)+' deployed';
+  document.getElementById('ab-scans').textContent     = (d.scan_count||0);
+  document.getElementById('ab-open-count').textContent = open.length+' open';
+  document.getElementById('ab-trade-count').textContent = closed.length+' closed';
+
+  // Asset breakdown chart
+  var assets = {};
+  closed.forEach(function(t){
+    var a = t.ticker||t.asset||'?';
+    if (!assets[a]) assets[a] = {w:0,l:0,pnl:0};
+    t.won ? assets[a].w++ : assets[a].l++;
+    assets[a].pnl += (t.realized_pnl||0);
+  });
+  var aLabels = Object.keys(assets).sort(function(a,b){ return assets[b].pnl - assets[a].pnl; }).slice(0,12);
+  var aData   = aLabels.map(function(a){ return parseFloat(assets[a].pnl.toFixed(2)); });
+  var aColors = aData.map(function(v){ return v >= 0 ? 'rgba(201,146,42,0.6)' : 'rgba(136,136,136,0.5)'; });
+  var aCtx    = document.getElementById('ab-asset-chart').getContext('2d');
+  if (window.abAssetChart) window.abAssetChart.destroy();
+  window.abAssetChart = new Chart(aCtx, {
+    type:'bar',
+    data:{ labels:aLabels, datasets:[{label:'P&L $', data:aData, backgroundColor:aColors, borderWidth:0}]},
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#666',callback:function(v){return '$'+v;}}},
+               x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#666'}}}}
+  });
+
+  // P&L chart
+  if (closed.length) {
+    var cumPnl=0; var labs=[]; var dat=[];
+    closed.forEach(function(t,i){ cumPnl+=(t.realized_pnl||0); labs.push(i+1); dat.push(parseFloat(cumPnl.toFixed(2))); });
+    var isUp = dat[dat.length-1] >= 0;
+    var pCtx = document.getElementById('ab-chart').getContext('2d');
+    if (window.abChartInst) window.abChartInst.destroy();
+    window.abChartInst = new Chart(pCtx, {
+      type:'line',
+      data:{ labels:labs, datasets:[{data:dat, borderColor:isUp?'#C9922A':'#666',
+        backgroundColor:isUp?'rgba(201,146,42,0.08)':'rgba(100,100,100,0.08)',
+        borderWidth:2, pointRadius:0, fill:true, tension:0.3}]},
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+        scales:{ y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#666',callback:function(v){return '$'+v;}}},
+                 x:{display:false}}}
+    });
+    var trend = dat[dat.length-1];
+    document.getElementById('ab-trend').textContent = (trend>=0?'+':'')+'$'+trend.toFixed(2);
+    document.getElementById('ab-trend').className = 'pill '+(trend>=0?'pill-gold':'pill-gray');
+  }
+
+  // Open table
+  var opEl = document.getElementById('ab-open-table');
+  if (!open.length) { opEl.innerHTML = '<div class="empty">No open positions</div>'; }
+  else {
+    opEl.innerHTML = '<table><thead><tr><th>Market</th><th>Asset</th><th>Price@entry</th><th>NO@</th><th>Stake</th><th>Closes</th></tr></thead><tbody>' +
+      open.slice().sort(function(a,b){ return (a.closes_in_days||0)-(b.closes_in_days||0); }).map(function(t){
+        return '<tr><td>'+(t.market||'').substring(0,50)+'</td>' +
+          '<td><span class="pill pill-gold">'+(t.ticker||'?')+'</span></td>' +
+          '<td class="mono">$'+(t.entry_asset_price||0).toFixed(2)+'</td>' +
+          '<td class="mono">'+(t.entry_no_price||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono">'+(t.closes_in_days||0).toFixed(1)+'d</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+
+  // Closed table
+  var clEl = document.getElementById('ab-trade-table');
+  if (!closed.length) { clEl.innerHTML = '<div class="empty">No resolved trades yet</div>'; }
+  else {
+    clEl.innerHTML = '<table><thead><tr><th>Market</th><th>Asset</th><th>NO@</th><th>Stake</th><th>P&L</th><th>R</th></tr></thead><tbody>' +
+      closed.slice().reverse().slice(0,20).map(function(t){
+        var pnl=t.realized_pnl||0; var col=t.won?'color:var(--gold)':'color:#666';
+        return '<tr><td>'+(t.market||'').substring(0,50)+'</td>' +
+          '<td><span class="pill pill-gold">'+(t.ticker||'?')+'</span></td>' +
+          '<td class="mono">'+(t.entry_no_price||'?')+'c</td>' +
+          '<td class="mono">$'+(t.stake||0).toFixed(2)+'</td>' +
+          '<td class="mono" style="'+col+'">'+(pnl>=0?'+':'')+'$'+pnl.toFixed(2)+'</td>' +
+          '<td>'+(t.won?'W':'L')+'</td></tr>';
+      }).join('')+'</tbody></table>';
+  }
+}
+
 function loadData() {
   var dot = document.getElementById('status-dot');
   var txt = document.getElementById('status-text');
@@ -1968,17 +2517,31 @@ function loadData() {
     new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
   ]);
   var apFetch = Promise.race([
-    fetch(AP_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    fetch(AP_URL  + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var cb2Fetch = Promise.race([
+    fetch(CB2_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var cb3Fetch = Promise.race([
+    fetch(CB3_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var ncbFetch = Promise.race([
+    fetch(NCB_URL + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
+    new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
+  ]);
+  var abFetch = Promise.race([
+    fetch(AB_URL  + bust).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }),
     new Promise(function(resolve){ setTimeout(function(){ resolve(null); }, 4000); })
   ]);
 
+  // results index: 0=CB, 1=NB, 2=NB2, 3=NB3, 4=NC, 5=AP, 6=CB2, 7=CB3, 8=NCB, 9=AB
   Promise.all([
     fetch(CB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('ClaudeBot HTTP ' + r.status); return r.json(); }),
     fetch(NB_URL  + bust).then(function(r){ if(!r.ok) throw new Error('NoBot HTTP ' + r.status); return r.json(); }),
-    nb2Fetch,
-    nb3Fetch,
-    ncFetch,
-    apFetch
+    nb2Fetch, nb3Fetch, ncFetch, apFetch, cb2Fetch, cb3Fetch, ncbFetch, abFetch
   ]).then(function(results) {
     renderCB(results[0]);
     renderNB(results[1]);
@@ -2002,22 +2565,39 @@ function loadData() {
     if (results[4]) {
       renderNC(results[4]);
     } else {
-      document.getElementById('nc-bank').textContent     = 'Not live yet';
-      document.getElementById('nc-pnl').textContent      = '—';
-      document.getElementById('nc-wr').textContent       = '—';
-      document.getElementById('nc-open').textContent     = '—';
+      document.getElementById('nc-bank').textContent      = 'Not live yet';
+      document.getElementById('nc-pnl').textContent       = '—';
+      document.getElementById('nc-wr').textContent        = '—';
+      document.getElementById('nc-open').textContent      = '—';
       document.getElementById('nc-potential').textContent = '—';
       document.getElementById('nc-open-table').innerHTML  = '<div class="empty">Push nearcertain_log.json to the repo to enable tracking</div>';
     }
     if (results[5]) {
       renderAP(results[5]);
     } else {
-      document.getElementById('ap-bank').textContent     = 'Not live yet';
-      document.getElementById('ap-pnl').textContent      = '—';
-      document.getElementById('ap-wr').textContent       = '—';
-      document.getElementById('ap-open').textContent     = '—';
+      document.getElementById('ap-bank').textContent      = 'Not live yet';
+      document.getElementById('ap-pnl').textContent       = '—';
+      document.getElementById('ap-wr').textContent        = '—';
+      document.getElementById('ap-open').textContent      = '—';
       document.getElementById('ap-potential').textContent = '—';
-      document.getElementById('ap-open-table').innerHTML  = '<div class="empty">Push alpha_prime_log.json to the repo to enable tracking</div>';
+      document.getElementById('ap-open-table').innerHTML  = '<div class="empty">Signals arrive from NearCertain — push alpha_prime_log.json to enable</div>';
+    }
+    if (results[6]) { renderCB2(results[6]); } else {
+      document.getElementById('cb2-bank').textContent = 'Not live yet';
+      document.getElementById('cb2-pnl').textContent  = '—'; document.getElementById('cb2-wr').textContent = '—';
+    }
+    if (results[7]) { renderCB3(results[7]); } else {
+      document.getElementById('cb3-bank').textContent = 'Not live yet';
+      document.getElementById('cb3-pnl').textContent  = '—'; document.getElementById('cb3-wr').textContent = '—';
+    }
+    if (results[8]) { renderNCB(results[8]); } else {
+      document.getElementById('ncb-bank').textContent = 'Not live yet';
+      document.getElementById('ncb-pnl').textContent  = '—'; document.getElementById('ncb-wr').textContent = '—';
+    }
+    if (results[9]) { renderAB(results[9]); } else {
+      document.getElementById('ab-bank').textContent  = 'Not live yet';
+      document.getElementById('ab-pnl').textContent   = '—'; document.getElementById('ab-wr').textContent = '—';
+      document.getElementById('ab-open-table').innerHTML = '<div class="empty">Push assetbot_log.json to the repo to enable tracking</div>';
     }
     renderProjections(results[0], results[1], results[2], results[3], results[4], results[5]);
 
