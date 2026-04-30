@@ -67,6 +67,12 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           TELEGRAM_PERSONAL_ID: ${{ secrets.TELEGRAM_PERSONAL_ID }}
         run: python nearcertain.py --single-scan
+      - name: Run Alpha-Prime -- Resolution Only (every hour)
+        if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python alpha_prime.py --single-scan
+
       - name: Run NearCertain Beta — Data Collector (every hour)
         if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
         env:
