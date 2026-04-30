@@ -114,7 +114,7 @@ jobs:
         if: github.event.schedule == '0 2 * * *' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python self_audit.py
+        run: python self_audit.py ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
 
       - name: Run ClaudeBot V3 -- Data Collector (every hour)
         if: github.event.schedule == '0 * * * *' || github.event_name == 'workflow_dispatch'
