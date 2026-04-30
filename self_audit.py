@@ -1,5 +1,5 @@
 # SELF AUDIT - NearCertain -> AlphaPrime Auto-Updater
-# Runs every 3 days via cron
+# Runs daily via cron
 # Reads nearcertain_log.json + nearcertain_beta_log.json
 # Opus analyzes performance -> updates alpha_prime_config.json
 # AlphaPrime reads that config at startup
@@ -15,7 +15,7 @@ NC_BETA_LOG          = "nearcertain_beta_log.json"
 AP_CONFIG            = "alpha_prime_config.json"
 AUDIT_STATE_FILE     = "self_audit_state.json"
 OPUS_MODEL           = "claude-opus-4-5"
-AUDIT_INTERVAL_DAYS  = 3
+AUDIT_INTERVAL_DAYS  = 1
 LOOKBACK_DAYS        = 30
 
 
