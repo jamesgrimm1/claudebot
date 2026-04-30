@@ -3,10 +3,11 @@
     "politics",
     "economics",
     "conflict",
-    "geopolitics"
+    "geopolitics",
+    "sports"
   ],
   "weather_exact_only": true,
-  "yes_price_min": 90,
+  "yes_price_min": 75,
   "yes_price_max": 94,
   "max_closes_in_days": 0.25,
   "min_volume": 500,
@@ -27,6 +28,6 @@
   "esports_yes_min": 70,
   "esports_yes_max": 95,
   "pattern_e_enabled": true,
-  "last_updated": "2025-07-09",
-  "audit_notes": "Maintaining current config. YES 90-94c band is the clear winner (+468.68 main, +312.25 beta) while adjacent bands lose money. Economics still losing badly (-171.04 main, -90.11 beta) - keep blocked. Politics losing both bots - keep blocked. Weather exact-temp profitable (+153.45 main, +196.75 beta) while directional mixed (+43.57 main, -59.37 beta) - keeping weather_exact_only=true. <6h window shows divergent results (-105.45 main, +278.18 beta) but beta has 4x more trades supporting profitability. 6h-24h shows +344 main but -103.70 beta - keeping tighter <6h window. Crypto shows 36% WR in beta with +$8.57 on 56 trades - not blocking. Sports at 19% WR on 311 beta trades with only -$24.46 loss - per rules not blocking as WR threshold is 40%."
+  "last_updated": "2025-07-10",
+  "audit_notes": "Added sports to blocked_categories: 19% WR on 314 beta trades with -$21.58 loss meets blocking criteria (WR < 40% on 15+ trades). Expanded yes_price_min to 75: YES 75-79c band profitable in both main (+$66.52, 28% WR) and beta (+$23.97, 31% WR). Kept yes_price_max at 94: YES 95-99c catastrophic (0% WR main, 4% WR beta, combined -$147.86). YES 90-94c remains star performer (+$468.68 main, +$316.48 beta). Excluding 80-89c bands which lose money in both bots. Weather exact-temp profitable (+$211.74 main, +$200.98 beta) while directional mixed - keeping weather_exact_only=true. Keeping <6h window: beta shows +$283.62 on 440 trades. Politics/economics still losing badly - remain blocked. Crypto 36% WR stays enabled. No watchlist changes without city-level data."
 }

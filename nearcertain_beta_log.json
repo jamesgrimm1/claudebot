@@ -21263,7 +21263,7 @@
   ],
   "daily_loss": 23.34,
   "daily_reset": "2026-04-30",
-  "scan_count": 135,
+  "scan_count": 136,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
