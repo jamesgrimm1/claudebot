@@ -185,6 +185,13 @@ def signal_to_alpha_prime(trade, source_bot="nearcertain"):
         cfg = _load_config()
         pattern, reason = _classify(trade, cfg)
 
+        yes  = trade.get("entry_yes_price", 0)
+        cid  = trade.get("closes_in_days", 99)
+        cat  = trade.get("category", "?")
+        vol  = trade.get("volume", 0)
+        mkt  = trade.get("market", "")[:45]
+        print(f"  [AP] Check: {cat} YES={yes}c cid={cid:.2f}d vol={vol:.0f} -> {pattern or 'SKIP'}:{reason} | {mkt}")
+
         if pattern is None:
             return  # doesn't qualify for AP — silent
 
