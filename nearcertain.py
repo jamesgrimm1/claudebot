@@ -270,24 +270,30 @@ def resolve_open_trades(state):
                     continue
                 raw = r.json()
                 mkt = raw[0] if isinstance(raw, list) and raw else raw
+                if isinstance(mkt, list):
+                    mkt = mkt[0] if mkt else None
+                if not isinstance(mkt, dict):
+                    continue
 
                 active      = mkt.get("active", True)
                 closed_flag = mkt.get("closed", False)
 
-                # Time-based override: if Gamma still shows active but market
-                # is >2h past close, ignore the flag and check prices directly.
-                # Gamma flags lag significantly — prices snap to resolution fast.
                 gamma_lagging = active and not closed_flag and hours_past > 2
 
                 if active and not closed_flag and not gamma_lagging:
-                    continue  # genuinely still live
+                    continue
 
                 prices_raw = mkt.get("outcomePrices")
                 if not prices_raw:
                     continue
 
-                prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
-                prices = [float(p) for p in prices]
+                try:
+                    prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+                    if prices and isinstance(prices[0], (list, tuple)):
+                        prices = prices[0]
+                    prices = [float(p) for p in prices]
+                except (TypeError, ValueError, IndexError):
+                    continue
 
                 if len(prices) >= 2:
                     yes_price = prices[0]
