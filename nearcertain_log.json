@@ -1,5 +1,5 @@
 {
-  "bankroll": 801.3,
+  "bankroll": 787.34,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -6767,10 +6767,46 @@
       "placed_at": "2026-04-30T08:02:11.269943+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430093648923683",
+      "market_id": "2114778",
+      "market": "WTI Crude Oil (WTI) closes above $105 on April 30?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 6.01,
+      "potential_profit": 24.04,
+      "potential_payout": 30.05,
+      "closes": "2026-04-30T21:00:00+00:00",
+      "closes_in_days": 0.475,
+      "status": "open",
+      "placed_at": "2026-04-30T09:36:48.923700+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430093648923936",
+      "market_id": "2112306",
+      "market": "Will the highest temperature in Chicago be 51\u00b0F or below on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 7.95,
+      "potential_profit": 48.84,
+      "potential_payout": 56.79,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 1.1,
+      "status": "open",
+      "placed_at": "2026-04-30T09:36:48.923950+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 83.18,
   "daily_reset": "2026-04-30",
-  "scan_count": 186,
+  "scan_count": 187,
   "started": "2026-04-21T00:00:00+00:00"
 }
