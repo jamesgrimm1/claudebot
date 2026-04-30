@@ -1,5 +1,5 @@
 {
-  "bankroll": 891.75,
+  "bankroll": 892.47,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8132,10 +8132,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3748.1860430000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:51.469606+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-30T08:01:39.220842+00:00",
+      "realized_pnl": 2.66
     },
     {
       "id": "NB1777427571",
@@ -8198,10 +8201,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3224.8418160000015,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:51.469687+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:39.255286+00:00",
+      "realized_pnl": -3.58
     },
     {
       "id": "NB1777435046",
@@ -8287,10 +8293,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5866.272961999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T05:18:31.820525+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:39.289218+00:00",
+      "realized_pnl": -3.96
     },
     {
       "id": "NB1777439911",
@@ -8531,10 +8540,13 @@
       "closes_in_days": 0.14,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3553.647788,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:44:40.397971+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:39.382607+00:00",
+      "realized_pnl": -3.46
     },
     {
       "id": "NB1777455787",
@@ -8801,11 +8813,31 @@
       "placed_at": "2026-04-30T05:22:13.401539+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777536106",
+      "market_id": "2060904",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-30",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 30?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 4.71,
+      "payout_if_wins": 10.47,
+      "profit_if_wins": 5.76,
+      "category": "crypto",
+      "closes_in_days": 0.33,
+      "closes": "2026-04-30T16:00:00+00:00",
+      "volume": 36011.18984,
+      "status": "open",
+      "placed_at": "2026-04-30T08:01:46.154240+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 9.79,
+  "daily_loss": 20.79,
   "daily_reset": "2026-04-30",
-  "scan_count": 279,
+  "scan_count": 280,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T05:22:03.171544+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

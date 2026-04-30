@@ -1,5 +1,5 @@
 {
-  "bankroll": 960.4,
+  "bankroll": 941.19,
   "trades": [
     {
       "id": "AB1777514011",
@@ -46,9 +46,32 @@
       "placed_at": "2026-04-30T05:23:58.764035+00:00",
       "paper": true,
       "model": "assetbot-mechanical"
+    },
+    {
+      "id": "AB1777536207",
+      "market_id": "1748234",
+      "market_slug": "tsla-above-430-on-april-30-2026",
+      "market": "Will Tesla (TSLA) close above $430 end of April?",
+      "position": "NO",
+      "entry_price": 95,
+      "stake": 19.21,
+      "payout_if_wins": 20.22,
+      "profit_if_wins": 1.01,
+      "ticker": "TSLA",
+      "current_price": 372.8,
+      "threshold": 430,
+      "required_move_pct": 15.32,
+      "resolution_type": "close",
+      "reasoning": "TSLA must rise 15.32% from $372.80 to $430 by end of April, which exceeds the 10% plausibility threshold for a move without prior threshold crossing.",
+      "closes": "2026-04-30T20:00:00+00:00",
+      "closes_in_days": 0.498,
+      "status": "open",
+      "placed_at": "2026-04-30T08:03:27.497689+00:00",
+      "paper": true,
+      "model": "assetbot-mechanical"
     }
   ],
-  "scan_count": 43,
+  "scan_count": 44,
   "started": "2026-04-27T14:51:44.970255+00:00",
   "price_snapshot": {
     "date": "2026-04-29",

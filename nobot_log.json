@@ -1,5 +1,5 @@
 {
-  "bankroll": 848.51,
+  "bankroll": 852.5,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8102,10 +8102,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3748.1860430000006,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:38.216646+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-30T08:01:28.218156+00:00",
+      "realized_pnl": 4.05
     },
     {
       "id": "NB1777427558",
@@ -8168,10 +8171,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3224.8418160000015,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:52:38.216722+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:28.396989+00:00",
+      "realized_pnl": -2.09
     },
     {
       "id": "NB1777435031",
@@ -8257,10 +8263,13 @@
       "closes_in_days": 0.28,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 5866.272961999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T05:18:21.839423+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:28.610552+00:00",
+      "realized_pnl": -3.13
     },
     {
       "id": "NB1777439901",
@@ -8501,10 +8510,13 @@
       "closes_in_days": 0.14,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3553.647788,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:44:24.295068+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-30T08:01:28.713600+00:00",
+      "realized_pnl": -2.04
     },
     {
       "id": "NB1777456991",
@@ -8751,11 +8763,31 @@
       "placed_at": "2026-04-30T05:22:02.464667+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777536096",
+      "market_id": "2060904",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-april-30",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on April 30?",
+      "position": "NO",
+      "entry_no_price": 45,
+      "entry_yes_price": 55,
+      "stake": 4.28,
+      "payout_if_wins": 9.51,
+      "profit_if_wins": 5.23,
+      "category": "crypto",
+      "closes_in_days": 0.33,
+      "closes": "2026-04-30T16:00:00+00:00",
+      "volume": 36011.18984,
+      "status": "open",
+      "placed_at": "2026-04-30T08:01:36.999251+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 11.89,
+  "daily_loss": 19.15,
   "daily_reset": "2026-04-30",
-  "scan_count": 275,
+  "scan_count": 276,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T01:51:33.329752+00:00"
 }
