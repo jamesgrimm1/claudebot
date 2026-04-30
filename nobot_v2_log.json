@@ -1,5 +1,5 @@
 {
-  "bankroll": 885.51,
+  "bankroll": 897.95,
   "trades": [
     {
       "id": "NB1776304868",
@@ -2573,10 +2573,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 6231.824353000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-19T19:35:53.354388+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T21:45:53.208970+00:00",
+      "realized_pnl": -2.66
     },
     {
       "id": "NB1776627353",
@@ -8844,10 +8847,13 @@
       "closes_in_days": 0.33,
       "closes": "2026-04-30T16:00:00+00:00",
       "volume": 36011.18984,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T08:01:46.154240+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T21:45:54.490361+00:00",
+      "realized_pnl": -4.71
     },
     {
       "id": "NB1777543358",
@@ -8864,10 +8870,13 @@
       "closes_in_days": 0.25,
       "closes": "2026-04-30T16:00:00+00:00",
       "volume": 40060.33488700001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T10:02:38.770299+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-04-30T21:45:54.580231+00:00",
+      "realized_pnl": 5.96
     },
     {
       "id": "NB1777545917",
@@ -8931,11 +8940,31 @@
       "placed_at": "2026-04-30T12:08:13.201557+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777585563",
+      "market_id": "2006656",
+      "market_slug": "pumpfun-revenue-above-25m-in-april",
+      "market": "Pump.fun revenue above $25M in April?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 2.84,
+      "payout_if_wins": 5.8,
+      "profit_if_wins": 2.96,
+      "category": "other",
+      "closes_in_days": 0.26,
+      "closes": "2026-05-01T04:00:00+00:00",
+      "volume": 5143.247036999999,
+      "status": "open",
+      "placed_at": "2026-04-30T21:46:03.539454+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 36.8,
+  "daily_loss": 44.17,
   "daily_reset": "2026-04-30",
-  "scan_count": 291,
+  "scan_count": 292,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T18:03:01.011523+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
