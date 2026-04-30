@@ -4673,7 +4673,7 @@
   ],
   "daily_loss": 73.74,
   "daily_reset": "2026-04-30",
-  "scan_count": 374,
+  "scan_count": 375,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-30T19:57:45.138632+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
