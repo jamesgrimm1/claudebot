@@ -635,57 +635,33 @@ def print_portfolio(state):
 # ─────────────────────────────────────────────────────────
 
 def single_scan():
+    """
+    V2 Architecture: AlphaPrime no longer scans for trades.
+    Trades arrive via ap_signal.py (called by nearcertain.py + nearcertain_beta.py).
+    This function ONLY resolves open trades and saves state.
+    """
     now = datetime.now(timezone.utc)
-    print("\n╔══════════════════════════════════════════════════════════╗")
-    print("║  ALPHA-PRIME  ·  Focused NearCertain Variant             ║")
-    print(f"║  {now.strftime('%Y-%m-%d %H:%M UTC')}                                  ║")
-    print("╚══════════════════════════════════════════════════════════╝\n")
+    print("\n=== ALPHA-PRIME  Resolution-Only Mode ===")
+    print(f"    Trades arrive via NearCertain signal injection")
+    print(f"    {now.strftime('%Y-%m-%d %H:%M UTC')}\n")
 
     state = load_state()
     state = reset_daily_loss(state)
     state["scan_count"] = state.get("scan_count", 0) + 1
 
-    # Weekly watchlist maintenance
-    last_wl = state.get("last_watchlist_update", "")
-    this_week = now.strftime("%Y-W%W")
-    if last_wl != this_week:
-        update_watchlist(state)
-        state["last_watchlist_update"] = this_week
+    open_before = len([t for t in state["trades"] if t["status"] == "open"])
+    log(f"  Open trades: {open_before}")
 
-    # Step 1: Resolve
-    log("── Step 1: Resolve open trades ──────────────────────────")
+    # Resolve only — no scan, no fetch, no classify
+    log("-- Step 1: Resolve open trades")
     state = resolve_open_trades(state)
 
-    # Step 2: Fetch
-    log("── Step 2: Fetch markets ────────────────────────────────")
-    markets = fetch_markets()
+    open_after = len([t for t in state["trades"] if t["status"] == "open"])
+    resolved = open_before - open_after
+    if resolved > 0:
+        log(f"  Resolved {resolved} trade(s) this cycle")
 
-    # Step 3: Classify and trade
-    log("── Step 3: Scan patterns ────────────────────────────────")
-    open_ids = {t["market_id"] for t in state["trades"] if t["status"] == "open"}
-    placed = 0
-    skipped_patterns = {}
-
-    for market in markets:
-        if market["id"] in open_ids:
-            continue
-        pattern, reason = classify_market(market, state)
-        if pattern is None:
-            cat = reason.split(":")[0] if ":" in reason else reason
-            skipped_patterns[cat] = skipped_patterns.get(cat, 0) + 1
-            continue
-        state = place_trade(market, pattern, reason, state)
-        if state["trades"] and state["trades"][-1]["status"] == "open":
-            open_ids.add(market["id"])
-            placed += 1
-
-    log(f"  Placed: {placed} trades | Scanned: {len(markets)} markets")
-    if skipped_patterns:
-        top_skips = sorted(skipped_patterns.items(), key=lambda x: -x[1])[:5]
-        log(f"  Top skips: {', '.join(f'{k}:{v}' for k,v in top_skips)}")
-
-    # Step 4: Save
-    log("── Step 4: Save ─────────────────────────────────────────")
+    log("-- Step 2: Save")
     save_state(state)
     print_portfolio(state)
 
