@@ -159,13 +159,16 @@
       ],
       "bear_case": "Sharp deceleration in daily case rate not captured in available data; public health interventions containing active outbreaks; seasonal decline in measles transmission already underway",
       "kelly_tier": "quarter-Kelly (5.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-04T02:54:51.276932+00:00",
       "paper": true,
       "model": "claude-opus-4-6",
       "watch": true,
       "watch_reason": "CDC reports 1,748 cases as of April 16 with 14 days remaining. Need 452 more cases in 14 days = ~32.3 cases/day required. Recent pace from March 26 to April 16 (21 days): 173 new cases = only 8.2 cases/day \u2014 a sharp deceleration from the earlier 18.5/day average. At this reduced ~8 cases/day rate, we'd reach only ~1,860 by April 30, well short of 2,200. The bear case of outbreak containment and deceleration appears to be materializing. Thesis is significantly weakened but not yet impossible \u2014 a new outbreak cluster could spike counts. Flagging for close next cycle if pace doesn't accelerate.",
-      "watch_since": "2026-04-19"
+      "watch_since": "2026-04-19",
+      "won": false,
+      "resolved_at": "2026-04-30T05:24:09.643879+00:00",
+      "realized_pnl": -81.88
     },
     {
       "id": "T1775308537",
@@ -295,10 +298,13 @@
       ],
       "bear_case": "Resolution criteria may require specifically 'Israeli' (not joint US-Israeli) strikes; possible ceasefire before resolution source confirms; ambiguity in what qualifies as direct Israeli action",
       "kelly_tier": "quarter-Kelly (5.0%)",
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-06T03:33:06.771464+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-04-30T05:24:12.646764+00:00",
+      "realized_pnl": -59.85
     },
     {
       "id": "T1775578495",
@@ -1189,15 +1195,18 @@
       "bear_case": "Resolution source may differ from transport industry reporting; specific EIA benchmark might not confirm $3.75; resolution criteria nuance could differ from stated conditions",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:27:28.608371+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-04-30T05:24:14.576623+00:00",
+      "realized_pnl": -185.17
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 326.9,
   "daily_reset": "2026-04-30",
-  "scan_count": 319,
+  "scan_count": 320,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-26",
   "last_tier2_scan": "2026-04-30",

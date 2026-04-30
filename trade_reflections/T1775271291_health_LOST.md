@@ -1,7 +1,7 @@
 # Trade Reflection — T1775271291
 
 ## Outcome
-- **Result:** LOST $+0.00 (+0.0% ROI)
+- **Result:** LOST $-81.88 (-100.0% ROI)
 - **Diagnosis:** BEAR CASE MATERIALISED: Sharp deceleration in daily case rate not captured in available data; public hea
 - **Market:** Will there be at least 2200 measles cases in the U.S. by April 30, 2026?
 - **Category:** health
@@ -11,9 +11,9 @@
 
 ## Timing
 - **Placed:** 2026-04-04
-- **Resolved:** 
+- **Resolved:** 2026-04-30
 - **Closes:** 2026-04-30 (25.9d remaining at entry)
-- **Hold duration:** unknown
+- **Hold duration:** 626.5 hours
 
 ## Pricing & Edge
 - **Market implied:** 6% YES
@@ -35,12 +35,12 @@ CDC data shows 1,575 confirmed measles cases as of March 26 (day 85 of 2026), av
 Sharp deceleration in daily case rate not captured in available data; public health interventions containing active outbreaks; seasonal decline in measles transmission already underway
 
 ## Bankroll After
-$1358.35
+$1829.06
 
 ## Patterns
 - category: health
 - outcome: LOST
-- hold_hours: unknown
+- hold_hours: 626.5 hours
 - tier: T2
 - confidence_band: 80-89%
 - position: YES

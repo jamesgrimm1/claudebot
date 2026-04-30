@@ -1,5 +1,5 @@
 {
-  "bankroll": 941.25,
+  "bankroll": 890.58,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -5353,10 +5353,13 @@
       "potential_payout": 183.71,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.776,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:37.807371+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-30T05:22:25.759694+00:00",
+      "realized_pnl": -12.86
     },
     {
       "id": "NC20260428052237807426",
@@ -5596,10 +5599,13 @@
       "potential_payout": 185.17,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.663,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T08:05:34.968254+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-30T05:22:26.430192+00:00",
+      "realized_pnl": -11.11
     },
     {
       "id": "NC20260428080534968328",
@@ -5734,10 +5740,13 @@
       "potential_payout": 63.67,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.364,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T15:15:55.925178+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-30T05:22:26.968242+00:00",
+      "realized_pnl": -7.64
     },
     {
       "id": "NC20260428151555925275",
@@ -6187,10 +6196,13 @@
       "potential_payout": 55.79,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 0.738,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T06:17:19.996370+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-04-30T05:22:28.226365+00:00",
+      "realized_pnl": -7.81
     },
     {
       "id": "NC20260429062355894931",
@@ -6476,10 +6488,100 @@
       "placed_at": "2026-04-30T01:52:46.866220+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430052237846636",
+      "market_id": "2102562",
+      "market": "Will the highest temperature in Jakarta be 34\u00b0C on April 30?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 7.06,
+      "potential_profit": 32.16,
+      "potential_payout": 39.22,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "closes_in_days": 0.276,
+      "status": "open",
+      "placed_at": "2026-04-30T05:22:37.846656+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430052237846753",
+      "market_id": "2102311",
+      "market": "Will the highest temperature in Singapore be 34\u00b0C on April 30?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 9.34,
+      "potential_profit": 62.51,
+      "potential_payout": 71.85,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "closes_in_days": 0.276,
+      "status": "open",
+      "placed_at": "2026-04-30T05:22:37.846766+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430052237846855",
+      "market_id": "2102135",
+      "market": "Will the highest temperature in Seoul be 19\u00b0C on April 30?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 17,
+      "entry_yes_price": 83,
+      "stake": 6.94,
+      "potential_profit": 33.88,
+      "potential_payout": 40.82,
+      "closes": "2026-04-30T12:00:00+00:00",
+      "closes_in_days": 0.276,
+      "status": "open",
+      "placed_at": "2026-04-30T05:22:37.846868+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430052237847104",
+      "market_id": "1748168",
+      "market": "Will Meta (META) close above $520 end of April?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 13.77,
+      "potential_profit": 123.93,
+      "potential_payout": 137.7,
+      "closes": "2026-04-30T20:00:00+00:00",
+      "closes_in_days": 0.609,
+      "status": "open",
+      "placed_at": "2026-04-30T05:22:37.847118+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260430052237847213",
+      "market_id": "2068766",
+      "market": "Will claude-opus-4-6-thinking be the best AI model on May 1, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 13.56,
+      "potential_profit": 212.44,
+      "potential_payout": 226.0,
+      "closes": "2026-05-01T00:00:00+00:00",
+      "closes_in_days": 0.776,
+      "status": "open",
+      "placed_at": "2026-04-30T05:22:37.847226+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 5.47,
+  "daily_loss": 44.89,
   "daily_reset": "2026-04-30",
-  "scan_count": 184,
+  "scan_count": 185,
   "started": "2026-04-21T00:00:00+00:00"
 }

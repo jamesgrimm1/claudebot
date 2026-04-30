@@ -1,6 +1,6 @@
 {
-  "generated": "2026-04-30T02:07:37.125323",
-  "total_trades": 34,
+  "generated": "2026-04-30T05:33:28.279352",
+  "total_trades": 36,
   "trades": [
     {
       "won": true,
@@ -120,6 +120,19 @@
       "path": "trade_reflections/T1775114841_weather_LOST.md"
     },
     {
+      "won": false,
+      "category": "other",
+      "conf": 76,
+      "hold_h": 40.9,
+      "tier": "1",
+      "position": "YES",
+      "pnl": -185.17,
+      "market": "Will gas hit (Low) $3.75 by April 30?",
+      "bear": "Resolution source may differ from transport industry reporting; specific EIA benchmark might not confirm $3.75; resolution criteria nuance could differ from stated conditions",
+      "news": false,
+      "path": "trade_reflections/T1777379248_other_LOST.md"
+    },
+    {
       "won": true,
       "category": "weather",
       "conf": 80,
@@ -131,6 +144,19 @@
       "bear": "Unexpected warm air mass or rapid clearing could push temperatures above 30\u00b0C; resolution criteria interpretation may differ; April 2026 could have anomalous warming pattern not captured in climatology",
       "news": false,
       "path": "trade_reflections/T1775721131_weather_WON.md"
+    },
+    {
+      "won": false,
+      "category": "geopolitics",
+      "conf": 85,
+      "hold_h": 577.9,
+      "tier": "2",
+      "position": "YES",
+      "pnl": -59.85,
+      "market": "Israel strike on Yemen by April 30, 2026?",
+      "bear": "Resolution criteria may require specifically 'Israeli' (not joint US-Israeli) strikes; possible ceasefire before resolution source confirms; ambiguity in what qualifies as direct Israeli action",
+      "news": false,
+      "path": "trade_reflections/T1775446386_geopolitics_LOST.md"
     },
     {
       "won": false,
@@ -188,10 +214,10 @@
       "won": false,
       "category": "health",
       "conf": 82,
-      "hold_h": null,
+      "hold_h": 626.5,
       "tier": "2",
       "position": "YES",
-      "pnl": 0.0,
+      "pnl": -81.88,
       "market": "Will there be at least 2200 measles cases in the U.S. by April 30, 2026?",
       "bear": "Sharp deceleration in daily case rate not captured in available data; public health interventions containing active outbreaks; seasonal decline in measles transmission already underway",
       "news": false,
