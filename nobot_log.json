@@ -1,5 +1,5 @@
 {
-  "bankroll": 854.78,
+  "bankroll": 848.38,
   "trades": [
     {
       "id": "NB1776304868",
@@ -80,10 +80,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 8594.173304,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863439+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-04-30T12:07:49.176131+00:00",
+      "realized_pnl": -3.69
     },
     {
       "id": "NB1776304868",
@@ -8829,11 +8832,51 @@
       "placed_at": "2026-04-30T10:45:06.111710+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777550881",
+      "market_id": "2068542",
+      "market_slug": "will-trumps-approval-rating-be-between-39pt0-and-39pt4-on-may-1-2026",
+      "market": "Will Trump\u2019s approval rating be between 39.0 and 39.4 on May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 4.27,
+      "payout_if_wins": 9.28,
+      "profit_if_wins": 5.01,
+      "category": "politics",
+      "closes_in_days": 0.49,
+      "closes": "2026-05-01T00:00:00+00:00",
+      "volume": 5476.05633,
+      "status": "open",
+      "placed_at": "2026-04-30T12:08:01.016364+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777550881",
+      "market_id": "2068543",
+      "market_slug": "will-trumps-approval-rating-be-between-39pt5-and-39pt9-on-may-1-2026",
+      "market": "Will Trump\u2019s approval rating be between 39.5 and 39.9 on May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 2.13,
+      "payout_if_wins": 3.55,
+      "profit_if_wins": 1.42,
+      "category": "politics",
+      "closes_in_days": 0.49,
+      "closes": "2026-05-01T00:00:00+00:00",
+      "volume": 3800.7719989999987,
+      "status": "open",
+      "placed_at": "2026-04-30T12:08:01.016409+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 19.15,
+  "daily_loss": 22.84,
   "daily_reset": "2026-04-30",
-  "scan_count": 279,
+  "scan_count": 280,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T01:51:33.329752+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 892.01,
+  "bankroll": 885.51,
   "trades": [
     {
       "id": "NB1776304868",
@@ -80,10 +80,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 8594.173304,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863439+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T12:08:01.917394+00:00",
+      "realized_pnl": -6.02
     },
     {
       "id": "NB1776304868",
@@ -8569,10 +8572,13 @@
       "closes_in_days": 0.1,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 3292.5036339999997,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T09:43:07.492619+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-04-30T12:08:04.145155+00:00",
+      "realized_pnl": -3.47
     },
     {
       "id": "NB1777457015",
@@ -8879,11 +8885,51 @@
       "placed_at": "2026-04-30T10:45:17.002787+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777550893",
+      "market_id": "2068542",
+      "market_slug": "will-trumps-approval-rating-be-between-39pt0-and-39pt4-on-may-1-2026",
+      "market": "Will Trump\u2019s approval rating be between 39.0 and 39.4 on May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 2.81,
+      "payout_if_wins": 6.11,
+      "profit_if_wins": 3.3,
+      "category": "politics",
+      "closes_in_days": 0.49,
+      "closes": "2026-05-01T00:00:00+00:00",
+      "volume": 5476.05633,
+      "status": "open",
+      "placed_at": "2026-04-30T12:08:13.201484+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777550893",
+      "market_id": "2068543",
+      "market_slug": "will-trumps-approval-rating-be-between-39pt5-and-39pt9-on-may-1-2026",
+      "market": "Will Trump\u2019s approval rating be between 39.5 and 39.9 on May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 3.69,
+      "payout_if_wins": 6.15,
+      "profit_if_wins": 2.46,
+      "category": "politics",
+      "closes_in_days": 0.49,
+      "closes": "2026-05-01T00:00:00+00:00",
+      "volume": 3800.7719989999987,
+      "status": "open",
+      "placed_at": "2026-04-30T12:08:13.201557+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 20.79,
+  "daily_loss": 30.28,
   "daily_reset": "2026-04-30",
-  "scan_count": 283,
+  "scan_count": 284,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T05:22:03.171544+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
