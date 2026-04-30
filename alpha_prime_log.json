@@ -1,5 +1,5 @@
 {
-  "bankroll": 926.85,
+  "bankroll": 903.68,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -81,11 +81,33 @@
       "won": false,
       "resolved_at": "2026-04-30T01:52:47.837372+00:00",
       "realized_pnl": -23.77
+    },
+    {
+      "id": "AP20260430161811126180",
+      "market_id": "2052747",
+      "market": "LoL: NightBirds vs BRUTE (BO3) - Hitpoint Masters Regular Season",
+      "category": "other",
+      "pattern": "C",
+      "pattern_label": "Esports CS/Dota/LoL",
+      "pattern_reason": "esports_lol",
+      "position": "NO",
+      "entry_no_price": 11,
+      "entry_yes_price": 89,
+      "stake": 23.17,
+      "potential_profit": 187.47,
+      "potential_payout": 210.64,
+      "closes": "2026-04-30T21:55:00+00:00",
+      "closes_in_days": 0.234,
+      "status": "open",
+      "placed_at": "2026-04-30T16:18:11.126190+00:00",
+      "source_bot": "nearcertain_beta",
+      "paper": true,
+      "model": "alpha-prime-signal"
     }
   ],
   "daily_loss": 23.77,
   "daily_reset": "2026-04-30",
-  "scan_count": 29,
+  "scan_count": 30,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",
