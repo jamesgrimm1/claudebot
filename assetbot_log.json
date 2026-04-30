@@ -1,5 +1,5 @@
 {
-  "bankroll": 941.19,
+  "bankroll": 922.37,
   "trades": [
     {
       "id": "AB1777514011",
@@ -69,9 +69,32 @@
       "placed_at": "2026-04-30T08:03:27.497689+00:00",
       "paper": true,
       "model": "assetbot-mechanical"
+    },
+    {
+      "id": "AB1777553244",
+      "market_id": "2072018",
+      "market_slug": "nflx-above-130-on-may-1-2026",
+      "market": "Will Netflix (NFLX) finish week of April 27 above $130?",
+      "position": "NO",
+      "entry_price": 93,
+      "stake": 18.82,
+      "payout_if_wins": 20.24,
+      "profit_if_wins": 1.42,
+      "ticker": "NFLX",
+      "current_price": 92.12,
+      "threshold": 130,
+      "required_move_pct": 41.14,
+      "resolution_type": "weekly_close",
+      "reasoning": "NFLX must rise 41.14% from $92.12 to $130 by end of week April 27, exceeding the 10% implausibility threshold with no prior threshold crossing.",
+      "closes": "2026-05-01T20:00:00+00:00",
+      "closes_in_days": 1.301,
+      "status": "open",
+      "placed_at": "2026-04-30T12:47:24.750969+00:00",
+      "paper": true,
+      "model": "assetbot-mechanical"
     }
   ],
-  "scan_count": 49,
+  "scan_count": 50,
   "started": "2026-04-27T14:51:44.970255+00:00",
   "price_snapshot": {
     "date": "2026-04-29",
