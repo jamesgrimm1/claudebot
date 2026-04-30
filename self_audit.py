@@ -292,15 +292,16 @@ def parse_and_save_config(raw_text):
 
 def main():
     now = datetime.now(timezone.utc)
+    force = "--force" in sys.argv
     print(f"\n=== SELF AUDIT - NearCertain -> AlphaPrime Auto-Updater ===")
-    print(f"    {now.strftime('%Y-%m-%d %H:%M UTC')}\n")
+    print(f"    {now.strftime('%Y-%m-%d %H:%M UTC')}" + (" [FORCED]" if force else "") + "\n")
 
     if not ANTHROPIC_API_KEY:
         print("FAIL  ANTHROPIC_API_KEY not set")
         sys.exit(1)
 
-    if not should_audit():
-        log("?  Audit not due yet -- skipping")
+    if not force and not should_audit():
+        log("Audit not due yet -- skipping (use --force to override)")
         return
 
     log("-- Step 1: Load NearCertain logs ------------------------")
