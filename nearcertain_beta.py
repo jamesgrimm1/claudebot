@@ -268,7 +268,13 @@ def resolve_open_trades(state):
                 if r.status_code != 200:
                     continue
                 raw = r.json()
+                # Handle list or dict response
                 mkt = raw[0] if isinstance(raw, list) and raw else raw
+                # Guard against nested lists (some grouped/esports markets)
+                if isinstance(mkt, list):
+                    mkt = mkt[0] if mkt else None
+                if not isinstance(mkt, dict):
+                    continue
 
                 active      = mkt.get("active", True)
                 closed_flag = mkt.get("closed", False)
@@ -285,8 +291,14 @@ def resolve_open_trades(state):
                 if not prices_raw:
                     continue
 
-                prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
-                prices = [float(p) for p in prices]
+                try:
+                    prices = json.loads(prices_raw) if isinstance(prices_raw, str) else prices_raw
+                    # Flatten if nested list (multi-outcome grouped markets)
+                    if prices and isinstance(prices[0], (list, tuple)):
+                        prices = prices[0]
+                    prices = [float(p) for p in prices]
+                except (TypeError, ValueError, IndexError):
+                    continue
 
                 if len(prices) >= 2:
                     yes_price = prices[0]
