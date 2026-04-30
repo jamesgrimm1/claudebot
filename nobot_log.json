@@ -1,5 +1,5 @@
 {
-  "bankroll": 853.68,
+  "bankroll": 854.78,
   "trades": [
     {
       "id": "NB1776304868",
@@ -8493,10 +8493,13 @@
       "closes_in_days": 0.15,
       "closes": "2026-04-29T12:00:00+00:00",
       "volume": 4772.323679000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T08:25:39.883007+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-04-30T10:44:57.478806+00:00",
+      "realized_pnl": 2.32
     },
     {
       "id": "NB1777452264",
@@ -8806,11 +8809,31 @@
       "placed_at": "2026-04-30T10:02:28.582291+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777545906",
+      "market_id": "2003558",
+      "market_slug": "ice-quarterly-earnings-nongaap-eps-04-30-2026-2pt26",
+      "market": "Will Intercontinental Exchange (ICE) beat quarterly earnings?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 4.3,
+      "payout_if_wins": 8.78,
+      "profit_if_wins": 4.48,
+      "category": "economics",
+      "closes_in_days": 0.09,
+      "closes": "2026-04-30T13:00:00+00:00",
+      "volume": 6225.924336,
+      "status": "open",
+      "placed_at": "2026-04-30T10:45:06.111710+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 19.15,
   "daily_reset": "2026-04-30",
-  "scan_count": 278,
+  "scan_count": 279,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-04-30T01:51:33.329752+00:00"
 }
