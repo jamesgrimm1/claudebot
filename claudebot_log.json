@@ -1,5 +1,5 @@
 {
-  "bankroll": 2232.49,
+  "bankroll": 2882.2,
   "trades": [
     {
       "id": "T1775098669",
@@ -1131,10 +1131,13 @@
       "bear_case": "Catastrophic Hormuz resolution + simultaneous demand shock + flash crash could create extreme volatility, but even this scenario unlikely to reach $60 within one week",
       "kelly_tier": "full-Kelly (15.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-25T16:33:19.507765+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-05-01T23:41:53.690354+00:00",
+      "realized_pnl": 311.86
     },
     {
       "id": "T1777379247",
@@ -1209,7 +1212,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-01",
-  "scan_count": 349,
+  "scan_count": 350,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-05-01",
   "last_tier2_scan": "2026-05-01",
