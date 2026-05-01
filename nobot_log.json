@@ -1883,10 +1883,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 8920.026763999997,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T12:40:17.784762+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:01.964305+00:00",
+      "realized_pnl": -1.94
     },
     {
       "id": "NB1776516017",
@@ -9289,10 +9292,13 @@
       "closes_in_days": 0.3,
       "closes": "2026-05-01T20:00:00+00:00",
       "volume": 6190.510684,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T12:52:57.002976+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:02.915269+00:00",
+      "realized_pnl": -2.42
     },
     {
       "id": "NB1777644785",
@@ -9355,9 +9361,9 @@
       "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 39.22,
+  "daily_loss": 43.58,
   "daily_reset": "2026-05-01",
-  "scan_count": 300,
+  "scan_count": 301,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-05-01T07:59:29.223467+00:00"
+  "last_summary_sent": "2026-05-01T20:00:00.438780+00:00"
 }

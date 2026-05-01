@@ -1,5 +1,5 @@
 {
-  "bankroll": 937.05,
+  "bankroll": 940.06,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -22224,10 +22224,13 @@
       "potential_payout": 1.44,
       "closes": "2026-05-01T00:00:00+00:00",
       "closes_in_days": 0.247,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T18:03:51.580746+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-01T20:00:37.154122+00:00",
+      "realized_pnl": 0.98
     },
     {
       "id": "NC20260430180351581080",
@@ -22656,10 +22659,13 @@
       "potential_payout": 9.4,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.926,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T21:47:04.338717+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:37.824542+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260430214704339058",
@@ -23052,10 +23058,13 @@
       "potential_payout": 2.14,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.753,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T01:55:13.872048+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:38.491098+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501015513872536",
@@ -23805,10 +23814,13 @@
       "potential_payout": 1.57,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.374,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T11:01:50.094642+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:39.077075+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501110150094918",
@@ -24159,10 +24171,13 @@
       "potential_payout": 3.92,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.177,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T15:45:37.256422+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-01T20:00:39.587266+00:00",
+      "realized_pnl": 3.45
     },
     {
       "id": "NC20260501154537256676",
@@ -24285,10 +24300,13 @@
       "potential_payout": 3.36,
       "closes": "2026-05-01T18:00:00+00:00",
       "closes_in_days": 0.008,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T17:48:58.988776+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T20:00:40.354814+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501174858989239",
@@ -24577,11 +24595,101 @@
       "placed_at": "2026-05-01T18:56:24.745002+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501200044680324",
+      "market_id": "2129023",
+      "market": "Counter-Strike: G2 vs FaZe - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 29,
+      "entry_yes_price": 71,
+      "stake": 0.47,
+      "potential_profit": 1.15,
+      "potential_payout": 1.62,
+      "closes": "2026-05-01T23:30:00+00:00",
+      "closes_in_days": 0.145,
+      "status": "open",
+      "placed_at": "2026-05-01T20:00:44.680345+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501200044681472",
+      "market_id": "2081257",
+      "market": "Valorant: Nongshim RedForce vs Global Esports (BO3) - VCT Pacific Group Alpha",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 0.47,
+      "potential_profit": 1.49,
+      "potential_payout": 1.96,
+      "closes": "2026-05-02T16:00:00+00:00",
+      "closes_in_days": 0.833,
+      "status": "open",
+      "placed_at": "2026-05-01T20:00:44.681487+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501200044681787",
+      "market_id": "2078310",
+      "market": "Will the price of Bitcoin be above $78,000 on May 2?",
+      "category": "crypto",
+      "position": "NO",
+      "entry_no_price": 31,
+      "entry_yes_price": 69,
+      "stake": 0.47,
+      "potential_profit": 1.05,
+      "potential_payout": 1.52,
+      "closes": "2026-05-02T16:00:00+00:00",
+      "closes_in_days": 0.833,
+      "status": "open",
+      "placed_at": "2026-05-01T20:00:44.681805+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501200044682106",
+      "market_id": "2097828",
+      "market": "Will Elon Musk post 40-64 tweets from April 30 to May 2, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 26,
+      "entry_yes_price": 74,
+      "stake": 0.47,
+      "potential_profit": 1.34,
+      "potential_payout": 1.81,
+      "closes": "2026-05-02T16:00:00+00:00",
+      "closes_in_days": 0.833,
+      "status": "open",
+      "placed_at": "2026-05-01T20:00:44.682122+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501200044682440",
+      "market_id": "2019027",
+      "market": "Will Arsenal FC win on 2026-05-02?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.47,
+      "potential_profit": 1.0,
+      "potential_payout": 1.47,
+      "closes": "2026-05-02T16:30:00+00:00",
+      "closes_in_days": 0.854,
+      "status": "open",
+      "placed_at": "2026-05-01T20:00:44.682456+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 35.16,
+  "daily_loss": 37.04,
   "daily_reset": "2026-05-01",
-  "scan_count": 155,
+  "scan_count": 156,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
