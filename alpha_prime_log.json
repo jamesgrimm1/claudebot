@@ -1,5 +1,5 @@
 {
-  "bankroll": 733.92,
+  "bankroll": 715.57,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -260,11 +260,33 @@
       "source_bot": "nearcertain_beta",
       "paper": true,
       "model": "alpha-prime-signal"
+    },
+    {
+      "id": "AP20260501125325180818",
+      "market_id": "2084310",
+      "market": "LoL: Weibo Gaming vs Invictus Gaming (BO3) - LPL Group Ascend",
+      "category": "other",
+      "pattern": "C",
+      "pattern_label": "Esports CS/Dota/LoL",
+      "pattern_reason": "esports_lol",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 18.35,
+      "potential_profit": 73.4,
+      "potential_payout": 91.75,
+      "closes": "2026-05-01T17:30:00+00:00",
+      "closes_in_days": 0.192,
+      "status": "open",
+      "placed_at": "2026-05-01T12:53:25.180830+00:00",
+      "source_bot": "nearcertain",
+      "paper": true,
+      "model": "alpha-prime-signal"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-01",
-  "scan_count": 39,
+  "scan_count": 40,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",

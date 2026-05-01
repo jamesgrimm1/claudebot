@@ -1,5 +1,5 @@
 {
-  "bankroll": 960.55,
+  "bankroll": 966.0,
   "trades": [
     {
       "id": "NB1776304868",
@@ -296,10 +296,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 4338.530581,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863678+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-01T12:52:45.121695+00:00",
+      "realized_pnl": -4.62
     },
     {
       "id": "NB1776304868",
@@ -1925,10 +1928,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 7342.496836999997,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-18T13:57:07.020436+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-01T12:52:46.367632+00:00",
+      "realized_pnl": 4.64
     },
     {
       "id": "NB1776526231",
@@ -8663,10 +8669,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 8109.7359549999965,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T12:10:32.062487+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-01T12:52:46.692917+00:00",
+      "realized_pnl": 4.88
     },
     {
       "id": "NB1777468300",
@@ -9209,11 +9218,71 @@
       "placed_at": "2026-05-01T11:00:59.640352+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777639977",
+      "market_id": "2068895",
+      "market_slug": "will-the-price-of-bitcoin-be-between-76000-78000-on-may-1",
+      "market": "Will the price of Bitcoin be between $76,000 and $78,000 on May 1?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 4.89,
+      "payout_if_wins": 9.78,
+      "profit_if_wins": 4.89,
+      "category": "crypto",
+      "closes_in_days": 0.13,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "volume": 66606.49052500002,
+      "status": "open",
+      "placed_at": "2026-05-01T12:52:57.002896+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777639977",
+      "market_id": "2068896",
+      "market_slug": "will-the-price-of-bitcoin-be-between-78000-80000-on-may-1",
+      "market": "Will the price of Bitcoin be between $78,000 and $80,000 on May 1?",
+      "position": "NO",
+      "entry_no_price": 49,
+      "entry_yes_price": 51,
+      "stake": 4.87,
+      "payout_if_wins": 9.94,
+      "profit_if_wins": 5.07,
+      "category": "crypto",
+      "closes_in_days": 0.13,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "volume": 44961.268492000134,
+      "status": "open",
+      "placed_at": "2026-05-01T12:52:57.002941+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777639977",
+      "market_id": "2071950",
+      "market_slug": "will-tsla-reach-390-by-april-27-2026",
+      "market": "Will Tesla, Inc. (TSLA) hit (HIGH) $390 Week of April 27 2026?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.42,
+      "payout_if_wins": 3.9,
+      "profit_if_wins": 1.48,
+      "category": "other",
+      "closes_in_days": 0.3,
+      "closes": "2026-05-01T20:00:00+00:00",
+      "volume": 6190.510684,
+      "status": "open",
+      "placed_at": "2026-05-01T12:52:57.002976+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 24.09,
+  "daily_loss": 28.71,
   "daily_reset": "2026-05-01",
-  "scan_count": 294,
+  "scan_count": 295,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-01T07:59:29.223467+00:00"
 }
