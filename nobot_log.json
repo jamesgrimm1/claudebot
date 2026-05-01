@@ -1,5 +1,5 @@
 {
-  "bankroll": 962.96,
+  "bankroll": 960.55,
   "trades": [
     {
       "id": "NB1776304868",
@@ -179,10 +179,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 6024.826406999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863556+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-01T11:00:43.009441+00:00",
+      "realized_pnl": -4.81
     },
     {
       "id": "NB1776304868",
@@ -9079,10 +9082,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 4780.2682429999995,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T01:54:24.654444+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-01T11:00:46.595374+00:00",
+      "realized_pnl": -2.16
     },
     {
       "id": "NB1777600464",
@@ -9183,11 +9189,31 @@
       "placed_at": "2026-05-01T09:46:37.490967+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777633259",
+      "market_id": "2039931",
+      "market_slug": "cz-binance-of-tweets-april-24-may-1-2026-0-19",
+      "market": "Will CZ post 0-19 posts from April 24 to May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 2.41,
+      "payout_if_wins": 4.08,
+      "profit_if_wins": 1.67,
+      "category": "other",
+      "closes_in_days": 0.21,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "volume": 4243.2909469999995,
+      "status": "open",
+      "placed_at": "2026-05-01T11:00:59.640352+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 17.12,
+  "daily_loss": 24.09,
   "daily_reset": "2026-05-01",
-  "scan_count": 293,
+  "scan_count": 294,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-01T07:59:29.223467+00:00"
 }

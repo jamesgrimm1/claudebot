@@ -1,5 +1,5 @@
 {
-  "bankroll": 1080.45,
+  "bankroll": 1075.97,
   "trades": [
     {
       "id": "NB1776304868",
@@ -179,10 +179,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 6024.826406999999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863556+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-05-01T11:01:00.370195+00:00",
+      "realized_pnl": -3.11
     },
     {
       "id": "NB1776304868",
@@ -9138,10 +9141,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 4780.2682429999995,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T01:54:35.732097+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-05-01T11:01:02.298797+00:00",
+      "realized_pnl": -3.87
     },
     {
       "id": "NB1777600475",
@@ -9242,11 +9248,31 @@
       "placed_at": "2026-05-01T09:46:51.010345+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777633271",
+      "market_id": "2039931",
+      "market_slug": "cz-binance-of-tweets-april-24-may-1-2026-0-19",
+      "market": "Will CZ post 0-19 posts from April 24 to May 1, 2026?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 4.48,
+      "payout_if_wins": 7.59,
+      "profit_if_wins": 3.11,
+      "category": "other",
+      "closes_in_days": 0.21,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "volume": 4243.2909469999995,
+      "status": "open",
+      "placed_at": "2026-05-01T11:01:11.014184+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 17.64,
+  "daily_loss": 24.62,
   "daily_reset": "2026-05-01",
-  "scan_count": 297,
+  "scan_count": 298,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-01T07:59:41.435813+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
