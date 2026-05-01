@@ -1,5 +1,5 @@
 {
-  "bankroll": 1070.49,
+  "bankroll": 1062.12,
   "trades": [
     {
       "id": "NB1776304868",
@@ -9337,11 +9337,51 @@
       "placed_at": "2026-05-01T12:53:04.996070+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777644792",
+      "market_id": "2124729",
+      "market_slug": "nvda-close-above-200-on-may-1-2026",
+      "market": "Will NVIDIA (NVDA) close above $200 on May 1?",
+      "position": "NO",
+      "entry_no_price": 55,
+      "entry_yes_price": 45,
+      "stake": 4.98,
+      "payout_if_wins": 9.05,
+      "profit_if_wins": 4.07,
+      "category": "other",
+      "closes_in_days": 0.24,
+      "closes": "2026-05-01T20:00:00+00:00",
+      "volume": 5258.7196619999995,
+      "status": "open",
+      "placed_at": "2026-05-01T14:13:12.503057+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777644792",
+      "market_id": "2071699",
+      "market_slug": "will-aapl-reach-288-by-april-27-2026",
+      "market": "Will Apple (AAPL) hit (HIGH) $288 Week of April 27 2026?",
+      "position": "NO",
+      "entry_no_price": 50,
+      "entry_yes_price": 50,
+      "stake": 3.39,
+      "payout_if_wins": 6.78,
+      "profit_if_wins": 3.39,
+      "category": "other",
+      "closes_in_days": 0.24,
+      "closes": "2026-05-01T20:00:00+00:00",
+      "volume": 3835.1978320000003,
+      "status": "open",
+      "placed_at": "2026-05-01T14:13:12.503108+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 27.72,
   "daily_reset": "2026-05-01",
-  "scan_count": 299,
+  "scan_count": 300,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-01T07:59:41.435813+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

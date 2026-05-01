@@ -28,15 +28,18 @@
       "bear_case": "Moderna's business in serious decline; unknown negative catalysts this specific quarter; $9.9K volume suggests some informed money; resolution criteria may require beating on multiple metrics; market participants may have specific intelligence on this quarter's shortfall",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T20:14:41.094212+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": false,
+      "resolved_at": "2026-05-01T14:14:39.872285+00:00",
+      "realized_pnl": -100.0
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 100.0,
   "daily_reset": "2026-05-01",
-  "scan_count": 29,
+  "scan_count": 30,
   "started": "2026-04-29T15:03:12.099702+00:00",
   "version": "v3",
   "notes": "V3: 500 market pull + newest pass, sports near-resolution enabled, tech/culture categories added",

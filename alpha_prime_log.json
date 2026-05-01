@@ -1,5 +1,5 @@
 {
-  "bankroll": 715.57,
+  "bankroll": 810.15,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -123,11 +123,14 @@
       "potential_payout": 123.23,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.167,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T08:00:11.848937+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T14:13:38.675900+00:00",
+      "realized_pnl": -27.11
     },
     {
       "id": "AP20260501080011849590",
@@ -145,11 +148,14 @@
       "potential_payout": 438.33,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.167,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T08:00:11.849600+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T14:13:38.723048+00:00",
+      "realized_pnl": -26.3
     },
     {
       "id": "AP20260501094714666347",
@@ -189,11 +195,14 @@
       "potential_payout": 112.45,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.092,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:14.666983+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T14:13:38.850237+00:00",
+      "realized_pnl": -24.74
     },
     {
       "id": "AP20260501094714667805",
@@ -211,11 +220,14 @@
       "potential_payout": 300.0,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.092,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:14.667818+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T14:13:38.889321+00:00",
+      "realized_pnl": -24.0
     },
     {
       "id": "AP20260501094714668414",
@@ -255,11 +267,14 @@
       "potential_payout": 94.58,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.041,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T11:01:50.092355+00:00",
       "source_bot": "nearcertain_beta",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": true,
+      "resolved_at": "2026-05-01T14:13:38.926870+00:00",
+      "realized_pnl": 71.88
     },
     {
       "id": "AP20260501125325180818",
@@ -284,9 +299,9 @@
       "model": "alpha-prime-signal"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 102.15,
   "daily_reset": "2026-05-01",
-  "scan_count": 40,
+  "scan_count": 41,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",
