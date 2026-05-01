@@ -173,11 +173,14 @@
       "potential_payout": 364.43,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.092,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:14.666357+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T15:45:37.544288+00:00",
+      "realized_pnl": -25.51
     },
     {
       "id": "AP20260501094714666974",
@@ -245,11 +248,14 @@
       "potential_payout": 84.35,
       "closes": "2026-05-01T15:00:00+00:00",
       "closes_in_days": 0.217,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:14.668423+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-01T15:45:37.601188+00:00",
+      "realized_pnl": -19.4
     },
     {
       "id": "AP20260501110150092343",
@@ -299,9 +305,9 @@
       "model": "alpha-prime-signal"
     }
   ],
-  "daily_loss": 102.15,
+  "daily_loss": 147.06,
   "daily_reset": "2026-05-01",
-  "scan_count": 41,
+  "scan_count": 42,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",
