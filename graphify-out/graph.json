@@ -1,6 +1,6 @@
 {
-  "generated": "2026-05-01T02:07:35.771424",
-  "total_trades": 36,
+  "generated": "2026-05-01T08:06:53.112509",
+  "total_trades": 37,
   "trades": [
     {
       "won": true,
@@ -300,6 +300,19 @@
       "bear": "Ambiguity in resolution criteria \u2014 if 'hit LOW $95' requires a specific intraday tick at exactly $95.00 rather than trading near/at $95, outcome could differ; low volume ($100) may limit execution",
       "news": false,
       "path": "trade_reflections/T1775098669_commodities_LOST.md"
+    },
+    {
+      "won": true,
+      "category": "crypto",
+      "conf": 88,
+      "hold_h": 67.6,
+      "tier": "1",
+      "position": "NO",
+      "pnl": 197.68,
+      "market": "Will XRP reach $2.00 in April?",
+      "bear": "Black swan crypto event (ETF approval, major partnership) could trigger parabolic move, though 45% in 3 days still extreme",
+      "news": false,
+      "path": "trade_reflections/T1777379247_crypto_WON.md"
     },
     {
       "won": true,

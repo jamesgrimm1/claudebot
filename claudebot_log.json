@@ -1,5 +1,5 @@
 {
-  "bankroll": 1829.06,
+  "bankroll": 2232.49,
   "trades": [
     {
       "id": "T1775098669",
@@ -1163,10 +1163,13 @@
       "bear_case": "Black swan crypto event (ETF approval, major partnership) could trigger parabolic move, though 45% in 3 days still extreme",
       "kelly_tier": "half-Kelly (10.0%)",
       "news_triggered": false,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T12:27:27.299984+00:00",
       "paper": true,
-      "model": "claude-opus-4-6"
+      "model": "claude-opus-4-6",
+      "won": true,
+      "resolved_at": "2026-05-01T08:01:10.753402+00:00",
+      "realized_pnl": 197.68
     },
     {
       "id": "T1777379248",
@@ -1206,7 +1209,7 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-01",
-  "scan_count": 336,
+  "scan_count": 337,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-04-30",
   "last_tier2_scan": "2026-05-01",

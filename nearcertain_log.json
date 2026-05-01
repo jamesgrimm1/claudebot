@@ -1,5 +1,5 @@
 {
-  "bankroll": 921.19,
+  "bankroll": 882.62,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -5680,10 +5680,13 @@
       "potential_payout": 33.44,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.546,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T10:53:48.757610+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T08:00:03.185623+00:00",
+      "realized_pnl": -5.35
     },
     {
       "id": "NC20260428105348757706",
@@ -5905,10 +5908,13 @@
       "potential_payout": 155.11,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 0.921,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:53:13.480306+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T08:00:03.425420+00:00",
+      "realized_pnl": -13.96
     },
     {
       "id": "NC20260429015313480411",
@@ -6550,10 +6556,13 @@
       "potential_payout": 41.82,
       "closes": "2026-05-01T04:00:00+00:00",
       "closes_in_days": 1.088,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T01:52:46.866220+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T08:00:03.751164+00:00",
+      "realized_pnl": -7.11
     },
     {
       "id": "NC20260430052237846636",
@@ -6652,10 +6661,13 @@
       "potential_payout": 226.0,
       "closes": "2026-05-01T00:00:00+00:00",
       "closes_in_days": 0.776,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T05:22:37.847226+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T08:00:03.790366+00:00",
+      "realized_pnl": -13.56
     },
     {
       "id": "NC20260430080211269190",
@@ -6838,10 +6850,13 @@
       "potential_payout": 123.9,
       "closes": "2026-05-01T03:59:59.999000+00:00",
       "closes_in_days": 0.832,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T08:02:11.269856+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T08:00:03.949462+00:00",
+      "realized_pnl": -12.39
     },
     {
       "id": "NC20260430080211269936",
@@ -7031,10 +7046,82 @@
       "placed_at": "2026-05-01T01:54:58.025704+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501080011848656",
+      "market_id": "2112468",
+      "market": "Will the highest temperature in Chongqing be 23\u00b0C on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 22,
+      "entry_yes_price": 78,
+      "stake": 4.61,
+      "potential_profit": 16.34,
+      "potential_payout": 20.95,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 0.167,
+      "status": "open",
+      "placed_at": "2026-05-01T08:00:11.848673+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501080011849363",
+      "market_id": "2112488",
+      "market": "Will the highest temperature in Wuhan be 26\u00b0C on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 13.75,
+      "potential_profit": 215.42,
+      "potential_payout": 229.17,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 0.167,
+      "status": "open",
+      "placed_at": "2026-05-01T08:00:11.849377+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501080011849917",
+      "market_id": "2112537",
+      "market": "Will the highest temperature in Houston be 71\u00b0F or below on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 9,
+      "entry_yes_price": 91,
+      "stake": 13.54,
+      "potential_profit": 136.9,
+      "potential_payout": 150.44,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 0.167,
+      "status": "open",
+      "placed_at": "2026-05-01T08:00:11.849928+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501080011850094",
+      "market_id": "2040036",
+      "market": "Will Elon Musk post 180-199 tweets from April 24 to May 1, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 19,
+      "entry_yes_price": 81,
+      "stake": 6.67,
+      "potential_profit": 28.44,
+      "potential_payout": 35.11,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "closes_in_days": 0.333,
+      "status": "open",
+      "placed_at": "2026-05-01T08:00:11.850107+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 31.22,
+  "daily_loss": 83.59,
   "daily_reset": "2026-05-01",
-  "scan_count": 201,
+  "scan_count": 202,
   "started": "2026-04-21T00:00:00+00:00"
 }
