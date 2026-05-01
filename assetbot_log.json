@@ -1,5 +1,5 @@
 {
-  "bankroll": 963.42,
+  "bankroll": 1004.96,
   "trades": [
     {
       "id": "AB1777514011",
@@ -45,10 +45,13 @@
       "reasoning": "YES requires NFLX to rise 19.41% from $92.12 to above $110 by end of week of April 27, which exceeds the 10% implausibility threshold without current price already crossing the threshold.",
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 1.609,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T05:23:58.764035+00:00",
       "paper": true,
-      "model": "assetbot-mechanical"
+      "model": "assetbot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-01T22:40:12.907915+00:00",
+      "realized_pnl": 1.7
     },
     {
       "id": "AB1777536207",
@@ -94,13 +97,16 @@
       "reasoning": "NFLX must rise 41.14% from $92.12 to $130 by end of week April 27, exceeding the 10% implausibility threshold with no prior threshold crossing.",
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 1.301,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T12:47:24.750969+00:00",
       "paper": true,
-      "model": "assetbot-mechanical"
+      "model": "assetbot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-01T22:40:12.907915+00:00",
+      "realized_pnl": 1.42
     }
   ],
-  "scan_count": 71,
+  "scan_count": 72,
   "started": "2026-04-27T14:51:44.970255+00:00",
   "price_snapshot": {
     "date": "2026-05-01",

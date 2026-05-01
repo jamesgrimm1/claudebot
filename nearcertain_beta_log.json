@@ -1,5 +1,5 @@
 {
-  "bankroll": 940.3,
+  "bankroll": 939.47,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -22695,10 +22695,13 @@
       "potential_payout": 7.83,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.926,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T21:47:04.339074+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:02.818244+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260430214704339388",
@@ -22713,10 +22716,13 @@
       "potential_payout": 9.4,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.926,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T21:47:04.339403+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:02.996106+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260430224131579397",
@@ -22857,10 +22863,13 @@
       "potential_payout": 1.68,
       "closes": "2026-05-01T22:00:00+00:00",
       "closes_in_days": 0.971,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T22:41:31.582687+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:03.147732+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260430234227165947",
@@ -23511,10 +23520,13 @@
       "potential_payout": 2.94,
       "closes": "2026-05-01T12:00:00+00:00",
       "closes_in_days": 0.092,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:31.418215+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:03.245913+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501094731418499",
@@ -24228,10 +24240,13 @@
       "potential_payout": 2.14,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.177,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T15:45:37.256690+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:03.368393+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501154537256924",
@@ -24303,10 +24318,13 @@
       "potential_payout": 2.76,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.136,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T16:44:09.109537+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T22:40:03.472908+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501164409110368",
@@ -24546,10 +24564,13 @@
       "potential_payout": 1.52,
       "closes": "2026-05-01T20:00:00+00:00",
       "closes_in_days": 0.044,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T18:56:24.743156+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-01T22:40:04.815422+00:00",
+      "realized_pnl": 1.05
     },
     {
       "id": "NC20260501185624743375",
@@ -24946,11 +24967,101 @@
       "placed_at": "2026-05-01T21:43:38.249756+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501224012078197",
+      "market_id": "2091018",
+      "market": "Map Handicap: NRG (-1.5) vs Evil Geniuses (+1.5)",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 9,
+      "entry_yes_price": 91,
+      "stake": 0.47,
+      "potential_profit": 4.75,
+      "potential_payout": 5.22,
+      "closes": "2026-05-02T03:00:00+00:00",
+      "closes_in_days": 0.18,
+      "status": "open",
+      "placed_at": "2026-05-01T22:40:12.078213+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501224012078654",
+      "market_id": "2081364",
+      "market": "LoL: Supernova vs Blue Otter (BO3) - North American Challengers League Regular Season",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 0.47,
+      "potential_profit": 7.36,
+      "potential_payout": 7.83,
+      "closes": "2026-05-02T03:40:00+00:00",
+      "closes_in_days": 0.208,
+      "status": "open",
+      "placed_at": "2026-05-01T22:40:12.078668+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501224012078906",
+      "market_id": "1871335",
+      "market": "Will Ipswich Town FC win on 2026-05-02?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 26,
+      "entry_yes_price": 74,
+      "stake": 0.47,
+      "potential_profit": 1.34,
+      "potential_payout": 1.81,
+      "closes": "2026-05-02T11:30:00+00:00",
+      "closes_in_days": 0.535,
+      "status": "open",
+      "placed_at": "2026-05-01T22:40:12.078919+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501224012079436",
+      "market_id": "2122135",
+      "market": "Will the lowest temperature in Hong Kong be 24\u00b0C on May 2?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 0.47,
+      "potential_profit": 2.89,
+      "potential_payout": 3.36,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "closes_in_days": 0.555,
+      "status": "open",
+      "placed_at": "2026-05-01T22:40:12.079450+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501224012080157",
+      "market_id": "2036435",
+      "market": "Will Al Hilal Saudi Club win on 2026-05-02?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 0.47,
+      "potential_profit": 2.14,
+      "potential_payout": 2.61,
+      "closes": "2026-05-02T17:00:00+00:00",
+      "closes_in_days": 0.764,
+      "status": "open",
+      "placed_at": "2026-05-01T22:40:12.080172+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 42.66,
+  "daily_loss": 45.48,
   "daily_reset": "2026-05-01",
-  "scan_count": 158,
+  "scan_count": 159,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
