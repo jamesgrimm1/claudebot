@@ -1,5 +1,5 @@
 {
-  "bankroll": 1201.09,
+  "bankroll": 1183.07,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4582,10 +4582,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-30T12:00:00+00:00",
       "volume": 3979.4347870000024,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T01:25:13.314740+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-01T01:54:36.486049+00:00",
+      "realized_pnl": -14.04
     },
     {
       "id": "NB1777512313",
@@ -4602,10 +4605,13 @@
       "closes_in_days": 0.44,
       "closes": "2026-04-30T12:00:00+00:00",
       "volume": 3584.1591179999996,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T01:25:13.314765+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-01T01:54:36.527072+00:00",
+      "realized_pnl": -9.26
     },
     {
       "id": "NB1777525216",
@@ -4849,11 +4855,31 @@
       "placed_at": "2026-05-01T00:10:30.684193+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777600485",
+      "market_id": "2112191",
+      "market_slug": "highest-temperature-in-london-on-may-1-2026-24c",
+      "market": "Will the highest temperature in London be 24\u00b0C on May 1?",
+      "position": "NO",
+      "entry_no_price": 48,
+      "entry_yes_price": 52,
+      "stake": 18.02,
+      "payout_if_wins": 37.54,
+      "profit_if_wins": 19.52,
+      "category": "weather",
+      "closes_in_days": 0.42,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "volume": 7681.726388999994,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:45.534889+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 23.3,
   "daily_reset": "2026-05-01",
-  "scan_count": 379,
+  "scan_count": 380,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-04-30T19:57:45.138632+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

@@ -1,5 +1,5 @@
 {
-  "bankroll": 963.82,
+  "bankroll": 921.19,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -5305,10 +5305,13 @@
       "potential_payout": 17.64,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.776,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:37.807178+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T01:54:49.666978+00:00",
+      "realized_pnl": -4.41
     },
     {
       "id": "NC20260428052237807235",
@@ -5344,10 +5347,13 @@
       "potential_payout": 217.67,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 1.776,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-28T05:22:37.807308+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T01:54:49.721839+00:00",
+      "realized_pnl": -13.06
     },
     {
       "id": "NC20260428052237807364",
@@ -5917,10 +5923,13 @@
       "potential_payout": 152.78,
       "closes": "2026-04-30T00:00:00+00:00",
       "closes_in_days": 0.921,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-29T01:53:13.480421+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-01T01:54:50.755301+00:00",
+      "realized_pnl": -13.75
     },
     {
       "id": "NC20260429015313480522",
@@ -6932,10 +6941,100 @@
       "won": false,
       "resolved_at": "2026-04-30T23:41:59.162141+00:00",
       "realized_pnl": -4.25
+    },
+    {
+      "id": "NC20260501015458024922",
+      "market_id": "2092547",
+      "market": "Dota 2: Xtreme Gaming vs Roar Gaming (BO1) - ACL X ESL Challenger China Playoffs",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 9.64,
+      "potential_profit": 59.22,
+      "potential_payout": 68.86,
+      "closes": "2026-05-01T11:00:00+00:00",
+      "closes_in_days": 0.379,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:58.024943+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501015458025176",
+      "market_id": "2112536",
+      "market": "Will the highest temperature in Denver be 58\u00b0F or higher on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 21,
+      "entry_yes_price": 79,
+      "stake": 4.77,
+      "potential_profit": 17.94,
+      "potential_payout": 22.71,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 0.42,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:58.025188+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501015458025370",
+      "market_id": "2112335",
+      "market": "Will the highest temperature in Wellington be 16\u00b0C on May 1?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 4.75,
+      "potential_profit": 15.04,
+      "potential_payout": 19.79,
+      "closes": "2026-05-01T12:00:00+00:00",
+      "closes_in_days": 0.42,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:58.025384+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501015458025539",
+      "market_id": "2039934",
+      "market": "Will Khamenei post 0-4 posts from April 24 to May 1, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 14.17,
+      "potential_profit": 162.96,
+      "potential_payout": 177.12,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "closes_in_days": 0.587,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:58.025552+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260501015458025694",
+      "market_id": "2039938",
+      "market": "Will CZ post 20-39 posts from April 24 to May 1, 2026?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 11,
+      "entry_yes_price": 89,
+      "stake": 9.3,
+      "potential_profit": 75.25,
+      "potential_payout": 84.55,
+      "closes": "2026-05-01T16:00:00+00:00",
+      "closes_in_days": 0.587,
+      "status": "open",
+      "placed_at": "2026-05-01T01:54:58.025704+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 326.37,
-  "daily_reset": "2026-04-30",
-  "scan_count": 200,
+  "daily_loss": 31.22,
+  "daily_reset": "2026-05-01",
+  "scan_count": 201,
   "started": "2026-04-21T00:00:00+00:00"
 }
