@@ -36,11 +36,11 @@
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-01",
-  "scan_count": 26,
+  "scan_count": 27,
   "started": "2026-04-29T15:03:12.099702+00:00",
   "version": "v3",
   "notes": "V3: 500 market pull + newest pass, sports near-resolution enabled, tech/culture categories added",
   "last_reassessment": "2026-04-29T15:40:59.888701+00:00",
   "last_tier2_scan": "2026-05-01",
-  "last_daily_summary": "2026-04-30"
+  "last_daily_summary": "2026-05-01"
 }
