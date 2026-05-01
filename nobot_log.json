@@ -1,5 +1,5 @@
 {
-  "bankroll": 957.57,
+  "bankroll": 953.98,
   "trades": [
     {
       "id": "NB1776304868",
@@ -9318,11 +9318,31 @@
       "placed_at": "2026-05-01T14:13:05.902759+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777657699",
+      "market_id": "2129658",
+      "market_slug": "will-bitcoin-reach-79k-on-may-1",
+      "market": "Will Bitcoin reach $79,000 on May 1?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.59,
+      "payout_if_wins": 6.41,
+      "profit_if_wins": 2.82,
+      "category": "crypto",
+      "closes_in_days": 0.42,
+      "closes": "2026-05-02T04:00:00+00:00",
+      "volume": 55116.55300599999,
+      "status": "open",
+      "placed_at": "2026-05-01T17:48:19.871907+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 28.71,
   "daily_reset": "2026-05-01",
-  "scan_count": 298,
+  "scan_count": 299,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-01T07:59:29.223467+00:00"
 }
