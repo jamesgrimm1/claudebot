@@ -1,5 +1,5 @@
 {
-  "bankroll": 709.24,
+  "bankroll": 749.96,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -7297,10 +7297,13 @@
       "potential_payout": 18.82,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 1.092,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T09:47:14.668814+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T12:43:19.429248+00:00",
+      "realized_pnl": -4.14
     },
     {
       "id": "NC20260501125325180513",
@@ -7663,10 +7666,13 @@
       "potential_payout": 16.58,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:56:44.116077+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T12:43:25.067781+00:00",
+      "realized_pnl": 12.6
     },
     {
       "id": "NC20260502065644116969",
@@ -7753,10 +7759,13 @@
       "potential_payout": 31.72,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.088,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T09:53:02.311767+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T12:43:26.876582+00:00",
+      "realized_pnl": 26.01
     },
     {
       "id": "NC20260502095302312816",
@@ -7865,10 +7874,28 @@
       "placed_at": "2026-05-02T10:41:08.976226+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502124338359133",
+      "market_id": "2138543",
+      "market": "Dota 2: Vici Gaming vs Yakult Brothers (BO3) - ACL X ESL Challenger China Playoffs",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 7.58,
+      "potential_profit": 55.59,
+      "potential_payout": 63.17,
+      "closes": "2026-05-02T17:30:00+00:00",
+      "closes_in_days": 0.199,
+      "status": "open",
+      "placed_at": "2026-05-02T12:43:38.359155+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 4.14,
   "daily_reset": "2026-05-02",
-  "scan_count": 223,
+  "scan_count": 224,
   "started": "2026-04-21T00:00:00+00:00"
 }

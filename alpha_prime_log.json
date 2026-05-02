@@ -1,5 +1,5 @@
 {
-  "bankroll": 635.15,
+  "bankroll": 897.11,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -367,11 +367,14 @@
       "potential_payout": 106.62,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:56:44.116403+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": true,
+      "resolved_at": "2026-05-02T12:44:07.809008+00:00",
+      "realized_pnl": 81.03
     },
     {
       "id": "AP20260502065644117394",
@@ -433,11 +436,14 @@
       "potential_payout": 171.22,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.088,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T09:53:02.312145+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": true,
+      "resolved_at": "2026-05-02T12:44:08.240928+00:00",
+      "realized_pnl": 140.4
     },
     {
       "id": "AP20260502095302313174",
@@ -548,11 +554,33 @@
       "source_bot": "nearcertain_beta",
       "paper": true,
       "model": "alpha-prime-signal"
+    },
+    {
+      "id": "AP20260502124338359582",
+      "market_id": "2138543",
+      "market": "Dota 2: Vici Gaming vs Yakult Brothers (BO3) - ACL X ESL Challenger China Playoffs",
+      "category": "other",
+      "pattern": "C",
+      "pattern_label": "Esports CS/Dota/LoL",
+      "pattern_reason": "esports_dota",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 15.88,
+      "potential_profit": 116.45,
+      "potential_payout": 132.33,
+      "closes": "2026-05-02T17:30:00+00:00",
+      "closes_in_days": 0.199,
+      "status": "open",
+      "placed_at": "2026-05-02T12:43:38.359594+00:00",
+      "source_bot": "nearcertain",
+      "paper": true,
+      "model": "alpha-prime-signal"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 58,
+  "scan_count": 59,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",
