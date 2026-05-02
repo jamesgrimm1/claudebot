@@ -1211,11 +1211,11 @@
     }
   ],
   "daily_loss": 0.0,
-  "daily_reset": "2026-05-01",
-  "scan_count": 350,
+  "daily_reset": "2026-05-02",
+  "scan_count": 351,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-05-01",
-  "last_tier2_scan": "2026-05-01",
+  "last_tier2_scan": "2026-05-02",
   "last_tier3_scan": "2026-W16",
   "last_reassessment": "2026-05-01T11:02:42.051001+00:00"
 }

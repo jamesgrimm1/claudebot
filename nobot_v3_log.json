@@ -1,5 +1,5 @@
 {
-  "bankroll": 1238.94,
+  "bankroll": 1211.22,
   "trades": [
     {
       "id": "NB1776304868",
@@ -4766,10 +4766,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 4256.138943,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T00:10:30.684078+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:03.183478+00:00",
+      "realized_pnl": -19.5
     },
     {
       "id": "NB1777594230",
@@ -4809,10 +4812,13 @@
       "closes_in_days": 0.49,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 3722.393522000002,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T00:10:30.684122+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:03.247202+00:00",
+      "realized_pnl": -18.99
     },
     {
       "id": "NB1777594230",
@@ -5048,11 +5054,51 @@
       "placed_at": "2026-05-02T00:08:06.577208+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777685470",
+      "market_id": "2122309",
+      "market_slug": "highest-temperature-in-wellington-on-may-2-2026-16c",
+      "market": "Will the highest temperature in Wellington be 16\u00b0C on May 2?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 13.94,
+      "payout_if_wins": 24.03,
+      "profit_if_wins": 10.09,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 4219.326850000001,
+      "status": "open",
+      "placed_at": "2026-05-02T01:31:10.847835+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777685470",
+      "market_id": "2122375",
+      "market_slug": "highest-temperature-in-shanghai-on-may-2-2026-24c",
+      "market": "Will the highest temperature in Shanghai be 24\u00b0C on May 2?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 13.78,
+      "payout_if_wins": 23.76,
+      "profit_if_wins": 9.98,
+      "category": "weather",
+      "closes_in_days": 0.44,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 3729.4605,
+      "status": "open",
+      "placed_at": "2026-05-02T01:31:10.847868+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 38.49,
   "daily_reset": "2026-05-02",
-  "scan_count": 411,
+  "scan_count": 412,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-01T20:00:17.266576+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

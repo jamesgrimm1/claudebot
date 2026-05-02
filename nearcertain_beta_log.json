@@ -1,5 +1,5 @@
 {
-  "bankroll": 939.0,
+  "bankroll": 942.2,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -22944,10 +22944,13 @@
       "potential_payout": 1.38,
       "closes": "2026-05-01T23:00:00+00:00",
       "closes_in_days": 0.971,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T23:42:27.167913+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:28.676430+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260430234227168196",
@@ -23373,10 +23376,13 @@
       "potential_payout": 1.57,
       "closes": "2026-05-02T01:00:00+00:00",
       "closes_in_days": 0.708,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T08:00:26.239668+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T01:31:29.101956+00:00",
+      "realized_pnl": 1.1
     },
     {
       "id": "NC20260501080026239963",
@@ -23391,10 +23397,13 @@
       "potential_payout": 7.83,
       "closes": "2026-05-02T01:00:00+00:00",
       "closes_in_days": 0.708,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T08:00:26.239978+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:29.220359+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501080026240285",
@@ -23409,10 +23418,13 @@
       "potential_payout": 1.57,
       "closes": "2026-05-02T01:30:00+00:00",
       "closes_in_days": 0.729,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T08:00:26.240300+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T01:31:29.341779+00:00",
+      "realized_pnl": 1.1
     },
     {
       "id": "NC20260501080026240588",
@@ -24405,10 +24417,13 @@
       "potential_payout": 3.92,
       "closes": "2026-05-01T21:50:00+00:00",
       "closes_in_days": 0.167,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T17:48:58.989531+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:29.513163+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501174858989787",
@@ -24423,10 +24438,13 @@
       "potential_payout": 2.94,
       "closes": "2026-05-01T22:10:00+00:00",
       "closes_in_days": 0.181,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T17:48:58.989801+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:29.588739+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501174858990082",
@@ -24660,10 +24678,13 @@
       "potential_payout": 3.13,
       "closes": "2026-05-02T00:00:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T18:56:24.744137+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:29.758660+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501185624744991",
@@ -24810,10 +24831,13 @@
       "potential_payout": 2.35,
       "closes": "2026-05-02T01:30:00+00:00",
       "closes_in_days": 0.19,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T20:56:30.852518+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:29.844626+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501205630852795",
@@ -24900,10 +24924,13 @@
       "potential_payout": 1.57,
       "closes": "2026-05-02T01:00:00+00:00",
       "closes_in_days": 0.136,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T21:43:38.248029+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T01:31:30.006493+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501214338248366",
@@ -24918,10 +24945,13 @@
       "potential_payout": 1.47,
       "closes": "2026-05-02T01:30:00+00:00",
       "closes_in_days": 0.157,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T21:43:38.248380+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T01:31:30.267174+00:00",
+      "realized_pnl": 1.0
     },
     {
       "id": "NC20260501214338248687",
@@ -25102,11 +25132,65 @@
       "placed_at": "2026-05-01T23:41:48.242106+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502013135820725",
+      "market_id": "2129036",
+      "market": "Games Total: O/U 2.5",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 0.47,
+      "potential_profit": 3.15,
+      "potential_payout": 3.62,
+      "closes": "2026-05-02T05:50:00+00:00",
+      "closes_in_days": 0.18,
+      "status": "open",
+      "placed_at": "2026-05-02T01:31:35.820745+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502013135821033",
+      "market_id": "2129035",
+      "market": "Counter-Strike: Astralis vs GamerLegion - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 13,
+      "entry_yes_price": 87,
+      "stake": 0.47,
+      "potential_profit": 3.15,
+      "potential_payout": 3.62,
+      "closes": "2026-05-02T05:50:00+00:00",
+      "closes_in_days": 0.18,
+      "status": "open",
+      "placed_at": "2026-05-02T01:31:35.821045+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502013135821982",
+      "market_id": "2045854",
+      "market": "Will FC Porto win on 2026-05-02?",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.47,
+      "potential_profit": 2.47,
+      "potential_payout": 2.94,
+      "closes": "2026-05-02T19:30:00+00:00",
+      "closes_in_days": 0.749,
+      "status": "open",
+      "placed_at": "2026-05-02T01:31:35.821996+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 49.71,
-  "daily_reset": "2026-05-01",
-  "scan_count": 160,
+  "daily_loss": 3.29,
+  "daily_reset": "2026-05-02",
+  "scan_count": 161,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
