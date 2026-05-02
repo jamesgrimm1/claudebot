@@ -1,5 +1,5 @@
 {
-  "bankroll": 732.81,
+  "bankroll": 709.24,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -7811,10 +7811,64 @@
       "placed_at": "2026-05-02T09:53:02.314046+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502104108975687",
+      "market_id": "2020071",
+      "market": "Newcastle United FC vs. Brighton & Hove Albion FC: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 5.5,
+      "potential_profit": 22.0,
+      "potential_payout": 27.5,
+      "closes": "2026-05-02T14:00:00+00:00",
+      "closes_in_days": 0.138,
+      "status": "open",
+      "placed_at": "2026-05-02T10:41:08.975708+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502104108975956",
+      "market_id": "2093312",
+      "market": "Valorant: T1 vs FULL SENSE (BO3) - VCT Pacific Group Omega",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 10.91,
+      "potential_profit": 125.47,
+      "potential_payout": 136.38,
+      "closes": "2026-05-02T14:10:00+00:00",
+      "closes_in_days": 0.145,
+      "status": "open",
+      "placed_at": "2026-05-02T10:41:08.975971+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502104108976212",
+      "market_id": "2119363",
+      "market": "UFC Fight Night: Marwan Rahiki vs. Ollie Schmid (Featherweight, Main Card)",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 7.16,
+      "potential_profit": 43.98,
+      "potential_payout": 51.14,
+      "closes": "2026-05-03T03:59:59.999000+00:00",
+      "closes_in_days": 0.722,
+      "status": "open",
+      "placed_at": "2026-05-02T10:41:08.976226+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 221,
+  "scan_count": 222,
   "started": "2026-04-21T00:00:00+00:00"
 }
