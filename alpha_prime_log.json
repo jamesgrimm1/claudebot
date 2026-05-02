@@ -607,7 +607,7 @@
   ],
   "daily_loss": 144.68,
   "daily_reset": "2026-05-02",
-  "scan_count": 61,
+  "scan_count": 62,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",

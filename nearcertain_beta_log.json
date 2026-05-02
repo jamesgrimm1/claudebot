@@ -1,5 +1,5 @@
 {
-  "bankroll": 938.49,
+  "bankroll": 939.04,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -24777,10 +24777,13 @@
       "potential_payout": 1.96,
       "closes": "2026-05-02T16:00:00+00:00",
       "closes_in_days": 0.833,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T20:00:44.681487+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-02T16:36:09.587556+00:00",
+      "realized_pnl": 1.49
     },
     {
       "id": "NC20260501200044681787",
@@ -25155,10 +25158,13 @@
       "potential_payout": 3.36,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.555,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T22:40:12.079450+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:10.235214+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501224012080157",
@@ -25758,10 +25764,13 @@
       "potential_payout": 1.42,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.211,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:56:57.523333+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:10.270015+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502065657523821",
@@ -26073,10 +26082,13 @@
       "potential_payout": 1.47,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.154,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T08:18:58.392348+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:11.667389+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502081858392672",
@@ -26091,10 +26103,13 @@
       "potential_payout": 1.38,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.154,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T08:18:58.392685+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:11.705209+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502081858392929",
@@ -26295,10 +26310,13 @@
       "potential_payout": 1.57,
       "closes": "2026-05-02T15:00:00+00:00",
       "closes_in_days": 0.213,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T09:53:13.604769+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:11.898051+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502095313605112",
@@ -26508,10 +26526,13 @@
       "potential_payout": 2.3,
       "closes": "2026-05-02T14:00:00+00:00",
       "closes_in_days": 0.138,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T10:41:19.511471+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:12.009732+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260502104119511966",
@@ -26736,10 +26757,13 @@
       "potential_payout": 4.6,
       "closes": "2026-05-02T16:00:00+00:00",
       "closes_in_days": 0.183,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T11:37:04.083386+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T16:36:12.667222+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260502113704084111",
@@ -27031,11 +27055,65 @@
       "placed_at": "2026-05-02T15:37:50.983464+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502163621140749",
+      "market_id": "2135836",
+      "market": "Dota 2: Ilbirs eSports vs DOGSENT - Game 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 0.47,
+      "potential_profit": 5.41,
+      "potential_payout": 5.88,
+      "closes": "2026-05-02T21:00:00+00:00",
+      "closes_in_days": 0.183,
+      "status": "open",
+      "placed_at": "2026-05-02T16:36:21.140775+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502163621141832",
+      "market_id": "2096273",
+      "market": "Counter-Strike: Game Hunters vs METANOIA WOLVES (BO3) - Odyssey Cup Brazil Group Stage",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.47,
+      "potential_profit": 1.0,
+      "potential_payout": 1.47,
+      "closes": "2026-05-03T01:00:00+00:00",
+      "closes_in_days": 0.35,
+      "status": "open",
+      "placed_at": "2026-05-02T16:36:21.141849+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502163621142279",
+      "market_id": "2101266",
+      "market": "LoL: Cloud9 vs Dignitas (BO3) - LCS Regular Season",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 0.47,
+      "potential_profit": 4.23,
+      "potential_payout": 4.7,
+      "closes": "2026-05-03T02:00:00+00:00",
+      "closes_in_days": 0.392,
+      "status": "open",
+      "placed_at": "2026-05-02T16:36:21.142297+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 24.38,
+  "daily_loss": 27.65,
   "daily_reset": "2026-05-02",
-  "scan_count": 171,
+  "scan_count": 172,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
