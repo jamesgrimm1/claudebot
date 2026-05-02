@@ -7498,10 +7498,13 @@
       "potential_payout": 41.38,
       "closes": "2026-05-02T16:00:00+00:00",
       "closes_in_days": 0.603,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T01:31:22.844803+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T18:41:46.453591+00:00",
+      "realized_pnl": -6.62
     },
     {
       "id": "NC20260502023831672475",
@@ -7972,8 +7975,8 @@
       "model": "nearcertain"
     }
   ],
-  "daily_loss": 150.67,
+  "daily_loss": 157.29,
   "daily_reset": "2026-05-02",
-  "scan_count": 228,
+  "scan_count": 229,
   "started": "2026-04-21T00:00:00+00:00"
 }
