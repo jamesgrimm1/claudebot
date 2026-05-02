@@ -1,5 +1,5 @@
 {
-  "bankroll": 1148.91,
+  "bankroll": 1118.95,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5197,11 +5197,51 @@
       "placed_at": "2026-05-02T06:13:59.912588+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777704991",
+      "market_id": "2122476",
+      "market_slug": "highest-temperature-in-chengdu-on-may-2-2026-25c",
+      "market": "Will the highest temperature in Chengdu be 25\u00b0C on May 2?",
+      "position": "NO",
+      "entry_no_price": 47,
+      "entry_yes_price": 53,
+      "stake": 17.23,
+      "payout_if_wins": 36.66,
+      "profit_if_wins": 19.43,
+      "category": "weather",
+      "closes_in_days": 0.21,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 7477.066843000007,
+      "status": "open",
+      "placed_at": "2026-05-02T06:56:31.344725+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777704991",
+      "market_id": "2122242",
+      "market_slug": "highest-temperature-in-nyc-on-may-2-2026-60-61f",
+      "market": "Will the highest temperature in New York City be between 60-61\u00b0F on May 2?",
+      "position": "NO",
+      "entry_no_price": 58,
+      "entry_yes_price": 42,
+      "stake": 12.73,
+      "payout_if_wins": 21.95,
+      "profit_if_wins": 9.22,
+      "category": "weather",
+      "closes_in_days": 0.21,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 3515.925519000001,
+      "status": "open",
+      "placed_at": "2026-05-02T06:56:31.344780+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 56.51,
   "daily_reset": "2026-05-02",
-  "scan_count": 417,
+  "scan_count": 418,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-01T20:00:17.266576+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

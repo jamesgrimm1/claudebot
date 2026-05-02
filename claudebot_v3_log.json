@@ -1,5 +1,5 @@
 {
-  "bankroll": 900.0,
+  "bankroll": 810.0,
   "trades": [
     {
       "id": "T1777580081",
@@ -35,11 +35,42 @@
       "won": false,
       "resolved_at": "2026-05-01T14:14:39.872285+00:00",
       "realized_pnl": -100.0
+    },
+    {
+      "id": "T1777705262",
+      "tier": 1,
+      "market_id": "1278415",
+      "market_slug": "will-lady-gaga-attend-the-met-gala",
+      "market": "Will Lady Gaga attend the Met Gala?",
+      "position": "YES",
+      "entry_price": 62,
+      "stake": 90.0,
+      "potential_return": 145.16,
+      "potential_profit": 55.16,
+      "confidence": 76,
+      "true_prob": 77,
+      "market_prob": 62,
+      "category": "other",
+      "closes_in_days": 1.7,
+      "closes": "2026-05-04T00:00:00+00:00",
+      "research_summary": "Lady Gaga appears on multiple rumored guest lists, described as 'usual attendee' across several sources. No reports of scheduling conflicts, illness, or any reason for absence. Event is in 2 days.",
+      "key_factors": [
+        "On rumored guest list from multiple sources",
+        "Described as 'usual attendee' with strong historical attendance",
+        "No contradictory information found"
+      ],
+      "bear_case": "No official confirmation; celebrities can skip for undisclosed personal reasons; 'rumored' is not 'confirmed'",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-05-02T07:01:02.801950+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 42,
+  "scan_count": 43,
   "started": "2026-04-29T15:03:12.099702+00:00",
   "version": "v3",
   "notes": "V3: 500 market pull + newest pass, sports near-resolution enabled, tech/culture categories added",
