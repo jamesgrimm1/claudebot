@@ -1,5 +1,5 @@
 {
-  "bankroll": 1211.22,
+  "bankroll": 1193.12,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5097,11 +5097,51 @@
       "placed_at": "2026-05-02T01:31:10.847868+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777694003",
+      "market_id": "2122432",
+      "market_slug": "highest-temperature-in-taipei-on-may-2-2026-32c",
+      "market": "Will the highest temperature in Taipei be 32\u00b0C on May 2?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 9.08,
+      "payout_if_wins": 14.65,
+      "profit_if_wins": 5.57,
+      "category": "weather",
+      "closes_in_days": 0.34,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 4526.982603,
+      "status": "open",
+      "placed_at": "2026-05-02T03:53:23.612423+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777694003",
+      "market_id": "2122449",
+      "market_slug": "highest-temperature-in-beijing-on-may-2-2026-24c",
+      "market": "Will the highest temperature in Beijing be 24\u00b0C on May 2?",
+      "position": "NO",
+      "entry_no_price": 60,
+      "entry_yes_price": 40,
+      "stake": 9.02,
+      "payout_if_wins": 15.03,
+      "profit_if_wins": 6.01,
+      "category": "weather",
+      "closes_in_days": 0.34,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 3390.298711000002,
+      "status": "open",
+      "placed_at": "2026-05-02T03:53:23.612467+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 56.51,
   "daily_reset": "2026-05-02",
-  "scan_count": 413,
+  "scan_count": 414,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-01T20:00:17.266576+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
