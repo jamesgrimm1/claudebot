@@ -1,5 +1,5 @@
 {
-  "bankroll": 937.6,
+  "bankroll": 935.25,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -25077,10 +25077,13 @@
       "potential_payout": 1.38,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.595,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T21:43:38.249489+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T20:30:58.490426+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260501214338249743",
@@ -26079,10 +26082,13 @@
       "potential_payout": 1.38,
       "closes": "2026-05-02T12:00:00+00:00",
       "closes_in_days": 0.154,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T08:18:58.391781+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T20:30:59.297511+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502081858392023",
@@ -26970,10 +26976,13 @@
       "potential_payout": 1.39,
       "closes": "2026-05-02T18:00:00+00:00",
       "closes_in_days": 0.219,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T12:44:07.154191+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T20:30:59.949803+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260502140500003547",
@@ -27087,10 +27096,13 @@
       "potential_payout": 1.42,
       "closes": "2026-05-02T20:00:00+00:00",
       "closes_in_days": 0.182,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T15:37:50.982220+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-02T20:31:00.387500+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502153750983009",
@@ -27523,11 +27535,101 @@
       "placed_at": "2026-05-02T19:46:53.002398+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502203107409780",
+      "market_id": "2096547",
+      "market": "LoL: FURIA Esports vs RED Canids (BO3) - CBLOL Regular Season",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 0.47,
+      "potential_profit": 5.41,
+      "potential_payout": 5.88,
+      "closes": "2026-05-02T23:50:00+00:00",
+      "closes_in_days": 0.138,
+      "status": "open",
+      "placed_at": "2026-05-02T20:31:07.409795+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502203107410283",
+      "market_id": "2072432",
+      "market": "Will OpenAI have the second highest estimated revenue for Apr 27\u2013May 3, 2026?",
+      "category": "economics",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 0.47,
+      "potential_profit": 5.41,
+      "potential_payout": 5.88,
+      "closes": "2026-05-03T00:00:00+00:00",
+      "closes_in_days": 0.145,
+      "status": "open",
+      "placed_at": "2026-05-02T20:31:07.410297+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502203107410785",
+      "market_id": "2138126",
+      "market": "Counter-Strike: BESTIA Academy vs Alzon (BO3) - CCT South America Series #1 Group Stage",
+      "category": "conflict",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.47,
+      "potential_profit": 1.0,
+      "potential_payout": 1.47,
+      "closes": "2026-05-03T01:00:00+00:00",
+      "closes_in_days": 0.187,
+      "status": "open",
+      "placed_at": "2026-05-02T20:31:07.410799+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502203107411217",
+      "market_id": "2136404",
+      "market": "Counter-Strike: Vitality vs GamerLegion - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.47,
+      "potential_profit": 2.47,
+      "potential_payout": 2.94,
+      "closes": "2026-05-03T02:05:00+00:00",
+      "closes_in_days": 0.232,
+      "status": "open",
+      "placed_at": "2026-05-02T20:31:07.411229+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502203107411786",
+      "market_id": "2129764",
+      "market": "Will the lowest temperature in Tokyo be 17\u00b0C on May 3?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 8,
+      "entry_yes_price": 92,
+      "stake": 0.47,
+      "potential_profit": 5.41,
+      "potential_payout": 5.88,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "closes_in_days": 0.645,
+      "status": "open",
+      "placed_at": "2026-05-02T20:31:07.411799+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 36.55,
+  "daily_loss": 38.42,
   "daily_reset": "2026-05-02",
-  "scan_count": 175,
+  "scan_count": 176,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
