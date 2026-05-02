@@ -1,5 +1,5 @@
 {
-  "bankroll": 1204.87,
+  "bankroll": 1078.78,
   "trades": [
     {
       "id": "V2_1777561582",
@@ -34,11 +34,43 @@
       "won": true,
       "resolved_at": "2026-05-01T20:00:56.244000+00:00",
       "realized_pnl": 204.87
+    },
+    {
+      "id": "V2_1777689836",
+      "tier": 1,
+      "market_id": "2062065",
+      "market_slug": "sg-quarterly-earnings-gaap-eps-05-07-2026-neg0pt23",
+      "market": "Will Sweetgreen (SG) beat quarterly earnings?",
+      "position": "NO",
+      "entry_price": 14,
+      "stake": 126.09,
+      "potential_return": 900.64,
+      "potential_profit": 774.55,
+      "confidence": 76,
+      "true_prob": 68,
+      "market_prob": 86,
+      "category": "stocks",
+      "closes_in_days": 5.8,
+      "closes": "2026-05-07T21:00:00+00:00",
+      "research_summary": "SG missed Q4 earnings significantly (-$0.42 vs -$0.27 consensus). Company remains unprofitable with wide analyst estimate range (-$0.99 to -$0.64 FY). 86% beat probability appears inflated given recent execution failure.",
+      "key_factors": [
+        "Significant prior quarter miss (56% worse than consensus)",
+        "Company still unprofitable with uncertain trajectory",
+        "Base rate for earnings beats ~70% but 86% pricing seems elevated for a company with recent miss",
+        "Wide analyst estimate range signals high uncertainty"
+      ],
+      "bear_case": "Analysts may have substantially lowered Q1 estimates post-miss, making a beat mechanically easier; general earnings beat rates are high",
+      "kelly_tier": "half-Kelly (100.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-05-02T02:43:56.396590+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 47,
+  "scan_count": 48,
   "started": "2026-04-29T00:00:00+00:00",
   "version": "V2-2026-04-29",
   "note": "ClaudeBot V2 \u2014 aggressive companion to V1. Same Opus brain. T1-only, min_edge 10%, max_positions 12, no per-trade stake cap, all categories allowed, 0.5h min hold, 60min scan interval. Runs in parallel with V1 (claudebot_log.json) \u2014 separate bankroll, separate trade history.",

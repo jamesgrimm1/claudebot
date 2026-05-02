@@ -4904,10 +4904,13 @@
       "closes_in_days": 0.42,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 7681.726388999994,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T01:54:45.534889+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-02T02:38:13.939296+00:00",
+      "realized_pnl": -18.02
     },
     {
       "id": "NB1777609218",
@@ -5096,9 +5099,9 @@
       "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 38.49,
+  "daily_loss": 56.51,
   "daily_reset": "2026-05-02",
-  "scan_count": 412,
+  "scan_count": 413,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-01T20:00:17.266576+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."

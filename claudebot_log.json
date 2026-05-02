@@ -1,5 +1,5 @@
 {
-  "bankroll": 2882.2,
+  "bankroll": 2614.09,
   "trades": [
     {
       "id": "T1775098669",
@@ -1208,11 +1208,43 @@
       "won": false,
       "resolved_at": "2026-04-30T05:24:14.576623+00:00",
       "realized_pnl": -185.17
+    },
+    {
+      "id": "T1777689707",
+      "tier": 1,
+      "market_id": "2062065",
+      "market_slug": "sg-quarterly-earnings-gaap-eps-05-07-2026-neg0pt23",
+      "market": "Will Sweetgreen (SG) beat quarterly earnings?",
+      "position": "NO",
+      "entry_price": 14,
+      "stake": 268.11,
+      "potential_return": 1915.07,
+      "potential_profit": 1646.96,
+      "confidence": 77,
+      "true_prob": 70,
+      "market_prob": 86,
+      "category": "stocks",
+      "closes_in_days": 5.8,
+      "closes": "2026-05-07T21:00:00+00:00",
+      "research_summary": "SG missed last quarter significantly (-$0.42 EPS vs -$0.27 expected). Historical US earnings beat rate is ~73-75%. Market pricing 86% appears aggressive given recent miss and no evidence of dramatically lowered Q1 consensus. Base rate analysis suggests ~70% true beat probability, making NO at 14\u00a2 significantly underpriced.",
+      "key_factors": [
+        "SG missed last quarter by $0.15 EPS \u2014 substantial shortfall",
+        "Historical base beat rate ~73-75% for US stocks",
+        "No specific Q1 2026 consensus data available to justify 86% beat pricing",
+        "Company still deeply unprofitable with negative EPS trajectory"
+      ],
+      "bear_case": "Analysts may have dramatically lowered Q1 estimates post-miss, making a beat mechanically easier. $9,831 volume suggests informed traders may have better consensus data.",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-05-02T02:41:47.978218+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 351,
+  "scan_count": 352,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-05-01",
   "last_tier2_scan": "2026-05-02",

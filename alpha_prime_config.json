@@ -4,7 +4,8 @@
     "economics",
     "conflict",
     "geopolitics",
-    "sports"
+    "sports",
+    "health"
   ],
   "weather_exact_only": true,
   "yes_price_min": 75,
@@ -28,6 +29,6 @@
   "esports_yes_min": 70,
   "esports_yes_max": 95,
   "pattern_e_enabled": true,
-  "last_updated": "2025-07-12",
-  "audit_notes": "Minimal changes from prior config. Price bands: YES 75-79c profitable (main +$66.52 28%WR, beta +$23.03 31%WR), YES 80-84c losing (main -$99.05, beta -$85.16), YES 85-89c losing (main -$137.04, beta -$45.40), but YES 90-94c massively profitable (main +$411.43, beta +$313.68) - combined 75-79c and 90-94c profits (+$814.66) far exceed 80-89c losses (-$366.65), keeping range 75-94. YES 95-99c catastrophic (main 0%WR -$135.21, beta 4%WR -$26.66) - max stays 94. Time: <6h profitable in beta (+$278.95) confirms 0.25d max; 6h-24h mixed (main +$282.75, beta -$101.49) but current config already restricts to <6h. Weather: exact-temp profitable (main +$132.67, beta +$193.95), directional mixed (main +$6.94, beta -$61.69) - keep weather_exact_only=true. Categories: economics still losing hard (main -$171.04 10%WR on 21 trades, beta -$93.82 14%WR on 63 trades), politics losing, sports losing in beta despite 20%WR - all remain blocked. Crypto 36%WR on 56 trades stays enabled. No city-level data available to modify watchlist."
+  "last_updated": "2025-07-13",
+  "audit_notes": "Minimal changes warranted. Price bands: YES 75-79c profitable (main +$7.67 23%WR, beta +$22.59 29%WR), YES 80-84c losing badly (main -$125.87 14%WR, beta -$90.47 14%WR), YES 85-89c losing (main -$106.37 10%WR, beta -$47.94 9%WR), but YES 90-94c highly profitable (main +$370.94 11%WR, beta +$305.32 9%WR). Combined 75-79 and 90-94 profits (+$706.52) exceed 80-89 losses (-$370.65). YES 95-99c catastrophic (main 0%WR -$187.60, beta 3%WR -$31.35) - max stays 94. Time: <6h profitable in beta (+$266.48 18%WR) but losing in main (-$157.61); 6h-24h mixed. Current 0.25d restriction appropriate for AlphaPrime patterns. Weather: exact-temp profitable (main +$62.13, beta +$189.46), directional losing (main -$43.02, beta -$65.64) - keep weather_exact_only=true. Categories: economics catastrophic (main -$171.04 10%WR, beta -$101.08 12%WR), sports losing in beta despite volume (-$19.44 20%WR on 387 trades), health only 1 trade but 0W - added to blocked as precaution. Crypto profitable (beta 31%WR +$4.20 on 75 trades) stays enabled. No city-level data to modify watchlist."
 }
