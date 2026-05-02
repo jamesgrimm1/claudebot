@@ -1,5 +1,5 @@
 {
-  "bankroll": 950.88,
+  "bankroll": 960.99,
   "trades": [
     {
       "id": "NB1776304868",
@@ -887,10 +887,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 9777.581085000002,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-17T01:46:02.996156+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-02T08:18:05.958055+00:00",
+      "realized_pnl": 1.47
     },
     {
       "id": "NB1776400709",
@@ -9011,10 +9014,13 @@
       "closes_in_days": 0.26,
       "closes": "2026-05-01T04:00:00+00:00",
       "volume": 5143.247036999999,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-30T21:45:48.358567+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-02T08:18:06.456362+00:00",
+      "realized_pnl": -4.26
     },
     {
       "id": "NB1777600464",
@@ -9169,10 +9175,13 @@
       "closes_in_days": 0.17,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 5179.7150809999985,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T07:59:40.777953+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": false,
+      "resolved_at": "2026-05-02T08:18:06.533333+00:00",
+      "realized_pnl": -4.67
     },
     {
       "id": "NB1777622380",
@@ -9189,10 +9198,13 @@
       "closes_in_days": 0.17,
       "closes": "2026-05-01T12:00:00+00:00",
       "volume": 4615.40297500001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-01T07:59:40.777997+00:00",
       "paper": true,
-      "model": "nobot-mechanical"
+      "model": "nobot-mechanical",
+      "won": true,
+      "resolved_at": "2026-05-02T08:18:06.710729+00:00",
+      "realized_pnl": 4.29
     },
     {
       "id": "NB1777628797",
@@ -9617,11 +9629,31 @@
       "placed_at": "2026-05-02T06:56:13.752084+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777709895",
+      "market_id": "2122275",
+      "market_slug": "highest-temperature-in-miami-on-may-2-2026-92-93f",
+      "market": "Will the highest temperature in Miami be between 92-93\u00b0F on May 2?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 2.41,
+      "payout_if_wins": 3.89,
+      "profit_if_wins": 1.48,
+      "category": "weather",
+      "closes_in_days": 0.15,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 4159.519632999999,
+      "status": "open",
+      "placed_at": "2026-05-02T08:18:15.291405+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
-  "daily_loss": 9.21,
+  "daily_loss": 18.14,
   "daily_reset": "2026-05-02",
-  "scan_count": 309,
+  "scan_count": 310,
   "started": "2026-04-16T00:00:00+00:00",
-  "last_summary_sent": "2026-05-01T20:00:00.438780+00:00"
+  "last_summary_sent": "2026-05-02T08:18:04.785464+00:00"
 }

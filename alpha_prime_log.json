@@ -1,5 +1,5 @@
 {
-  "bankroll": 794.28,
+  "bankroll": 770.45,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -394,11 +394,33 @@
       "source_bot": "nearcertain",
       "paper": true,
       "model": "alpha-prime-signal"
+    },
+    {
+      "id": "AP20260502081846396203",
+      "market_id": "2122296",
+      "market": "Will the highest temperature in Ankara be 7\u00b0C on May 2?",
+      "category": "weather",
+      "pattern": "A",
+      "pattern_label": "Weather Exact-Temp",
+      "pattern_reason": "weather_exact",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 23.83,
+      "potential_profit": 75.46,
+      "potential_payout": 99.29,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "closes_in_days": 0.154,
+      "status": "open",
+      "placed_at": "2026-05-02T08:18:46.396217+00:00",
+      "source_bot": "nearcertain",
+      "paper": true,
+      "model": "alpha-prime-signal"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 54,
+  "scan_count": 55,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",

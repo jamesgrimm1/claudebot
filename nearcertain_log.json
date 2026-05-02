@@ -1,5 +1,5 @@
 {
-  "bankroll": 776.44,
+  "bankroll": 760.97,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -7703,10 +7703,46 @@
       "placed_at": "2026-05-02T06:56:44.118093+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502081846395543",
+      "market_id": "2122090",
+      "market": "Will the lowest temperature in New York City be between 52-53\u00b0F on May 2?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 11.65,
+      "potential_profit": 104.85,
+      "potential_payout": 116.5,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "closes_in_days": 0.154,
+      "status": "open",
+      "placed_at": "2026-05-02T08:18:46.395563+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260502081846395853",
+      "market_id": "2122296",
+      "market": "Will the highest temperature in Ankara be 7\u00b0C on May 2?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 24,
+      "entry_yes_price": 76,
+      "stake": 3.82,
+      "potential_profit": 12.1,
+      "potential_payout": 15.92,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "closes_in_days": 0.154,
+      "status": "open",
+      "placed_at": "2026-05-02T08:18:46.395870+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-02",
-  "scan_count": 219,
+  "scan_count": 220,
   "started": "2026-04-21T00:00:00+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "bankroll": 1134.8,
+  "bankroll": 1126.29,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5240,11 +5240,31 @@
       "placed_at": "2026-05-02T06:56:31.344780+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777709914",
+      "market_id": "2122275",
+      "market_slug": "highest-temperature-in-miami-on-may-2-2026-92-93f",
+      "market": "Will the highest temperature in Miami be between 92-93\u00b0F on May 2?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 8.51,
+      "payout_if_wins": 13.73,
+      "profit_if_wins": 5.22,
+      "category": "weather",
+      "closes_in_days": 0.15,
+      "closes": "2026-05-02T12:00:00+00:00",
+      "volume": 4159.519632999999,
+      "status": "open",
+      "placed_at": "2026-05-02T08:18:34.242602+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 56.51,
   "daily_reset": "2026-05-02",
-  "scan_count": 419,
+  "scan_count": 420,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-02T08:01:22.395588+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
