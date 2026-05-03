@@ -1,5 +1,5 @@
 {
-  "bankroll": 1056.58,
+  "bankroll": 1075.06,
   "trades": [
     {
       "id": "NB1776304868",
@@ -17,10 +17,13 @@
       "closes": "2026-04-30T00:00:00+00:00",
       "volume": 91106.88388499999,
       "exit_target": 90,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-04-16T02:01:08.863365+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-05-03T07:45:48.961377+00:00",
+      "realized_pnl": 4.15
     },
     {
       "id": "NB1776304868",
@@ -9720,10 +9723,13 @@
       "closes_in_days": 0.21,
       "closes": "2026-05-02T12:00:00+00:00",
       "volume": 3515.925519000001,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:56:22.998200+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": false,
+      "resolved_at": "2026-05-03T07:45:49.665803+00:00",
+      "realized_pnl": -4.34
     },
     {
       "id": "NB1777709905",
@@ -9763,10 +9769,13 @@
       "closes_in_days": 0.09,
       "closes": "2026-05-03T04:00:00+00:00",
       "volume": 34947.812348000036,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T01:46:53.460635+00:00",
       "paper": true,
-      "model": "nobot-v2"
+      "model": "nobot-v2",
+      "won": true,
+      "resolved_at": "2026-05-03T07:45:49.730455+00:00",
+      "realized_pnl": 9.0
     },
     {
       "id": "NB1777772813",
@@ -9967,11 +9976,71 @@
       "placed_at": "2026-05-03T05:21:33.682467+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777794356",
+      "market_id": "2130103",
+      "market_slug": "highest-temperature-in-wuhan-on-may-3-2026-25c",
+      "market": "Will the highest temperature in Wuhan be 25\u00b0C on May 3?",
+      "position": "NO",
+      "entry_no_price": 46,
+      "entry_yes_price": 54,
+      "stake": 3.43,
+      "payout_if_wins": 7.46,
+      "profit_if_wins": 4.03,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 5218.708449,
+      "status": "open",
+      "placed_at": "2026-05-03T07:45:56.267640+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777794356",
+      "market_id": "2129914",
+      "market_slug": "highest-temperature-in-miami-on-may-3-2026-80-81f",
+      "market": "Will the highest temperature in Miami be between 80-81\u00b0F on May 3?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 4.44,
+      "payout_if_wins": 7.93,
+      "profit_if_wins": 3.49,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 4307.408332000002,
+      "status": "open",
+      "placed_at": "2026-05-03T07:45:56.267716+00:00",
+      "paper": true,
+      "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777794356",
+      "market_id": "2129865",
+      "market_slug": "highest-temperature-in-toronto-on-may-3-2026-15corhigher",
+      "market": "Will the highest temperature in Toronto be 15\u00b0C or higher on May 3?",
+      "position": "NO",
+      "entry_no_price": 62,
+      "entry_yes_price": 38,
+      "stake": 4.48,
+      "payout_if_wins": 7.23,
+      "profit_if_wins": 2.75,
+      "category": "weather",
+      "closes_in_days": 0.18,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 3802.493345999999,
+      "status": "open",
+      "placed_at": "2026-05-03T07:45:56.267753+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
-  "daily_loss": 6.66,
+  "daily_loss": 11.0,
   "daily_reset": "2026-05-03",
-  "scan_count": 330,
+  "scan_count": 331,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-02T20:30:26.068570+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
