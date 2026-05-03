@@ -1,5 +1,5 @@
 {
-  "bankroll": 1301.64,
+  "bankroll": 1269.1,
   "trades": [
     {
       "id": "AP1777455821046",
@@ -673,11 +673,14 @@
       "potential_payout": 240.53,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.176,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T07:46:15.281407+00:00",
       "source_bot": "nearcertain",
       "paper": true,
-      "model": "alpha-prime-signal"
+      "model": "alpha-prime-signal",
+      "won": false,
+      "resolved_at": "2026-05-03T14:06:14.088047+00:00",
+      "realized_pnl": -45.7
     },
     {
       "id": "AP20260503091259467157",
@@ -832,11 +835,33 @@
       "source_bot": "nearcertain_beta",
       "paper": true,
       "model": "alpha-prime-signal"
+    },
+    {
+      "id": "AP20260503140613787345",
+      "market_id": "2142372",
+      "market": "Counter-Strike: BIG Academy vs ReThink (BO3) - United21 Playoffs",
+      "category": "crypto",
+      "pattern": "C",
+      "pattern_label": "Esports CS/Dota/LoL",
+      "pattern_reason": "esports_cs",
+      "position": "NO",
+      "entry_no_price": 20,
+      "entry_yes_price": 80,
+      "stake": 32.54,
+      "potential_profit": 130.16,
+      "potential_payout": 162.7,
+      "closes": "2026-05-03T17:25:00+00:00",
+      "closes_in_days": 0.138,
+      "status": "open",
+      "placed_at": "2026-05-03T14:06:13.787357+00:00",
+      "source_bot": "nearcertain_beta",
+      "paper": true,
+      "model": "alpha-prime-signal"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 45.7,
   "daily_reset": "2026-05-03",
-  "scan_count": 77,
+  "scan_count": 78,
   "started": "2026-04-28T00:00:00+00:00",
   "version": "V2-2026-04-28",
   "note": "FRESH RESET 2026-04-28: V2 rebuild after audit confirmed killer pattern compression. New patterns: A (weather NO 20-25 at 6-24h), B (sports O/U <6h), G (crypto NO 20-25 at 12-24h micro). Old patterns C/D/F removed. Starting bankroll $1000.",

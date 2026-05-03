@@ -1,5 +1,5 @@
 {
-  "bankroll": 2614.09,
+  "bankroll": 2352.68,
   "trades": [
     {
       "id": "T1775098669",
@@ -1240,11 +1240,42 @@
       "placed_at": "2026-05-02T02:41:47.978218+00:00",
       "paper": true,
       "model": "claude-opus-4-6"
+    },
+    {
+      "id": "T1777817322",
+      "tier": 1,
+      "market_id": "2143117",
+      "market_slug": "atp-hurkacz-arnaldi-2026-05-03",
+      "market": "Cagliari: Hubert Hurkacz vs Matteo Arnaldi",
+      "position": "NO",
+      "entry_price": 61,
+      "stake": 261.41,
+      "potential_return": 428.54,
+      "potential_profit": 167.13,
+      "confidence": 88,
+      "true_prob": 5,
+      "market_prob": 39,
+      "category": "other",
+      "closes_in_days": 7.0,
+      "closes": "2026-05-10T13:00:00+00:00",
+      "research_summary": "ATP Tour official results show Arnaldi won the completed match 1-6, 6-1, 6-0. Match started 13:00 UTC today; elapsed time sufficient for 3-set completion with these lopsided scores. Market at 39% YES is massively mispriced for an event that has already resolved.",
+      "key_factors": [
+        "ATP Tour official results confirm Arnaldi victory in 3 sets",
+        "Match started 67+ minutes ago \u2014 ample time for completion given scoreline",
+        "Market pricing hasn't caught up to completed result \u2014 classic informational lag"
+      ],
+      "bear_case": "Research flagged data quality concern \u2014 possible ATP results are cached from different match/year, or match was suspended mid-play and hasn't actually concluded",
+      "kelly_tier": "half-Kelly (10.0%)",
+      "news_triggered": false,
+      "status": "open",
+      "placed_at": "2026-05-03T14:08:42.142860+00:00",
+      "paper": true,
+      "model": "claude-opus-4-6"
     }
   ],
   "daily_loss": 0.0,
   "daily_reset": "2026-05-03",
-  "scan_count": 377,
+  "scan_count": 378,
   "started": "2026-04-02T00:00:00+00:00",
   "last_daily_summary": "2026-05-03",
   "last_tier2_scan": "2026-05-03",
