@@ -1,5 +1,5 @@
 {
-  "bankroll": 966.11,
+  "bankroll": 962.49,
   "trades": [
     {
       "id": "NB1776304868",
@@ -10020,11 +10020,31 @@
       "placed_at": "2026-05-03T09:12:30.939846+00:00",
       "paper": true,
       "model": "nobot-mechanical"
+    },
+    {
+      "id": "NB1777811089",
+      "market_id": "1278415",
+      "market_slug": "will-lady-gaga-attend-the-met-gala",
+      "market": "Will Lady Gaga attend the Met Gala?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 3.62,
+      "payout_if_wins": 6.46,
+      "profit_if_wins": 2.84,
+      "category": "other",
+      "closes_in_days": 0.48,
+      "closes": "2026-05-04T00:00:00+00:00",
+      "volume": 96537.1093700001,
+      "status": "open",
+      "placed_at": "2026-05-03T12:24:49.211706+00:00",
+      "paper": true,
+      "model": "nobot-mechanical"
     }
   ],
   "daily_loss": 5.98,
   "daily_reset": "2026-05-03",
-  "scan_count": 330,
+  "scan_count": 331,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-03T09:12:19.891387+00:00"
 }

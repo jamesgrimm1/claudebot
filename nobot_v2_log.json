@@ -1,5 +1,5 @@
 {
-  "bankroll": 1074.71,
+  "bankroll": 1068.1,
   "trades": [
     {
       "id": "NB1776304868",
@@ -10079,11 +10079,31 @@
       "placed_at": "2026-05-03T09:12:40.473578+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777811098",
+      "market_id": "1278415",
+      "market_slug": "will-lady-gaga-attend-the-met-gala",
+      "market": "Will Lady Gaga attend the Met Gala?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 6.61,
+      "payout_if_wins": 11.8,
+      "profit_if_wins": 5.19,
+      "category": "other",
+      "closes_in_days": 0.48,
+      "closes": "2026-05-04T00:00:00+00:00",
+      "volume": 96537.1093700001,
+      "status": "open",
+      "placed_at": "2026-05-03T12:24:58.340123+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 11.0,
   "daily_reset": "2026-05-03",
-  "scan_count": 334,
+  "scan_count": 335,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-03T09:12:31.575629+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"

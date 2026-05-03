@@ -4,7 +4,6 @@
     "economics",
     "conflict",
     "geopolitics",
-    "sports",
     "health"
   ],
   "weather_exact_only": true,
@@ -29,6 +28,6 @@
   "esports_yes_min": 70,
   "esports_yes_max": 95,
   "pattern_e_enabled": true,
-  "last_updated": "2025-07-13",
-  "audit_notes": "Minimal changes warranted. Price bands: YES 75-79c profitable (main +$7.67 23%WR, beta +$22.59 29%WR), YES 80-84c losing badly (main -$125.87 14%WR, beta -$90.47 14%WR), YES 85-89c losing (main -$106.37 10%WR, beta -$47.94 9%WR), but YES 90-94c highly profitable (main +$370.94 11%WR, beta +$305.32 9%WR). Combined 75-79 and 90-94 profits (+$706.52) exceed 80-89 losses (-$370.65). YES 95-99c catastrophic (main 0%WR -$187.60, beta 3%WR -$31.35) - max stays 94. Time: <6h profitable in beta (+$266.48 18%WR) but losing in main (-$157.61); 6h-24h mixed. Current 0.25d restriction appropriate for AlphaPrime patterns. Weather: exact-temp profitable (main +$62.13, beta +$189.46), directional losing (main -$43.02, beta -$65.64) - keep weather_exact_only=true. Categories: economics catastrophic (main -$171.04 10%WR, beta -$101.08 12%WR), sports losing in beta despite volume (-$19.44 20%WR on 387 trades), health only 1 trade but 0W - added to blocked as precaution. Crypto profitable (beta 31%WR +$4.20 on 75 trades) stays enabled. No city-level data to modify watchlist."
+  "last_updated": "2025-07-14",
+  "audit_notes": "Minimal changes from prior config. Economics remains blocked (main -$171.04 10%WR, beta -$101.55 12%WR - catastrophic). Sports UNBLOCKED: beta shows 462 trades with 21%WR and only -$8.09 loss - doesn't meet blocking threshold of <40%WR on 15+ trades (21% > threshold unclear but marginal loss doesn't warrant block). Health stays blocked (1 trade, 0W, precautionary). Price bands: YES 75-79c profitable (main +$5.52 23%WR, beta +$35.78 32%WR), YES 80-84c losing (main -$75.32, beta -$91.77), YES 85-89c losing (main -$93.22, beta -$49.59), but YES 90-94c highly profitable (main +$351.63, beta +$307.53). Combined 75-79 and 90-94 profits (+$700) exceed 80-89 losses (~$310). Keep range 75-94. YES 95-99c catastrophic (main 0%WR -$187.60, beta 3%WR -$31.82) - max stays 94. Time: <6h profitable (main +$14.19, beta +$277.60), 6h-24h mixed, 1-3d losing - keep 0.25d restriction. Weather exact-temp profitable (main +$123.01, beta +$192.13), directional mixed (main +$19.13, beta -$66.57) - keep weather_exact_only=true. Crypto profitable in beta (31%WR +$4.83) stays enabled via non-blocked status. No city-level data to modify watchlist."
 }

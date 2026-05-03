@@ -1,5 +1,5 @@
 {
-  "bankroll": 767.5,
+  "bankroll": 852.61,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -8029,10 +8029,13 @@
       "potential_payout": 219.33,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.426,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T01:47:08.990814+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T12:25:08.858243+00:00",
+      "realized_pnl": -13.16
     },
     {
       "id": "NC20260503014708990974",
@@ -8101,10 +8104,13 @@
       "potential_payout": 31.7,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.277,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T05:21:53.733664+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-03T12:25:09.565987+00:00",
+      "realized_pnl": 25.36
     },
     {
       "id": "NC20260503052153733812",
@@ -8230,10 +8236,13 @@
       "potential_payout": 59.85,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.176,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T07:46:15.278080+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-03T12:25:11.044054+00:00",
+      "realized_pnl": 52.07
     },
     {
       "id": "NC20260503074615281072",
@@ -8324,10 +8333,28 @@
       "placed_at": "2026-05-03T09:12:59.469469+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503122520189864",
+      "market_id": "2030525",
+      "market": "Manchester United FC vs. Liverpool FC: O/U 1.5",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 6.44,
+      "potential_profit": 33.81,
+      "potential_payout": 40.25,
+      "closes": "2026-05-03T14:30:00+00:00",
+      "closes_in_days": 0.087,
+      "status": "open",
+      "placed_at": "2026-05-03T12:25:20.189880+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 42.69,
+  "daily_loss": 55.85,
   "daily_reset": "2026-05-03",
-  "scan_count": 240,
+  "scan_count": 241,
   "started": "2026-04-21T00:00:00+00:00"
 }
