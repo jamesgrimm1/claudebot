@@ -1,5 +1,5 @@
 {
-  "bankroll": 934.46,
+  "bankroll": 931.7,
   "trades": [
     {
       "id": "NC20260421152114730540",
@@ -27699,10 +27699,13 @@
       "potential_payout": 5.88,
       "closes": "2026-05-03T00:00:00+00:00",
       "closes_in_days": 0.145,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T20:31:07.410297+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:38.301111+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502203107410785",
@@ -28014,10 +28017,13 @@
       "potential_payout": 4.7,
       "closes": "2026-05-03T15:00:00+00:00",
       "closes_in_days": 0.688,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T22:29:39.206993+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:39.073414+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260502222939207761",
@@ -28641,10 +28647,13 @@
       "potential_payout": 1.47,
       "closes": "2026-05-03T13:00:00+00:00",
       "closes_in_days": 0.218,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T07:46:28.549837+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": true,
+      "resolved_at": "2026-05-03T15:37:40.052997+00:00",
+      "realized_pnl": 1.0
     },
     {
       "id": "NC20260503074628550486",
@@ -28659,10 +28668,13 @@
       "potential_payout": 3.92,
       "closes": "2026-05-03T15:00:00+00:00",
       "closes_in_days": 0.301,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T07:46:28.550506+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:40.117386+00:00",
+      "realized_pnl": -0.47
     },
     {
       "id": "NC20260503074628550941",
@@ -28812,10 +28824,13 @@
       "potential_payout": 1.44,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.116,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T09:13:14.906005+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:40.483033+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503091314906375",
@@ -28965,10 +28980,13 @@
       "potential_payout": 3.29,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.053,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T10:43:52.167116+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:41.330137+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503104352168529",
@@ -28983,10 +29001,13 @@
       "potential_payout": 2.56,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.053,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T10:43:52.168544+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:41.410969+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503104352168995",
@@ -29001,10 +29022,13 @@
       "potential_payout": 1.35,
       "closes": "2026-05-03T12:30:00+00:00",
       "closes_in_days": 0.074,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T10:43:52.169012+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:41.506421+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503104352169472",
@@ -29019,10 +29043,13 @@
       "potential_payout": 3.83,
       "closes": "2026-05-03T14:10:00+00:00",
       "closes_in_days": 0.143,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T10:43:52.169489+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:41.642418+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503113507949042",
@@ -29055,10 +29082,13 @@
       "potential_payout": 4.6,
       "closes": "2026-05-03T12:00:00+00:00",
       "closes_in_days": 0.017,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T11:35:07.949699+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:42.017549+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503113507951487",
@@ -29181,10 +29211,13 @@
       "potential_payout": 2.19,
       "closes": "2026-05-03T13:00:00+00:00",
       "closes_in_days": 0.024,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-03T12:25:48.039949+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T15:37:42.162238+00:00",
+      "realized_pnl": -0.46
     },
     {
       "id": "NC20260503122548040311",
@@ -29365,11 +29398,173 @@
       "placed_at": "2026-05-03T14:06:13.789000+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751256623",
+      "market_id": "2115413",
+      "market": "Dota 2: Nigma Galaxy vs Zero Tenacity - Game 1 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 16,
+      "entry_yes_price": 84,
+      "stake": 0.47,
+      "potential_profit": 2.47,
+      "potential_payout": 2.94,
+      "closes": "2026-05-03T19:00:00+00:00",
+      "closes_in_days": 0.14,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.256642+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751258320",
+      "market_id": "2138599",
+      "market": "Counter-Strike: Dripmen vs NEW VISION - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.47,
+      "potential_profit": 1.0,
+      "potential_payout": 1.47,
+      "closes": "2026-05-03T19:45:00+00:00",
+      "closes_in_days": 0.172,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.258342+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751258678",
+      "market_id": "2116028",
+      "market": "Counter-Strike: Phantom vs against All authority (BO3) - NODWIN Clutch Series Play-In Group C",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 10,
+      "entry_yes_price": 90,
+      "stake": 0.47,
+      "potential_profit": 4.23,
+      "potential_payout": 4.7,
+      "closes": "2026-05-03T20:30:00+00:00",
+      "closes_in_days": 0.203,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.258694+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751260230",
+      "market_id": "2116030",
+      "market": "Counter-Strike: Phantom vs against All authority - Map 2 Winner",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 32,
+      "entry_yes_price": 68,
+      "stake": 0.47,
+      "potential_profit": 1.0,
+      "potential_payout": 1.47,
+      "closes": "2026-05-03T20:30:00+00:00",
+      "closes_in_days": 0.203,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.260245+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751260615",
+      "market_id": "2115410",
+      "market": "Dota 2: Nigma Galaxy vs Zero Tenacity (BO3) - 1win Essence Group B",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.47,
+      "potential_profit": 3.45,
+      "potential_payout": 3.92,
+      "closes": "2026-05-03T21:00:00+00:00",
+      "closes_in_days": 0.224,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.260640+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751262712",
+      "market_id": "2138569",
+      "market": "LoL: Dplus KIA Challengers vs DN SOOPers Challengers (BO3) - LCK Challengers League Rounds 1-2",
+      "category": "sports",
+      "position": "NO",
+      "entry_no_price": 30,
+      "entry_yes_price": 70,
+      "stake": 0.47,
+      "potential_profit": 1.1,
+      "potential_payout": 1.57,
+      "closes": "2026-05-04T11:00:00+00:00",
+      "closes_in_days": 0.807,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.262728+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751263104",
+      "market_id": "2137637",
+      "market": "Will the highest temperature in Jeddah be 39\u00b0C or higher on May 4?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.47,
+      "potential_profit": 0.91,
+      "potential_payout": 1.38,
+      "closes": "2026-05-04T12:00:00+00:00",
+      "closes_in_days": 0.849,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.263122+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751263561",
+      "market_id": "2137722",
+      "market": "Will the highest temperature in Manila be 36\u00b0C on May 4?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 34,
+      "entry_yes_price": 66,
+      "stake": 0.47,
+      "potential_profit": 0.91,
+      "potential_payout": 1.38,
+      "closes": "2026-05-04T12:00:00+00:00",
+      "closes_in_days": 0.849,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.263579+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503153751263927",
+      "market_id": "2125183",
+      "market": "Will \"The Super Mario Galaxy Movie\" 5th Weekend Box Office be between 11.5m and 12.5m?",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 0.47,
+      "potential_profit": 3.45,
+      "potential_payout": 3.92,
+      "closes": "2026-05-04T12:00:00+00:00",
+      "closes_in_days": 0.849,
+      "status": "open",
+      "placed_at": "2026-05-03T15:37:51.263944+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 20.61,
+  "daily_loss": 25.24,
   "daily_reset": "2026-05-03",
-  "scan_count": 188,
+  "scan_count": 189,
   "started": "2026-04-21T00:00:00+00:00",
   "note": "Beta data collector \u2014 seeded with closed trades from main log. YES 65-95\u00a2, all categories, all time frames, $0.50 stakes."
 }
