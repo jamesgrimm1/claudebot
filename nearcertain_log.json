@@ -1,5 +1,5 @@
 {
-  "bankroll": 884.04,
+  "bankroll": 849.19,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -7753,10 +7753,13 @@
       "potential_payout": 147.75,
       "closes": "2026-05-03T00:00:00+00:00",
       "closes_in_days": 0.711,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:56:44.118093+00:00",
       "paper": true,
-      "model": "nearcertain"
+      "model": "nearcertain",
+      "won": false,
+      "resolved_at": "2026-05-03T01:47:04.686309+00:00",
+      "realized_pnl": -11.82
     },
     {
       "id": "NC20260502081846395543",
@@ -7982,10 +7985,82 @@
       "placed_at": "2026-05-02T16:36:04.985558+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503014708990512",
+      "market_id": "2129975",
+      "market": "Will the highest temperature in Munich be 26\u00b0C or higher on May 3?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 6.63,
+      "potential_profit": 30.2,
+      "potential_payout": 36.83,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "closes_in_days": 0.426,
+      "status": "open",
+      "placed_at": "2026-05-03T01:47:08.990530+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503014708990798",
+      "market_id": "2130371",
+      "market": "Will the highest temperature in Karachi be 37\u00b0C or higher on May 3?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 6,
+      "entry_yes_price": 94,
+      "stake": 13.16,
+      "potential_profit": 206.17,
+      "potential_payout": 219.33,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "closes_in_days": 0.426,
+      "status": "open",
+      "placed_at": "2026-05-03T01:47:08.990814+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503014708990974",
+      "market_id": "2129950",
+      "market": "Will the highest temperature in Wellington be 16\u00b0C on May 3?",
+      "category": "weather",
+      "position": "NO",
+      "entry_no_price": 18,
+      "entry_yes_price": 82,
+      "stake": 6.48,
+      "potential_profit": 29.52,
+      "potential_payout": 36.0,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "closes_in_days": 0.426,
+      "status": "open",
+      "placed_at": "2026-05-03T01:47:08.990987+00:00",
+      "paper": true,
+      "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503014708991166",
+      "market_id": "2084227",
+      "market": "LoL: KT Rolster vs HANJIN BRION (BO3) - LCK Rounds 1-2",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 14,
+      "entry_yes_price": 86,
+      "stake": 8.58,
+      "potential_profit": 52.71,
+      "potential_payout": 61.29,
+      "closes": "2026-05-03T14:00:00+00:00",
+      "closes_in_days": 0.509,
+      "status": "open",
+      "placed_at": "2026-05-03T01:47:08.991179+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
-  "daily_loss": 170.12,
-  "daily_reset": "2026-05-02",
-  "scan_count": 234,
+  "daily_loss": 11.82,
+  "daily_reset": "2026-05-03",
+  "scan_count": 235,
   "started": "2026-04-21T00:00:00+00:00"
 }

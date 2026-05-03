@@ -1,5 +1,5 @@
 {
-  "bankroll": 1169.05,
+  "bankroll": 1155.9,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5180,10 +5180,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-05-02T12:00:00+00:00",
       "volume": 9716.578374,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:13:59.912508+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-03T01:46:54.296180+00:00",
+      "realized_pnl": -17.9
     },
     {
       "id": "NB1777702439",
@@ -5223,10 +5226,13 @@
       "closes_in_days": 0.24,
       "closes": "2026-05-02T12:00:00+00:00",
       "volume": 3449.0269420000022,
-      "status": "open",
+      "status": "closed",
       "placed_at": "2026-05-02T06:13:59.912588+00:00",
       "paper": true,
-      "model": "nobot-v3-weather"
+      "model": "nobot-v3-weather",
+      "won": false,
+      "resolved_at": "2026-05-03T01:46:54.420962+00:00",
+      "realized_pnl": -17.5
     },
     {
       "id": "NB1777704991",
@@ -5413,11 +5419,31 @@
       "placed_at": "2026-05-03T00:02:26.003564+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777772819",
+      "market_id": "2130028",
+      "market_slug": "highest-temperature-in-singapore-on-may-3-2026-33c",
+      "market": "Will the highest temperature in Singapore be 33\u00b0C on May 3?",
+      "position": "NO",
+      "entry_no_price": 56,
+      "entry_yes_price": 44,
+      "stake": 13.15,
+      "payout_if_wins": 23.48,
+      "profit_if_wins": 10.33,
+      "category": "weather",
+      "closes_in_days": 0.43,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 3308.9184529999993,
+      "status": "open",
+      "placed_at": "2026-05-03T01:46:59.961551+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
-  "daily_loss": 0.0,
+  "daily_loss": 35.4,
   "daily_reset": "2026-05-03",
-  "scan_count": 449,
+  "scan_count": 450,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-02T20:05:54.037137+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
