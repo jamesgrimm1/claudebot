@@ -1,5 +1,5 @@
 {
-  "bankroll": 1060.98,
+  "bankroll": 1056.58,
   "trades": [
     {
       "id": "NB1776304868",
@@ -9947,11 +9947,31 @@
       "placed_at": "2026-05-03T01:46:53.460903+00:00",
       "paper": true,
       "model": "nobot-v2"
+    },
+    {
+      "id": "NB1777785693",
+      "market_id": "2086836",
+      "market_slug": "will-the-price-of-ethereum-be-between-2200-2300-on-may-3",
+      "market": "Will the price of Ethereum be between $2,200 and $2,300 on May 3?",
+      "position": "NO",
+      "entry_no_price": 59,
+      "entry_yes_price": 41,
+      "stake": 4.4,
+      "payout_if_wins": 7.46,
+      "profit_if_wins": 3.06,
+      "category": "crypto",
+      "closes_in_days": 0.44,
+      "closes": "2026-05-03T16:00:00+00:00",
+      "volume": 4017.098731000001,
+      "status": "open",
+      "placed_at": "2026-05-03T05:21:33.682467+00:00",
+      "paper": true,
+      "model": "nobot-v2"
     }
   ],
   "daily_loss": 6.66,
   "daily_reset": "2026-05-03",
-  "scan_count": 329,
+  "scan_count": 330,
   "started": "2026-04-16T00:00:00+00:00",
   "last_summary_sent": "2026-05-02T20:30:26.068570+00:00",
   "v2_note": "V2 capped multipliers: 100k+=1.0x, 50-100k=1.5x, 10-50k=2.5x, 5-10k=1.5x, <5k=1.0x"
