@@ -1,5 +1,5 @@
 {
-  "bankroll": 852.61,
+  "bankroll": 844.08,
   "trades": [
     {
       "id": "NC20260421112916998448",
@@ -8351,10 +8351,28 @@
       "placed_at": "2026-05-03T12:25:20.189880+00:00",
       "paper": true,
       "model": "nearcertain"
+    },
+    {
+      "id": "NC20260503124302466853",
+      "market_id": "2081289",
+      "market": "Valorant: Rex Regum Qeon vs DetonatioN FocusMe (BO3) - VCT Pacific Group Omega",
+      "category": "other",
+      "position": "NO",
+      "entry_no_price": 12,
+      "entry_yes_price": 88,
+      "stake": 8.53,
+      "potential_profit": 62.55,
+      "potential_payout": 71.08,
+      "closes": "2026-05-03T16:00:00+00:00",
+      "closes_in_days": 0.137,
+      "status": "open",
+      "placed_at": "2026-05-03T12:43:02.466872+00:00",
+      "paper": true,
+      "model": "nearcertain"
     }
   ],
   "daily_loss": 55.85,
   "daily_reset": "2026-05-03",
-  "scan_count": 241,
+  "scan_count": 242,
   "started": "2026-04-21T00:00:00+00:00"
 }
