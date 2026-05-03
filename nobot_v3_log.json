@@ -1,5 +1,5 @@
 {
-  "bankroll": 1100.57,
+  "bankroll": 1071.87,
   "trades": [
     {
       "id": "NB1776304868",
@@ -5522,11 +5522,51 @@
       "placed_at": "2026-05-03T07:46:04.073849+00:00",
       "paper": true,
       "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777799568",
+      "market_id": "2130046",
+      "market_slug": "highest-temperature-in-madrid-on-may-3-2026-20c",
+      "market": "Will the highest temperature in Madrid be 20\u00b0C on May 3?",
+      "position": "NO",
+      "entry_no_price": 57,
+      "entry_yes_price": 42,
+      "stake": 12.38,
+      "payout_if_wins": 21.72,
+      "profit_if_wins": 9.34,
+      "category": "weather",
+      "closes_in_days": 0.12,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 3970.6579630000006,
+      "status": "open",
+      "placed_at": "2026-05-03T09:12:48.691702+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
+    },
+    {
+      "id": "NB1777799568",
+      "market_id": "2129880",
+      "market_slug": "highest-temperature-in-nyc-on-may-3-2026-58-59f",
+      "market": "Will the highest temperature in New York City be between 58-59\u00b0F on May 3?",
+      "position": "NO",
+      "entry_no_price": 52,
+      "entry_yes_price": 48,
+      "stake": 16.32,
+      "payout_if_wins": 31.38,
+      "profit_if_wins": 15.06,
+      "category": "weather",
+      "closes_in_days": 0.12,
+      "closes": "2026-05-03T12:00:00+00:00",
+      "volume": 3316.7889070000006,
+      "status": "open",
+      "placed_at": "2026-05-03T09:12:48.691741+00:00",
+      "paper": true,
+      "model": "nobot-v3-weather"
     }
   ],
   "daily_loss": 48.13,
   "daily_reset": "2026-05-03",
-  "scan_count": 457,
+  "scan_count": 458,
   "started": "2026-04-16T02:01:08.863467+00:00",
   "last_summary_sent": "2026-05-03T08:27:58.292028+00:00",
   "note": "V3 weather-only. Stakes recalculated at V3 tiers from original V1 weather trades."
